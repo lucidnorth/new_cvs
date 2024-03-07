@@ -11,12 +11,12 @@
           <!-- <img src="institute.jpg" alt="image" class="institute-image"> -->
 
           <div class="select-div">
-            <label for="registrationType">Select Registration Type:</label>
-            <select id="registrationType" class="form-control" onchange="showSelectedForm()">
-              <option value="" selected>--Select--</option>
-              <option value="business">Business Registration</option>
-              <option value="institution">Institution Registration</option>
-            </select>
+          <label for="registrationType">Select Registration Type:</label>
+                    <select id="registrationType" class="form-control" onchange="showSelectedForm()">
+                        <option value="" selected>--Select--</option>
+                        <option value="business">Business Registration</option>
+                        <option value="institution">Institution Registration</option>
+                    </select>
 
             <div id="business-description" class="form-description">
               <p>This form is for registering businesses. Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, impedit magnam earum consequatur debitis accusantium?</p>
