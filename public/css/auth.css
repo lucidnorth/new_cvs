@@ -53,7 +53,7 @@ body {
 /* Sign-in and Sign-up Styles */
 .signin, .signup {
     text-align: center;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 /* Google Button Styles */
@@ -64,11 +64,11 @@ body {
 
 /* Welcome Text Styles */
 .welcome {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 500;
     color: #1176c4;
     text-align: center;
-    margin-top: 20px;
+    /* margin-top: 10px; */
 }
 
 /* Media Queries */
@@ -91,3 +91,4 @@ body {
         padding: 60px;
     }
 }
+

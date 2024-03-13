@@ -33,13 +33,7 @@
                     <div class="col-md-6">
                         <h1 class="mb-4">CONTACT US</h1>
                         <form>
-                            <div class="mb-3">
-                                <label for="contactMethod" class="form-label">Preferred Contact Medium</label>
-                                <select class="form-select" id="contactMethod" name="contactMethod">
-                                    <option value="email">Email</option>
-                                    <option value="phone">Phone</option>
-                                </select>
-                            </div>
+                            
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="name">
@@ -56,12 +50,19 @@
                                 <label for="message" class="form-label">Type your message here</label>
                                 <textarea class="form-control" id="message" name="message" rows="4"></textarea>
                             </div>
+                            <div class="mb-3">
+                                <label for="contactMethod" class="form-label">Preferred Contact Medium</label>
+                                <select class="form-select" id="contactMethod" name="contactMethod">
+                                    <option value="email">Email</option>
+                                    <option value="phone">Phone</option>
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
 
                     <!-- Right Inner Section - Contact Details -->
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="contact-details">
                             <div class="overlay">
                                 <h2>Contact Details of CVS</h2>
@@ -78,7 +79,7 @@
                                 <h4>Live Support:</h4> (xxxxxx)</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

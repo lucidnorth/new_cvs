@@ -996,185 +996,173 @@ div a:hover {
 
 /* About Us */
 .container {
-    text-align: left; /* Align the container content to the left */
+  text-align: left; /* Align the container content to the left */
 }
 
 #myTabs {
-    width: 70%; /* Adjust the width as needed */
-    margin: 0 auto;
+  width: 70%; /* Adjust the width as needed */
+  margin: 0 auto;
 }
 
 .nav-pills {
-    border-bottom: 1px solid rgba(109, 109, 109, 0.158);
+  border-bottom: 1px solid rgba(109, 109, 109, 0.158);
+  display: flex;
+  justify-content: space-around; /* Arrange tabs horizontally */
 }
 
 .nav-pills .nav-item {
-    width: 25%; /* Equal width for each tab */
-    text-align: center;
+  text-align: center;
 }
 
 .nav-pills .nav-link {
-    border: none;
-    border-bottom: 2px solid transparent;
-    color: #000;
-    font-weight: normal;
-    transition: border-bottom 0.3s, font-weight 0.3s;
-    border-radius: 0%;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #000;
+  font-weight: normal;
+  transition: border-bottom 0.3s, font-weight 0.3s;
+  border-radius: 0%;
+  padding: 0.5rem 1rem; /* Adjust padding for better spacing */
 }
 
 .nav-pills .nav-link:hover {
-    color: #31adfc;
-    border-bottom: 2px solid #31adfc;
+  color: #31adfc;
+  border-bottom: 2px solid #31adfc;
 }
 
 .nav-pills .nav-link.active {
-    font-weight: bold;
-    border-bottom: 2px solid #31adfc;
-    color: black;
-    background: #ffffff00;
+  font-weight: bold;
+  border-bottom: 2px solid #31adfc;
+  color: black;
+  background: #ffffff00;
 }
 
 .tab-content {
-    padding: 20px;
+  padding: 20px;
 }
 
-/* About us */
-
-.container {
-    text-align: left; /* Align the container content to the left */
-}
-
-#myTabs {
-    width: 70%; /* Adjust the width as needed */
-    margin: 0 auto;
-}
-
-.nav-pills {
-    border-bottom: 1px solid rgba(109, 109, 109, 0.158);
-}
-
-.nav-pills .nav-item {
-    width: 25%; /* Equal width for each tab */
-    text-align: center;
-}
-
-.nav-pills .nav-link {
-    border: none;
-    border-bottom: 2px solid transparent;
-    color: #000;
-    font-weight: normal;
-    transition: border-bottom 0.3s, font-weight 0.3s;
-    border-radius: 0%;
-}
-
-.nav-pills .nav-link:hover {
-    color: #31adfc;
-    border-bottom: 2px solid #31adfc;
-}
-
-.nav-pills .nav-link.active {
-    font-weight: bold;
-    border-bottom: 2px solid #31adfc;
-    color: black;
-    background: #ffffff00;
-}
-
-.tab-content {
-    padding: 20px;
-    /* margin-bottom: 200px; */
-}
-
-.about-tab-content {
-    padding: 20px;
-    margin-bottom: 200px;
-}
 
 /* Get In Touch */
 
 .contact-details {
-    background: url("https://professions.ng/wp-content/uploads/2023/09/Customer-Service-Outsourcing-in-Nigeria-Pros-Cons-768x768.jpeg")
-        center/cover;
-    color: #fff;
-    padding: 20px;
+  color: #fff;
+  padding: 20px;
 }
 
 .modal-card {
-    background: url("your-background-image.jpg") center/cover;
-    color: #fff;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: #1283c5;
-}
-.overlay {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    padding: 20px;
+  background: url("your-background-image.jpg") center/cover;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #1283c5;
 }
 
-.ovalay-card {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.3s;
+.overlay {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.overlay-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .card:hover .overlay-card {
-    opacity: 1;
+  opacity: 1;
 }
 
 .card {
-    height: 250px;
-    width: 200px;
-    margin-right: 40px;
-    margin-bottom: 20px;
-    position: relative;
-    overflow: hidden;
+  height: 250px;
+  width: 200px;
+  margin-right: 40px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
 }
 
 .card-title {
-    font-size: 15px;
-    font-weight: bold;
-    margin-top: 70px;
-    margin-left: 30px;
-    cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 70px;
+  margin-left: 30px;
+  cursor: pointer;
 }
 
 /* Updated modal size */
 .modal-dialog {
-    width: 600px;
-    height: 300px;
+  width: 600px;
+  height: 300px;
 }
 
 .custom-contact-tab {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .custom-contact-form {
-    width: 100%; /* Adjust the width as needed */
+  width: 100%; /* Adjust the width as needed */
 }
 
 .custom-contact-details-container {
-    width: 48%; /* Adjust the width as needed */
-    display: block; /* Make it visible by default */
+  width: 48%; /* Adjust the width as needed */
+  display: block; /* Make it visible by default */
 }
 
 .vacancy-contents {
-    margin-top: -450px !important;
+  margin-top: -450px !important;
 }
 
 .advert-content {
-    margin-top: -350px !important;
+  margin-top: -350px !important;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+  .card {
+      width: calc(50% - 40px);
+      margin-right: 20px;
+      margin-bottom: 20px;
+  }
+
+  .modal-dialog {
+      width: 90%;
+      max-width: 400px;
+      height: auto;
+  }
+
+  .custom-contact-details-container {
+      width: 100%;
+  }
+
+  .vacancy-contents, .advert-content {
+      margin-top: 20px !important;
+  }
+
+  .custom-contact-form input,
+  .custom-contact-form textarea,
+  .custom-contact-form select {
+      width: 100%; /* Make form fields take full width */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .card {
+      width: calc(100% - 40px);
+      margin-right: 0;
+      margin-bottom: 20px;
+  }
 }
