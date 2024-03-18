@@ -12,11 +12,18 @@
     {{ session('success') }}
 </div>
 @endif
+
+
+
+
+
       <div class="col-md-8">
         <div class="card">
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
-              <p class="mb-0">Upload a Paper</p>
+              <p class="mb-0">Upload yourschool Certificate
+                
+              </p>
 
             </div>
           </div>
@@ -24,29 +31,20 @@
             <!-- <p class="text-uppercase text-sm">User Information</p> -->
             <div class="row">
 
-            <form id="institution-form" class="form" action="{{ route('user.papers.upload') }}" method="POST" enctype="multipart/form-data">
+            <form id="institution-form" class="form" action="{{ route('user.uploadcertificates.upload') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="col-md-12">
         <div class="form-group">
             <label for="example-text-input" class="form-control-label">Paper Title</label>
-            <input class="form-control" type="text" value="type" name="name">
+            <input class="form-control" type="text" value="{{ auth()->user()->name}}" name="title">
         </div>
     </div>
 
-    <div class="col-md-12">
-        <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Select Category</label>
-            <select class="form-control" id="file-format" name="category">
-                <option value="Case Study">Case Study</option>
-                <option value="Skills Gap Set">Skills Gap Set</option>
-                <option value="Research Paper">Research Paper</option>
-            </select>
-        </div>
-    </div>
+  
 
     <div class="col-md-12">
         <div class="form-group">
-            <label for="exampleFormControlTextarea1" class="form-label">Paper Description</label>
+            <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
         </div>
     </div>
@@ -55,9 +53,8 @@
     <div class="col-md-12 mt-5">
         <div class="form-group">
             <label for="file-upload" class="form-control-label">Upload File</label>
-            <input type="file" class="form-control-file" id="file-upload" accept=".pdf" name="file">
-
-            <small id="fileHelp" class="form-text text-muted">Please upload PDF files only.</small>
+            <input type="file" class="form-control-file" id="file-upload" accept=".xlsx,.xls,.csv" name="file">
+            <small id="fileHelp" class="form-text text-muted">Please upload Excel files only.</small>
         </div>
     </div>
     <div class="text-end"> <!-- Added class "text-end" to push button to the right -->
@@ -74,37 +71,7 @@
                 </div> -->
             </div>
           
-            <div class="row">
-             
-              <!-- <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">City</label>
-                    <input class="form-control" type="text" value="New York">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Country</label>
-                    <input class="form-control" type="text" value="United States">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Postal code</label>
-                    <input class="form-control" type="text" value="437300">
-                  </div>
-                </div>
-              </div>
-              <hr class="horizontal dark">
-              <p class="text-uppercase text-sm">About me</p>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">About me</label>
-                    <input class="form-control" type="text" value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source.">
-                  </div>
-                </div> -->
-            </div>
+           
           </div>
         </div>
       </div>
@@ -123,25 +90,25 @@
           <div class="card-body p-3 pb-0">
             <ul class="list-group">
             
-    @foreach ($papers as $paper)
+
     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
         <div class="d-flex flex-column">
-            <h6 class="text-dark mb-1 font-weight-bold text-sm">{{ $paper->created_at->format('F d, Y') }}</h6>
-            <span class="text-xs">{{ $paper->name }}</span>
+            <h6 class="text-dark mb-1 font-weight-bold text-sm"></h6>
+            <span class="text-xs"></span>
         </div>
         <div class="d-flex align-items-center text-sm">
-        {{ $paper->category }}
+      
 
 
            
-            <a href="{{ route('user.download.paper', $paper->id) }}" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
+            <a href="#" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
                 <i class="fas fa-file-pdf text-lg me-1"></i> PDF
             </a>
             
             
         </div>
     </li>
-    @endforeach
+
 
 
    
@@ -154,72 +121,7 @@
   </div>
 
   <div class="container-fluid py-4">
-    <div class="row">
-      <div class="col-12">
-        <div class="card mb-4">
-          <div class="card-header pb-0">
-            <h6>Download a Paper</h6>
-          </div>
-          <div class="card-body px-0 pt-0 pb-2">
-            <div class="table-responsive p-0">
-              <table class="table align-items-center mb-0">
-                <thead>
-                  <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Paper Title</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">File</th>
-                  </tr>
-                </thead>
-                <tbody>
-
-                @foreach ($allpapers as $paper)
-                  <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">{{ $paper->name }}</h6>
-
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">{{ auth()->user()->name}}</h6>
-
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-xs font-weight-bold mb-0">{{ $paper->category }}</p>
-
-                    </td>
-
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">{{ $paper->created_at->format('d/m/Y H:i:s') }}</span>
-                    </td>
-                    <td class="align-middle">
-                      <a href="{{ route('user.download.paper', $paper->id) }}"  class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                        Download
-                      </a>
-                    </td>
-                  </tr>
-                  @endforeach
-                
-                 
-                 
-                  
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  
 
     <!-- <footer class="footer pt-3  ">
         <div class="container-fluid">

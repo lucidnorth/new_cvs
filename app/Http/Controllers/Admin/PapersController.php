@@ -71,7 +71,9 @@ class PapersController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.papers.index');
+        $allpapers = Paper::orderBy('created_at', 'desc')->take(20)->get();
+
+        return view('admin.papers.index', ['allpapers' => $allpapers]);
     }
 
     public function create()

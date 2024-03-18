@@ -63,6 +63,14 @@ class UserDashboardPapersController extends Controller
     public function download(Paper $paper)
     {
         $filePath = storage_path('app/uploads/' . $paper->file);
-        return response()->download($filePath, $paper->name . '.pdf');
+    
+        // Check if the file exists
+        if (file_exists($filePath)) {
+            // Serve the file for download
+            return response()->download($filePath, $paper->name . '.pdf');
+        } else {
+            // File not found, redirect back with error message
+            return redirect()->back()->with('error', 'File not found.');
+        }
     }
 }

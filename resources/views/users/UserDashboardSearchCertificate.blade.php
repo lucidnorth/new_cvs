@@ -16,56 +16,71 @@
         <div class="card">
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
-              <p class="mb-0">Upload a Paper</p>
+              <p class="mb-0">Search for certificate Paper</p>
 
             </div>
           </div>
           <div class="card-body">
             <!-- <p class="text-uppercase text-sm">User Information</p> -->
             <div class="row">
+  <form id="institution-form " class="form " action="{{ route('user.search')}}" method="POST">
 
-            <form id="institution-form" class="form" action="{{ route('user.papers.upload') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="col-md-12">
         <div class="form-group">
             <label for="example-text-input" class="form-control-label">Paper Title</label>
-            <input class="form-control" type="text" value="type" name="name">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search"  name="certificate_number" id="certificate_number">
         </div>
     </div>
 
     <div class="col-md-12">
         <div class="form-group">
             <label for="example-text-input" class="form-control-label">Select Category</label>
-            <select class="form-control" id="file-format" name="category">
-                <option value="Case Study">Case Study</option>
-                <option value="Skills Gap Set">Skills Gap Set</option>
-                <option value="Research Paper">Research Paper</option>
-            </select>
+            <select class="form-control" name="institution_id" id="institution_id">
+                            <option value="">Select Institution</option>
+                            @foreach ($institution as $institution )
+                            <option value="{{ $institution->id }}" >{{ $institution->institutions }}</option>                 
+                            @endforeach
+                        </select>
         </div>
     </div>
 
-    <div class="col-md-12">
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1" class="form-label">Paper Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
-        </div>
-    </div>
     <hr class="horizontal dark">
 
-    <div class="col-md-12 mt-5">
-        <div class="form-group">
-            <label for="file-upload" class="form-control-label">Upload File</label>
-            <input type="file" class="form-control-file" id="file-upload" accept=".pdf" name="file">
-
-            <small id="fileHelp" class="form-text text-muted">Please upload PDF files only.</small>
-        </div>
-    </div>
     <div class="text-end"> <!-- Added class "text-end" to push button to the right -->
-        <button class="btn btn-primary btn-sm">Upload</button>
+        <button class="btn btn-primary btn-sm" type="submit">Search</button>
     </div>
 </form>
 
 
+
+
+
+
+ <!-- Display search result or error message -->
+ @if(session('certificate'))
+       <h2>Search Result</h2>
+       <ul>
+           <li>Institution: {{ session('certificate')->institution->institutions}}</li>
+           <li>First Name: {{ session('certificate')->first_name }}</li>
+            <li>Middle Name: {{ session('certificate')->middle_name }}</li>
+            <li>Last Name: {{ session('certificate')->last_name }}</li>
+            <li>Date of Birth: {{ session('certificate')->date_of_birth }}</li>
+            <li>Qualification Type: {{ session('certificate')->qualification_type }}</li>
+            <li>Gender: {{ session('certificate')->gender }}</li>
+            <li> Certificate Number: {{ session('certificate')->certificate_number }}</li>
+            <li> Student Identification: {{ session('certificate')->student_identification }}</li>
+            <li> Qualification Type: {{ session('certificate')->Qualification_Type }}</li>
+            <li> Year of Entry: {{ session('certificate')->year_of_entry}}</li>
+            <li> Year of Completion: {{ session('certificate')->year_of_completion }}</li>
+      
+           
+         
+           <!-- Include other institution-related data as needed -->
+       </ul>
+   @elseif(session('error'))
+       <p>{{ session('error') }}</p>
+   @endif
               <!-- <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Last name</label>
@@ -123,25 +138,25 @@
           <div class="card-body p-3 pb-0">
             <ul class="list-group">
             
-    @foreach ($papers as $paper)
+    
     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
         <div class="d-flex flex-column">
-            <h6 class="text-dark mb-1 font-weight-bold text-sm">{{ $paper->created_at->format('F d, Y') }}</h6>
-            <span class="text-xs">{{ $paper->name }}</span>
+            <h6 class="text-dark mb-1 font-weight-bold text-sm"></h6>
+            <span class="text-xs"></span>
         </div>
         <div class="d-flex align-items-center text-sm">
-        {{ $paper->category }}
+        
 
 
            
-            <a href="{{ route('user.download.paper', $paper->id) }}" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
+            <a href="" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
                 <i class="fas fa-file-pdf text-lg me-1"></i> PDF
             </a>
             
             
         </div>
     </li>
-    @endforeach
+  
 
 
    
@@ -150,6 +165,8 @@
           </div>
         </div>
       </div>
+
+      
     </div>
   </div>
 
@@ -174,13 +191,13 @@
                 </thead>
                 <tbody>
 
-                @foreach ($allpapers as $paper)
+             
                   <tr>
                     <td>
                       <div class="d-flex px-2 py-1">
 
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">{{ $paper->name }}</h6>
+                          <h6 class="mb-0 text-sm"></h6>
 
                         </div>
                       </div>
@@ -189,26 +206,26 @@
                       <div class="d-flex px-2 py-1">
 
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">{{ auth()->user()->name}}</h6>
+                          <h6 class="mb-0 text-sm"></h6>
 
                         </div>
                       </div>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0">{{ $paper->category }}</p>
+                      <p class="text-xs font-weight-bold mb-0"></p>
 
                     </td>
 
                     <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">{{ $paper->created_at->format('d/m/Y H:i:s') }}</span>
+                      <span class="text-secondary text-xs font-weight-bold"></span>
                     </td>
                     <td class="align-middle">
-                      <a href="{{ route('user.download.paper', $paper->id) }}"  class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                      <a href=""  class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
                         Download
                       </a>
                     </td>
                   </tr>
-                  @endforeach
+                
                 
                  
                  

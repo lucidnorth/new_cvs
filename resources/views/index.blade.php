@@ -28,6 +28,7 @@
         <div class="p-3">
           <!-- <img src="images/jumboimage.png" alt="logo"> -->
           <img src="{{ asset('images/jumboimage.png') }}" alt="Banner Image">
+          
 
         </div>
       </div>
@@ -36,7 +37,7 @@
 </div>
 
 <div class="container px-4 text-center">
-  <p class="partners-title ">We have special Relationship with:</p>
+  <p class="partners-title ">We have special relationship with:</p>
   <div class="row gx-5">
     <div class="col-lg-3 col-sm-12">
       <div class="p-3"><img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo"></div>
@@ -275,7 +276,7 @@
               <img src="images/news-image.png" alt="logo" class="mb-3 feature-image">
 
               <div class="announcement-body">
-                <h5 class="announcement-title">Card title</h5>
+                <h5 class="announcement-title">News title</h5>
                 <p class="announcement-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               </div>
             </div>
@@ -294,7 +295,7 @@
               <img src="images/news-image.png" alt="logo" class="mb-3 feature-image">
 
               <div class="announcement-body">
-                <h5 class="announcement-title">Card title</h5>
+                <h5 class="announcement-title">News title</h5>
                 <p class="announcement-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               </div>
             </div>
@@ -314,7 +315,7 @@
               <img src="images/news-image.png" alt="logo" class="mb-3 feature-image">
 
               <div class="announcement-body">
-                <h5 class="announcement-title">Card title</h5>
+                <h5 class="announcement-title">News title</h5>
                 <p class="announcement-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               </div>
             </div>

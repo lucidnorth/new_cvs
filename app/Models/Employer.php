@@ -28,8 +28,13 @@ class Employer extends Model
     protected $fillable = [
         'name',
         'address',
+        'fullname',
+        'registrationnumber',
         'phone',
+        'idtype',
+        'idnumber',
         'email',
+        'industry',
         'password',
         'created_at',
         'updated_at',
@@ -45,5 +50,10 @@ class Employer extends Model
     public function created_by()
     {
         return $this->belongsTo(User::class, 'created_by_id');
+    }
+
+    public function papers()
+    {
+        return $this->hasMany(Paper::class);
     }
 }

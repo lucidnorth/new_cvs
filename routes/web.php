@@ -13,21 +13,26 @@ use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Users\Dashboard\UserDashboardController;
 use App\Http\Controllers\Users\UserDashboardPapersController; 
 use App\Http\Controllers\Users\UserDashboardProfileController; 
+use App\Http\Controllers\Users\UserDashboardUploadCertificate;
+use App\Http\Controllers\Users\UserDashboardSearchCertificate;
 
 
 
 
+
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/dashboard/papers', [UserDashboardPapersController::class, 'index'])->name('dashboard.papers.index');
 
 Route::get('/dashboard/profile', [UserDashboardProfileController::class, 'index'])->name('dashboard.profile');
-Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->name('dashboard.profile.update');
+Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->middleware(['web','auth'])->name('dashboard.profile.update');
 
 
 Route::prefix('user')->group(function () {
     Route::get('/papers', [UserDashboardPapersController::class, 'index'])->name('user.papers.index');
     Route::post('/papers/upload', [UserDashboardPapersController::class, 'upload'])->name('user.papers.upload');
+    Route::post('/uploadcertificates/upload', [UserDashboardUploadCertificate::class, 'upload'])->middleware(['web','auth'])->name('user.uploadcertificates.upload');
+    Route::get('/papers/{paper}/download', [UserDashboardPapersController::class, 'download'])->name('user.download.paper');
 });
-
 Route::post('/upload-csv', [CertificateController::class, 'uploadCsv'])->name('upload.csv');
 
 // Route::redirect('/', '/login');
@@ -45,6 +50,8 @@ Route::middleware(["auth"])->group(function(){
     
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('profile');
     Route::get('/papers', [UserDashboardController::class, 'papers'])->name('papers');
+    Route::get('/UploadCertificate', [UserDashboardController::class, 'UploadCertificate'])->name('UploadCertificate');
+    Route::get('/searchcertificate', [UserDashboardController::class, 'SearchCertificate'])->name('SearchCertificate');
 });
 
 
@@ -57,7 +64,7 @@ Route::get('/getInTouch', function () {
 })->name('getInTouchpage');
 
 // Route::get('/institution/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
-Route::get('/institution/dashboard', [UserDashboardController::class, 'index'])->middleware(['web','auth'])->name('user.dashboard'); 
+Route::get('/dashboard', [UserDashboardController::class, 'index'])->middleware(['web','auth'])->name('user.dashboard'); 
 
 
 Route::get('/registration', [RegistrationController::class, 'showRegistrationForm'])->name('registration.form');
@@ -89,9 +96,12 @@ Route::get('/home', function () {
 
 Auth::routes();
 
-
+Route::post('/employer-cerificate-search', [UserDashboardController::class, 'search'])->name('employer.search');
+Route::post('/user-search-certificates', [UserDashboardSearchCertificate::class, 'search'])->name('user.search');
+// Route::get('/search-certificates', [UserDashboardSearchCertificate::class, 'index'])->name('user-search-certificates.index');
 Route::get('/search-certificates', [SearchController::class, 'index'])->name('search.index');
 Route::post('/search-certificates', [SearchController::class, 'search'])->name('search');
+
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', '2fa']], function () {
     Route::get('/', 'HomeController@index')->name('home');

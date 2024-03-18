@@ -38,55 +38,63 @@
              <!-- <img src="{{ asset('images/institute.jpg') }}" alt="image.jpeg"> -->
           </div>
 
-            <form id="business-form" class="form">
+            <form id="business-form" class="form" action="{{ route('register.employer') }}" method="POST">
+            @csrf
                 <h3 class="welcometext">Register a Business</i></h3>
                 <div class="form-row">
                   <div class="col-md-6 mb-3">
                     <label for="businessName">Business Name <i class="asteric"> *</i></label>
-                    <input type="text" class="form-control" id="businessName" name="businessName">
+                    <input type="text" class="form-control" id="businessName" name="name">
                   </div>
                   <div class="col-md-6 mb-2">
                     <label for="fullName">Full Name (Account Creator)<i class="asteric"> *</i></label>
-                    <input type="text" class="form-control" id="fullName" name="businessRegistration">
+                    <input type="text" class="form-control" id="fullName" name="fullname">
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="col-md-6 mb-3">
                     <label for="businessRegistration">Business Registration<i class="asteric"> *</i></label>
-                    <input type="text" class="form-control" id="businessRegistration" name="businessrRegistration">
+                    <input type="text" class="form-control" id="businessRegistration" name="registrationnumber">
                   </div>
                   <div class="col-md-6 mb-3">
                     <label for="phoneNumber">Phone Number<i class="asteric"> *</i></label>
-                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+                    <input type="text" class="form-control" id="phoneNumber" name="phone">
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="col-md-6 mb-3">
                     <label for="businessLocation">Business Location<i class="asteric"> *</i></label>
-                    <input type="businessLocation" class="form-control" id="businessLocation" name="businessLocation">
+                    <input type="businessLocation" class="form-control" id="businesslocation" name="address">
                   </div>
                   <div class="col-md-6 mb-3">
                     <label for="Idtype">ID Type<i class="asteric"> *</i></label>
-                    <input type="text" class="form-control" id="Idtype" name="Idtype">
+                    <input type="text" class="form-control" id="idtype" name="idtype">
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="col-md-6 mb-3">
-                    <label for="website">Business Website<i class="asteric"> *</i></label>
+                    <label for="website">Business Website<i class="asteric">*</i></label>
                     <input type="url" class="form-control" id="website" name="website">
                   </div>
                   <div class="col-md-6 mb-3">
                     <label for="idNumber">ID Number<i class="asteric"> *</i></label>
-                    <input type="text" class="form-control" id="idNumber" name="idNumber">
+                    <input type="text" class="form-control" id="idnumber" name="idnumber">
                   </div>
                 </div>
     
                 <div class="form-row">
-                  <div class="col-md-12 mb-3">
+                  <div class="col-md-6 mb-3">
+                    <label for="industry">Email<i class="asteric"> *</i></label>
+                    <input type="email" class="form-control" id="email" name="email">
+                  </div>
+
+                  <div class="col-md-6 mb-3">
                     <label for="industry">Industry<i class="asteric"> *</i></label>
                     <input type="text" class="form-control" id="industry" name="industry">
                   </div>
                 </div>
+
+                
     
                 <div class="form-row">
                   <div class="col-md-6 mb-3">
@@ -95,7 +103,7 @@
                   </div>
                   <div class="col-md-6 mb-3">
                     <label for="confirmPassword">Confirm Password<i class="asteric"> *</i></label>
-                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+                    <input type="password" class="form-control" id="confirmPassword" name="password_confirmation">
                   </div>
                 </div>
                 <div class="form-group form-check">
@@ -117,7 +125,7 @@
                 <label for="fullName">Full Name (Account Creator)<i class="asteric"> *</i></label>
                 <input type="text" class="form-control" id="fullName" name="fullname" required>
               </div>
-              <div class="col-md-6 mb-3">
+              <!-- <div class="col-md-6 mb-3">
                 <label for="countrySelect">Select Country:</label>
                 <select class="form-control" id="countrySelect" name="country">
                   <option value="select a country">Select a country</option>
@@ -126,6 +134,14 @@
                   <option value="uk">United Kingdom</option>
                   <option value="us">Unites States</option>
                 </select>
+              </div> -->
+
+              <div class="col-md-6 mb-3">
+                <label for="fullName">Select Country<i class="asteric"> *</i></label>
+                <input type="text" list="country-list" class="form-control" id="country-input" name="country" placeholder="Type to search countries" required>
+                <datalist id="country-list">
+                                <!-- Options will be dynamically populated here -->
+                </datalist>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="phoneNumber">Phone Number<i class="asteric"> *</i></label>

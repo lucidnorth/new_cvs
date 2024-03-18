@@ -46,7 +46,7 @@ class LoginController extends Controller
             $user->generateTwoFactorCode();
             $user->notify(new TwoFactorCodeNotification());
         }
-        if($user->institution_id != null){
+        if($user->institution_id != null || $user->employer != null){
             return redirect()->route('user.dashboard');
 
         }

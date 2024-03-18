@@ -1,24 +1,12 @@
 @extends('layouts.admin')
 @section('content')
 <div class="content">
-    @can('paper_create')
-        <div style="margin-bottom: 10px;" class="row">
-            <div class="col-lg-12">
-                <a class="btn btn-success" href="{{ route('admin.papers.create') }}">
-                    {{ trans('global.add') }} {{ trans('cruds.paper.title_singular') }}
-                </a>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
-                    {{ trans('global.app_csvImport') }}
-                </button>
-                @include('csvImport.modal', ['model' => 'Paper', 'route' => 'admin.papers.parseCsvImport'])
-            </div>
-        </div>
-    @endcan
+ 
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    {{ trans('cruds.paper.title_singular') }} {{ trans('global.list') }}
+                  
                 </div>
                 <div class="panel-body">
                     <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-Paper">
@@ -28,28 +16,57 @@
 
                                 </th>
                                 <th>
-                                    {{ trans('cruds.paper.fields.id') }}
+                                  Paper Id
                                 </th>
                                 <th>
-                                    {{ trans('cruds.paper.fields.name') }}
+                                    Paper Title
                                 </th>
                                 <th>
-                                    {{ trans('cruds.paper.fields.description') }}
+                                    Paper Category
                                 </th>
                                 <th>
-                                    {{ trans('cruds.paper.fields.papers') }}
+                                   Date
                                 </th>
                                 <th>
-                                    {{ trans('cruds.paper.fields.paper_title') }}
+                                    Download Paper
                                 </th>
-                                <th>
-                                    {{ trans('cruds.paper.fields.file_upload') }}
-                                </th>
+                               
                                 <th>
                                     &nbsp;
                                 </th>
                             </tr>
                         </thead>
+                        <tbody>
+                        @foreach ($allpapers as $paper)
+                            <tr>
+                                <td width="10">
+
+                                </td>                      
+                                <td>
+                                {{ $paper->id }}
+                                </td>
+                                <td>
+                                {{ $paper->name }}
+                                </td>
+                                <td>
+                                {{ $paper->category }}
+                                </td>
+                                <td>
+                                {{ $paper->created_at->format('d/m/Y H:i:s') }}
+                                </td>
+                                <td>
+                                  
+                    <td class="align-middle">
+                      <a href="{{ route('user.download.paper', $paper->id) }}"  class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                        Download
+                      </a>
+                                </td>
+                                <td>
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -63,66 +80,7 @@
 @section('scripts')
 @parent
 <script>
-    $(function () {
-  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('paper_delete')
-  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
-  let deleteButton = {
-    text: deleteButtonTrans,
-    url: "{{ route('admin.papers.massDestroy') }}",
-    className: 'btn-danger',
-    action: function (e, dt, node, config) {
-      var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
-          return entry.id
-      });
-
-      if (ids.length === 0) {
-        alert('{{ trans('global.datatables.zero_selected') }}')
-
-        return
-      }
-
-      if (confirm('{{ trans('global.areYouSure') }}')) {
-        $.ajax({
-          headers: {'x-csrf-token': _token},
-          method: 'POST',
-          url: config.url,
-          data: { ids: ids, _method: 'DELETE' }})
-          .done(function () { location.reload() })
-      }
-    }
-  }
-  dtButtons.push(deleteButton)
-@endcan
-
-  let dtOverrideGlobals = {
-    buttons: dtButtons,
-    processing: true,
-    serverSide: true,
-    retrieve: true,
-    aaSorting: [],
-    ajax: "{{ route('admin.papers.index') }}",
-    columns: [
-      { data: 'placeholder', name: 'placeholder' },
-{ data: 'id', name: 'id' },
-{ data: 'name', name: 'name' },
-{ data: 'description', name: 'description' },
-{ data: 'papers', name: 'papers', sortable: false, searchable: false },
-{ data: 'paper_title_name', name: 'paper_title.name' },
-{ data: 'file_upload', name: 'file_upload', sortable: false, searchable: false },
-{ data: 'actions', name: '{{ trans('global.actions') }}' }
-    ],
-    orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
-    pageLength: 100,
-  };
-  let table = $('.datatable-Paper').DataTable(dtOverrideGlobals);
-  $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
-      $($.fn.dataTable.tables(true)).DataTable()
-          .columns.adjust();
-  });
-  
-});
+   
 
 </script>
 @endsection

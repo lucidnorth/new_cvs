@@ -193,6 +193,16 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-
+fetch('https://restcountries.com/v3.1/all')
+        .then(response => response.json())
+        .then(data => {
+            const datalist = document.getElementById('country-list');
+            data.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.name.common;
+                datalist.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching countries:', error))
   </script>
 </body>

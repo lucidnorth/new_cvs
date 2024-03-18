@@ -5,12 +5,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Institution;
 use App\Models\Employer;
-use App\Models\Role;
-use App\Models\RoleUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\User; // Import the User model
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 class RegistrationController extends Controller
 {
@@ -26,8 +23,7 @@ class RegistrationController extends Controller
 
         //   Dump request data for debugging
     //dd($request->all());
-      
-    DB::beginTransaction();
+        
        try {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -35,32 +31,13 @@ class RegistrationController extends Controller
             'registrationnumber' => 'required|string|max:255|unique:employers',
             'address' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
+            
             'idtype' => 'required|string|max:255',
-            'idnumber' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:employers',
             'industry' => 'required|string|max:255',
             'password' => 'required|string|min:8|confirmed',
             'industry' => 'required|string|max:255',
         ]);
-
-        
-        $user = new User();
-        $user->name= $request->name;
-        $user->email= $request->email;
-        $user->password =  bcrypt( $request->password);
-        $user->approved = 1;
-        $user->save();
-
-    //     RoleUser::updateOrCreate(
-    //         [
-    //         'user_id'=> $user->id,
-    //         'role_id'=> Role::where('title', 'Customer Employer')->first()->id
-    //         ],
-    //         [
-    //             'user_id'=> $user->id,
-    //             'role_id'=> Role::where('title', 'Customer Employer')->first()->id
-    //         ]
-    // );
 
         // Create employer
         $employer = new Employer();
@@ -69,23 +46,18 @@ class RegistrationController extends Controller
         $employer->registrationnumber = $request->registrationnumber;
         $employer->address = $request->address;
         $employer->phone = $request->phone;
+       
         $employer->idtype = $request->idtype;
-        $employer->idnumber = $request->idnumber;
+        $employer->email = $request->email;
+        $employer->password = Hash::make($request->password);
         $employer->industry = $request->industry;
-        $employer->user_id = $user->id;
         $employer->save();
-
-         // Authenticate the user
-         Auth::login($user);
-
-        DB::commit();
        } catch (\Throwable $th) {
-        DB::rollBack();
         dd ($th);
        }
 
         // Redirect
-        return redirect()->route('user.dashboard')->with('success', 'Registration successful! Please log in.');
+        return redirect()->route('login')->with('success', 'Registration successful! Please log in.');
 
         
     }  
@@ -122,17 +94,6 @@ class RegistrationController extends Controller
                 $user->password =  bcrypt($validatedData['password']);
                 $user->approved = 1;
             $user->save();
-
-        //     RoleUser::updateOrCreate(
-        //         [
-        //         'user_id'=> $user->id,
-        //         'role_id'=> Role::where('title', 'Customer Institution Owner')->first()->id
-        //         ],
-        //         [
-        //             'user_id'=> $user->id,
-        //             'role_id'=> Role::where('title','Customer Institution Owner')->first()->id
-        //         ]
-        // );
 
             // Create a new instance of the Institution model and associate it with the user account
             $institution = Institution::create([
@@ -171,3 +132,26 @@ class RegistrationController extends Controller
 
 }
 
+
+
+
+<!-- @can('paper_show') -->
+<li class="nav-item">
+  <a class="nav-link " href="{{ route('papers')}}">
+    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+    </div>
+    <span class="nav-link-text ms-1">Papers</span>
+  </a>
+</li>
+ <!-- @endcan
+ @can('search_for_certificate') -->
+<li class="nav-item">
+  <a class="nav-link " href="{{ route('papers')}}">
+    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+    </div>
+    <span class="nav-link-text ms-1">Certificates</span>
+  </a>
+</li>
+ <!-- @endcan -->

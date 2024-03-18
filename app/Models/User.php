@@ -10,6 +10,7 @@ use Hash;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -52,12 +53,20 @@ class User extends Authenticatable
         'two_factor_expires_at',
     ];
 
-    public function institution(): HasOne
+    public function institution(): BelongsTo
     {
-        return $this->hasOne(Institution::class);
+        return $this->belongsTo (Institution::class);
     }
-
-
+    public function employer(): HasOne
+    {
+        return $this->hasOne(Employer::class);
+    }
+    // Define the relationship
+    public function papers()
+    {
+        return $this->hasMany(Paper::class);
+    }
+    
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');

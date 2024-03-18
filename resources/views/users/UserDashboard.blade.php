@@ -9,6 +9,13 @@
   
   <div class="container-fluid py-4">
   <h5 class="text-white mb-3">Welcome {{ auth()->user()->name}}</h1>
+
+
+  <!-- Institution dashboard -->
+ 
+      <!-- Employer dashboard -->
+
+      @if(auth()->user()->my_institution)  
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
@@ -110,7 +117,112 @@
           </div>
         </div>
       </div>
+      @endif
+      @if(auth()->user()->employer)
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Verification Left</p>
+                    <h5 class="font-weight-bolder">
+                      $53,000
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+55%</span>
+                      since yesterday
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
+                    <h5 class="font-weight-bolder">
+                      2,300
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+3%</span>
+                      since last week
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Papers Submitted</p>
+                    <h5 class="font-weight-bolder">
+                      +3,462
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
+                      since last quarter
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Notifications</p>
+                    <h5 class="font-weight-bolder">
+                      $103,430
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      @endif
       <div class="row mt-4">
+      @if(auth()->user()->my_institution)  
         <div class="col-lg-12 mb-lg-0 mb-4">
           <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
@@ -127,6 +239,121 @@
             </div>
           </div>
         </div>
+        @endif
+        @if(auth()->user()->employer)
+        <div class="col-md-12">
+        <div class="card">
+          <div class="card-header pb-0">
+            <div class="d-flex align-items-center">
+              <p class="mb-0">Search for certificate Paper</p>
+
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- <p class="text-uppercase text-sm">User Information</p> -->
+            <div class="row">
+  <form id="institution-form " class="form " action="{{ route('employer.search')}}" method="POST">
+
+    @csrf
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Student</label>
+            <input class="form-control mr-sm-2" type="text" placeholder="Search"  name="certificate_number" id="certificate_number">
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Select Category</label>
+            <select class="form-control" name="institution_id" id="institution_id">
+                            <option value="">Select Institution</option>
+                            @foreach ($institutions as $institution )
+                            <option value="{{ $institution->id }}" >{{ $institution->institutions }}</option>                 
+                            @endforeach
+                        </select>
+        </div>
+    </div>
+
+    <hr class="horizontal dark">
+
+    <div class="text-end"> <!-- Added class "text-end" to push button to the right -->
+        <button class="btn btn-primary btn-sm" type="submit">Search</button>
+    </div>
+</form>
+
+
+
+
+
+
+ <!-- Display search result or error message -->
+ @if(session('certificate'))
+       <h2>Search Result</h2>
+       <ul>
+           <li>Institution: {{ session('certificate')->institution->institutions}}</li>
+           <li>First Name: {{ session('certificate')->first_name }}</li>
+            <li>Middle Name: {{ session('certificate')->middle_name }}</li>
+            <li>Last Name: {{ session('certificate')->last_name }}</li>
+            <li>Date of Birth: {{ session('certificate')->date_of_birth }}</li>
+            <li>Qualification Type: {{ session('certificate')->qualification_type }}</li>
+            <li>Gender: {{ session('certificate')->gender }}</li>
+            <li> Certificate Number: {{ session('certificate')->certificate_number }}</li>
+            <li> Student Identification: {{ session('certificate')->student_identification }}</li>
+            <li> Qualification Type: {{ session('certificate')->Qualification_Type }}</li>
+            <li> Year of Entry: {{ session('certificate')->year_of_entry}}</li>
+            <li> Year of Completion: {{ session('certificate')->year_of_completion }}</li>
+      
+           
+         
+           <!-- Include other institution-related data as needed -->
+       </ul>
+   @elseif(session('error'))
+       <p>{{ session('error') }}</p>
+   @endif
+              <!-- <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Last name</label>
+                    <input class="form-control" type="text" value="Lucky">
+                  </div>
+                </div> -->
+            </div>
+          
+            <div class="row">
+             
+              <!-- <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">City</label>
+                    <input class="form-control" type="text" value="New York">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Country</label>
+                    <input class="form-control" type="text" value="United States">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Postal code</label>
+                    <input class="form-control" type="text" value="437300">
+                  </div>
+                </div>
+              </div>
+              <hr class="horizontal dark">
+              <p class="text-uppercase text-sm">About me</p>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">About me</label>
+                    <input class="form-control" type="text" value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source.">
+                  </div>
+                </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+        @endif
+
         <!-- <div class="col-lg-5">
           <div class="card card-carousel overflow-hidden h-100 p-0">
             <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
@@ -174,6 +401,9 @@
           </div>
         </div> -->
       </div>
+
+
+      @if(auth()->user()->my_institution)  
       <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card ">
@@ -338,7 +568,10 @@
           </div>
         </div>
       </div>
-      <footer class="footer pt-3  ">
+      @endif
+
+
+      <!-- <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">
@@ -369,15 +602,15 @@
             </div>
           </div>
         </div>
-      </footer>
+      </footer> -->
     </div>
 
 
-    @if(isset($institution) && $institution)
+    <!-- @if(isset($institution) && $institution)
     <span>Welcome {{ $institution->institutions }}</span>
 @else
     <h1>Welcome to the Dashboard</h1>
-@endif
+@endif -->
 
 
 
