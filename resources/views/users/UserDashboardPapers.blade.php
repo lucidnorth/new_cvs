@@ -55,9 +55,10 @@
     <div class="col-md-12 mt-5">
         <div class="form-group">
             <label for="file-upload" class="form-control-label">Upload File</label>
-            <input type="file" class="form-control-file" id="file-upload" accept=".pdf" name="file">
+            <!-- <input type="file" class="form-control-file" id="file-upload" accept=".pdf" name="file"> -->
+            <input type="file" class="form-control-file" id="file-upload" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" name="file">
 
-            <small id="fileHelp" class="form-text text-muted">Please upload PDF files only.</small>
+            <!-- <small id="fileHelp" class="form-text text-muted">Please upload PDF files only.</small> -->
         </div>
     </div>
     <div class="text-end"> <!-- Added class "text-end" to push button to the right -->
@@ -154,7 +155,7 @@
   </div>
 
   <div class="container-fluid py-4">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12">
         <div class="card mb-4">
           <div class="card-header pb-0">
@@ -219,8 +220,208 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
+    <div class="col-6 d-flex align-items-center mb-3">
+                <h6 class="mb-0">History of papers downloaded</h6>
+              </div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Industry Case Study</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Skills Gap</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Research Paper</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
+  <div class="alert bg-white p-5 fw-bold text-dark " role="alert">
+  Number of Downloads (8)
+</div>
+  <!-- <div class="books">
+        <div class="container">
+            <div class="book-area">
+                <div class="row overflow-hidden">
+                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="book-single shadow">
+                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
+                            <p class="price"><span>Title</span></p>
+                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="book-single shadow">
+                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
+                            <p class="price"><span>Title</span></p>
+                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="book-single shadow">
+                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
+                            <p class="price"><span>Title</span></p>
+                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="book-single shadow">
+                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
+                            <p class="price"><span>Title</span></p>
+                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="book-single shadow">
+                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
+                            <p class="price"><span>Title</span></p>
+                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="book-single shadow">
+                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
+                            <p class="price"><span>Title</span></p>
+                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="book-single shadow">
+                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
+                            <p class="price"><span>Title</span></p>
+                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="book-single shadow">
+                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
+                            <p class="price"><span>Title</span></p>
+                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  <div class="alert bg-white p-5 fw-bold text-dark " role="alert">
+  Number of Downloads (8)
+</div>
+  </div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+  <div class="alert bg-white p-5 fw-bold text-dark " role="alert">
+  Number of Downloads (8)
+</div>
+  </div>
+</div>
+    <div class="container">
+
+
+
+
+
+<!-- <div class="tab-pane container fade" id="faqs">
+  <p> all this mistaken idea of denouncing pleasure and praising 
+    pain was born and I will give you a complete account of the system, and expound the actual
+     teachings of the great explorer of the truth, the master-builder of human happiness.
+      No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because 
+      those who do not know how to pursue pleasure rationally encounter consequences that
+       are extremely painful. Nor again is there anyone who loves or pursues or desires 
+       to obtain pain of itself, because it is pain, but because occasionally 
+       circumstances occur in which toil and pain can procure him some great pleasure.
+          or one who avoids a pain that produces no resultant pleasure?</p> 
+
+          <h2>Frequently Asked Questions</h2>
+
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Accordion Item #1
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Accordion Item #2
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Accordion Item #3
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+          </div>
+
+</div> -->
+</div>
+</div>
     <!-- <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">

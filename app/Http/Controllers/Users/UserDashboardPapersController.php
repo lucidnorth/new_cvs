@@ -37,7 +37,8 @@ class UserDashboardPapersController extends Controller
             'name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
             'description' => 'required|string',
-            'file' => 'required|mimes:pdf|max:2048', // PDF file, max size 2MB
+            // 'file' => 'required|mimes:pdf|max:2048', // PDF file, max size 2MB
+            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx',
         ]);
 
          // Get the authenticated user's ID

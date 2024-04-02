@@ -296,7 +296,7 @@
 
               <div class="announcement-body">
                 <h5 class="announcement-title">News title</h5>
-                <p class="announcement-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="announcement-text">Some quick example text to build on the card title and make git up the bulk of the card's content.</p>
               </div>
             </div>
           </a>
@@ -418,19 +418,23 @@
     <div class="col-md-4">
       <div class="flip-card">
         <div class="flip-card-inner">
+          <a href="{{ route('skillspage') }}">
           <div class="flip-card-front">
             <img src="images/industrycasestudies1.png" alt="logo" class="frontflip-img">
           </div>
+          
           <div class="flip-card-back">
             <img src="images/industrycasestudies2.png" alt="logo" class="frontflip-img">
 
           </div>
+          </a>
         </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="flip-card">
         <div class="flip-card-inner">
+        <a href="{{ route('skillspage') }}">
           <div class="flip-card-front">
 
             <img src="images/skillsgap1.png" alt="logo" class="frontflip-img">
@@ -438,12 +442,15 @@
           <div class="flip-card-back">
             <img src="images/skillsgap2.png" alt="logo" class="frontflip-img">
           </div>
+
+          </a>
         </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="flip-card">
         <div class="flip-card-inner">
+        <a href="{{ route('skillspage') }}">
           <div class="flip-card-front">
 
             <img src="images/futureneededskills1.png" alt="logo" class="frontflip-img">
@@ -452,6 +459,7 @@
             <img src="images/futureneededskills2.png" alt="logo" class="frontflip-img">
 
           </div>
+          </a>
         </div>
       </div>
     </div>

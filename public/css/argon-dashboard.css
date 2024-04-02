@@ -26934,3 +26934,58 @@ pre[class*="language-"] {
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+
+
+.books{
+  width: 100%;
+  padding: 45px 0;
+}
+
+.books .book-area{
+  margin-top: 20px;
+}
+
+.books .book-area .book-single{
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 50px;
+}
+
+.book-single .image img{
+  height: 200px;
+  width: auto; /* Set a specific height for the images (adjust as needed) */
+  object-fit: cover;
+}
+
+.book-single .price{
+  margin: 10px 0px 0px 0px;
+}
+
+.book-single .price span{
+  font-size: 17px;
+  font-weight: bold;
+  margin-left: 3px;
+}
+
+.book-single .btn{
+  background: #114F82;
+  margin: 0 5px;
+  color: white;
+}
+
+.book-single .btn:hover{
+  background: #114F82;
+  color: #fff;
+}
+
+.btn i {
+  transition: transform 0.2s ease-in-out;
+}
+
+.book-single .btn:hover i{
+  transform: rotate(360deg);
+}
+
+

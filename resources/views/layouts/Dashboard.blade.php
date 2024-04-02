@@ -29,6 +29,7 @@
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet"/>
   
+  
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
@@ -37,6 +38,12 @@
   <!-- CSS Files -->
  
   <link href="{{ asset('css/argon-dashboard.css') }}" rel="stylesheet"/>
+
+  <style>
+
+    
+  </style>
+
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">

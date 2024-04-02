@@ -15,6 +15,7 @@ use App\Http\Controllers\Users\UserDashboardPapersController;
 use App\Http\Controllers\Users\UserDashboardProfileController; 
 use App\Http\Controllers\Users\UserDashboardUploadCertificate;
 use App\Http\Controllers\Users\UserDashboardSearchCertificate;
+use App\Http\Controllers\Admin\PapersUploadController;
 
 
 
@@ -33,6 +34,9 @@ Route::prefix('user')->group(function () {
     Route::post('/uploadcertificates/upload', [UserDashboardUploadCertificate::class, 'upload'])->middleware(['web','auth'])->name('user.uploadcertificates.upload');
     Route::get('/papers/{paper}/download', [UserDashboardPapersController::class, 'download'])->name('user.download.paper');
 });
+
+Route::post('/papersupload/upload', [PapersUploadController::class, 'upload'])->name('papersupload.upload');
+
 Route::post('/upload-csv', [CertificateController::class, 'uploadCsv'])->name('upload.csv');
 
 // Route::redirect('/', '/login');
@@ -55,13 +59,7 @@ Route::middleware(["auth"])->group(function(){
 });
 
 
-Route::get('/about', function () {
-    return view('about'); // Adjust 'welcome' to the name of your homepage view
-})->name('aboutpage');
 
-Route::get('/getInTouch', function () {
-    return view('getInTouch'); // Adjust 'welcome' to the name of your homepage view
-})->name('getInTouchpage');
 
 // Route::get('/institution/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
 Route::get('/dashboard', [UserDashboardController::class, 'index'])->middleware(['web','auth'])->name('user.dashboard'); 
@@ -93,6 +91,19 @@ Route::get('/home', function () {
 
     return redirect()->route('admin.home');
 });
+
+Route::get('/about', function () {
+    return view('about'); // Adjust 'welcome' to the name of your homepage view
+})->name('aboutpage');
+
+
+Route::get('/getInTouch', function () {
+    return view('getInTouch'); // Adjust 'welcome' to the name of your homepage view
+})->name('getInTouchpage');
+
+Route::get('/skills', function () {
+    return view('skills'); // Adjust 'welcome' to the name of your homepage view
+})->name('skillspage');
 
 Auth::routes();
 
