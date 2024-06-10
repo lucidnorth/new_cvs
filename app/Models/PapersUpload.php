@@ -1,16 +1,25 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
 class PapersUpload extends Model
 {
-    use SoftDeletes, InteractsWithMedia,HasFactory;
-    public $table = 'papersuploads';
+    use HasFactory, SoftDeletes;
+
+    protected $table = 'papersuploads';
+
+    protected $fillable = [
+        'name',
+        'category',
+        'description',
+        'file',
+        'image_path', // Ensure this matches the column name in your database
+        'user_id',
+    ];
 
     protected $dates = [
         'created_at',
@@ -18,15 +27,11 @@ class PapersUpload extends Model
         'deleted_at',
     ];
 
-    protected $fillable = [
-        'name',
-        'description',
-        'category',
-        'file',
-        'image',
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
+    /**
+     * Get the user that owns the paper.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

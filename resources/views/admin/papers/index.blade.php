@@ -81,7 +81,7 @@
     {{ session('success') }}
 </div>
 @endif
-<form id="institution-form" class="form" action="{{ route('papersupload.upload') }}" method="POST" enctype="multipart/form-data">
+<form id="institution-form" class="form" action="{{ route('papersupload.upload') }}" method="POST"  enctype="multipart/form-data" >
     @csrf
     <div class="col-md-12">
         <div class="form-group">
@@ -121,7 +121,7 @@
      <div class="col-md-12">
         <div class="form-group">
             <label for="image-upload" class="form-control-label">Upload Image</label>
-            <input type="file" class="form-control-file" id="image-upload" accept="image/*" name="image">
+            <input type="file" class="form-control-file" id="image-upload" accept="image/*" name="image_path">
             <small id="imageHelp" class="form-text text-muted">Please upload image files only.</small>
         </div>
     </div>

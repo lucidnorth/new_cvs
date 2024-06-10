@@ -51,16 +51,16 @@ class RegistrationController extends Controller
         $user->approved = 1;
         $user->save();
 
-    //     RoleUser::updateOrCreate(
-    //         [
-    //         'user_id'=> $user->id,
-    //         'role_id'=> Role::where('title', 'Customer Employer')->first()->id
-    //         ],
-    //         [
-    //             'user_id'=> $user->id,
-    //             'role_id'=> Role::where('title', 'Customer Employer')->first()->id
-    //         ]
-    // );
+        RoleUser::updateOrCreate(
+            [
+            'user_id'=> $user->id,
+            'role_id'=> Role::where('title', 'Customer Employer')->first()->id
+            ],
+            [
+                'user_id'=> $user->id,
+                'role_id'=> Role::where('title', 'Customer Employer')->first()->id
+            ]
+    );
 
         // Create employer
         $employer = new Employer();
@@ -123,16 +123,16 @@ class RegistrationController extends Controller
                 $user->approved = 1;
             $user->save();
 
-        //     RoleUser::updateOrCreate(
-        //         [
-        //         'user_id'=> $user->id,
-        //         'role_id'=> Role::where('title', 'Customer Institution Owner')->first()->id
-        //         ],
-        //         [
-        //             'user_id'=> $user->id,
-        //             'role_id'=> Role::where('title','Customer Institution Owner')->first()->id
-        //         ]
-        // );
+            RoleUser::updateOrCreate(
+                [
+                'user_id'=> $user->id,
+                'role_id'=> Role::where('title', 'Customer Institution Owner')->first()->id
+                ],
+                [
+                    'user_id'=> $user->id,
+                    'role_id'=> Role::where('title','Customer Institution Owner')->first()->id
+                ]
+        );
 
             // Create a new instance of the Institution model and associate it with the user account
             $institution = Institution::create([

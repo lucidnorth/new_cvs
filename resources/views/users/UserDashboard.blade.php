@@ -127,9 +127,17 @@
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Verification Left</p>
+                    @if(auth()->user()->activePackage())
                     <h5 class="font-weight-bolder">
-                      $53,000
-                    </h5>
+                  
+   {{ auth()->user()->activePackage()->searches_left }}
+   </h5>
+@else
+<h5 class="font-weight-bolder">
+    No active package
+    </h5>
+@endif
+                    
                     <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
                       since yesterday
@@ -153,7 +161,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
                     <h5 class="font-weight-bolder">
-                      2,300
+                    {{ $searchCount }}
                     </h5>
                     <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+3%</span>
@@ -178,7 +186,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Papers Submitted</p>
                     <h5 class="font-weight-bolder">
-                      +3,462
+                    {{ $papersCount }}
                     </h5>
                     <!-- <p class="mb-0">
                       <span class="text-danger text-sm font-weight-bolder">-2%</span>

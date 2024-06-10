@@ -17,11 +17,14 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
+use App\Models\UserPackage;
+
 
 
 class User extends Authenticatable
 {
-    use SoftDeletes, Notifiable, Auditable, HasFactory;
+    use SoftDeletes, Notifiable, Auditable, HasFactory,HasApiTokens;
 
     public $table = 'users';
 
@@ -53,6 +56,15 @@ class User extends Authenticatable
         'two_factor_expires_at',
     ];
 
+    public function userPackages()
+    {
+        return $this->hasMany(UserPackage::class);
+    }
+
+    public function activePackage()
+    {
+        return $this->userPackages()->where('payment_status', 'paid')->latest()->first();
+    }
     public function institution(): BelongsTo
     {
         return $this->belongsTo (Institution::class);

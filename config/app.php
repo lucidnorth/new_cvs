@@ -181,6 +181,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Unicodeveloper\Paystack\PaystackServiceProvider::class,
+        
 
         /*
          * Package Service Providers...
@@ -209,6 +211,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

@@ -27,105 +27,23 @@
         <div class="container">
             <div class="book-area">
                 <div class="row overflow-hidden">
+                   
+                  
+                @foreach ($caseStudyPapers as $paper)
                     <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                        <img src="{{ asset($paper->image_path) }}" class="card-img-top" alt="Paper Image">
+            <p class="price"><span>{{ $paper->name }}</span></p>
+            <p class="description">{{ $paper->description }}</p>
                             <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
+                            <a href="{{ route('papersupload.download', $paper->id) }}" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i></a>
                                 <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
                                
                             </div>
                         </div>
                     </div>
+                    @endforeach
 
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -138,105 +56,28 @@
         <div class="container">
             <div class="book-area">
                 <div class="row overflow-hidden">
-                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
+           
 
+                 
+                @foreach ($skillsGapSetPapers as $paper)
                     <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+                        <img src="{{ asset($paper->image_path) }}" class="card-img-top" alt="Paper Image">
+            <p class="price"><span>{{ $paper->name }}</span></p>
+            <p class="description">{{ $paper->description }}</p>
                             <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
+                            <a href="{{ route('papersupload.download', $paper->id) }}" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i></a>
                                 <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
                                
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                  
 
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
+                  
 
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
+                 
                 </div>
             </div>
         </div>
@@ -248,105 +89,24 @@
         <div class="container">
             <div class="book-area">
                 <div class="row overflow-hidden">
-                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
+               
 
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
+                @foreach ($researchPaperPapers as $paper)
+    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="book-single shadow">
+            <img src="{{ asset($paper->image_path) }}" class="card-img-top" alt="Paper Image">
+            <p class="price"><span>{{ $paper->name }}</span></p>
+            <p class="description">{{ $paper->description }}</p>
+            <div class="d-flex justify-content-center">
+            <a href="{{ route('papersupload.download', $paper->id) }}" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i></a>
 
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
+                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+@endforeach
 
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
+</div>             
                 </div>
             </div>
         </div>
