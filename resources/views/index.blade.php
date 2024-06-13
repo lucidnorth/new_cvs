@@ -18,7 +18,7 @@
                   In</span></a></li>
           </ul>
 
-          <ul class="nav navbar-nav navbar-register " id="">
+          <ul class="nav navbar-nav navbar-register1 " id="">
             <li><a class="hover-btn-new btn-donate text-danger " href="{$BaseHref}/auth/"><span>Register</span></a></li>
           </ul>
 
