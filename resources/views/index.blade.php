@@ -239,7 +239,7 @@
 
 
 
-        <ul class="nav navbar-nav navbar-register " id="">
+        <ul class="nav navbar-nav navbar-register2 " id="">
           <li><a class="hover-btn-new btn-donate text-danger " href="{$BaseHref}/auth/"><span>Register</span></a></li>
         </ul>
 
