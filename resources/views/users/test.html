@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <style>
+    .package-card{
+            width: 300px;
+            border-radius: 10px;
+            margin: auto;
+            border: 1px solid #3486C5;
+        }
+        .package-card-pro .btn-pro,
+        .package-card-pro .btn-pro:hover{
+            background-color: #ffc107 !important;
+        }
+        .package-card .card-header{
+            padding-top: 20px;
+        }
+        .package-card button,
+        .package-card button:hover{
+            background-color: #3486C5 !important;
+            color: #fff !important;
+        }
+        .package-card .package-name{
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .package-card .package-price{
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .package-card .package-price span{
+            font-size: 13px;
+            font-weight: normal;
+            color: grey;
+        }
+
+        .package-card .package-des{
+            color: grey;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .package-card ul{
+            list-style: none;
+            margin-left: -32px;
+        }
+        .package-card .card-body h6{
+            font-size: 13.5px;
+        }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="page">
+        <div class="container pt-5 px-4">
+            <div class="row gx-0">
+                <div class="col-lg-4">
+                    <div class="card package-card">
+                        <div class="card-header">
+                            <div class="package-name">Basic Plan</div>
+                            <div class="package-price">₵30 <span>per month</span></div>
+                            <div class="package-des">Get up to 50 searches</div>
+                            <div class="d-grid">
+                                <button class="btn" type="button">Get Started</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="text-uppercase">Features</h6>
+                            <small>Everything in our basic plan plus..</small>
+                            <ul>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> 50 Verifications</li>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Academic Paper</li>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Industry Paper</li>
+                                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Academic Paper</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card package-card package-card-pro  border-warning">
+                        <div class="card-header">
+                            <div class="package-name text-warning">Pro Plan</div>
+                            <div class="package-price">₵90 <span>per month</span></div>
+                            <div class="package-des">Get up to 150 searches</div>
+                            <div class="d-grid">
+                                <button class="btn btn-pro" type="button">Get Started</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="text-uppercase">Features</h6>
+                            <small>Everything in our basic plan plus..</small>
+                            <ul>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> 50 Verifications</li>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Academic Paper</li>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Industry Paper</li>
+                                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Academic Paper</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card package-card">
+                        <div class="card-header">
+                            <div class="package-name">Medium Plan</div>
+                            <div class="package-price">₵60 <span>per month</span></div>
+                            <div class="package-des">Get up to 100 searches</div>
+                            <div class="d-grid">
+                                <button class="btn" type="button">Get Started</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="text-uppercase">Features</h6>
+                            <small>Everything in our basic plan plus..</small>
+                            <ul>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> 50 Verifications</li>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Academic Paper</li>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Industry Paper</li>
+                                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Academic Paper</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container py-5">
+        <table id="example" class="display table table-hover table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Institution Name</th>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Date of Birth</th>
+                    <th>Qualification Type</th>
+                    <th>Gender</th>
+                    <th>Certificate Number</th>
+                    <th>Student Identification</th>
+                    <th>Year of Entry</th>
+                    <th>Year of Completion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Harvard University</td>
+                    <td>John</td>
+                    <td>A.</td>
+                    <td>Doe</td>
+                    <td>1985/01/15</td>
+                    <td>Ph.D</td>
+                    <td>Male</td>
+                    <td>123456</td>
+                    <td>987654321</td>
+                    <td>2005</td>
+                    <td>2010</td>
+                </tr>
+                <tr>
+                    <td>Stanford University</td>
+                    <td>Jane</td>
+                    <td>B.</td>
+                    <td>Smith</td>
+                    <td>1990/07/23</td>
+                    <td>M.Sc</td>
+                    <td>Female</td>
+                    <td>789101</td>
+                    <td>123456789</td>
+                    <td>2010</td>
+                    <td>2012</td>
+                </tr>
+                <tr>
+                    <td>MIT</td>
+                    <td>Michael</td>
+                    <td>C.</td>
+                    <td>Johnson</td>
+                    <td>1988/03/12</td>
+                    <td>B.Sc</td>
+                    <td>Male</td>
+                    <td>654321</td>
+                    <td>876543210</td>
+                    <td>2006</td>
+                    <td>2010</td>
+                </tr>
+                <tr>
+                    <td>Yale University</td>
+                    <td>Emily</td>
+                    <td>D.</td>
+                    <td>Williams</td>
+                    <td>1992/05/14</td>
+                    <td>M.A</td>
+                    <td>Female</td>
+                    <td>345678</td>
+                    <td>765432109</td>
+                    <td>2011</td>
+                    <td>2013</td>
+                </tr>
+                <tr>
+                    <td>Princeton University</td>
+                    <td>David</td>
+                    <td>E.</td>
+                    <td>Brown</td>
+                    <td>1987/08/20</td>
+                    <td>MBA</td>
+                    <td>Male</td>
+                    <td>456789</td>
+                    <td>654321098</td>
+                    <td>2004</td>
+                    <td>2008</td>
+                </tr>
+                <tr>
+                    <td>Columbia University</td>
+                    <td>Sarah</td>
+                    <td>F.</td>
+                    <td>Jones</td>
+                    <td>1989/11/30</td>
+                    <td>B.A</td>
+                    <td>Female</td>
+                    <td>567890</td>
+                    <td>543210987</td>
+                    <td>2007</td>
+                    <td>2011</td>
+                </tr>
+                <tr>
+                    <td>University of Oxford</td>
+                    <td>Andrew</td>
+                    <td>G.</td>
+                    <td>Garcia</td>
+                    <td>1991/02/10</td>
+                    <td>M.Sc</td>
+                    <td>Male</td>
+                    <td>678901</td>
+                    <td>432109876</td>
+                    <td>2008</td>
+                    <td>2012</td>
+                </tr>
+                <tr>
+                    <td>University of Cambridge</td>
+                    <td>Jessica</td>
+                    <td>H.</td>
+                    <td>Martinez</td>
+                    <td>1993/06/15</td>
+                    <td>Ph.D</td>
+                    <td>Female</td>
+                    <td>789012</td>
+                    <td>321098765</td>
+                    <td>2012</td>
+                    <td>2016</td>
+                </tr>
+                <tr>
+                    <td>University of Chicago</td>
+                    <td>Chris</td>
+                    <td>I.</td>
+                    <td>Rodriguez</td>
+                    <td>1986/09/22</td>
+                    <td>B.Sc</td>
+                    <td>Male</td>
+                    <td>890123</td>
+                    <td>210987654</td>
+                    <td>2005</td>
+                    <td>2009</td>
+                </tr>
+                <tr>
+                    <td>University of California, Berkeley</td>
+                    <td>Laura</td>
+                    <td>J.</td>
+                    <td>Wilson</td>
+                    <td>1990/12/25</td>
+                    <td>MBA</td>
+                    <td>Female</td>
+                    <td>901234</td>
+                    <td>109876543</td>
+                    <td>2010</td>
+                    <td>2014</td>
+                </tr>
+                <tr>
+                    <td>California Institute of Technology</td>
+                    <td>Matthew</td>
+                    <td>K.</td>
+                    <td>Lee</td>
+                    <td>1984/04/18</td>
+                    <td>Ph.D</td>
+                    <td>Male</td>
+                    <td>234567</td>
+                    <td>998877665</td>
+                    <td>2003</td>
+                    <td>2007</td>
+                </tr>
+                <tr>
+                    <td>University of Michigan</td>
+                    <td>Ashley</td>
+                    <td>L.</td>
+                    <td>Clark</td>
+                    <td>1992/01/29</td>
+                    <td>B.A</td>
+                    <td>Female</td>
+                    <td>345678</td>
+                    <td>887766554</td>
+                    <td>2011</td>
+                    <td>2015</td>
+                </tr>
+                <tr>
+                    <td>University of Pennsylvania</td>
+                    <td>Brian</td>
+                    <td>M.</td>
+                    <td>Lewis</td>
+                    <td>1987/03/09</td>
+                    <td>M.Sc</td>
+                    <td>Male</td>
+                    <td>456789</td>
+                    <td>776655443</td>
+                    <td>2004</td>
+                    <td>2008</td>
+                </tr>
+                <tr>
+                    <td>Duke University</td>
+                    <td>Amy</td>
+                    <td>N.</td>
+                    <td>Walker</td>
+                    <td>1989/07/13</td>
+                    <td>M.A</td>
+                    <td>Female</td>
+                    <td>567890</td>
+                    <td>665544332</td>
+                    <td>2007</td>
+                    <td>2011</td>
+                </tr>
+                <tr>
+                    <td>Northwestern University</td>
+                    <td>Kevin</td>
+                    <td>O.</td>
+                    <td>Hall</td>
+                    <td>1988/05/17</td>
+                    <td>MBA</td>
+                    <td>Male</td>
+                    <td>678901</td>
+                    <td>554433221</td>
+                    <td>2006</td>
+                    <td>2010</td>
+                </tr>
+                <tr>
+                    <td>University of Toronto</td>
+                    <td>Anna</td>
+                    <td>P.</td>
+                    <td>Young</td>
+                    <td>1990/08/21</td>
+                    <td>B.Sc</td>
+                    <td>Female</td>
+                    <td>789012</td>
+                    <td>443322110</td>
+                    <td>2010</td>
+                    <td>2014</td>
+                </tr>
+                <tr>
+                    <td>University of Melbourne</td>
+                    <td>Mark</td>
+                    <td>Q.</td>
+                    <td>Hernandez</td>
+                    <td>1985/10/30</td>
+                    <td>Ph.D</td>
+                    <td>Male</td>
+                    <td>890123</td>
+                    <td>332211009</td>
+                    <td>2004</td>
+                    <td>2008</td>
+                </tr>
+                <tr>
+                    <td>University of Sydney</td>
+                    <td>Emma</td>
+                    <td>R.</td>
+                    <td>King</td>
+                    <td>1987/12/05</td>
+                    <td>B.A</td>
+                    <td>Female</td>
+                    <td>901234</td>
+                    <td>221100998</td>
+                    <td>2006</td>
+                    <td>2010</td>
+                </tr>
+                <tr>
+                    <td>University of Queensland</td>
+                    <td>Joshua</td>
+                    <td>S.</td>
+                    <td>Wright</td>
+                    <td>1989/04/14</td>
+                    <td>M.A</td>
+                    <td>Male</td>
+                    <td>123456</td>
+                    <td>110099887</td>
+                    <td>2007</td>
+                    <td>2011</td>
+                </tr>
+                <tr>
+                    <td>University of British Columbia</td>
+                    <td>Sophia</td>
+                    <td>T.</td>
+                    <td>Lopez</td>
+                    <td>1991/07/18</td>
+                    <td>M.Sc</td>
+                    <td>Female</td>
+                    <td>234567</td>
+                    <td>998877665</td>
+                    <td>2008</td>
+                    <td>2012</td>
+                </tr>
+                <!-- More rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@extends('layouts.Dashboard')
+
+@section('title', 'Dashboard - Laravel Admin Panel')
+
+@section('content')
+<main class="main-content position-relative border-radius-lg">
+    <div class="container mt-5">
+        @if ($certificates->isEmpty())
+            <div class="alert alert-warning" role="alert">
+                No verified certificates found.
+            </div>
+        @else
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Institution Name</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Middle Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Date of Birth</th>
+                        <th scope="col">Qualification Type</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Certificate Number</th>
+                        <th scope="col">Student Identification</th>
+                        <th scope="col">Year of Entry</th>
+                        <th scope="col">Year of Completion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($certificates as $certificate)
+                        <tr>
+                            <td>{{ $certificate->institution ? $certificate->institution->institutions : 'No Institution Name' }}</td>
+                            <td>{{ $certificate->first_name }}</td>
+                            <td>{{ $certificate->middle_name }}</td>
+                            <td>{{ $certificate->last_name }}</td>
+                            <td>{{ $certificate->date_of_birth }}</td>
+                            <td>{{ $certificate->qualification_type }}</td>
+                            <td>{{ $certificate->gender }}</td>
+                            <td>{{ $certificate->certificate_number }}</td>
+                            <td>{{ $certificate->student_identification }}</td>
+                            <td>{{ $certificate->year_of_entry }}</td>
+                            <td>{{ $certificate->year_of_completion }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const exampleModal = document.getElementById('exampleModal');
+            exampleModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const packageName = button.getAttribute('data-package-name');
+                const packageAmount = button.getAttribute('data-package-amount');
+                const modalPackageNameInput = exampleModal.querySelector('#package-name');
+                const modalPackageAmountInput = exampleModal.querySelector('#package-amount');
+                modalPackageNameInput.value = packageName;
+                modalPackageAmountInput.value = packageAmount;
+            });
+        });
+    </script>
+</main>
+
+@endsection
+
+
+
+<div class="container py-3">
+    <header>
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 fw-normal text-body-emphasis">Pricing</h1>
+            <p class="fs-5 text-body-secondary">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
+        </div>
+    </header>
+    <main>
+
+    
+    @if(session('status'))
+         
+         <div class="alert alert-success" id="error-alert">
+          <h6 class="text-white fw-bold">  {{ session('status') }} <a class="" href="{{ route('user.dashboard') }}"> <h5 class="fw-bold text-white">Kindly Click here to start searching</h5> </a></h6> 
+         </div>
+         @endif
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            @foreach($packages as $package)
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">{{ $package->name }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">${{ $package->amount }}<small class="text-body-secondary fw-light">/mo</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>{{ $package->search_limit }} searches</li>
+                        </ul>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-package-name="{{ $package->name }}" data-package-amount="{{ $package->amount }}">Get started</button>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Details to Pay</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="purchase-form" method="POST" action="{{ route('packages.purchase') }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="package-name" class="col-form-label">Package Name</label>
+                                <input type="text" class="form-control" id="package-name" name="package_name" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="package-amount" class="col-form-label">Amount</label>
+                                <input type="text" class="form-control" id="package-amount" name="package_amount" readonly>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="document.getElementById('purchase-form').submit();">Pay Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

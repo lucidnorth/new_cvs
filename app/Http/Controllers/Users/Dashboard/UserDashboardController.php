@@ -14,13 +14,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserPackage;
 
-
-
-
 class UserDashboardController extends Controller
 {
-
-
     // public function getTitle(Request $request)
     // {
     //        // Determine the route name of the current request
@@ -34,11 +29,9 @@ class UserDashboardController extends Controller
     //     return view( [
     //         'allpageTitle' => $allpageTitle,]);
     // }
-
-
-
     
-    public function index( )
+
+public function index( )
 {
     $user = auth()->user();
     $institution = auth()->user()->my_institution;
@@ -53,14 +46,16 @@ class UserDashboardController extends Controller
     return view('users.UserDashboard', [ 'institution'=> $institution,'institutions'=> $institutions, 'papersCount' => $papersCount, 'searchCount' => $searchCount,]);
 }
 
+
 public function profile()
 {
     // Fetch the current user's institution information
-    $institution = auth()->user()->my_institution  ?? auth()->user()->employer ;
+    $data = auth()->user()->my_institution  ?? auth()->user()->employer ;
  
 
-    return view('users.UserDashboardProfile', compact('institution'));
+    return view('users.UserDashboardProfile', compact('data'));
 }
+
 
 public function papers()
 {
@@ -81,6 +76,7 @@ public function papers()
     return view('users.UserDashboardPapers', ['papers' => $papers,'allpapers' => $allpapers]);
 }
 
+
 public function UploadCertificate()
 {
     return view('users.UserDashboardUploadCertificate');
@@ -93,12 +89,37 @@ public function SearchCertificate()
     return view('users.UserDashboardSearchCertificate', [ 'institution'=> $institutions]);
 }
 
+
 public function packages()
 {
-
     $packages = Package::all();
 
     return view('Users.UserDashboardPackages', [ 'packages'=> $packages,]);
+}
+
+
+public function verified()
+{
+        $userId = Auth::id();
+
+        // Fetch all search logs by the authenticated user
+        $searchLogs = SearchLog::where('user_id', $userId)->get();
+
+        // Initialize an empty collection to store certificates
+        $certificates = collect();
+
+        // Loop through each search log and fetch related certificates
+        foreach ($searchLogs as $log) {
+            $certificate = Certificate::where('certificate_number', $log->search_term)
+                ->with('institution')
+                ->first();
+            
+            if ($certificate) {
+                $certificates->push($certificate);
+            }
+        }
+
+    return view('Users.UserDashboardVerified', ['certificates' => $certificates]);
 }
 
 
@@ -129,6 +150,7 @@ public function packages()
 
 //     return redirect()->route('user.dashboard')->with('error', 'No matching record found.');
 // }
+
 public function search(Request $request)
 {
     $this->validate($request, [
@@ -141,15 +163,16 @@ public function search(Request $request)
     $activePackage = $user->activePackage();
 
     if (!$activePackage) {
-        return redirect()->route('user.dashboard')->with('error', 'You do not have an active package.');
+        return redirect()->route('user.dashboard')
+            ->with('status', 'You do not have an active package.')
+            ->with('error_type', 'package');
     }
 
     if ($activePackage->searches_left <= 0) {
-        return redirect()->route('user.dashboard')->with('error', 'You have exhausted your search limit.');
+        return redirect()->route('user.dashboard')
+            ->with('error', 'You have exhausted your search limit.')
+            ->with('error_type', 'package');
     }
-
-    // Decrement the search count
-    $activePackage->decrement('searches_left');
 
     $institutionId = $request->input('institution_id');
     $certificateNumber = $request->input('certificate_number');
@@ -160,29 +183,39 @@ public function search(Request $request)
         ->first();
 
     if ($certificate) {
+
+        // Decrement the search count only if a certificate is found
+        $activePackage->decrement('searches_left');
+
+        // Log the search
+        SearchLog::create([
+            'user_id' => $userId,
+            'user_package_id' => $activePackage->id,
+            'search_term' => $certificateNumber,
+        ]);
+
         return redirect()->route('user.dashboard')->with('certificate', $certificate);
     }
 
-    return redirect()->route('user.dashboard')->with('error', 'No matching record found.');
+    return redirect()->route('user.dashboard')
+        ->with('certificate_error', 'No matching record found.')
+        ->with('error_type', 'search');
 }
 
-public function displaySearchCount()
-    {
-        $userId = auth()->id();
-        $userPackage = UserPackage::where('user_id', $userId)->where('payment_status', 'paid')->first();
+// public function displaySearchCount()
+//     {
+//         $userId = auth()->id();
+//         $userPackage = UserPackage::where('user_id', $userId)->where('payment_status', 'paid')->first();
 
-        if ($userPackage) {
-            $totalSearchesAllowed = $userPackage->getTotalSearchesAllowed();
-            $searchesLeft = $userPackage->searches_left;
-            $searchesDone = $totalSearchesAllowed - $searchesLeft;
+//         if ($userPackage) {
+//             $totalSearchesAllowed = $userPackage->getTotalSearchesAllowed();
+//             $searchesLeft = $userPackage->searches_left;
+//             $searchesDone = $totalSearchesAllowed - $searchesLeft;
 
-            return view('user.dashboard', compact('searchesDone', 'searchesLeft', 'totalSearchesAllowed'));
-        } else {
-            return redirect()->route('user.dashboard')->with('error', 'You do not have an active package.');
-        }
-    }
-
-
-
+//             return view('user.dashboard', compact('searchesDone', 'searchesLeft', 'totalSearchesAllowed'));
+//         } else {
+//             return redirect()->route('user.dashboard')->with('error', 'You do not have an active package.');
+//         }
+//     }
     
 }

@@ -19,21 +19,21 @@
                 <h6 class="mb-4 text-sm"></h6>
 
                 <span class="mb-4 text-xs">Name: <span class="text-dark font-weight-bold ms-sm-2">{{ auth()->user()->name}}</span></span>
-                @if ($institution)
+                @if ($data)
                 @if(auth()->user()->institution_id)
-                <span class="mb-4 text-xs">Country: <span class="text-dark font-weight-bold ms-sm-2">{{ $institution->country }}</span></span>
+                <span class="mb-4 text-xs">Country: <span class="text-dark font-weight-bold ms-sm-2">{{ $data->country }}</span></span>
                 @endif
                 <span class="mb-4 text-xs">Email : <span class="text-dark ms-sm-2 font-weight-bold">{{ auth()->user()->email }}</span></span>
-                <span class="text-xs mb-4">Pone: <span class="text-dark ms-sm-2 font-weight-bold">{{ $institution->phone   }}</span></span>
-                <span class="text-xs mb-4">Address: <span class="text-dark ms-sm-2 font-weight-bold">{{ $institution->address }}</span></span>
+                <span class="text-xs mb-4">Pone: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->phone   }}</span></span>
+                <span class="text-xs mb-4">Address: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->address }}</span></span>
                 @if(auth()->user()->institution_id)
-                <span class="text-xs mb-4">Website: <span class="text-dark ms-sm-2 font-weight-bold">{{ $institution->website }}</span></span>
+                <span class="text-xs mb-4">Website: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->website }}</span></span>
                 @endif
                 @if(auth()->user()->employer)
-                <span class="text-xs mb-4">Registration Number: <span class="text-dark ms-sm-2 font-weight-bold">{{ $institution->registrationnumber }}</span></span>
-                <span class="text-xs mb-4">ID Type: <span class="text-dark ms-sm-2 font-weight-bold">{{ $institution->idtype}}</span></span>
-                <span class="text-xs mb-4">IDNumber: <span class="text-dark ms-sm-2 font-weight-bold">{{ $institution->idnumber}}</span></span>
-                <span class="text-xs mb-4">Industry: <span class="text-dark ms-sm-2 font-weight-bold">{{ $institution->industry }}</span></span>
+                <span class="text-xs mb-4">Registration Number: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->registrationnumber }}</span></span>
+                <span class="text-xs mb-4">ID Type: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->idtype}}</span></span>
+                <span class="text-xs mb-4">IDNumber: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->idnumber}}</span></span>
+                <span class="text-xs mb-4">Industry: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->industry }}</span></span>
                 @endif
                 @else
                 <span class="text-xs mb-4"> <span class="text-dark ms-sm-2 font-weight-bold">No institution information found for the current user.</span></span>
@@ -56,14 +56,10 @@
             <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
               <div class="d-flex flex-column">
 
-                @if ($institution)
-                <h6 class="mb-4 text-sm">{{ $institution->fullname }}</h6>
+                @if ($data)
+                <h6 class="mb-4 text-sm">{{ $data->fullname }}</h6>
                 <span class="mb-4 text-xs">Role: <span class="text-dark font-weight-bold ms-sm-2"> Account Manager</span></span>
-                <!-- <span class="mb-4 text-xs">Country: <span class="text-dark font-weight-bold ms-sm-2"> Account Manager</span></span>
-                    <span class="mb-4 text-xs">Email : <span class="text-dark ms-sm-2 font-weight-bold">{{ $institution->email }}</span></span>
-                    <span class="text-xs mb-4">Pone: <span class="text-dark ms-sm-2 font-weight-bold">{{ $institution->phone }}</span></span>
-                    <span class="text-xs mb-4">Address: <span class="text-dark ms-sm-2 font-weight-bold">{{ $institution->address }}</span></span>
-                    <span class="text-xs mb-4">Website: <span class="text-dark ms-sm-2 font-weight-bold">{{ $institution->website }}</span></span> -->
+         
                 @else
 
                 <span class="text-xs mb-4"> <span class="text-dark ms-sm-2 font-weight-bold">No institution information found for the current user.</span></span>
@@ -211,15 +207,8 @@
     </div>
     <div class="col-md-4">
       <div class="card card-profile">
-        <img src="../assets/img/bg-profile.jpg" alt="Image placeholder" class="card-img-top">
         <div class="row justify-content-center">
-          <div class="col-4 col-lg-4 order-lg-2">
-            <div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
-              <a href="javascript:;">
-                <img src="../assets/img/team-2.jpg" class="rounded-circle img-fluid border border-2 border-white">
-              </a>
-            </div>
-          </div>
+         
         </div>
         <div class="card-body pt-0">
           <!-- <div class="row">
@@ -242,7 +231,7 @@
               </div> -->
           <div class="text-center mt-4">
             <h5>
-              {{ $institution->fullname }}
+              {{ $data->fullname }}
             </h5>
             <div class="h6 font-weight-300">
               Account Manager
@@ -257,7 +246,12 @@
         </div>
         <div class="card-header text-center border-0 pt-0 pt-lg-2 pb-4 pb-lg-3">
           <div class="p-3">
-            <a href="" data-bs-toggle="modal" data-bs-target="#formModal " class="btn btn-sm btn-info mb-0 d-none d-lg-block mb-3">Edit Profile</a>
+          @if(auth()->user()->institution_id)
+            <a href="" data-bs-toggle="modal" data-bs-target="#InstitutionformModal " class="btn btn-sm btn-info mb-0 d-none d-lg-block mb-3">Edit Profile</a>
+            @endif
+            @if(auth()->user()->employer)
+            <a href="" data-bs-toggle="modal" data-bs-target="#EmployeeformModal" class="btn btn-sm btn-info mb-0 d-none d-lg-block mb-3">Edit Profile</a>
+            @endif
             <!-- <a href="javascript:;" class="btn btn-sm btn-info mb-0 d-block d-lg-none"><i class="ni ni-collection"></i></a> -->
             <a href="javascript:;" class="btn btn-sm btn-dark float-right mb-0 d-none d-lg-block">Add User</a>
             <!-- <a href="javascript:;" class="btn btn-sm btn-dark float-right mb-0 d-block d-lg-none"><i class="ni ni-email-83"></i></a> -->
@@ -267,36 +261,168 @@
       </div>
     </div>
   </div>
-  <footer class="footer pt-3  ">
-    <div class="container-fluid">
-      <div class="row align-items-center justify-content-lg-between">
-        <div class="col-lg-6 mb-lg-0 mb-4">
-          <div class="copyright text-center text-sm text-muted text-lg-start">
-            © <script>
-              document.write(new Date().getFullYear())
-            </script>,
-            made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-            for a better web.
-          </div>
+
+</div>
+
+
+ <!-- Profile Update Modal -->
+ <div class="modal fade" id="InstitutionformModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Submit your Carriculumn Vitae </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> -->
+        <div class="modal-body">
+          <form id="institution-form" class="form" action="{{ route('dashboard.profile.update')}}" method="POST">
+            @csrf
+            @method('PUT')
+            <h3 class="welcometext">Update Profile</h3>
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <label for="institutionName">Name of Institution<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="institutionName" name="name" value="{{$data->institutions}}" required>
+              </div>
+
+              <div class="col-md-12 mb-3">
+                <label for="institutionName">Name of Employer<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="institutionName" name="name" value="{{ auth()->user()->name}}" required>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="fullName">Full Name (Account Creator)<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="fullName" name="fullname" value="{{ $data->fullname }}" required>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="countrySelect">Select Country:</label>
+                <select class="form-control" id="countrySelect" name="country" required>
+                  <option value="gh" {{ $data->country === 'gh' ? 'selected' : '' }}>Ghana</option>
+                  <option value="ng" {{ $data->country === 'ng' ? 'selected' : '' }}>Nigeria</option>
+                  <option value="uk" {{ $data->country === 'uk' ? 'selected' : '' }}>United Kingdom</option>
+                  <option value="us" {{ $data->country === 'us' ? 'selected' : '' }}>United States</option>
+                </select>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="phoneNumber">Phone Number<i class="asteric"> *</i></label>
+                <input type="tel" class="form-control" id="phoneNumber" name="phone" value="{{ $data->phone }}" required>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="physicalAddress">City<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="physicalAddress" name="address" value="{{ $data->address }}" required>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="email">Email<i class="asteric"> *</i></label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ $data->email }}" required>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="location">Location<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="location" name="location" value="{{ $data->location }}" required>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="website">Website<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="website" name="website" value="{{ $data->website }}" required>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="password">Password<i class="asteric"> *</i></label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="confirmPassword">Confirm Password<i class="asteric"> *</i></label>
+                <input type="password" class="form-control" id="confirmPassword" name="password_confirmation" required>
+              </div>
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="agreement" name="agreement" required>
+              <label class="form-check-label" for="agreement">By clicking on register you have confirmed that you have read and accepted CVS <span class="terms">Terms of use</span> and <span class="privacy">Privacy Policy.</span></label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update</button>
+          </form>
+
         </div>
-        <div class="col-lg-6">
-          <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-            </li>
-          </ul>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
         </div>
       </div>
     </div>
-  </footer>
-</div>
+  </div>
+
+  <!-- Employee Profile Update Modal -->
+ <div class="modal fade" id="EmployeeformModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Submit your Carriculumn Vitae </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> -->
+        <div class="modal-body">
+        <form id="employer-form" class="form" action="{{ route('dashboard.profile.update') }}" method="POST">
+        @csrf
+        @method('PUT')
+        <input type="hidden" name="profile_type" value="employer">
+        <h3 class="welcometext">Update Profile</h3>
+        <div class="form-row">
+            <!-- Form fields for employer profile as provided -->
+            <div class="col-md-12 mb-3">
+                <label for="employerName">Name of Company<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="institutionName" name="name" value="{{ auth()->user()->name }}" required>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="fullName">Full Name (Account Creator)<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id ="fullName" name="fullname" value="{{ $data->fullname }}" required>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="phoneNumber">Phone Number<i class="asteric"> *</i></label>
+                <input type="tel" class="form-control" id="phoneNumber" name="phone" value="{{ $data->phone }}" required>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="physicalAddress">City<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="physicalAddress" name="address" value="{{ $data->address }}" required>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="email">Email<i class="asteric"> *</i></label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" required>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="registrationnumber">Registration Number<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="registrationnumber" name="location" value="{{ $data->registrationnumber }}" required>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="idtype">ID Type<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="idtype" name="idtype" value="{{ $data->idtype }}" required>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="idnumber">ID Number<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="idnumber" name="idnumber" value="{{ $data->idnumber }}" required>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="industry">Industry<i class="asteric"> *</i></label>
+                <input type="text" class="form-control" id="industry" name="industry" value="{{ $data->industry }}" required>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="password">Password<i class="asteric"> *</i></label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="confirmPassword">Confirm Password<i class="asteric"> *</i></label>
+                <input type="password" class="form-control" id="confirmPassword" name="password_confirmation" required>
+            </div>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="agreement" name="agreement" required>
+            <label class="form-check-label" for="agreement">By clicking on register you have confirmed that you have read and accepted CVS <span class="terms">Terms of use</span> and <span class="privacy">Privacy Policy.</span></label>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Update</button>
+    </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="text-xs mb-4">Registration Number: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->registrationnumber }}</span></span>
+                <span class="text-xs mb-4">ID Type: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->idtype}}</span></span>
+                <span class="text-xs mb-4">IDNumber: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->idnumber}}</span></span>
+                <span class="text-xs mb-4">Industry: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->industry }}</span></span>

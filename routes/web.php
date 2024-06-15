@@ -74,6 +74,7 @@ Route::middleware(["auth"])->group(function(){
     Route::get('/UploadCertificate', [UserDashboardController::class, 'UploadCertificate'])->name('UploadCertificate');
     Route::get('/searchcertificate', [UserDashboardController::class, 'SearchCertificate'])->name('SearchCertificate');
     Route::get('/Packages', [UserDashboardController::class, 'packages'])->name('packages');
+    Route::get('/verified', [UserDashboardController::class, 'verified'])->name('verified');
 });
 
 

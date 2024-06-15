@@ -66,10 +66,6 @@
     </nav>
 </header>
 
-
-
-
-
 @yield('content')
 
 <!-- @if (Route::has('login'))
