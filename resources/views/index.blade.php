@@ -18,9 +18,9 @@
                   In</span></a></li>
           </ul>
 
-          <ul class="nav navbar-nav navbar-register1 " id="">
-            <li><a class="hover-btn-new btn-donate text-danger " href="{$BaseHref}/auth/"><span>Register</span></a></li>
-          </ul>
+          <ul class="nav navbar-nav navbar-register">
+          <li><a class="hover-btn-new btn-donate text-danger" href="{$BaseHref}/auth/"><span>Register</span></a></li>
+        </ul>
 
         </div>
       </div>
@@ -35,23 +35,24 @@
   </div>
 </div>
 
-<div class="container px-4 text-center">
-  <p class="partners-title ">We have special Relationship with:</p>
-  <div class="row gx-5">
-    <div class="col-lg-3 col-sm-12">
-      <div class="p-3"><img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo"></div>
+<div class="container px-4 text-center partners-container">
+  <p class="partners-title">We have a special relationship with:</p>
+  <div class="row gx-5 justify-content-center">
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+      <div class="p-3"><img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo" class="partner-logo"></div>
     </div>
-    <div class="col-lg-3 col-sm-12">
-      <div class="p-3"><img src="{{ asset('images/central.png') }}" alt="central"></div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+      <div class="p-3"><img src="{{ asset('images/central.png') }}" alt="central" class="partner-logo"></div>
     </div>
-    <div class="col-lg-3 col-sm-12">
-      <div class="p-3"><img src="{{ asset('images/ug.png') }}" alt="ug"></div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+      <div class="p-3"><img src="{{ asset('images/ug.png') }}" alt="ug" class="partner-logo"></div>
     </div>
-    <div class="col-lg-3 col-sm-12">
-      <div class="p-3"><img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo"></div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+      <div class="p-3"><img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo" class="partner-logo"></div>
     </div>
   </div>
 </div>
+
 
 
 <div class="features container-fluid">
@@ -239,8 +240,8 @@
 
 
 
-        <ul class="nav navbar-nav navbar-register2 " id="">
-          <li><a class="hover-btn-new btn-donate text-danger " href="{$BaseHref}/auth/"><span>Register</span></a></li>
+      <ul class="nav navbar-nav navbar-register">
+          <li><a class="hover-btn-new btn-donate text-danger" href="{$BaseHref}/auth/"><span>Register</span></a></li>
         </ul>
 
       </div>
@@ -357,55 +358,50 @@
 
 <div class="container px-4 text-center academic-items">
   <div class="row academic-rows-item ">
-    <div class="col academic-item1">
-      <div class="p-3 academic-item1-content1">For our International
-        Client</div>
-      <p class="academic-item1-content2 p-3">Sed ut perspiciatis unde omnis iste natus error sit voluptatesa
+    <div class="col-lg-6 col-sm-12 academic-item1">
+      <div class="p-3 academic-item1-content1">For our International Client</div>
+      <p class="academic-item1-content2 p-3">Sed ut perspiciatis unde omnis iste natus error sit voluptatesa</p>
 
-      <div class="international-items">
-        <ol type="1">
-
+      <div class="international-items p-3">
+        <ol type="1" class="international-list">
           <li>ACADEMIC</li>
           <li>SOCIAL BACKGROUND</li>
           <li>CRIMINAL BACKGROUND</li>
           <li>VERIFICATION OF OTHER DOCUMENTS</li>
           <li>SOCIAL MEDIA ACTIVITIES</li>
           <li>EMPLOYER AND OR ACADEMIC RELATIONS</li>
-
-
-          </ul>
-
-
-
-
+        </ol>
       </div>
 
-      <div class="d-flex">
-
-
-
-        <ul class="nav navbar-nav navbar-register " id="">
-          <li><a class="hover-btn-new btn-donate text-danger " href="{$BaseHref}/auth/"><span>Register</span></a></li>
+      <div class="d-flex justify-content-center">
+        <ul class="nav navbar-nav navbar-register">
+          <li><a class="hover-btn-new btn-donate text-danger" href="{$BaseHref}/auth/"><span>Register</span></a></li>
         </ul>
-
       </div>
     </div>
-    <div class="col jumbotron-item2-content">
+
+    <div class="col-lg-6 col-sm-12 jumbotron-item2-content">
       <div class="p-3"><img src="images/international-image.png" alt="logo"></div>
     </div>
   </div>
 </div>
 
 
+
 <div class="full-width-section mt-5">
   <div class="container">
-    <div class="full-width-content">
-      <div class="full-width-image">
-        <img src="images/analytics.jpg" alt="logo" class="img-fluid">
+    <div class="row align-items-center">
+      <div class="col-lg-6 col-md-6">
+        <div class="full-width-image">
+          <img src="images/analytics.jpg" alt="Analytics Image" class="img-fluid">
+        </div>
       </div>
-      <div class="full-width-text">
-        <h1 class="getperformance">Get Performance<br>Analytics</h1><br>
-        <a class="analysis  col-6">Get Analytics</a>
+      <div class="col-lg-6 col-md-6">
+        <div class="full-width-text">
+          <h1 class="getperformance">Get Performance<br>Analytics</h1>
+          <br>
+          <a href="#" class="analysis btn btn-primary">Get Analytics</a>
+        </div>
       </div>
     </div>
   </div>
@@ -415,7 +411,7 @@
 <div class="cardcontainer ">
   <div class="row">
     <div class="col-md-4">
-      <div class="flip-card">
+      <div class="flip-card first">
         <div class="flip-card-inner">
           <div class="flip-card-front">
             <img src="images/industrycasestudies1.png" alt="logo" class="frontflip-img">
@@ -428,7 +424,7 @@
       </div>
     </div>
     <div class="col-md-4">
-      <div class="flip-card">
+      <div class="flip-card second">
         <div class="flip-card-inner">
           <div class="flip-card-front">
 
@@ -441,7 +437,7 @@
       </div>
     </div>
     <div class="col-md-4">
-      <div class="flip-card">
+      <div class="flip-card third">
         <div class="flip-card-inner">
           <div class="flip-card-front">
 

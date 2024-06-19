@@ -62,24 +62,26 @@
                     </div>
 
                     <!-- Right Inner Section - Contact Details -->
-                    <!-- <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="contact-details">
-                            <div class="overlay">
-                                <h2>Contact Details of CVS</h2>
-                                <p>
-                                <h4>Contact Number:</h4> (xxxxxxxxxxx)</p>
-                                <p>
-                                <h4>Phone Number:</h4> (xxxxxxx)</p>
-                                <p>(xxxxxxx)</p>
-                                <p>
-                                <h4>Email:</h4> (xxxxxx)</p>
-                                <p>
-                                <h4>Working Hours:</h4> (xxxxxx)</p>
-                                <p>
-                                <h4>Live Support:</h4> (xxxxxx)</p>
-                            </div>
+                        <div class="contact-details-ut-section">
+    <div class="overlay-ut">
+        <div class="container">
+            <h2 class="contact-title-ut">Contact Details of CVS</h2>
+            <div class="contact-info-ut">
+                <p><strong>Contact Number:</strong> (xxxxxxxxxxx)</p>
+                <p><strong>Phone Number:</strong> (xxxxxxx)</p>
+                <p>(xxxxxxx)</p>
+                <p><strong>Email:</strong> (xxxxxx)</p>
+                <p><strong>Working Hours:</strong> (xxxxxx)</p>
+                <p><strong>Live Support:</strong> (xxxxxx)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
 
