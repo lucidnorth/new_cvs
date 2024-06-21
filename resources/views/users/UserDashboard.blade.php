@@ -123,121 +123,121 @@
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <a href="{{ route('packages') }}">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Verification Left</p>
-                    @if(auth()->user()->activePackage())
-                    <h5 class="font-weight-bolder">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Verification Left</p>
+                      @if(auth()->user()->activePackage())
+                      <h5 class="font-weight-bolder">
 
-                      {{ auth()->user()->activePackage()->searches_left }}
-                    </h5>
-                    @else
-                    <h5 class="font-weight-bolder">
-                      No active package
-                    </h5>
-                    @endif
+                        {{ auth()->user()->activePackage()->searches_left }}
+                      </h5>
+                      @else
+                      <h5 class="font-weight-bolder">
+                        No active package
+                      </h5>
+                      @endif
 
-                    <!-- <p class="mb-0">
+                      <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
                       since yesterday
                     </p> -->
+                    </div>
                   </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                    <!-- <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i> -->
-                    <i class="ni ni-paper-diploma ni-2x text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                      <!-- <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i> -->
+                      <i class="ni ni-paper-diploma ni-2x text-lg opacity-10" aria-hidden="true"></i>
 
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           </a>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <a href="{{ route('verified') }}">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
-                    <h5 class="font-weight-bolder">
-                      {{ $searchCount }}
-                    </h5>
-                    <!-- <p class="mb-0">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
+                      <h5 class="font-weight-bolder">
+                        {{ $searchCount }}
+                      </h5>
+                      <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+3%</span>
                       since last week
                     </p> -->
+                    </div>
                   </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle pb-5">
-                    <!-- <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i> -->
-                    <i class="ni ni-check-bold ni-2x text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle pb-5">
+                      <!-- <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i> -->
+                      <i class="ni ni-check-bold ni-2x text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           </a>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <a href="{{ route('papers')}}">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Papers Submitted</p>
-                    <h5 class="font-weight-bolder">
-                      {{ $papersCount }}
-                    </h5>
-                    <!-- <p class="mb-0">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Papers Submitted</p>
+                      <h5 class="font-weight-bolder">
+                        {{ $papersCount }}
+                      </h5>
+                      <!-- <p class="mb-0">
                       <span class="text-danger text-sm font-weight-bolder">-2%</span>
                       since last quarter
                     </p> -->
+                    </div>
                   </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                    <i class="ni ni-single-copy-04 text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                      <i class="ni ni-single-copy-04 text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           </a>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <a href="{{ route('reports')}}">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
-                    <h5 class="font-weight-bolder">
-                      <!-- {{ $papersCount }} -->Click to view reports
-                    </h5>
-                    <!-- <p class="mb-0">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
+                      <h5 class="font-weight-bolder">
+                        <!-- {{ $papersCount }} -->Click to view reports
+                      </h5>
+                      <!-- <p class="mb-0">
                       <span class="text-danger text-sm font-weight-bolder">-2%</span>
                       since last quarter
                     </p> -->
+                    </div>
                   </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                    <i class="ni ni-folder-17 text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                      <i class="ni ni-folder-17 text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           </a>
         </div>
       </div>
@@ -257,8 +257,8 @@
               <div class="chart">
                 <!-- <canvas id="chart-line" class="chart-canvas" height="300"></canvas> -->
                 <div style="width: 75%; margin: auto;">
-        {!! $chart->container() !!}
-    </div>
+                  {!! $chart->container() !!}
+                </div>
               </div>
             </div>
           </div>
@@ -299,49 +299,51 @@
 
 
               <div class="card-header pb-0">
-            <div class="d-flex align-items-center">
-              <p class="mb-0"><h3>Search Certificate</h3></p>
-            </div>
-          </div>
+                <div class="d-flex align-items-center">
+                  <p class="mb-0">
+                  <h3>Verify Certificate</h3>
+                  </p>
+                </div>
+              </div>
               <div class="card-body">
                 <!-- <p class="text-uppercase text-sm">User Information</p> -->
                 <div class="row">
-                <div class="col-md-12">
-    <div class="searchcard p-4">
+                  <div class="col-md-12">
+                    <div class="searchcard p-4">
 
-        <form id="" class="verificationform" action="{{ route('employer.search')}}" method="POST">
-            <div class="row mb-3">
+                      <form id="" class="verificationform" action="{{ route('employer.search')}}" method="POST">
+                        <div class="row mb-3">
 
-                @csrf
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Student</label>
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search"  name="certificate_number" id="certificate_number">
+                          @csrf
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="example-text-input" class="form-control-label">Cedrtifcate Number</label>
+                              <input class="form-control mr-sm-2" type="text" placeholder="Search" name="certificate_number" id="certificate_number">
+                            </div>
+                          </div>
+
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="example-text-input" class="form-control-label">Select Institution</label>
+                              <select class="form-control" name="institution_id" id="institution_id">
+                                <option value="">Select Institution</option>
+                                @foreach ($institutions as $institution )
+                                <option value="{{ $institution->id }}">{{ $institution->institutions }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary mt-4 col-12">Verify</button>
+                          </div>
+
+
+                        </div>
+                      </form>
                     </div>
-                </div>
-
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Select Category</label>
-                        <select class="form-control" name="institution_id" id="institution_id">
-                                        <option value="">Select Institution</option>
-                                        @foreach ($institutions as $institution )
-                                        <option value="{{ $institution->id }}" >{{ $institution->institutions }}</option>
-                                        @endforeach
-                                    </select>
-                    </div>
-                </div>
-
-            <div class="col-md-4">
-              <button type="submit" class="btn btn-primary mt-4 col-12">Verify</button>
-            </div>
-
-
-          </div>
-        </form>
-      </div>
-  </div>
+                  </div>
                 </div>
 
                 <div class="row">
@@ -383,56 +385,56 @@
           @if(session('certificate'))
 
           <div class="row justify-content-center search-result-section">
-    <div class="col-md-12">
-        <div class="searchcard printable p-4" style="background-color: #DCE8E8;">
-          <h3 class="verifiedresult-text mb-4" style="color: rgb(7, 160, 40);">Verified Result</h3>
-          <div class="row row-cols-3 justify-content-center">
-            <div class="col cardone">
-              <div class="passport-photo">
-                <img src="placeholder.jpg" alt="Passport Photo" class="img-fluid mb-2" style="width: 100%; height: 100%;">
-              </div>
-              <div>
-                <img src="placeholder.jpg" alt="University Logo" class="img-fluid mb-2">
-              </div>
-              <div class="certificate-number-section">
-                <!-- <h6>Verified<i class="bi bi-patch-check-fill text-success"></i></h6> -->
-                <p class="resultqrcode" id="qrCode"></p>
-              </div>
-            </div>
-            <div class="col cardtwo">
-              <div>
-                <h4>Bio Data</h4>
-                <p class="search-result"><span class="titlebg">First Name:</span>  {{ session('certificate')->first_name }}</p>
-                <p class="search-result"><span class="titlebg">Middle Name: </span>  {{ session('certificate')->middle_name }}</p>
-                <p class="search-result"><span class="titlebg">Last Name: </span>  {{ session('certificate')->last_name }}</p>
-                <p class="search-result"><span class="titlebg"> Date of Birth:</span>  {{ session('certificate')->date_of_birth }}t</p>
-              </div>
-            </div>
-            <div class="col cardthree">
-              <div>
-                <h4>Academic Data</h4>
-                <p class="search-result"><span class="titlebg">Institution:</span>  {{ session('certificate')->institution->institutions}} </p>
-                <p class="search-result"><span class="titlebg">Student Identification:</span>  {{ session('certificate')->student_identification }}</p>
-                <p class="search-result"><span class="titlebg">Qualification Type: </span>  {{ session('certificate')->qualification_type }}</p>
-                <p class="search-result"><span class="titlebg">Certificate Number:</span>   {{ session('certificate')->certificate_number }}</p>
-                <p class="search-result"><span class="titlebg">Year of Entry: </span>  {{ session('certificate')->year_of_entry}}</p>
-                <p class="search-result"><span class="titlebg"> Year of Completion:</span>  {{ session('certificate')->year_of_completion }}</p>
+            <div class="col-md-12">
+              <div class="searchcard printable p-4" style="background-color: #DCE8E8;">
+                <h3 class="verifiedresult-text mb-4" style="color: rgb(7, 160, 40);">Verified Result</h3>
+                <div class="row row-cols-3 justify-content-center">
+                  <div class="col cardone">
+                    <div class="passport-photo">
+                      <img src="placeholder.jpg" alt="Passport Photo" class="img-fluid mb-2" style="width: 100%; height: 100%;">
+                    </div>
+                    <div>
+                      <img src="placeholder.jpg" alt="University Logo" class="img-fluid mb-2">
+                    </div>
+                    <div class="certificate-number-section">
+                      <!-- <h6>Verified<i class="bi bi-patch-check-fill text-success"></i></h6> -->
+                      <p class="resultqrcode" id="qrCode"></p>
+                    </div>
+                  </div>
+                  <div class="col cardtwo">
+                    <div>
+                      <h4>Bio Data</h4>
+                      <p class="search-result"><span class="titlebg">First Name:</span> {{ session('certificate')->first_name }}</p>
+                      <p class="search-result"><span class="titlebg">Middle Name: </span> {{ session('certificate')->middle_name }}</p>
+                      <p class="search-result"><span class="titlebg">Last Name: </span> {{ session('certificate')->last_name }}</p>
+                      <p class="search-result"><span class="titlebg"> Date of Birth:</span> {{ session('certificate')->date_of_birth }}t</p>
+                    </div>
+                  </div>
+                  <div class="col cardthree">
+                    <div>
+                      <h4>Academic Data</h4>
+                      <p class="search-result"><span class="titlebg">Institution:</span> {{ session('certificate')->institution->institutions}} </p>
+                      <p class="search-result"><span class="titlebg">Student Identification:</span> {{ session('certificate')->student_identification }}</p>
+                      <p class="search-result"><span class="titlebg">Qualification Type: </span> {{ session('certificate')->qualification_type }}</p>
+                      <p class="search-result"><span class="titlebg">Certificate Number:</span> {{ session('certificate')->certificate_number }}</p>
+                      <p class="search-result"><span class="titlebg">Year of Entry: </span> {{ session('certificate')->year_of_entry}}</p>
+                      <p class="search-result"><span class="titlebg"> Year of Completion:</span> {{ session('certificate')->year_of_completion }}</p>
 
-                <p class="save-print">
-                  <i class="bi bi-floppy" onclick="saveResult()"></i>
-                  <i class="bi bi-printer" onclick="printResult()">Print Result</i>
-                </p>
+                      <p class="save-print">
+                        <i class="bi bi-floppy" onclick="saveResult()"></i>
+                        <i class="bi bi-printer" onclick="printResult()">Print Result</i>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <p class="websiteinfo">Verified on www.certverification.com</p>
+                <p class="verifiedtext">Verified t sdolores rem animi? Culpa est illum nostrum expedita laboriosam.</p>
               </div>
             </div>
           </div>
-          <p class="websiteinfo">Verified on www.certverification.com</p>
-          <p class="verifiedtext">Verified t sdolores rem animi? Culpa est illum nostrum expedita laboriosam.</p>
-        </div>
-      </div>
-  </div>
-  @elseif(session('error'))
-       <p>{{ session('error') }}</p>
-   @endif
+          @elseif(session('error'))
+          <p>{{ session('error') }}</p>
+          @endif
 
           <!-- <div class="col-lg-5">
           <div class="card card-carousel overflow-hidden h-100 p-0">
@@ -649,7 +651,7 @@
         </div>
         @endif
 
- 
+
         @if(auth()->user()->employer)
         <div class="row mt-4">
           <div class="col-lg-7 mb-lg-0 mb-4">
@@ -657,7 +659,7 @@
               <div class="card-header pb-0 px-3">
                 <div class="row">
                   <div class="col-md-6">
-                    <h6 class="mb-0">Recently Verified</h6>
+                    <h6 class="mb-0 fs-4">Recently Verified</h6>
                   </div>
                   <div class="col-md-6 d-flex justify-content-end align-items-center">
                     <small></small>
@@ -665,42 +667,15 @@
                 </div>
               </div>
               <div class="card-body pt-4 p-3">
-                <!-- <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Newest</h6>
+
                 <ul class="list-group">
+                  @if ($certificates->isEmpty())
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-down"></i></button>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Total Payments Recieved</h6>
-                        <span class="text-xs">27 March 2020, at 12:30 PM</span>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
-                      - $ 2,500
-                    </div>
-                  </li>
-                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Payments Overdue</h6>
-                        <span class="text-xs">27 March 2020, at 04:30 AM</span>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                      + $ 2,000
-                    </div>
-                  </li>
-                </ul> -->
-                <!-- <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">Yesterday</h6> -->
-                <ul class="list-group">                    
-                        @if ($certificates->isEmpty())
-                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex align-items-center">
                       <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
                       <div class="d-flex flex-column">
                         <h6 class="mb-1 text-dark text-sm"> No verified certificates found.</h6>
-                        
+
                       </div>
                     </div>
                     <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
@@ -712,18 +687,18 @@
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex align-items-center">
                       <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark fw-bold fs-4">{{ $certificate->first_name }} {{ $certificate->middle_name }} {{ $certificate->last_name }}</h6>
-                        <span class="text fw-bold fs-5">{{ $certificate->certificate_number }}  |  {{ $certificate->institution ? $certificate->institution->institutions : 'No Institution Name' }}  |  {{ $certificate->date_of_birth }}  |  {{ $certificate->qualification_type }}  |  {{ $certificate->student_identification }}  |  {{ $certificate->year_of_entry }}  |  {{ $certificate->year_of_completion }}</span>
+                        <h6 class="mb-1 text-dark fw-bold fs-6 ">{{ $certificate->first_name }} {{ $certificate->middle_name }} {{ $certificate->last_name }}</h6>
+                        <span class="text fw-bold fs-6">{{ $certificate->institution ? $certificate->institution->institutions : 'No Institution Name' }} | {{ $certificate->programme }} | {{ $certificate->class}} </span>
                       </div>
                     </div>
-                    
+
                   </li>
                   @endforeach
                   @endif
                 </ul>
 
                 <div class="click">
-                  <a href="{{ route('verified') }}" class="fw-bold fs-4">Click to view more </a>
+                  <a href="{{ route('verified') }}" class="fw-bold fs-6">Click to view more </a>
                 </div>
               </div>
             </div>
@@ -731,50 +706,17 @@
           <div class="col-lg-5">
             <div class="card">
               <div class="card-header pb-0 p-3">
-                <h6 class="mb-0">Categories</h6>
+                <h6 class="mb-0">Verified</h6>
               </div>
               <!-- <canvas id="myChart"></canvas> -->
               <div style="width: 75%; margin: auto;">
-        {!! $chart->container() !!}
-    </div>
+                {!! $chart->container() !!}
+              </div>
             </div>
           </div>
         </div>
         @endif
 
-
-        <!-- <footer class="footer pt-3  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                for a better web.
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer> -->
       </div>
 
 
@@ -784,12 +726,12 @@
     <h1>Welcome to the Dashboard</h1>
 @endif -->
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-{!! $chart->script() !!}
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+      {!! $chart->script() !!}
 
 
-<!-- <script>
+      <!-- <script>
   const ctx = document.getElementById('myChart');
 
   new Chart(ctx, {

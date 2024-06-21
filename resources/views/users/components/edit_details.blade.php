@@ -1,15 +1,7 @@
 
 <style>
 
-.row {
-    margin-top: 1rem; /* Add space above the border */
-    padding-top: 1rem; /* Add space below the border */
-    border-bottom: 1px solid #dee2e6; /* Add bottom border */
-}
 
-.row:last-child {
-    border-bottom: none; /* Remove bottom border from the last row */
-}
 
 </style>
 
@@ -39,40 +31,40 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-md-5 mb-4 d-flex justify-content-between">
+                    <div class="col-md-5 mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
                         <span class="text-xs">Name: <span class="text-dark font-weight-bold ms-sm-2">{{ auth()->user()->name }}</span></span>
                     </div>
                     @if ($data)
                         @if(auth()->user()->institution_id)
-                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                            <div class="col-md-5 mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
                                 <span class="text-xs">Country: <span class="text-dark font-weight-bold ms-sm-2">{{ $data->country }}</span></span>
                             </div>
                         @endif
-                        <div class="col-md-5 mb-4 d-flex justify-content-between">
+                        <div class="col-md-5 mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
                             <span class="text-xs">Email: <span class="text-dark ms-sm-2 font-weight-bold">{{ auth()->user()->email }}</span></span>
                         </div>
-                        <div class="col-md-5 mb-4 d-flex justify-content-between">
+                        <div class="col-md-5 mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
                             <span class="text-xs">Phone: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->phone }}</span></span>
                         </div>
-                        <div class="col-md-5 mb-4 d-flex justify-content-between">
+                        <div class="col-md-5 mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
                             <span class="text-xs">Address: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->address }}</span></span>
                         </div>
                         @if(auth()->user()->institution_id)
-                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                            <div class="col-md-5 mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
                                 <span class="text-xs">Website: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->website }}</span></span>
                             </div>
                         @endif
                         @if(auth()->user()->employer)
-                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                            <div class="col-md-5 mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
                                 <span class="text-xs">Registration Number: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->registrationnumber }}</span></span>
                             </div>
-                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                            <div class="col-md-5 mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
                                 <span class="text-xs">ID Type: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->idtype }}</span></span>
                             </div>
-                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                            <div class="col-md-5 mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
                                 <span class="text-xs">ID Number: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->idnumber }}</span></span>
                             </div>
-                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                            <div class="col-md-5 mb-4 d-flex justify-content-between align-items-center border-bottom pb-2">
                                 <span class="text-xs">Industry: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->industry }}</span></span>
                             </div>
                         @endif
@@ -90,6 +82,7 @@
         </li>
     </ul>
 </div>
+
 
 
 
