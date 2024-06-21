@@ -13,6 +13,7 @@ use App\Models\Package;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserPackage;
+use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 
 class UserDashboardController extends Controller
 {
@@ -34,16 +35,76 @@ class UserDashboardController extends Controller
 public function index( )
 {
     $user = auth()->user();
-    $institution = auth()->user()->my_institution;
+    $institution = $user->my_institution;
     $institutions = Institution::all(); 
 
-            // Count the number of papers uploaded by the authenticated user
+    // Count the number of papers uploaded by the authenticated user
     $papersCount = Paper::where('user_id', $user->id)->count();
 
-     // Count the number of searches performed by the authenticated user
-     $searchCount = SearchLog::where('user_id', $user->id)->count();
+    // Count the number of searches performed by the authenticated user
+    $searchCount = SearchLog::where('user_id', $user->id)->count();
 
-    return view('users.UserDashboard', [ 'institution'=> $institution,'institutions'=> $institutions, 'papersCount' => $papersCount, 'searchCount' => $searchCount,]);
+    // Fetch the latest 5 search logs by the authenticated user
+    $userId = Auth::id();
+    $searchLogs = SearchLog::where('user_id', $userId)
+        ->orderBy('created_at', 'desc') // Order by creation date, most recent first
+        ->take(5) // Limit to 5 logs
+        ->get();
+
+   
+        // Initialize an empty collection to store certificates
+        $certificates = collect();
+        $qualificationTypes = [];
+
+        // Loop through each search log and fetch related certificates
+        foreach ($searchLogs as $log) {
+            $certificate = Certificate::where('certificate_number', $log->search_term)
+                ->with('institution')
+                ->first();
+            
+            if ($certificate) {
+                $certificates->push($certificate);
+                $qualificationTypes[] = $certificate->qualification_type;
+            }
+        }
+
+        // Count occurrences of each qualification type
+        $qualificationTypeCounts = array_count_values($qualificationTypes);
+
+        // Prepare data for the chart
+        $chart = new Chart;
+        $chart->labels(array_keys($qualificationTypeCounts));
+        $chart->dataset('Qualification Types', 'pie', array_values($qualificationTypeCounts))
+            ->options([
+                'backgroundColor' => [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                'borderColor' => [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                'borderWidth' => 1,
+            ]);
+
+        return view('users.UserDashboard', [
+            'institution' => $institution,
+            'institutions' => $institutions, 
+            'papersCount' => $papersCount, 
+            'searchCount' => $searchCount,
+            'certificates' => $certificates,
+            'chart' => $chart
+        ]);   
+
+
 }
 
 
@@ -81,6 +142,7 @@ public function UploadCertificate()
 {
     return view('users.UserDashboardUploadCertificate');
 }
+
 
 public function SearchCertificate()
 {
@@ -120,6 +182,13 @@ public function verified()
         }
 
     return view('Users.UserDashboardVerified', ['certificates' => $certificates]);
+}
+
+public function SkillSearch()
+{
+    $packages = Package::all();
+
+    return view('Users.UserDashboardSkillSearch', [ 'packages'=> $packages,]);
 }
 
 
@@ -219,3 +288,4 @@ public function search(Request $request)
 //     }
     
 }
+

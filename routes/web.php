@@ -17,12 +17,18 @@ use App\Http\Controllers\Users\UserDashboardUploadCertificate;
 use App\Http\Controllers\Users\UserDashboardSearchCertificate;
 use App\Http\Controllers\Admin\PapersUploadController;
 use App\Http\Controllers\SkillsController;
-
+use App\Http\Controllers\Users\UserDashboardSkillSearchController;
 use App\Http\Controllers\Users\UserDashboardPackagesController;
+use App\Http\Controllers\Users\UserDashboardFaqsController;
+use App\Http\Controllers\Users\UserDashboardReportsController;
 
 
 // routes/web.php
-
+Route::get('/reports', [UserDashboardReportsController::class, 'reports'])->name('reports');
+Route::get('/download-verified-certificates', [UserDashboardReportsController::class, 'downloadVerifiedCertificates'])->name('download.verified.certificates');
+Route::get('/faqs', [UserDashboardFaqsController::class, 'faqs'])->name('faqs');
+Route::get('/dashboard/skills/search', [UserDashboardSkillSearchController::class, 'show'])->name('dashboard.skills.show');
+Route::post('/dashboard/skills/search', [UserDashboardSkillSearchController::class, 'search'])->name('dashboard.skills.search');
 Route::get('/packages', [UserDashboardPackagesController::class, 'index'])->name('packages.index');
 Route::post('/packages/purchase', [UserDashboardPackagesController::class, 'purchase'])->name('packages.purchase');
 Route::get('/payment/callback', [UserDashboardPackagesController::class, 'handleGatewayCallback'])->name('payment.callback');
@@ -75,6 +81,7 @@ Route::middleware(["auth"])->group(function(){
     Route::get('/searchcertificate', [UserDashboardController::class, 'SearchCertificate'])->name('SearchCertificate');
     Route::get('/Packages', [UserDashboardController::class, 'packages'])->name('packages');
     Route::get('/verified', [UserDashboardController::class, 'verified'])->name('verified');
+    Route::get('/skillsearch', [UserDashboardController::class, 'skillsearch'])->name('skillsearch');
 });
 
 

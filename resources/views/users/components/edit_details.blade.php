@@ -1,3 +1,20 @@
+
+<style>
+
+.row {
+    margin-top: 1rem; /* Add space above the border */
+    padding-top: 1rem; /* Add space below the border */
+    border-bottom: 1px solid #dee2e6; /* Add bottom border */
+}
+
+.row:last-child {
+    border-bottom: none; /* Remove bottom border from the last row */
+}
+
+</style>
+
+
+
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-md-8">
@@ -13,40 +30,75 @@
 
         </div>
         <div class="card-body pt-4 p-3">
-          <ul class="list-group">
-            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-              <div class="d-flex flex-column">
-                <h6 class="mb-4 text-sm"></h6>
-
-                <span class="mb-4 text-xs">Name: <span class="text-dark font-weight-bold ms-sm-2">{{ auth()->user()->name}}</span></span>
-                @if ($data)
-                @if(auth()->user()->institution_id)
-                <span class="mb-4 text-xs">Country: <span class="text-dark font-weight-bold ms-sm-2">{{ $data->country }}</span></span>
-                @endif
-                <span class="mb-4 text-xs">Email : <span class="text-dark ms-sm-2 font-weight-bold">{{ auth()->user()->email }}</span></span>
-                <span class="text-xs mb-4">Pone: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->phone   }}</span></span>
-                <span class="text-xs mb-4">Address: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->address }}</span></span>
-                @if(auth()->user()->institution_id)
-                <span class="text-xs mb-4">Website: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->website }}</span></span>
-                @endif
-                @if(auth()->user()->employer)
-                <span class="text-xs mb-4">Registration Number: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->registrationnumber }}</span></span>
-                <span class="text-xs mb-4">ID Type: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->idtype}}</span></span>
-                <span class="text-xs mb-4">IDNumber: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->idnumber}}</span></span>
-                <span class="text-xs mb-4">Industry: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->industry }}</span></span>
-                @endif
-                @else
-                <span class="text-xs mb-4"> <span class="text-dark ms-sm-2 font-weight-bold">No institution information found for the current user.</span></span>
-                @endif
-              </div>
-              <div class="ms-auto text-end">
+    <ul class="list-group">
+        <li class="list-group-item border-0 p-4 mb-2 bg-gray-100 border-radius-lg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center mb-4">
+                        <h6 class="text-sm">User Information</h6>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-5 mb-4 d-flex justify-content-between">
+                        <span class="text-xs">Name: <span class="text-dark font-weight-bold ms-sm-2">{{ auth()->user()->name }}</span></span>
+                    </div>
+                    @if ($data)
+                        @if(auth()->user()->institution_id)
+                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                                <span class="text-xs">Country: <span class="text-dark font-weight-bold ms-sm-2">{{ $data->country }}</span></span>
+                            </div>
+                        @endif
+                        <div class="col-md-5 mb-4 d-flex justify-content-between">
+                            <span class="text-xs">Email: <span class="text-dark ms-sm-2 font-weight-bold">{{ auth()->user()->email }}</span></span>
+                        </div>
+                        <div class="col-md-5 mb-4 d-flex justify-content-between">
+                            <span class="text-xs">Phone: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->phone }}</span></span>
+                        </div>
+                        <div class="col-md-5 mb-4 d-flex justify-content-between">
+                            <span class="text-xs">Address: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->address }}</span></span>
+                        </div>
+                        @if(auth()->user()->institution_id)
+                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                                <span class="text-xs">Website: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->website }}</span></span>
+                            </div>
+                        @endif
+                        @if(auth()->user()->employer)
+                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                                <span class="text-xs">Registration Number: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->registrationnumber }}</span></span>
+                            </div>
+                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                                <span class="text-xs">ID Type: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->idtype }}</span></span>
+                            </div>
+                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                                <span class="text-xs">ID Number: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->idnumber }}</span></span>
+                            </div>
+                            <div class="col-md-5 mb-4 d-flex justify-content-between">
+                                <span class="text-xs">Industry: <span class="text-dark ms-sm-2 font-weight-bold">{{ $data->industry }}</span></span>
+                            </div>
+                        @endif
+                    @else
+                        <div class="col-12 text-center">
+                            <span class="text-xs"><span class="text-dark ms-sm-2 font-weight-bold">No institution information found for the current user.</span></span>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div class="ms-auto text-end">
                 <!-- <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a> -->
                 <!-- <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a> -->
-              </div>
-            </li>
-          </ul>
-        </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+
+
+
       </div>
+      
+
+
       <div class="card mt-3">
         <div class="card-header pb-0 px-3">
           <h6 class="mb-0">Admin Details</h6>

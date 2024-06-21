@@ -29,7 +29,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="example-text-input" class="form-control-label">Paper Title</label>
-            <input class="form-control" type="text" value="type" name="name">
+            <input class="form-control" type="text" value="" name="name">
         </div>
     </div>
 
@@ -37,6 +37,7 @@
         <div class="form-group">
             <label for="example-text-input" class="form-control-label">Select Category</label>
             <select class="form-control" id="file-format" name="category">
+                <option value="">Select Category</option> 
                 <option value="Case Study">Case Study</option>
                 <option value="Skills Gap Set">Skills Gap Set</option>
                 <option value="Research Paper">Research Paper</option>
@@ -155,212 +156,8 @@
   </div>
 
   <div class="container-fluid py-4">
-    <!-- <div class="row">
-      <div class="col-12">
-        <div class="card mb-4">
-          <div class="card-header pb-0">
-            <h6>Download a Paper</h6>
-          </div>
-          <div class="card-body px-0 pt-0 pb-2">
-            <div class="table-responsive p-0">
-              <table class="table align-items-center mb-0">
-                <thead>
-                  <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Paper Title</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
-                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Date</th>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">File</th>
-                  </tr>
-                </thead>
-                <tbody>
+   
 
-                @foreach ($allpapers as $paper)
-                  <tr>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">{{ $paper->name }}</h6>
-
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm">{{ auth()->user()->name}}</h6>
-
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-xs font-weight-bold mb-0">{{ $paper->category }}</p>
-
-                    </td>
-
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold">{{ $paper->created_at->format('d/m/Y H:i:s') }}</span>
-                    </td>
-                    <td class="align-middle">
-                      <a href="{{ route('user.download.paper', $paper->id) }}"  class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                        Download
-                      </a>
-                    </td>
-                  </tr>
-                  @endforeach
-                
-                 
-                 
-                  
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
-    <div class="col-6 d-flex align-items-center mb-3">
-                <h6 class="mb-0">History of papers downloaded</h6>
-              </div>
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Industry Case Study</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Skills Gap</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Research Paper</button>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active " id="home" role="tabpanel" aria-labelledby="home-tab">
-  <div class="alert bg-white p-5 fw-bold text-dark " role="alert">
-  Number of Downloads (8)
-</div>
-  <!-- <div class="books">
-        <div class="container">
-            <div class="book-area">
-                <div class="row overflow-hidden">
-                <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="book-single shadow">
-                        <img src="images/images (4).jpeg" class="card-img-top" alt="...">
-                            <p class="price"><span>Title</span></p>
-                            <p class="description">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-                            <div class="d-flex justify-content-center">
-                                <a href="#" class="btn"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-  </div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-  <div class="alert bg-white p-5 fw-bold text-dark " role="alert">
-  Number of Downloads (8)
-</div>
-  </div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-  <div class="alert bg-white p-5 fw-bold text-dark " role="alert">
-  Number of Downloads (8)
-</div>
-  </div>
-</div>
     <div class="container">
 
 

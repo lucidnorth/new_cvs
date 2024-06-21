@@ -12,8 +12,11 @@ class UserDashboardPackagesController extends Controller
 {
     public function index()
     {
+         // Fetch the current active package of the authenticated user
+         $user = auth()->user();
+         $currentPackage = $user->activePackage();
         $packages = Package::all();
-        return view('users.UserDashboardPackages', ['packages' => $packages]);
+        return view('users.UserDashboardPackages', ['packages' => $packages,'currentPackage' => $currentPackage]);
     }
 
     public function purchase(Request $request)

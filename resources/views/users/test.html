@@ -585,3 +585,1057 @@
         </div>
     </main>
 </div>
+
+
+
+
+
+
+
+@extends('layouts.Dashboard')
+
+
+@section('title', ' Dashboard-Laravel Admin Panel')
+@section('content')
+
+<main class="main-content position-relative border-radius-lg ">
+
+  <div class="container-fluid py-4">
+  <h5 class="text-white mb-3">Welcome {{ auth()->user()->name}}</h1>
+
+
+  <!-- Institution dashboard -->
+
+      <!-- Employer dashboard -->
+
+      @if(auth()->user()->my_institution)
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+
+
+
+            <a class="clickable-card" href="{{ route('profile') }}">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">PAYMENTS DUE</p>
+                    <h5 class="font-weight-bolder">
+                      $53,000
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+55%</span>
+                      since yesterday
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+
+
+            <a class="clickable-card" href="{{ route('profile') }}">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">VERIFIED CANDIDATES</p>
+                    <h5 class="font-weight-bolder">
+                      2,300
+                    </h5>
+
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </a>
+
+
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+
+
+            <a class="clickable-card" href="{{ route('profile') }}">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">UPLOAD GRADUATES DATA</p>
+                    <h5 class="font-weight-bolder">
+                      +3,462
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
+                      since last quarter
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </a>
+
+
+        </div>
+        <div class="col-xl-3 col-sm-6">
+
+
+            <a class="clickable-card" href="{{ route('profile') }}">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Notifications</p>
+                    <h5 class="font-weight-bolder">
+                      $103,430
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </a>
+
+
+        </div>
+      </div>
+
+
+
+      @endif
+      @if(auth()->user()->employer)
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+
+            <a class="clickable-card" href="{{ route('profile') }}">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Verification Left</p>
+                    <h5 class="font-weight-bolder">
+                      $53,000
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+55%</span>
+                      since yesterday
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </a>
+
+
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+
+            <a class="clickable-card" href="{{ route('profile') }}">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
+                    <h5 class="font-weight-bolder">
+                      2,300
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+3%</span>
+                      since last week
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </a>
+
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+
+            <a class="clickable-card" href="{{ route('papers') }}">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Papers Submitted</p>
+                    <h5 class="font-weight-bolder">
+                      +3,462
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
+                      since last quarter
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </a>
+
+        </div>
+        <div class="col-xl-3 col-sm-6">
+
+            <a class="clickable-card" href="{{ route('profile') }}">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Notifications</p>
+                    <h5 class="font-weight-bolder">
+                      $103,430
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </a>
+
+        </div>
+      </div>
+      @endif
+      <div class="row mt-4">
+      @if(auth()->user()->my_institution)
+        <div class="col-lg-12 mb-lg-0 mb-4">
+          <div class="card z-index-2 h-100">
+            <div class="card-header pb-0 pt-3 bg-transparent">
+              <h6 class="text-capitalize">Sales overview</h6>
+              <p class="text-sm mb-0">
+                <i class="fa fa-arrow-up text-success"></i>
+                <span class="font-weight-bold">4% more</span> in 2021
+              </p>
+            </div>
+            <div class="card-body p-3">
+              <div class="chart">
+                <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        @endif
+        @if(auth()->user()->employer)
+        <div class="col-md-12">
+
+{{-- NEW SEARCH CODE --}}
+        <div class="card">
+          <div class="card-header pb-0">
+            <div class="d-flex align-items-center">
+              <p class="mb-0"><h3>Search Certificate</h3></p>
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- <p class="text-uppercase text-sm">User Information</p> -->
+
+
+<div class="row">
+<div class="col-md-12">
+    <div class="searchcard p-4">
+
+        <form id="institution-form " class="verificationform" action="{{ route('employer.search')}}" method="POST">
+            <div class="row mb-3">
+
+                @csrf
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Student</label>
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search"  name="certificate_number" id="certificate_number">
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="example-text-input" class="form-control-label">Select Category</label>
+                        <select class="form-control" name="institution_id" id="institution_id">
+                                        <option value="">Select Institution</option>
+                                        @foreach ($institutions as $institution )
+                                        <option value="{{ $institution->id }}" >{{ $institution->institutions }}</option>
+                                        @endforeach
+                                    </select>
+                    </div>
+                </div>
+
+            <div class="col-md-4">
+              <button type="submit" class="btn btn-primary mt-4 col-12">Verify</button>
+            </div>
+
+
+          </div>
+        </form>
+      </div>
+  </div>
+
+  <hr class="horizontal dark">
+
+
+{{-- End Of New Search COde --}}
+
+
+{{-- Maliks Search Code --}}
+  <!-- {{-- <form id="institution-form " class="form " action="{{ route('employer.search')}}" method="POST">
+
+    @csrf
+    <div class="col-md-10">
+        <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Student</label>
+            <input class="form-control mr-sm-2" type="text" placeholder="Search"  name="certificate_number" id="certificate_number">
+        </div>
+    </div>
+
+    <div class="col-md-10">
+        <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Select Category</label>
+            <select class="form-control" name="institution_id" id="institution_id">
+                            <option value="">Select Institution</option>
+                            @foreach ($institutions as $institution )
+                            <option value="{{ $institution->id }}" >{{ $institution->institutions }}</option>
+                            @endforeach
+                        </select>
+        </div>
+    </div>
+
+
+
+
+    <hr class="horizontal dark">
+
+    <div class="text-end">
+        <button class="btn btn-primary btn-sm" type="submit">Search</button>
+    </div>
+</form> --}} -->
+
+
+{{-- End of Maliks Search Code --}}
+
+
+
+
+ <!-- Display search result or error message -->
+ @if(session('certificate'))
+       {{-- <h2>Search Result</h2>
+
+{{-- BASIT NEW CODE VVVVV --}}
+
+<div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="searchcard p-4" style="background-color: #cdff71;">
+        <h3 class="mb-4">Search Result</h3>
+        <div class="row row-cols-3">
+          <div class="col">
+            <div>
+              <img src="placeholder.jpg" alt="Passport Photo" class="img-fluid mb-2">
+            </div>
+            <div>
+              <img src="placeholder.jpg" alt="University Logo" class="img-fluid mb-2">
+            </div>
+            <div>
+              <h6>Certificate Number</h6>
+              <p>{{ session('certificate')->certificate_number }}</p>
+            </div>
+          </div>
+          <div class="col">
+            <div>
+              <h4>Bio Data</h4>
+              <p class="search-result">First Name: {{ session('certificate')->first_name }}</p>
+              <p class="search-result">Middle Name: {{ session('certificate')->middle_name }}</p>
+              <p class="search-result">Last Name: {{ session('certificate')->last_name }}</p>
+              <p class="search-result">Date of Birth: {{ session('certificate')->date_of_birth }}</p>
+              <p class="search-result">Gender: {{ session('certificate')->gender }}</p>
+
+            </div>
+          </div>
+          <div class="col">
+            <div>
+              <h4>Academic Data <i class="bi bi-patch-check-fill text-success"></i></h4>
+
+              <p class="search-result">Institution: {{ session('certificate')->institution->institutions}}</p>
+              <p class="search-result">Student Identification: {{ session('certificate')->student_identification }}</p>
+              <p class="search-result">Qualification Type: {{ session('certificate')->qualification_type }}</p>
+              <p class="search-result">Certificate Number: {{ session('certificate')->certificate_number }}</p>
+              <p class="search-result">Year of Entry: {{ session('certificate')->year_of_entry}}</p>
+              <p class="search-result">Year of Completion: {{ session('certificate')->year_of_completion }}</p>
+              <p><i class="bi bi-floppy"></i><i class="bi bi-box-arrow-up"></i><i class="bi bi-printer"></i></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> --}}
+
+
+{{-- VV Work in Progress VV --}}
+
+<div class="row justify-content-center search-result-section">
+    <div class="col-md-12">
+        <div class="searchcard printable p-4" style="background-color: #DCE8E8;">
+          <h3 class="verifiedresult-text mb-4" style="color: rgb(7, 160, 40);">Verified Result</h3>
+          <div class="row row-cols-3 justify-content-center">
+            <div class="col cardone">
+              <div class="passport-photo">
+                <img src="placeholder.jpg" alt="Passport Photo" class="img-fluid mb-2" style="width: 100%; height: 100%;">
+              </div>
+              <div>
+                <img src="placeholder.jpg" alt="University Logo" class="img-fluid mb-2">
+              </div>
+              <div class="certificate-number-section">
+                <!-- <h6>Verified<i class="bi bi-patch-check-fill text-success"></i></h6> -->
+                <p class="resultqrcode" id="qrCode"></p>
+              </div>
+            </div>
+            <div class="col cardtwo">
+              <div>
+                <h4>Bio Data</h4>
+                <p class="search-result"><span class="titlebg">First Name:</span>  {{ session('certificate')->first_name }}</p>
+                <p class="search-result"><span class="titlebg">Middle Name: </span>  {{ session('certificate')->middle_name }}</p>
+                <p class="search-result"><span class="titlebg">Last Name: </span>  {{ session('certificate')->last_name }}</p>
+                <p class="search-result"><span class="titlebg"> Date of Birth:</span>  {{ session('certificate')->date_of_birth }}t</p>
+              </div>
+            </div>
+            <div class="col cardthree">
+              <div>
+                <h4>Academic Data</h4>
+                <p class="search-result"><span class="titlebg">Institution:</span>  {{ session('certificate')->institution->institutions}} </p>
+                <p class="search-result"><span class="titlebg">Student Identification:</span>  {{ session('certificate')->student_identification }}</p>
+                <p class="search-result"><span class="titlebg">Qualification Type: </span>  {{ session('certificate')->qualification_type }}</p>
+                <p class="search-result"><span class="titlebg">Certificate Number:</span>   {{ session('certificate')->certificate_number }}</p>
+                <p class="search-result"><span class="titlebg">Year of Entry: </span>  {{ session('certificate')->year_of_entry}}</p>
+                <p class="search-result"><span class="titlebg"> Year of Completion:</span>  {{ session('certificate')->year_of_completion }}</p>
+
+                <p class="save-print">
+                  <i class="bi bi-floppy" onclick="saveResult()"></i>
+                  <i class="bi bi-printer" onclick="printResult()"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+          <p class="websiteinfo">Verified on www.certverification.com</p>
+          <p class="verifiedtext">Verified t sdolores rem animi? Culpa est illum nostrum expedita laboriosam.</p>
+        </div>
+      </div>
+  </div>
+
+
+{{-- NEW CODE -END --}}
+
+
+
+   @elseif(session('error'))
+       <p>{{ session('error') }}</p>
+   @endif
+
+
+
+
+
+
+
+
+
+              <!-- <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Last name</label>
+                    <input class="form-control" type="text" value="Lucky">
+                  </div>
+                </div> -->
+            </div>
+
+{{-- End of working Code for Search --}}
+
+
+
+
+
+
+
+
+
+            <div class="row">
+
+              <!-- <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">City</label>
+                    <input class="form-control" type="text" value="New York">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Country</label>
+                    <input class="form-control" type="text" value="United States">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Postal code</label>
+                    <input class="form-control" type="text" value="437300">
+                  </div>
+                </div>
+              </div>
+              <hr class="horizontal dark">
+              <p class="text-uppercase text-sm">About me</p>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">About me</label>
+                    <input class="form-control" type="text" value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source.">
+                  </div>
+                </div> -->
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+      </div>
+        @endif
+
+        <!-- <div class="col-lg-5">
+          <div class="card card-carousel overflow-hidden h-100 p-0">
+            <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
+              <div class="carousel-inner border-radius-lg h-100">
+                <div class="carousel-item h-100 active" style="background-image: url('../assets/img/carousel-1.jpg');
+      background-size: cover;">
+                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                      <i class="ni ni-camera-compact text-dark opacity-10"></i>
+                    </div>
+                    <h5 class="text-white mb-1">Get started with Argon</h5>
+                    <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
+                  </div>
+                </div>
+                <div class="carousel-item h-100" style="background-image: url('../assets/img/carousel-2.jpg');
+      background-size: cover;">
+                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                      <i class="ni ni-bulb-61 text-dark opacity-10"></i>
+                    </div>
+                    <h5 class="text-white mb-1">Faster way to create web pages</h5>
+                    <p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
+                  </div>
+                </div>
+                <div class="carousel-item h-100" style="background-image: url('../assets/img/carousel-3.jpg');
+      background-size: cover;">
+                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+                      <i class="ni ni-trophy text-dark opacity-10"></i>
+                    </div>
+                    <h5 class="text-white mb-1">Share with us your design tips!</h5>
+                    <p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+
+      @if(auth()->user()->my_institution)
+      <div class="row mt-4">
+        <div class="col-lg-7 mb-lg-0 mb-4">
+          <div class="card ">
+            <div class="card-header pb-0 px-3">
+              <div class="row">
+                <div class="col-md-6">
+                  <h6 class="mb-0">Payments</h6>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end align-items-center">
+                  <i class="far fa-calendar-alt me-2"></i>
+                  <small>23 - 30 March 2020</small>
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-4 p-3">
+                <!-- <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Newest</h6>
+                <ul class="list-group">
+                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                    <div class="d-flex align-items-center">
+                      <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-down"></i></button>
+                      <div class="d-flex flex-column">
+                        <h6 class="mb-1 text-dark text-sm">Total Payments Recieved</h6>
+                        <span class="text-xs">27 March 2020, at 12:30 PM</span>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
+                      - $ 2,500
+                    </div>
+                  </li>
+                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                    <div class="d-flex align-items-center">
+                      <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
+                      <div class="d-flex flex-column">
+                        <h6 class="mb-1 text-dark text-sm">Payments Overdue</h6>
+                        <span class="text-xs">27 March 2020, at 04:30 AM</span>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                      + $ 2,000
+                    </div>
+                  </li>
+                </ul> -->
+                <!-- <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">Yesterday</h6> -->
+                <ul class="list-group">
+                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                    <div class="d-flex align-items-center">
+                      <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
+                      <div class="d-flex flex-column">
+                        <h6 class="mb-1 text-dark text-sm">Total Payments Recieved</h6>
+                        <span class="text-xs">26 March 2020, at 13:45 PM</span>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                      + $ 750
+                    </div>
+                  </li>
+                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                    <div class="d-flex align-items-center">
+                      <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
+                      <div class="d-flex flex-column">
+                        <h6 class="mb-1 text-dark text-sm">Discounts</h6>
+                        <span class="text-xs">26 March 2020, at 12:30 PM</span>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                      + $ 1,000
+                    </div>
+                  </li>
+                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                    <div class="d-flex align-items-center">
+                      <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
+                      <div class="d-flex flex-column">
+                        <h6 class="mb-1 text-dark text-sm">Rates (Degree)</h6>
+                        <span class="text-xs">26 March 2020, at 08:30 AM</span>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                      + $ 2,500
+                    </div>
+                  </li>
+                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                    <div class="d-flex align-items-center">
+                      <button class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-exclamation"></i></button>
+                      <div class="d-flex flex-column">
+                        <h6 class="mb-1 text-dark text-sm">Discounts</h6>
+                        <span class="text-xs">26 March 2020, at 05:00 AM</span>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center text-dark text-sm font-weight-bold">
+                      25%
+                    </div>
+                  </li>
+                </ul>
+              </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card">
+            <div class="card-header pb-0 p-3">
+              <h6 class="mb-0">Categories</h6>
+            </div>
+            <div class="card-body p-3">
+              <ul class="list-group">
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                  <div class="d-flex align-items-center">
+                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                      <i class="ni ni-mobile-button text-white opacity-10"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h6 class="mb-1 text-dark text-sm">Devices</h6>
+                      <span class="text-xs">250 in stock, <span class="font-weight-bold">346+ sold</span></span>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                  </div>
+                </li>
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                  <div class="d-flex align-items-center">
+                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                      <i class="ni ni-tag text-white opacity-10"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h6 class="mb-1 text-dark text-sm">Tickets</h6>
+                      <span class="text-xs">123 closed, <span class="font-weight-bold">15 open</span></span>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                  </div>
+                </li>
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                  <div class="d-flex align-items-center">
+                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                      <i class="ni ni-box-2 text-white opacity-10"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h6 class="mb-1 text-dark text-sm">Error logs</h6>
+                      <span class="text-xs">1 is active, <span class="font-weight-bold">40 closed</span></span>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                  </div>
+                </li>
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
+                  <div class="d-flex align-items-center">
+                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                      <i class="ni ni-satisfied text-white opacity-10"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h6 class="mb-1 text-dark text-sm">Happy users</h6>
+                      <span class="text-xs font-weight-bold">+ 430</span>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      @endif
+
+
+      <!-- <footer class="footer pt-3  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>,
+                made with <i class="fa fa-heart"></i> by
+                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
+                for a better web.
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer> -->
+    </div>
+
+
+    <!-- @if(isset($institution) && $institution)
+    <span>Welcome {{ $institution->institutions }}</span>
+@else
+    <h1>Welcome to the Dashboard</h1>
+@endif -->
+
+
+
+
+  </main>
+@endsection
+
+
+<!-- Package old -->
+
+
+@extends('layouts.Dashboard')
+
+@section('title', 'Dashboard - Laravel Admin Panel')
+
+@section('content')
+
+ <style>
+    .package-card{
+            width: 300px;
+            border-radius: 10px;
+            margin: auto;
+            border: 1px solid #3486C5;
+        }
+        .package-card-pro .btn-pro,
+        .package-card-pro .btn-pro:hover{
+            background-color: #ffc107 !important;
+        }
+        .package-card .card-header{
+            padding-top: 20px;
+        }
+        .package-card button,
+        .package-card button:hover{
+            background-color: #3486C5 !important;
+            color: #fff !important;
+        }
+        .package-card .package-name{
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .package-card .package-price{
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .package-card .package-price span{
+            font-size: 13px;
+            font-weight: normal;
+            color: grey;
+        }
+
+        .package-card .package-des{
+            color: grey;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .package-card ul{
+            list-style: none;
+            margin-left: -32px;
+        }
+        .package-card .card-body h6{
+            font-size: 13.5px;
+        }
+
+    </style>
+<main class="main-content position-relative border-radius-lg">
+<div class="container py-3">
+    <header>
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 fw-normal text-body-emphasis text-white">Package Pricing</h1>
+            <p class="fs-5 text-body-secondary text-white">Select package to buy .</p>
+        </div>
+    </header>
+    <main>
+
+    
+    @if(session('status'))
+         
+         <div class="alert alert-success" id="error-alert">
+          <h6 class="text-white fw-bold">  {{ session('status') }} <a class="" href="{{ route('user.dashboard') }}"> <h5 class="fw-bold text-white">Kindly Click here to start searching</h5> </a></h6> 
+         </div>
+         @endif
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <!-- @foreach($packages as $package)
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">{{ $package->name }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">${{ $package->amount }}<small class="text-body-secondary fw-light">/mo</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>{{ $package->search_limit }} searches</li>
+                        </ul>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-package-name="{{ $package->name }}" data-package-amount="{{ $package->amount }}">Get started</button>
+                    </div>
+                </div>
+            </div>
+            @endforeach -->
+            @foreach($packages as $package)
+            <div class="col-lg-4 mb-4">
+                    <div class="card package-card">
+                        <div class="card-header">
+                            <div class="package-name">{{ $package->name }}</div>
+                            <div class="package-price">₵{{ $package->amount }} </div>
+                            <div class="package-des">Get up to{{ $package->search_limit }} searches</div>
+                            <div class="d-grid">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-package-name="{{ $package->name }}" data-package-amount="{{ $package->amount }}">Buy Plan</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="text-uppercase">Features</h6>
+                            <small>Everything in our basic plan plus..</small>
+                            <ul>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> 50 Verifications</li>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Academic Paper</li>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Industry Paper</li>
+                                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Academic Paper</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Details to Pay</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="purchase-form" method="POST" action="{{ route('packages.purchase') }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="package-name" class="col-form-label">Package Name</label>
+                                <input type="text" class="form-control" id="package-name" name="package_name" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="package-amount" class="col-form-label">Amount</label>
+                                <input type="text" class="form-control" id="package-amount" name="package_amount" readonly>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="document.getElementById('purchase-form').submit();">Pay Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const exampleModal = document.getElementById('exampleModal');
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        const button = event.relatedTarget;
+        const packageName = button.getAttribute('data-package-name');
+        const packageAmount = button.getAttribute('data-package-amount');
+        const modalPackageNameInput = exampleModal.querySelector('#package-name');
+        const modalPackageAmountInput = exampleModal.querySelector('#package-amount');
+        modalPackageNameInput.value = packageName;
+        modalPackageAmountInput.value = packageAmount;
+    });
+});
+</script>
+
+ <script>
+        documen
+    </script>
+@endsection
+
+
+
+<div class="cardcontainer ">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+
+            <div class="flip-card-front">
+              <img src="images/industrycasestudies1.png" alt="logo" class="frontflip-img">
+            </div>
+            <div class="flip-card-back">
+              <img src="images/industrycasestudies2.png" alt="logo" class="frontflip-img">
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <a href="{{ route('skills.index') }}">
+            <div class="flip-card-front">
+              <img src="images/skillsgap1.png" alt="logo" class="frontflip-img">
+            </div>
+            <div class="flip-card-back">
+              <img src="images/skillsgap2.png" alt="logo" class="frontflip-img">
+            </div>
+
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <a href="{{ route('skills.index') }}">
+            <div class="flip-card-front">
+              <img src="images/futureneededskills1.png" alt="logo" class="frontflip-img">
+            </div>
+            <div class="flip-card-back">
+              <img src="images/futureneededskills2.png" alt="logo" class="frontflip-img">
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
