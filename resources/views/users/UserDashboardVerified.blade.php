@@ -277,7 +277,7 @@
         });
 
         // Set placeholder text for DataTable search input
-        $('.dataTables_filter input').attr('placeholder', 'Certificate Number / Student ID');
+        $('.dataTables_filter input').attr('placeholder', 'kindly search here');
 
         // Initial page load
         updateTable();
