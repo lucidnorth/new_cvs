@@ -10,6 +10,7 @@ use App\Models\Institution;
 use App\Models\Certificate;
 use App\Models\SearchLog;
 use App\Models\Package;
+use App\Models\TalkToUs;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserPackage;
@@ -120,6 +121,13 @@ public function verified()
         }
 
     return view('Users.UserDashboardVerified', ['certificates' => $certificates]);
+}
+
+public function talk_to_us()
+{
+    $talkToUs = TalkToUs::all();
+
+    return view('Users.UserDashboardTalkToUs', [ 'talkToUs'=> $talkToUs]);
 }
 
 

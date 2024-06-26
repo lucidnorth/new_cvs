@@ -25,6 +25,7 @@
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet"/>
