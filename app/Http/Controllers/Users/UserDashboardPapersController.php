@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Paper;
 use App\Models\Institution;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
 
 class UserDashboardPapersController extends Controller
 {
@@ -16,7 +18,7 @@ class UserDashboardPapersController extends Controller
     //     $institution = $user->my_institution;
     //     $papers = $institution->papers;
     //     return view('users.UserDashboardPapers',[ 'papers'=> $papers]);
-      
+
     // }
 
     public function index()
@@ -41,8 +43,8 @@ class UserDashboardPapersController extends Controller
             'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx',
         ]);
 
-         // Get the authenticated user's ID
-         $user = auth()->user();
+        // Get the authenticated user's ID
+        $user = auth()->user();
 
         // Handle file upload
         $file = $request->file('file');
@@ -64,7 +66,7 @@ class UserDashboardPapersController extends Controller
     public function download(Paper $paper)
     {
         $filePath = storage_path('app/uploads/' . $paper->file);
-    
+
         // Check if the file exists
         if (file_exists($filePath)) {
             // Serve the file for download
@@ -73,5 +75,21 @@ class UserDashboardPapersController extends Controller
             // File not found, redirect back with error message
             return redirect()->back()->with('error', 'File not found.');
         }
+    }
+
+
+
+    public function viewPaper($id)
+    {
+        $paper = Paper::findOrFail($id);
+
+        // Assuming papers are stored in storage/app/public/papers/
+        $pathToFile = storage_path('app/uploads/' . $paper->file);
+
+        if (!File::exists($pathToFile)) {
+            abort(404);
+        }
+
+        return response()->file($pathToFile);
     }
 }

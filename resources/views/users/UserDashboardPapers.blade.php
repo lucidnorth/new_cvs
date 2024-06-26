@@ -35,7 +35,7 @@
 
     <div class="col-md-12">
         <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Select Category</label>
+            <label for="example-text-input" class="form-control-label">Select Category </label>
             <select class="form-control" id="file-format" name="category">
                 <option value="">Select Category</option> 
                 <option value="Case Study">Case Study</option>
@@ -47,7 +47,7 @@
 
     <div class="col-md-12">
         <div class="form-group">
-            <label for="exampleFormControlTextarea1" class="form-label">Paper Description</label>
+            <label for="exampleFormControlTextarea1" class="form-label">Paper Description </label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
         </div>
     </div>
@@ -118,7 +118,7 @@
                 <h6 class="mb-0">My Uploads</h6>
               </div>
               <div class="col-6 text-end">
-                <button class="btn btn-outline-primary btn-sm mb-0">View All</button>
+                <!-- <button class="btn btn-outline-primary btn-sm mb-0">View All</button> -->
               </div>
             </div>
           </div>
@@ -128,26 +128,26 @@
     @foreach ($papers as $paper)
     <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
         <div class="d-flex flex-column">
-            <h6 class="text-dark mb-1 font-weight-bold text-sm">{{ $paper->created_at->format('F d, Y') }}</h6>
-            <span class="text-xs">{{ $paper->name }}</span>
+            <h6 class="text-dark mb-1 font-weight-bold text-sm"> {{ $paper->name }}</h6>
+            <span class="text-xs"> <b>Category:</b> {{ $paper->category }}   <b>Date:</b> {{ $paper->created_at->format('F d, Y') }}</span>
+            <p>  <p>
         </div>
         <div class="d-flex align-items-center text-sm">
-        {{ $paper->category }}
+      
 
 
            
             <a href="{{ route('user.download.paper', $paper->id) }}" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
-                <i class="fas fa-file-pdf text-lg me-1"></i> PDF
+                Download
             </a>
+            <a href="{{ route('user.view.paper', $paper->id) }}" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
+                                View
+                            </a>
             
             
         </div>
     </li>
     @endforeach
-
-
-   
-
             </ul>
           </div>
         </div>

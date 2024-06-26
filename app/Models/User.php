@@ -19,6 +19,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserPackage;
+use Illuminate\Database\Eloquent\Model;
 
 
 
@@ -65,14 +66,17 @@ class User extends Authenticatable
     {
         return $this->userPackages()->where('payment_status', 'paid')->latest()->first();
     }
+
     public function institution(): BelongsTo
     {
         return $this->belongsTo (Institution::class);
     }
+
     public function employer(): HasOne
     {
         return $this->hasOne(Employer::class);
     }
+    
     // Define the relationship
     public function papers()
     {

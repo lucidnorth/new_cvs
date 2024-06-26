@@ -114,7 +114,7 @@
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Verifications</p>
 
                       <h5 class="font-weight-bolder">
-
+                      {{ $searchCount }}
 
                       </h5>
 
@@ -139,6 +139,7 @@
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Males</p>
                       <h5 class="font-weight-bolder">
+                      {{ $maleCount }}
 
                       </h5>
 
@@ -162,7 +163,7 @@
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Females</p>
                       <h5 class="font-weight-bolder">
-
+                      {{ $femaleCount }}
                       </h5>
 
                     </div>

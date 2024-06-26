@@ -14,7 +14,7 @@
         position: relative;
         background: #fff;
         /* margin-top: 100px; */
-        margin:50px auto;
+        margin: 50px auto;
     }
 
     .package .package-name {
@@ -299,7 +299,6 @@
         font-weight: bold;
         font-style: italic;
     }
-
 </style>
 
 <main class="main-content position-relative border-radius-lg">
@@ -317,12 +316,11 @@
                                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications Left</p>
                                             @if(auth()->user()->activePackage())
                                             <h5 class="font-weight-bolder">
-
                                                 {{ auth()->user()->activePackage()->searches_left }}
                                             </h5>
                                             @else
                                             <h5 class="font-weight-bolder">
-                                                No active package
+                                                No package
                                             </h5>
                                             @endif
 
@@ -343,7 +341,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-body p-3">
@@ -351,9 +349,14 @@
                                     <div class="col-8">
                                         <div class="numbers">
                                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Active Package</p>
+                                            @if($activePackage)
+                                           <h5> {{ $activePackage->amount }}</h5>
+                                           @else
                                             <h5 class="font-weight-bolder">
-                                                {{-- {{ $papersCount }} --}}
+                                                No active package
                                             </h5>
+                                            @endif
+
                                             <!-- <p class="mb-0">
                                             <span class="text-danger text-sm font-weight-bolder">-2%</span>
                                             since last quarter
@@ -456,7 +459,6 @@
                 modalPackageAmountInput.value = packageAmount;
             });
         });
-
     </script>
 
     @endsection

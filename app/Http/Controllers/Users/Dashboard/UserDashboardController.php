@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserPackage;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
+use Illuminate\Support\Facades\Http;
 
 class UserDashboardController extends Controller
 {
@@ -32,7 +33,7 @@ class UserDashboardController extends Controller
     // }
     
 
-public function index( )
+public function index()
 {
     $user = auth()->user();
     $institution = $user->my_institution;
@@ -95,6 +96,8 @@ public function index( )
                 'borderWidth' => 1,
             ]);
 
+
+
         return view('users.UserDashboard', [
             'institution' => $institution,
             'institutions' => $institutions, 
@@ -154,35 +157,89 @@ public function SearchCertificate()
 
 public function packages()
 {
-    $packages = Package::all();
 
-    return view('Users.UserDashboardPackages', [ 'packages'=> $packages,]);
+    $userId = auth()->id();
+    $user = User::find($userId); 
+    $activePackage = $user->activePackage();
+
+    $packages = Package::all();    
+    return view('users.UserDashboardPackages', [
+        'packages' => $packages,
+        'activePackage' => $activePackage
+        
+    ]);
 }
 
 
+
+// public function verified()
+// {
+//         $userId = Auth::id();
+
+//         // Fetch all search logs by the authenticated user
+//         $searchLogs = SearchLog::where('user_id', $userId)->get();
+
+//         // Initialize an empty collection to store certificates
+//         $certificates = collect();
+
+//         // Loop through each search log and fetch related certificates
+//         foreach ($searchLogs as $log) {
+//             $certificate = Certificate::where('certificate_number', $log->search_term)
+//                 ->with('institution')
+//                 ->first();
+            
+//             if ($certificate) {
+//                 $certificates->push($certificate);
+//             }
+//         }
+
+//     return view('Users.UserDashboardVerified', ['certificates' => $certificates]);
+// }
 public function verified()
 {
-        $userId = Auth::id();
+    $userId = Auth::id();
 
-        // Fetch all search logs by the authenticated user
-        $searchLogs = SearchLog::where('user_id', $userId)->get();
+    // Fetch all search logs by the authenticated user
+    $searchLogs = SearchLog::where('user_id', $userId)->get();
 
-        // Initialize an empty collection to store certificates
-        $certificates = collect();
+    // Initialize an empty collection to store certificates
+    $certificates = collect();
 
-        // Loop through each search log and fetch related certificates
-        foreach ($searchLogs as $log) {
-            $certificate = Certificate::where('certificate_number', $log->search_term)
-                ->with('institution')
-                ->first();
-            
-            if ($certificate) {
-                $certificates->push($certificate);
+     // Count the number of searches performed by the authenticated user
+     $searchCount = SearchLog::where('user_id', $userId)->count();
+
+    // Initialize counters for male and female certificates
+    $maleCount = 0;
+    $femaleCount = 0;
+
+    // Loop through each search log and fetch related certificates
+    foreach ($searchLogs as $log) {
+        $certificate = Certificate::where('certificate_number', $log->search_term)
+            ->with('institution')
+            ->first();
+        
+        if ($certificate) {
+            $certificates->push($certificate);
+
+            // Count male and female certificates
+            if ($certificate->gender === 'Male') {
+                $maleCount++;
+            } elseif ($certificate->gender === 'Female') {
+                $femaleCount++;
             }
         }
+    }
 
-    return view('Users.UserDashboardVerified', ['certificates' => $certificates]);
+    // Pass the certificates and gender counts to the view
+    return view('Users.UserDashboardVerified', [
+        'certificates' => $certificates,
+        'maleCount' => $maleCount,
+        'femaleCount' => $femaleCount,
+        'searchCount'=>$searchCount,
+    ]);
 }
+
+
 
 public function SkillSearch()
 {

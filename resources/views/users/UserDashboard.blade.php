@@ -136,7 +136,7 @@
                       </h5>
                       @else
                       <h5 class="font-weight-bolder">
-                        No active package
+                        No package
                       </h5>
                       @endif
 
@@ -317,8 +317,8 @@
                           @csrf
                           <div class="col-md-4">
                             <div class="form-group">
-                              <label for="example-text-input" class="form-control-label">Cedrtifcate Number</label>
-                              <input class="form-control mr-sm-2" type="text" placeholder="Search" name="certificate_number" id="certificate_number">
+                              <label for="example-text-input" class="form-control-label">Certifcate Number</label>
+                              <input class="form-control mr-sm-2" type="text" placeholder="Search" name="certificate_number" id="certificate_number" >
                             </div>
                           </div>
 
@@ -327,10 +327,11 @@
                             <div class="form-group">
                               <label for="example-text-input" class="form-control-label">Select Institution</label>
                               <select class="form-control" name="institution_id" id="institution_id">
-                                <option value="">Select Institution</option>
+                                <option value="">Select Institution  <i class="fa fa-sort-desc" aria-hidden="true"></i></option>
                                 @foreach ($institutions as $institution )
                                 <option value="{{ $institution->id }}">{{ $institution->institutions }}</option>
                                 @endforeach
+                                 <i class="fa fa-sort-desc" aria-hidden="true"></i>
                               </select>
                             </div>
                           </div>
@@ -672,14 +673,13 @@
                   @if ($certificates->isEmpty())
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex align-items-center">
-                      <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
                       <div class="d-flex flex-column">
                         <h6 class="mb-1 text-dark text-sm"> No verified certificates found.</h6>
 
                       </div>
                     </div>
                     <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                      + $ 750
+                     
                     </div>
                   </li>
                   @else

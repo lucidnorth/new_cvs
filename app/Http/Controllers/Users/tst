@@ -7,28 +7,20 @@ use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\UserPackage;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log; // Import the Log facade
 
 class UserDashboardPackagesController extends Controller
 {
     public function index()
     {
-
         // Fetch the current active package of the authenticated user
-        //     $user = auth()->user();
-        //     $userId = Auth::id();
-        //    $activePackage = $user->activePackage();
-
-        $userId = auth()->id();
-        $user = User::find($userId);
-        $activePackage = $user->activePackage();
+        $user = auth()->user();
+        $currentPackage = $user->activePackage();
         $packages = Package::all();
-
+        
         return view('users.UserDashboardPackages', [
             'packages' => $packages,
-            'activePackage' => $activePackage
+            'currentPackage' => $currentPackage
         ]);
     }
 
@@ -46,7 +38,7 @@ class UserDashboardPackagesController extends Controller
             'searches_left' => 0, // Initially, no searches are added until payment is confirmed
             'payment_status' => 'pending',
         ]);
-
+        
         $paymentDetails = [
             'email' => $user->email,
             'amount' => $package->amount * 100, // Paystack expects amount in kobo
@@ -67,6 +59,7 @@ class UserDashboardPackagesController extends Controller
             return redirect()->route('packages.index')->with('error', 'Failed to initiate payment.');
         }
     }
+    
 
     public function handleGatewayCallback(Request $request)
     {
@@ -76,32 +69,25 @@ class UserDashboardPackagesController extends Controller
             ->get(env('PAYSTACK_PAYMENT_URL') . '/transaction/verify/' . $paymentReference);
 
         if ($response->successful() && $response['data']['status'] == 'success') {
-            // Find the UserPackage by order_id
             $userPackage = UserPackage::findOrFail($response['data']['metadata']['order_id']);
-
-            // Update the payment status to 'paid'
             $userPackage->payment_status = 'paid';
-            // $userPackage->save();
 
-            // Get the authenticated user
+            // Find the active package for the user
             $user = $userPackage->user;
-
-            // Check if the user has an active package
             $activePackage = $user->activePackage();
 
             if ($activePackage) {
-                // Increment the searches_left of the active package
+                // If there is an active package, increment the searches_left
                 $activePackage->increment('searches_left', $userPackage->package->search_limit);
+                $activePackage->save();
             } else {
-                // Set the searches_left for the newly paid package
+                // If there is no active package, set searches_left directly
                 $userPackage->searches_left = $userPackage->package->search_limit;
                 $userPackage->save();
             }
 
-            // Redirect with success status
             return redirect()->route('packages.index')->with('status', 'Payment successful!');
         } else {
-            // Redirect with error status if payment verification fails
             return redirect()->route('packages.index')->with('error', 'Payment verification failed.');
         }
     }
