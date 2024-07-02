@@ -282,16 +282,18 @@
                     </div>
 
                     <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Select Category</label>
-                        <select class="form-control" name="institution_id" id="institution_id">
-                          <option value="">Select Institution</option>
-                          @foreach ($institutions as $institution )
-                          <option value="{{ $institution->id }}">{{ $institution->institutions }}</option>
-                          @endforeach
-                        </select>
+                  <div class="form-group">
+                      <label for="institution_id" class="form-control-label">Select Category</label>
+                      <div class="dropdown-container">
+                          <select class="form-control" name="institution_id" id="institution_id">
+                              <option value="">Select Institution</option>
+                              @foreach ($institutions as $institution)
+                              <option value="{{ $institution->id }}">{{ $institution->institutions }}</option>
+                              @endforeach
+                          </select>
                       </div>
-                    </div>
+                  </div>
+              </div>
 
                     <hr class="horizontal dark">
 
@@ -630,6 +632,37 @@
           document.getElementById('error-alert').style.display = 'none';
         }, 5000);
       </script>
+
+      <style>
+        /* Basic styles for the dropdown */
+.dropdown-container {
+    position: relative;
+}
+
+/* Style the select element */
+.dropdown-container select {
+    width: 100%;
+    padding-right: 30px; /* Make space for the icon */
+    appearance: none; /* Remove default styling */
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Add a background image (drop-down icon) */
+.dropdown-container::after {
+    content: '\25BC'; /* Unicode character for downward arrow */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent the icon from interfering with the dropdown */
+    font-size: 10px;
+    color: #666;
+}
+
+      </style>
 
 </main>
 @endsection

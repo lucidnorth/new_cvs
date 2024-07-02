@@ -44,6 +44,7 @@
     .custom-pagination input[type="number"] {
         width: 60px;
         text-align: center;
+        font-size: 18px;
         height: 38px;
         margin: 0 5px; /* Adjusted margin for spacing */
     }
@@ -63,6 +64,12 @@
         background-color: #0056b3;
     }
 
+    .dataTables_filter {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
     .dataTables_filter input {
         width: 300px; /* Adjust the width as needed */
         padding: 8px; /* Adjust padding as needed */
@@ -74,6 +81,21 @@
         margin-top: 70px;
     }
 
+    #results-counter {
+        font-size: 22px;
+        font-weight: bold;
+        color: blue;
+        margin-left: 20px;
+        margin-top: 70px;
+        position: absolute;
+        display: none; /* Initially hide the counter */
+    }
+
+    #results-counter .count {
+        color: black;
+        font-weight: bold;
+    }
+
     .container-fluid{
         margin-top: -70px;
     }
@@ -83,88 +105,92 @@
         margin-bottom: 20px; /* Adjust as needed */
     }
 
-</style>
+    #page-indicator {
+        text-align: center;
+        margin-top: 70px;
+        margin-left: 600px;
+        font-size: 15px;
+       
+        position: absolute;
+        
+    }
 
+    .table-container {
+        position: relative;
+    }
+</style>
 
 <main class="main-content position-relative border-radius-lg">
     <div class="container-fluid py-4">
         <div class="container-fluid py-5 mt-5">
             <header class="mt-5">
-    <div class="row">
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Verifications</p>
-                    
-                    <h5 class="font-weight-bolder">
-
-                      
-                    </h5>
-                    
-                  </div>
+                <div class="row">
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="numbers">
+                                            <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Verifications</p>
+                                            <h5 class="font-weight-bolder"></h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle pb-5">
+                                            <!-- <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i> -->
+                                            <i class="ni ni-check-bold ni-2x text-lg opacity-10" aria-hidden="true"></i>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="numbers">
+                                            <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                                            <h5 class="font-weight-bolder"></h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                       <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                                            <!-- <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i> -->
+                                            <i class="ni ni-paper-diploma ni-2x text-lg opacity-10" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="numbers">
+                                            <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                                            <h5 class="font-weight-bolder"></h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 text-end">
+                                        <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                                            <i class="ni ni-single-copy-04 text-lg opacity-10" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                    <!-- <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i> -->
-                    <i class="ni ni-paper-diploma ni-2x text-lg opacity-10" aria-hidden="true"></i>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Males</p>
-                    <h5 class="font-weight-bolder">
-                     
-                    </h5>
-                   
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle pb-5">
-                    <!-- <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i> -->
-                    <i class="ni ni-check-bold ni-2x text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Females</p>
-                    <h5 class="font-weight-bolder">
-                     
-                    </h5>
-                    
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                    <i class="ni ni-single-copy-04 text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
             </header>
-            <div class="table-responsive">
+            <div class="table-responsive table-container">
+                <div id="results-counter" class="mb-3">Results: <span class="count">0</span></div>
+                <div id="page-indicator">Showing page 1 of 1</div> <!-- Page indicator here -->
+                
                 <table id="example" class="display table table-hover table-bordered" style="width:100%;">
                     <thead>
                         <tr>
@@ -210,7 +236,7 @@
                 <div class="pagination-container">
                     <div class="custom-pagination">
                         <button id="prevPage" class="btn btn-primary">Previous</button>
-                        <input type="number" id="currentPage" min="1" value="1">
+                        <input type="number" id="currentPage" min="1" value="1" class="form-control">
                         <button id="nextPage" class="btn btn-primary">Next</button>
                     </div>
                 </div>
@@ -243,6 +269,7 @@
 
         function updateTable() {
             table.page(currentPage - 1).draw(false);
+            $('#page-indicator').text('Showing page ' + currentPage + ' of ' + totalPages); // Update page indicator
         }
 
         $('#prevPage').on('click', function() {
@@ -276,11 +303,37 @@
             $('#currentPage').val(pageInfo.page + 1);
         });
 
-        // Set placeholder text for DataTable search input
-        $('.dataTables_filter input').attr('placeholder', 'kindly search here');
+        // Custom search function for exact match
+        $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            var searchTerm = $('.dataTables_filter input').val().toLowerCase();
+            if (!searchTerm) {
+                $('#results-counter').hide(); // Hide counter if no search term
+                return true; // If no search term, show all rows
+            } else {
+                $('#results-counter').show(); // Show counter if search term exists
+            }
 
-        // Initial page load
-        updateTable();
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].toLowerCase() === searchTerm) {
+                    return true; // If an exact match is found, show the row
+                }
+            }
+            return false; // Otherwise, hide the row
+        });
+
+        // Update the results counter
+        function updateResultsCounter() {
+            var info = table.page.info();
+            $('#results-counter .count').text(info.recordsDisplay);
+        }
+
+        // Update results counter on table draw
+        table.on('draw', function() {
+            updateResultsCounter();
+        });
+
+        // Initial update of results counter
+        updateResultsCounter();
     });
 </script>
 
