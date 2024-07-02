@@ -13,7 +13,7 @@
         padding: 10px 20px;
         position: relative;
         background: #fff;
-        margin-top: 50px;
+        margin-top: 170px;
     }
 
     .package .package-name {
@@ -106,13 +106,15 @@
     }
 
     /* 2 */
-    .package2 {
-        width: 300px;
-        height: 480px;
+    /* .package2 {
+        width: 280px;
+        height: 445px;
         box-shadow: 5px 5px 25px #ccc;
         border-radius: 70px 0px 70px 0px;
         padding: 10px 20px;
         position: relative;
+        background: #fff;
+        margin-top: 170px;
     }
 
     .package2 .package-name {
@@ -198,23 +200,125 @@
         color: #007bff;
         font-weight: bold;
         font-style: italic;
-    }
+    } */
 
-
-    /* 3 */
-    .package3 {
-        width: 300px;
-        height: 480px;
+    .package2 {
+        width: 280px;
+        height: 445px;
         box-shadow: 5px 5px 25px #ccc;
         border-radius: 70px 0px 70px 0px;
         padding: 10px 20px;
         position: relative;
+        background: #fff;
+        margin-top: 170px;
+    }
+
+    .package2 .package-name {
+        text-align: center;
+        text-transform: capitalize;
+        font-size: 23px;
+        font-weight: bold;
+        color: #007bff;
+        padding-bottom: 1px;
+    }
+
+    .package2 .package-price {
+        position: relative;
+        left: 175px;
+        top: 10px;
+        background: #007bff;
+        color: white !important;
+        width: 99px;
+        padding: 5px 10px;
+        border-radius: 0px;
+        text-align: center;
+    }
+
+    .package2 .package-price span {
+        position: absolute;
+        bottom: -22px;
+        right: 1px;
+        width: 0;
+        height: 0;
+        border-top: 13px solid #12086F;
+        border-bottom: 10px solid transparent;
+        border-right: 13px solid transparent;
+        z-index: 1;
+    }
+
+    .package2 ul {
+        list-style: none;
+        padding-top: 20px;
+        text-align: left !important;
+    }
+
+    .package2 ul li {
+        font-size: 15px;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .package2 ul li span .bi-check {
+        color: #0B6623;
+    }
+
+    .package2 ul li span .bi-x {
+        color: red;
+    }
+
+    .package2 .select {
+        position: relative;
+        left: -100px;
+        top: 22px;
+        background: #007bff;
+        color: #fff;
+        width: 149px;
+        text-decoration: none;
+        border-radius: 0;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-size: 15px;
+        letter-spacing: 1px;
+        font-weight: 500;
+    }
+
+    .package2 .select span {
+        position: absolute;
+        bottom: -22px;
+        left: 0;
+        height: 0;
+        border-top: 13px solid #12086F;
+        border-bottom: 10px solid transparent;
+        border-left: 13px solid transparent;
+        z-index: -1;
+        padding-top: -60px;
+    }
+
+    .package2 .duration {
+        margin-top: 40px;
+        margin-right: 60px;
+        color: #007bff;
+        font-weight: bold;
+        font-style: italic;
+    }
+
+
+    /* 4 */
+    .package3 {
+        width: 280px;
+        height: 445px;
+        box-shadow: 5px 5px 25px #ccc;
+        border-radius: 70px 0px 70px 0px;
+        padding: 10px 20px;
+        position: relative;
+        background: #fff;
+        margin-top: 170px;
     }
 
     .package3 .package-name {
         text-align: center;
-        text-transform: uppercase;
-        font-size: 32px;
+        text-transform: capitalize;
+        font-size: 23px;
         font-weight: bold;
         color: #28a745;
         padding-bottom: 1px;
@@ -222,9 +326,10 @@
 
     .package3 .package-price {
         position: relative;
-        left: 195px;
+        left: 175px;
+        top: 10px;
         background: #28a745;
-        color: #fff;
+        color: white !important;
         width: 99px;
         padding: 5px 10px;
         border-radius: 0px;
@@ -234,26 +339,25 @@
     .package3 .package-price span {
         position: absolute;
         bottom: -22px;
-        right: -0px;
+        right: 1px;
         width: 0;
         height: 0;
         border-top: 13px solid #2E8B57;
         border-bottom: 10px solid transparent;
         border-right: 13px solid transparent;
-        z-index: -5;
+        z-index: 1;
     }
 
     .package3 ul {
         list-style: none;
         padding-top: 20px;
-        align-items: left;
+        text-align: left !important;
     }
 
     .package3 ul li {
         font-size: 15px;
         font-weight: bold;
         border-bottom: 1px solid #ccc;
-        text-align: left !important;
     }
 
     .package3 ul li span .bi-check {
@@ -265,9 +369,9 @@
     }
 
     .package3 .select {
-        position: absolute;
-        left: 10px !important;
-        bottom: 0;
+        position: relative;
+        left: -100px;
+        top: 22px;
         background: #28a745;
         color: #fff;
         width: 149px;
@@ -289,12 +393,114 @@
         border-bottom: 10px solid transparent;
         border-left: 13px solid transparent;
         z-index: -1;
-        padding-top: -40px;
+        padding-top: -60px;
     }
 
     .package3 .duration {
-        margin-top: 20px;
+        margin-top: 40px;
+        margin-right: 60px;
         color: #28a745;
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    /* 3 */
+    .package4 {
+        width: 280px;
+        height: 445px;
+        box-shadow: 5px 5px 25px #ccc;
+        border-radius: 70px 0px 70px 0px;
+        padding: 10px 20px;
+        position: relative;
+        background: #fff;
+        margin-top: 170px;
+    }
+
+    .package4 .package-name {
+        text-align: center;
+        text-transform: capitalize;
+        font-size: 23px;
+        font-weight: bold;
+        color: #ff4d4d;
+        padding-bottom: 1px;
+    }
+
+    .package4 .package-price {
+        position: relative;
+        left: 175px;
+        top: 10px;
+        background: #ff4d4d;
+        color: white !important;
+        width: 99px;
+        padding: 5px 10px;
+        border-radius: 0px;
+        text-align: center;
+    }
+
+    .package4 .package-price span {
+        position: absolute;
+        bottom: -22px;
+        right: 1px;
+        width: 0;
+        height: 0;
+        border-top: 13px solid #800000;
+        border-bottom: 10px solid transparent;
+        border-right: 13px solid transparent;
+        z-index: 1;
+    }
+
+    .package4 ul {
+        list-style: none;
+        padding-top: 20px;
+        text-align: left !important;
+    }
+
+    .package4 ul li {
+        font-size: 15px;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .package4 ul li span .bi-check {
+        color: #0B6623;
+    }
+
+    .package4 ul li span .bi-x {
+        color: red;
+    }
+
+    .package4 .select {
+        position: relative;
+        left: -100px;
+        top: 22px;
+        background: #ff4d4d;
+        color: #fff;
+        width: 149px;
+        text-decoration: none;
+        border-radius: 0;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-size: 15px;
+        letter-spacing: 1px;
+        font-weight: 500;
+    }
+
+    .package4 .select span {
+        position: absolute;
+        bottom: -22px;
+        left: 0;
+        height: 0;
+        border-top: 13px solid #800000;
+        border-bottom: 10px solid transparent;
+        border-left: 13px solid transparent;
+        z-index: -1;
+        padding-top: -60px;
+    }
+
+    .package4 .duration {
+        margin-top: 40px;
+        margin-right: 60px;
+        color: #ff4d4d;
         font-weight: bold;
         font-style: italic;
     }
@@ -386,26 +592,32 @@
                 @endif
                 <div class="row row-cols-1 row-cols-md-3  text-center">
 
-                    @foreach($packages as $package)
-                    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                @php
+                    $classes = ['package', 'package2', 'package3', 'package4'];
+                @endphp
 
-                        <div class="package">
-                            <div class="package-name">{{ $package->name }}</div>
-                            <div class="package-price ">
-                                <h6 class="text-white">₵{{ $package->amount }}</h6>
-                                <span></span>
+                    @foreach($packages as $index => $package)
+                        @php
+                            $class = $classes[$index % count($classes)];
+                        @endphp
+                        <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                            <div class="{{ $class }}">
+                                <div class="package-name">{{ $package->name }}</div>
+                                <div class="package-price">
+                                    <h6 class="text-white">₵{{ $package->amount }}</h6>
+                                    <span></span>
+                                </div>
+                                <ul>
+                                    <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> {{ $package->search_limit }} Verifications</li>
+                                    <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Academic Paper</li>
+                                    <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Industry Paper</li>
+                                    <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Academic Paper</li>
+                                    <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Industry Paper</li>
+                                </ul>
+                                <a href="#!" data-bs-toggle="modal" data-bs-target="#exampleModal" data-package-name="{{ $package->name }}" data-package-amount="{{ $package->amount }}" class="select">Select<span></span></a>
+                                {{-- <p class="duration">Duration: 3 months</p> --}}
                             </div>
-                            <ul>
-                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> {{ $package->search_limit }} Verifications</li>
-                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Academic Paper</li>
-                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Industry Paper</li>
-                                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Academic Paper</li>
-                                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Industry Paper</li>
-                            </ul>
-                            <a href="#!" data-bs-toggle="modal" data-bs-target="#exampleModal" data-package-name="{{ $package->name }}" data-package-amount="{{ $package->amount }}" class="select">Select<span></span></a>
-                            {{-- <p class="duration">Duration: 3 months</p> --}}
                         </div>
-                    </div>
                     @endforeach
                 </div>
 
