@@ -784,6 +784,14 @@
 
       </div>
 
+      <style>
+        .title-big{
+          font-size: 1.3rem;
+          color: #596CFF;
+          font-weight: 650;
+        }
+        </style>
+
 
       <!-- @if(isset($institution) && $institution)
     <span>Welcome {{ $institution->institutions }}</span>

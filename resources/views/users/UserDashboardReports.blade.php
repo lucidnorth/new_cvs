@@ -274,8 +274,13 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
+<<<<<<< HEAD
                                     <h2 style="font-size: 25px;">Payments</h2>
                                     <h3 style="font-weight: 600;">Information on all payments</h3>
+=======
+                                        <h5>Payments</h5>
+                                        <small>Information on all payments</small>
+>>>>>>> 26ca5e1 (petty changes)
                                     </div>
                                     {{-- <div>
                                         <div class="dropdown">
@@ -296,7 +301,10 @@
                                         </div>
                                     </div>
                                 </li>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 26ca5e1 (petty changes)
                             </ul>
                         </div>
                     </div>

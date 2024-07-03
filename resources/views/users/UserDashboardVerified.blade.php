@@ -1,6 +1,9 @@
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 26ca5e1 (petty changes)
 @extends('layouts.Dashboard')
 
 @section('title', 'Dashboard - Laravel Admin Panel')
@@ -20,7 +23,11 @@
     }
     th {
         background-color: #343a40;
+<<<<<<< HEAD
         color: white;
+=======
+        color: #5e72e4;
+>>>>>>> 26ca5e1 (petty changes)
         text-align: left;
         vertical-align: middle;
         font-size: 20px;
@@ -192,7 +199,11 @@
                 <div id="results-counter" class="mb-3">Results: <span class="count">0</span></div>
                 <div id="page-indicator">Showing page 1 of 1</div> <!-- Page indicator here -->
                 
+<<<<<<< HEAD
                 <table id="example" class="table  table-dark table-striped text-center fs-6 text-white" style="width:100%;">
+=======
+                <table id="example" class="display table table-hover table-bordered" style="width:100%;">
+>>>>>>> 26ca5e1 (petty changes)
                     <thead>
                         <tr>
                             <!-- <th>Verified On</th> -->

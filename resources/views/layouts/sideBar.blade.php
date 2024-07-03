@@ -209,6 +209,15 @@
     </ul>
   </div>
 
+<<<<<<< HEAD
+=======
+  <style>
+        /* Styles for active state */
+        .nav-link.active {
+            background-color: #596CFF !important; /* Blue background */
+            color: white !important; /* White text */
+        }
+>>>>>>> 26ca5e1 (petty changes)
 
 
   <script>
