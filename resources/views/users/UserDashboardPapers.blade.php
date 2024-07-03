@@ -16,7 +16,7 @@
         <div class="card">
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
-              <p class="mb-0">Upload a Paper</p>
+              <p class="mb-0 title-big">Upload a Paper</p>
 
             </div>
           </div>
@@ -54,18 +54,40 @@
     <hr class="horizontal dark">
 
     <div class="col-md-12 mt-5">
-        <div class="form-group">
-            <label for="file-upload" class="form-control-label">Upload File</label>
-            <!-- <input type="file" class="form-control-file" id="file-upload" accept=".pdf" name="file"> -->
-            <input type="file" class="form-control-file" id="file-upload" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" name="file">
-
-            <!-- <small id="fileHelp" class="form-text text-muted">Please upload PDF files only.</small> -->
+    <div class="form-group">
+        <label for="file-upload" class="form-control-label">Upload File</label>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="file-upload" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" name="file">
+            <label class="custom-file-label" for="file-upload" id="file-upload-label">Choose file</label>
         </div>
+        <small id="fileHelp" class="form-text text-muted">Please upload PDF files only.</small>
     </div>
+</div>
+
+
     <div class="text-end"> <!-- Added class "text-end" to push button to the right -->
         <button class="btn btn-primary btn-sm">Upload</button>
     </div>
 </form>
+
+<style>
+    .custom-file-input {
+        display: none;
+    }
+
+    .custom-file-label {
+        border: 1px solid #ced4da;
+        padding: .375rem .75rem;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .title-big{
+          font-size: 1.3rem;
+          color: #596CFF;
+          font-weight: 650;
+        }
+</style>
 
 
               <!-- <div class="col-md-6">
@@ -253,6 +275,7 @@
       </footer> -->
     <!-- </div>
   </div> -->
+
     <div class="fixed-plugin">
       <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
         <i class="fa fa-cog py-2"> </i>
@@ -329,6 +352,13 @@
     setTimeout(function() {
         document.getElementById('success-alert').style.display = 'none';
     }, 5000);
+</script>
+
+<script>
+  document.getElementById('file-upload').addEventListener('change', function() {
+    var fileName = this.files.length ? this.files[0].name : 'Choose file';
+    document.getElementById('file-upload-label').textContent = fileName;
+});
 </script>
 
 </main>

@@ -188,7 +188,7 @@
   <style>
         /* Styles for active state */
         .nav-link.active {
-            background-color: #007bff !important; /* Blue background */
+            background-color: #596CFF !important; /* Blue background */
             color: white !important; /* White text */
         }
 
