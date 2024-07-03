@@ -185,6 +185,28 @@
     </ul>
   </div>
 
+  <style>
+        /* Styles for active state */
+        .nav-link.active {
+            background-color: #007bff !important; /* Blue background */
+            color: white !important; /* White text */
+        }
+
+        .nav-link.active .icon,
+        .nav-link.active .icon i {
+            color: white !important; /* White icon */
+        }
+
+        /* General styles for nav links */
+        .nav-link {
+            color: #000; /* Default text color */
+        }
+
+        .nav-link:hover {
+            color: #007bff; /* Hover text color */
+        }
+    </style>
+
   <script>
     // Get all navigation links
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
