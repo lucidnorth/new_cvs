@@ -24,6 +24,9 @@ use App\Http\Controllers\Users\UserDashboardReportsController;
 
 
 // routes/web.php
+Route::get('/dashboard/institution/{institutionId}', [UserDashboardController::class, 'index'])
+    ->name('institution.dashboard');
+
 Route::get('/reports', [UserDashboardReportsController::class, 'reports'])->name('reports');
 Route::get('/download-verified-certificates', [UserDashboardReportsController::class, 'downloadVerifiedCertificates'])->name('download.verified.certificates');
 Route::get('/faqs', [UserDashboardFaqsController::class, 'faqs'])->name('faqs');

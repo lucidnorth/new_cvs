@@ -11,7 +11,7 @@
                 <h1 class="display-4 fw-normal text-body-emphasis text-white">Package Pricing</h1>
                 <p class="fs-5 text-body-secondary text-white">Select package to buy .</p>
             </div> --}}
-            @if(auth()->user()->employer)
+           
             <div class="row">
                 <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
                     <div class="card">
@@ -100,25 +100,17 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        
                                     </div>
                                 </li>
+
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
                                         <h5>Recommendations</h5>
                                         <small>Information on all recommendations</small>
                                     </div>
-                                    {{-- <div>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                choose date
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div> --}}
+                                 
                                     <div>
                                         <div class="gap-2  mx-auto">
                                             <button class="btn btn-primary" type="button">View Report</button>
@@ -171,9 +163,60 @@
                                     </div> --}}
                                     <div>
                                         <div class="gap-2  mx-auto">
-                                            <button class="btn btn-primary" type="button">View Report</button>
+                                            <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#verified-candidates" type="button">View Report</button>
                                             <button class="btn btn-primary" type="button">Download Report</button>
                                         </div>
+                                        <div class="modal fade" id="skill-searched" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable  modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Verified Candidates Report</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @if ($certificates->isEmpty())
+                                                        <div class="text-center">No verified candidates found.</div>
+                                                        @else
+                                                        <table class="table table-stripped table-hover text-center">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Institution</th>
+                                                                    <th>Full Name</th>
+                                                                    <th>Date of Birth</th>
+                                                                    <th>Qualification Type</th>
+                                                                    <th>Gender</th>
+                                                                    <th>Certificate Number</th>
+                                                                    <th>Student Identification</th>
+                                                                    <th>Year of Entry</th>
+                                                                    <th>Year of Completion</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($certificates as $certificate)
+                                                                <tr>
+                                                                    <td>{{ $certificate->institution ? $certificate->institution->institutions : 'No Institution Name' }}</td>
+                                                                    <td>{{ $certificate->first_name }} {{ $certificate->middle_name }} {{ $certificate->last_name }}</td>
+                                                                    <td>{{ $certificate->date_of_birth }}</td>
+                                                                    <td>{{ $certificate->qualification_type }}</td>
+                                                                    <td>{{ $certificate->gender }}</td>
+                                                                    <td>{{ $certificate->certificate_number }}</td>
+                                                                    <td>{{ $certificate->student_identification }}</td>
+                                                                    <td>{{ $certificate->year_of_entry }}</td>
+                                                                    <td>{{ $certificate->year_of_completion }}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <a  href="{{ route('download.verified.certificates') }}" class="btn btn-primary">Export</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </li>
 
@@ -232,7 +275,7 @@
                 </div>
 
             </div>
-            @endif
+         
         </header>
         <main>
 

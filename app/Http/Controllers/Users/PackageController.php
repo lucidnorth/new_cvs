@@ -9,6 +9,7 @@ use App\Models\UserPackage;
 use Illuminate\Support\Facades\Http;
 use Stripe\Checkout\Session;
 
+
 class UserDashboardPackagesController extends Controller
 {
     public function index()

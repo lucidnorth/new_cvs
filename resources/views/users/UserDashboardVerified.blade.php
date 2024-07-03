@@ -104,45 +104,22 @@
   <div class="container-fluid py-4">
     <div class="container-fluid py-5 mt-5">
       <header class="mt-5">
-        <div class="row">
-          <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+        <div class="row">    
+          <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+          <a href="{{ route('verified') }}">
             <div class="card">
               <div class="card-body p-3">
                 <div class="row">
                   <div class="col-8">
                     <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Verifications</p>
-
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
                       <h5 class="font-weight-bolder">
-                      {{ $searchCount }}
-
+                        {{ $searchCount }}
                       </h5>
-
-                    </div>
-                  </div>
-                  <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                      <!-- <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i> -->
-                      <i class="ni ni-paper-diploma ni-2x text-lg opacity-10" aria-hidden="true"></i>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-              <div class="card-body p-3">
-                <div class="row">
-                  <div class="col-8">
-                    <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Males</p>
-                      <h5 class="font-weight-bolder">
-                      {{ $maleCount }}
-
-                      </h5>
-
+                      <!-- <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+3%</span>
+                      since last week
+                    </p> -->
                     </div>
                   </div>
                   <div class="col-4 text-end">
@@ -154,29 +131,35 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          </a>
+        </div>
+          <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+          <a href="{{ route('reports')}}">
             <div class="card">
               <div class="card-body p-3">
                 <div class="row">
                   <div class="col-8">
                     <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Females</p>
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
                       <h5 class="font-weight-bolder">
-                      {{ $femaleCount }}
+                        Click to view reports
                       </h5>
-
+                      <!-- <p class="mb-0">
+                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
+                      since last quarter
+                    </p> -->
                     </div>
                   </div>
                   <div class="col-4 text-end">
                     <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                      <i class="ni ni-single-copy-04 text-lg opacity-10" aria-hidden="true"></i>
+                      <i class="ni ni-folder-17 text-lg opacity-10" aria-hidden="true"></i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
+        </div>
         </div>
       </header>
       <div class="table-responsive">

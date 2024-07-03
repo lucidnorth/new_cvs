@@ -14,7 +14,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserPackage;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
+use Chartisan\PHP\Chartisan;
 use Illuminate\Support\Facades\Http;
+
 
 class UserDashboardController extends Controller
 {
@@ -33,30 +35,29 @@ class UserDashboardController extends Controller
     // }
     
 
-public function index()
-{
-    $user = auth()->user();
-    $institution = $user->my_institution;
-    $institutions = Institution::all(); 
-
-    // Count the number of papers uploaded by the authenticated user
-    $papersCount = Paper::where('user_id', $user->id)->count();
-
-    // Count the number of searches performed by the authenticated user
-    $searchCount = SearchLog::where('user_id', $user->id)->count();
-
-    // Fetch the latest 5 search logs by the authenticated user
-    $userId = Auth::id();
-    $searchLogs = SearchLog::where('user_id', $userId)
-        ->orderBy('created_at', 'desc') // Order by creation date, most recent first
-        ->take(5) // Limit to 5 logs
-        ->get();
-
-   
+    public function index()
+    {
+        $user = auth()->user();
+        $institution = $user->my_institution;
+        $institutions = Institution::all(); 
+    
+        // Count the number of papers uploaded by the authenticated user
+        $papersCount = Paper::where('user_id', $user->id)->count();
+    
+        // Count the number of searches performed by the authenticated user
+        $searchCount = SearchLog::where('user_id', $user->id)->count();
+    
+        // Fetch the latest 5 search logs by the authenticated user
+        $userId = Auth::id();
+        $searchLogs = SearchLog::where('user_id', $userId)
+            ->orderBy('created_at', 'desc') // Order by creation date, most recent first
+            ->take(5) // Limit to 5 logs
+            ->get();
+    
         // Initialize an empty collection to store certificates
         $certificates = collect();
         $qualificationTypes = [];
-
+    
         // Loop through each search log and fetch related certificates
         foreach ($searchLogs as $log) {
             $certificate = Certificate::where('certificate_number', $log->search_term)
@@ -68,22 +69,38 @@ public function index()
                 $qualificationTypes[] = $certificate->qualification_type;
             }
         }
-
+    
         // Count occurrences of each qualification type
         $qualificationTypeCounts = array_count_values($qualificationTypes);
+    
+        // Count the number of searches related to the user's institution
+         // Count the number of searches related to the user's institution
+    // $institutionSearchCount = SearchLog::whereHas('certificate', function ($query) use ($institution) {
+    //     $query->where('institution_id', $institution->id);
+    // })->where('user_id', $userId)->count();
 
+    // Initialize institutionSearchCount
+    $institutionSearchCount = 0;
+
+    if ($institution) {
+        $institutionSearchCount = SearchLog::whereHas('certificate', function ($query) use ($institution) {
+            $query->where('institution_id', $institution->id);
+        })->where('user_id', $user->id)->count();
+    }
+    
         // Prepare data for the chart
         $chart = new Chart;
         $chart->labels(array_keys($qualificationTypeCounts));
         $chart->dataset('Qualification Types', 'pie', array_values($qualificationTypeCounts))
             ->options([
                 'backgroundColor' => [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(243, 229, 0, 1)'  // Added this to match your comment
                 ],
                 'borderColor' => [
                     'rgba(255, 99, 132, 1)',
@@ -94,21 +111,38 @@ public function index()
                     'rgba(255, 159, 64, 1)'
                 ],
                 'borderWidth' => 1,
+                'plugins' => [
+                    'datalabels' => [
+                        'formatter' => function ($value) use ($qualificationTypeCounts) {
+                            $total = array_sum($qualificationTypeCounts);
+                            $percentage = ($value / $total) * 100;
+                            return number_format($percentage, 1) . '%';
+                        },
+                        'color' => '#fff',
+                    ]
+                ],
+                'scales' => [
+                    'x' => [
+                        'display' => false
+                    ],
+                    'y' => [
+                        'display' => false
+                    ]
+                ]
             ]);
-
-
-
+    
         return view('users.UserDashboard', [
             'institution' => $institution,
             'institutions' => $institutions, 
             'papersCount' => $papersCount, 
             'searchCount' => $searchCount,
             'certificates' => $certificates,
-            'chart' => $chart
+            'chart' => $chart,
+            'qualificationTypeCounts' => $qualificationTypeCounts,
+            'institutionSearchCount' => $institutionSearchCount,
         ]);   
-
-
-}
+    }
+    
 
 
 public function profile()
@@ -277,6 +311,7 @@ public function SkillSearch()
 //     return redirect()->route('user.dashboard')->with('error', 'No matching record found.');
 // }
 
+
 public function search(Request $request)
 {
     $this->validate($request, [
@@ -343,6 +378,26 @@ public function search(Request $request)
 //             return redirect()->route('user.dashboard')->with('error', 'You do not have an active package.');
 //         }
 //     }
+
+ public function institutionDashboard($institutionId)
+{
+    // Fetch the institution details
+    $institution = Institution::findOrFail($institutionId);
+
+    // Get the authenticated user's ID
+    $userId = Auth::id();
+
+    // Count the number of searches related to this institution by the authenticated user
+    $institutionCount = SearchLog::whereHas('certificate', function ($query) use ($institutionId) {
+        $query->where('institution_id', $institutionId);
+    })->where('user_id', $userId)->count();
+
+    return view('users.UserDashboard', [
+        'institution' => $institution, // Pass the institution details
+        'institutionCount' => $institutionCount, // Pass the search count
+    ]);
+}
+
     
 }
 

@@ -10,6 +10,7 @@ use App\Models\SearchLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\SkillSearchLog;
 
 class UserDashboardReportsController extends Controller
 {
@@ -37,9 +38,12 @@ class UserDashboardReportsController extends Controller
             }
         }
         
+        $skilSearchLogs = SkillSearchLog::where('user_id', $userId)->get();
+
         return view('users.UserDashboardReports', [
             // 'reports' => $reports,
-            'certificates' => $certificates
+            'certificates' => $certificates,
+            'skilSearchLogs' => $skilSearchLogs,
         ]);
     }
 

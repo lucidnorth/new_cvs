@@ -44,29 +44,32 @@
           </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">VERIFIED CANDIDATES</p>
-                    <h5 class="font-weight-bolder">
-                      2,300
-                    </h5>
-                    <!-- <p class="mb-0">
+          <a href="{{ route('verified') }}">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
+                      <h5 class="font-weight-bolder">
+                      {{ $institutionSearchCount}}
+                      </h5>
+                      <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+3%</span>
                       since last week
                     </p> -->
+                    </div>
                   </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle pb-5">
+                      <!-- <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i> -->
+                      <i class="ni ni-check-bold ni-2x text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
@@ -86,36 +89,39 @@
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                    <i class="ni ni-hat-3 text-lg opacity-10" aria-hidden="true"></i>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Notifications</p>
-                    <h5 class="font-weight-bolder">
-                      $103,430
-                    </h5>
-                    <!-- <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <a href="{{ route('reports')}}">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
+                      <h5 class="font-weight-bolder">
+                        Click to view reports
+                      </h5>
+                      <!-- <p class="mb-0">
+                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
+                      since last quarter
                     </p> -->
+                    </div>
                   </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                      <i class="ni ni-folder-17 text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
       @endif
@@ -222,7 +228,7 @@
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
                       <h5 class="font-weight-bolder">
-                        <!-- {{ $papersCount }} -->Click to view reports
+                        Click to view reports
                       </h5>
                       <!-- <p class="mb-0">
                       <span class="text-danger text-sm font-weight-bolder">-2%</span>
@@ -318,7 +324,7 @@
                           <div class="col-md-4">
                             <div class="form-group">
                               <label for="example-text-input" class="form-control-label">Certifcate Number</label>
-                              <input class="form-control mr-sm-2" type="text" placeholder="Search" name="certificate_number" id="certificate_number" >
+                              <input class="form-control mr-sm-2" type="text" placeholder="Search" name="certificate_number" id="certificate_number">
                             </div>
                           </div>
 
@@ -327,11 +333,11 @@
                             <div class="form-group">
                               <label for="example-text-input" class="form-control-label">Select Institution</label>
                               <select class="form-control" name="institution_id" id="institution_id">
-                                <option value="">Select Institution  <i class="fa fa-sort-desc" aria-hidden="true"></i></option>
+                                <option value="">Select Institution <i class="fa fa-sort-desc" aria-hidden="true"></i></option>
                                 @foreach ($institutions as $institution )
                                 <option value="{{ $institution->id }}">{{ $institution->institutions }}</option>
                                 @endforeach
-                                 <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                                <i class="fa fa-sort-desc" aria-hidden="true"></i>
                               </select>
                             </div>
                           </div>
@@ -679,7 +685,7 @@
                       </div>
                     </div>
                     <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                     
+
                     </div>
                   </li>
                   @else
@@ -697,7 +703,7 @@
                   @endif
                 </ul>
 
-                <div class="click">
+                <div class="click d-flex justify-content-end">
                   <a href="{{ route('verified') }}" class="fw-bold fs-6">Click to view more </a>
                 </div>
               </div>
@@ -708,10 +714,13 @@
               <div class="card-header pb-0 p-3">
                 <h6 class="mb-0">Verified</h6>
               </div>
+
+
               <!-- <canvas id="myChart"></canvas> -->
-              <div style="width: 75%; margin: auto;">
-                {!! $chart->container() !!}
-              </div>
+
+              <canvas id="qualificationChart"></canvas>
+              <!-- {!! $chart->container() !!} -->
+
             </div>
           </div>
         </div>
@@ -726,9 +735,13 @@
     <h1>Welcome to the Dashboard</h1>
 @endif -->
 
+      <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> -->
+      <title>Chart Example</title>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-      {!! $chart->script() !!}
+
 
 
       <!-- <script>
@@ -760,6 +773,65 @@
         setTimeout(function() {
           document.getElementById('error-alert').style.display = 'none';
         }, 5000);
+      </script>
+
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var labels = @json(array_keys($qualificationTypeCounts));
+          var data = @json(array_values($qualificationTypeCounts));
+
+          var ctx = document.getElementById('qualificationChart').getContext('2d');
+          var qualificationChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels: labels,
+              datasets: [{
+                data: data,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                  'rgba(243, 229, 0, 1)'
+                ],
+                borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              plugins: {
+                datalabels: {
+                  formatter: function(value) {
+                    let total = data.reduce((sum, val) => sum + val, 0);
+                    let percentage = (value / total * 100).toFixed(1) + "%";
+                    return percentage;
+                  },
+                  color: 'greem'
+                }
+              },
+              scales: {
+                x: {
+                  display: false
+                },
+                y: {
+                  display: false
+                }
+              }
+            },
+
+            plugins: [ChartDataLabels]
+          });
+        });
       </script>
 
 </main>

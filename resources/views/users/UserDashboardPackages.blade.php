@@ -388,59 +388,32 @@
                     </h6>
                 </div>
                 @endif
-                <div class="row row-cols-1 row-cols-md-3  text-center">
-
-                    @foreach($packages as $package)
-                    <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-
-                        <div class="package">
-                            <div class="package-name">{{ $package->name }}</div>
-                            <div class="package-price ">
-                                <h6 class="text-white">₵{{ $package->amount }}</h6>
-                                <span></span>
-                            </div>
-                            <ul>
-                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> {{ $package->search_limit }} Verifications</li>
-                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Academic Paper</li>
-                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Industry Paper</li>
-                                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Academic Paper</li>
-                                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Industry Paper</li>
-                            </ul>
-                            <a href="#!" data-bs-toggle="modal" data-bs-target="#exampleModal" data-package-name="{{ $package->name }}" data-package-amount="{{ $package->amount }}" class="select">Select<span></span></a>
-                            {{-- <p class="duration">Duration: 3 months</p> --}}
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Details to Pay</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="purchase-form" method="POST" action="{{ route('packages.purchase') }}">
-                                    @csrf
-                                    <div class="mb-3">
-                                        <label for="package-name" class="col-form-label">Package Name</label>
-                                        <input type="text" class="form-control" id="package-name" name="package_name" readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="package-amount" class="col-form-label">Amount</label>
-                                        <input type="text" class="form-control" id="package-amount" name="package_amount" readonly>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" onclick="document.getElementById('purchase-form').submit();">Pay Now</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="row row-cols-1 row-cols-md-3 text-center mt-5">
+    @foreach($packages as $package)
+    <div class="col-lg-3 col-md-6 col-sm-12 mb-4 mt-5">
+        <div class="package">
+            <div class="package-name">{{ $package->name }}</div>
+            <div class="package-price ">
+                <h6 class="text-white">₵{{ $package->amount }}</h6>
+                <span></span>
+            </div>
+            <ul>
+                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> {{ $package->search_limit }} Verifications</li>
+                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Academic Paper</li>
+                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Industry Paper</li>
+                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Academic Paper</li>
+                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Industry Paper</li>
+            </ul>
+            <form method="POST" action="{{ route('packages.purchase') }}">
+                @csrf
+                <input type="hidden" name="package_name" value="{{ $package->name }}">
+                <input type="hidden" name="package_amount" value="{{ $package->amount }}">
+                <button type="submit" class="btn btn-primary">Select</button>
+            </form>
+        </div>
+    </div>
+    @endforeach
+</div>
             </main>
     </div>
 
