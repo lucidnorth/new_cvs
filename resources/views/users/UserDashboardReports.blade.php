@@ -29,8 +29,8 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div class="">
-                                        <h5>Verified Candidates</h5>
-                                        <small>Information on all verified candidates</small>
+                                        <h2 style="font-size: 25px;">Verified Candidates</h2>
+                                        <h3 style="font-weight: 600;">Information on all verified candidates</h3>
                                     </div>
                                     {{-- <div>
                                         <div class="dropdown text-center">
@@ -107,8 +107,8 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                        <h5>Recommendations</h5>
-                                        <small>Information on all recommendations</small>
+                                        <h2 style="font-size: 25px;">Recommendations</h2>
+                                        <h3 style="font-weight: 600;">Information on all recommendations</h3>
                                     </div>
                                  
                                     <div>
@@ -146,8 +146,8 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                        <h5>Skill Search</h5>
-                                        <small>Information on all skill search</small>
+                                        <h2 style="font-size: 25px;">Skill Search</h2>
+                                        <h3 style="font-weight: 600;">Information on all skill search</h3>
                                     </div>
                                     {{-- <div>
                                         <div class="dropdown">
@@ -222,8 +222,8 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                        <h5>Industry Paper</h5>
-                                        <small>Information on all industry papers</small>
+                                        <h2 style="font-size: 25px;">Industry Paper</h2>
+                                        <h3 style="font-weight: 600;">Information on all industry papers</h3>
                                     </div>
                                     {{-- <div>
                                         <div class="dropdown">
@@ -247,8 +247,8 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                        <h5>Academic Paper</h5>
-                                        <small>Information on all academic papers</small>
+                                        <h2 style="font-size: 25px;">Academic Paper</h2>
+                                        <h3 style="font-weight: 600;">Information on all academic papers</h3>
                                     </div>
                                     {{-- <div>
                                         <div class="dropdown">
@@ -272,8 +272,8 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                        <h5>Payments</h5>
-                                        <small>Information on all payments</small>
+                                        <h2 style="font-size: 25px;">Payments</h2>
+                                        <h3 style="font-weight: 600;">Information on all payments</h3>
                                     </div>
                                     {{-- <div>
                                         <div class="dropdown">
