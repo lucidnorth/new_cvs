@@ -269,6 +269,32 @@
                                         </div>
                                     </div>
                                 </li>
+
+                                <li class="list-group-item d-flex justify-content-between  align-items-center">
+                                    <div>
+                                        <h5>Payments</h5>
+                                        <small>Information on all payments</small>
+                                    </div>
+                                    {{-- <div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                choose date
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            </ul>
+                                        </div>
+                                    </div> --}}
+                                    <div>
+                                        <div class="gap-2  mx-auto">
+                                            <button class="btn btn-primary" type="button">View Report</button>
+                                            <button class="btn btn-primary" type="button">Download Report</button>
+                                        </div>
+                                    </div>
+                                </li>
+
                             </ul>
                         </div>
                     </div>

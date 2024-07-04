@@ -58,12 +58,12 @@
                             </div>
                           
                         </form>
-                        <div class="form-group mt-3">
+                        <!-- <div class="form-group mt-3">
                                 <button type="submit" class="btn btn-secondary w-100">
                                     <img src="{{ asset('images/googlelogo.png') }}"alt="" class="google">
                                     Login with Google
                                 </button>
-                            </div>
+                            </div> -->
                         <i>@if(Route::has('password.request'))<a href="{{ route('password.request') }}">Forgot Password?</a> @endif<i class="signup"><a href="{{ route('register') }}">Sign up Here</a></i></i>
                     </div>
 

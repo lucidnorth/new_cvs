@@ -24,8 +24,6 @@ use App\Http\Controllers\Users\UserDashboardReportsController;
 
 
 // routes/web.php
-Route::get('/dashboard/institution/{institutionId}', [UserDashboardController::class, 'index'])
-    ->name('institution.dashboard');
 
 Route::get('/reports', [UserDashboardReportsController::class, 'reports'])->name('reports');
 Route::get('/download-verified-certificates', [UserDashboardReportsController::class, 'downloadVerifiedCertificates'])->name('download.verified.certificates');
@@ -86,6 +84,8 @@ Route::middleware(["auth"])->group(function(){
     Route::get('/Packages', [UserDashboardController::class, 'packages'])->name('packages');
     Route::get('/verified', [UserDashboardController::class, 'verified'])->name('verified');
     Route::get('/skillsearch', [UserDashboardController::class, 'skillsearch'])->name('skillsearch');
+    Route::get('/institutionVerifiedCerticate', [UserDashboardController::class, 'institutionVerifiedCerticate'])->name('institutionVerifiedCerticate');
+    Route::get('/talktous', [UserDashboardController::class, 'talktoUs'])->name('talktoUs');
 });
 
 

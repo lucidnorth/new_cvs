@@ -80,14 +80,25 @@ class UserDashboardController extends Controller
     // })->where('user_id', $userId)->count();
 
     // Initialize institutionSearchCount
+    
     $institutionSearchCount = 0;
 
-    if ($institution) {
-        $institutionSearchCount = SearchLog::whereHas('certificate', function ($query) use ($institution) {
-            $query->where('institution_id', $institution->id);
-        })->where('user_id', $user->id)->count();
+        if ($institution) {
+        // Get all certificate numbers associated with this institution
+        $certificateNumbers = Certificate::where('institution_id', $institution->id)
+            ->pluck('certificate_number')
+            ->toArray();
+
+        // Count the number of searches related to the institution's certificates
+        $institutionSearchCount = SearchLog::whereIn('search_term', $certificateNumbers)->count();
+
+        // Count the number of certificates under this institution
+        $institutionCertificateCount = Certificate::where('institution_id', $institution->id)->count();
+
+    } else {
+        $institutionCertificateCount = 0;
     }
-    
+  
         // Prepare data for the chart
         $chart = new Chart;
         $chart->labels(array_keys($qualificationTypeCounts));
@@ -140,6 +151,7 @@ class UserDashboardController extends Controller
             'chart' => $chart,
             'qualificationTypeCounts' => $qualificationTypeCounts,
             'institutionSearchCount' => $institutionSearchCount,
+            'institutionCertificateCount' => $institutionCertificateCount,
         ]);   
     }
     
@@ -379,25 +391,41 @@ public function search(Request $request)
 //         }
 //     }
 
- public function institutionDashboard($institutionId)
+ 
+public function institutionVerifiedCerticate()
 {
-    // Fetch the institution details
-    $institution = Institution::findOrFail($institutionId);
+    $user = auth()->user();
+    $institution = $user->my_institution;
+    $institutionCertificates = collect();
 
-    // Get the authenticated user's ID
-    $userId = Auth::id();
+    if ($institution) {
+        // Get all certificate numbers associated with this institution
+        $certificateNumbers = Certificate::where('institution_id', $institution->id)
+            ->pluck('certificate_number')
+            ->toArray();
 
-    // Count the number of searches related to this institution by the authenticated user
-    $institutionCount = SearchLog::whereHas('certificate', function ($query) use ($institutionId) {
-        $query->where('institution_id', $institutionId);
-    })->where('user_id', $userId)->count();
+        // Fetch search logs that match the certificate numbers
+        $institutionCertificates = SearchLog::whereIn('search_term', $certificateNumbers)
+            ->whereHas('certificate', function($query) use ($institution) {
+                $query->where('institution_id', $institution->id);
+            })
+            ->with('certificate')
+            ->get();
+    }
 
-    return view('users.UserDashboard', [
-        'institution' => $institution, // Pass the institution details
-        'institutionCount' => $institutionCount, // Pass the search count
-    ]);
+return view('Users.UserDashboardinstitutionVerifiedCerticate', [ 'institutionCertificates' => $institutionCertificates]);
+
+
+
 }
 
-    
+public function talktoUs()
+{
+    $packages = Package::all();
+
+    return view('Users.UserDashboardTalktoUs', [ 'packages'=> $packages,]);
+}
+
+
 }
 
