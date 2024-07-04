@@ -24,10 +24,14 @@
     th {
         background-color: #343a40;
 <<<<<<< HEAD
+<<<<<<< HEAD
         color: white;
 =======
         color: #5e72e4;
 >>>>>>> 26ca5e1 (petty changes)
+=======
+        color: #fff;
+>>>>>>> 9d4955d (chart, reports and verified bg)
         text-align: left;
         vertical-align: middle;
         font-size: 20px;
@@ -200,10 +204,14 @@
                 <div id="page-indicator">Showing page 1 of 1</div> <!-- Page indicator here -->
                 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <table id="example" class="table  table-dark table-striped text-center fs-6 text-white" style="width:100%;">
 =======
                 <table id="example" class="display table table-hover table-bordered" style="width:100%;">
 >>>>>>> 26ca5e1 (petty changes)
+=======
+                <table id="example" class="table table-dark table-striped text-center fs-6" style="width:100%;">
+>>>>>>> 9d4955d (chart, reports and verified bg)
                     <thead>
                         <tr>
                             <!-- <th>Verified On</th> -->

@@ -790,6 +790,14 @@
           color: #596CFF;
           font-weight: 650;
         }
+        #qualificationChart {
+            max-width: 490px;
+            max-height: 490px;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            margin: auto;
+        }
         </style>
 
 

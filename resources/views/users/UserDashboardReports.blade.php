@@ -29,8 +29,13 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div class="">
+<<<<<<< HEAD
                                     <h2 style="font-size: 25px;">Recommendations</h2>
                                     <h3 style="font-weight: 600;">Information on all recommendations</h3>
+=======
+                                        <h2 style="font-size: 25px;">Verified Candidates</h2>
+                                        <h3 style="font-weight: 600;">Information on all verified candidates</h3>
+>>>>>>> 9d4955d (chart, reports and verified bg)
                                     </div>
                                     {{-- <div>
                                         <div class="dropdown text-center">
@@ -107,9 +112,14 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
+<<<<<<< HEAD
                                     <h2 style="font-size: 25px;">Recommendations</h2>
                                     <h3 style="font-weight: 600;">Information on all recommendations</h3>
 
+=======
+                                        <h2 style="font-size: 25px;">Recommendations</h2>
+                                        <h3 style="font-weight: 600;">Information on all recommendations</h3>
+>>>>>>> 9d4955d (chart, reports and verified bg)
                                     </div>
                                  
                                     <div>
@@ -147,8 +157,13 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
+<<<<<<< HEAD
                                     <h2 style="font-size: 25px;">Skill Search</h2>
                                     <h3 style="font-weight: 600;">Information on all skill search</h3>
+=======
+                                        <h2 style="font-size: 25px;">Skill Search</h2>
+                                        <h3 style="font-weight: 600;">Information on all skill search</h3>
+>>>>>>> 9d4955d (chart, reports and verified bg)
                                     </div>
                                     {{-- <div>
                                         <div class="dropdown">
@@ -223,34 +238,13 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
+<<<<<<< HEAD
                                     <h2 style="font-size: 25px;">Industry Paper</h2>
                                     <h3 style="font-weight: 600;">Information on all industry papers</h3>
-                                    </div>
-                                    {{-- <div>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                choose date
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div> --}}
-                                    <div>
-                                        <div class="gap-2  mx-auto">
-                                            <button class="btn btn-primary" type="button">View Report</button>
-                                            <button class="btn btn-primary" type="button">Download Report</button>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="list-group-item d-flex justify-content-between  align-items-center">
-                                    <div>
-                                    <h2 style="font-size: 25px;">Academic Paper</h2>
-                                    <h3 style="font-weight: 600;">Information on all academic papers</h3>
-
+=======
+                                        <h2 style="font-size: 25px;">Industry Paper</h2>
+                                        <h3 style="font-weight: 600;">Information on all industry papers</h3>
+>>>>>>> 9d4955d (chart, reports and verified bg)
                                     </div>
                                     {{-- <div>
                                         <div class="dropdown">
@@ -275,12 +269,48 @@
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
 <<<<<<< HEAD
+                                    <h2 style="font-size: 25px;">Academic Paper</h2>
+                                    <h3 style="font-weight: 600;">Information on all academic papers</h3>
+
+=======
+                                        <h2 style="font-size: 25px;">Academic Paper</h2>
+                                        <h3 style="font-weight: 600;">Information on all academic papers</h3>
+>>>>>>> 9d4955d (chart, reports and verified bg)
+                                    </div>
+                                    {{-- <div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                choose date
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            </ul>
+                                        </div>
+                                    </div> --}}
+                                    <div>
+                                        <div class="gap-2  mx-auto">
+                                            <button class="btn btn-primary" type="button">View Report</button>
+                                            <button class="btn btn-primary" type="button">Download Report</button>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item d-flex justify-content-between  align-items-center">
+                                    <div>
+<<<<<<< HEAD
+<<<<<<< HEAD
                                     <h2 style="font-size: 25px;">Payments</h2>
                                     <h3 style="font-weight: 600;">Information on all payments</h3>
 =======
                                         <h5>Payments</h5>
                                         <small>Information on all payments</small>
 >>>>>>> 26ca5e1 (petty changes)
+=======
+                                        <h2 style="font-size: 25px;">Payments</h2>
+                                        <h3 style="font-weight: 600;">Information on all payments</h3>
+>>>>>>> 9d4955d (chart, reports and verified bg)
                                     </div>
                                     {{-- <div>
                                         <div class="dropdown">
