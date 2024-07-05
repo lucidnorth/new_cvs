@@ -13,6 +13,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\Models\SearchLog;
 
 class Institution extends Model implements HasMedia, Authenticatable
 { 
@@ -129,5 +130,10 @@ class Institution extends Model implements HasMedia, Authenticatable
     public function papers()
     {
         return $this->hasMany(Paper::class);
+    }
+
+    public function searchLogs()
+    {
+        return $this->hasManyThrough(SearchLog::class, Certificate::class);
     }
 }

@@ -20,7 +20,7 @@ use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserPackage;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\SearchLog;
 
 
 class User extends Authenticatable
@@ -170,6 +170,12 @@ class User extends Authenticatable
     public function my_institution(){
        return $this->hasOne(Institution::class, 'id', 'institution_id');    
     }
+
+    public function searchLogs()
+    {
+        return $this->hasMany(SearchLog::class);
+    }
+
 
     // public function savedPapers()
     // {

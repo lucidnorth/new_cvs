@@ -6,7 +6,7 @@
 
 <main class="main-content position-relative border-radius-lg ">
     <div class="container-fluid py-4">
-        <h5 class="text-white mb-3">Welcome {{ auth()->user()->name}}</h1>
+   
             <!-- Employer dashboard -->
             <div class="row mt-4">
                 @if(auth()->user()->my_institution)

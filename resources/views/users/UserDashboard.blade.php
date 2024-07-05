@@ -4,6 +4,15 @@
 @section('title', ' Dashboard-Laravel Admin Panel')
 @section('content')
 
+
+<style>
+        .title-big{
+          font-size: 1.3rem;
+          color: #596CFF;
+          font-weight: 650;
+        }
+        </style>
+
 <main class="main-content position-relative border-radius-lg ">
 
 
@@ -79,7 +88,8 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">UPLOAD GRADUATES DATA</p>
                     <h5 class="font-weight-bolder">
-                      +3,462
+                    {{  $institutionCertificateCount}}
+                   
                     </h5>
                     <!-- <p class="mb-0">
                       <span class="text-danger text-sm font-weight-bolder">-2%</span>
@@ -661,7 +671,7 @@
 
         @if(auth()->user()->employer)
         <div class="row mt-4">
-          <div class="col-lg-7 mb-lg-0 mb-4">
+        <div class="col-lg-7 mb-lg-0 mb-4">
             <div class="card ">
               <div class="card-header pb-0 px-3">
                 <div class="row">

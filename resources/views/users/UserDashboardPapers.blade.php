@@ -4,6 +4,26 @@
 @section('title', ' Dashboard-Laravel Admin Panel')
 @section('content')
 
+<style>
+    .custom-file-input {
+        display: none;
+    }
+
+    .custom-file-label {
+        border: 1px solid #ced4da;
+        padding: .375rem .75rem;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .title-big{
+          font-size: 1.3rem;
+          color: #596CFF;
+          font-weight: 650;
+        }
+
+</style>
+
 <main class="main-content position-relative border-radius-lg ">
   <div class="container-fluid py-4">
     <div class="row">
@@ -68,6 +88,7 @@
     <div class="text-end"> <!-- Added class "text-end" to push button to the right -->
         <button class="btn btn-primary btn-sm">Upload</button>
     </div>
+
 </form>
 
 <style>
@@ -162,7 +183,7 @@
             <a href="{{ route('user.download.paper', $paper->id) }}" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
                 Download
             </a>
-            <a href="{{ route('user.view.paper', $paper->id) }}" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
+            <a href="{{ route('user.view.paper', $paper->id) }}" target="_blank" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
                                 View
                             </a>
             

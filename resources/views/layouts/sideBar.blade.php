@@ -26,6 +26,16 @@
           <span class="nav-link-text ms-1">Profile</span>
         </a>
         </l>
+        @if(auth()->user()->my_institution)
+      <li class="nav-item">
+        <a class="nav-link " href="{{ route('UploadCertificate')}}">
+          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fas fa-cloud-upload-alt text-dark text-sm opacity-10"></i>
+          </div>
+          <span class="nav-link-text ms-1">Uplaods</span>
+        </a>
+      </li>
+      @endif
         @if(auth()->user()->employer)
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('packages') ? 'active' : '' }} " href="{{ route('packages') }}">
@@ -96,15 +106,15 @@
       </li>
       @endif
       @if(auth()->user()->my_institution)
-      <li class="nav-item">
-        <a class="nav-link " href="{{ route('papers')}}">
-          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-history text-dark text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">History</span>
-        </a>
-      </li>
-      @endif
+<li class="nav-item">
+  <a class="nav-link " href="{{ route('institutionVerifiedCerticate')}}">
+    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+      <i class="fas fa-history text-dark text-sm opacity-10"></i>
+    </div>
+    <span class="nav-link-text ms-1">Verified Cerificates</span>
+  </a>
+</li>
+@endif
 
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('reports') ? 'active' : '' }}" href="{{ route('reports')}}">
@@ -114,18 +124,9 @@
           <span class="nav-link-text ms-1">Reports</span>
         </a>
       </li>
-      @if(auth()->user()->my_institution)
+    
       <li class="nav-item">
-        <a class="nav-link " href="{{ route('UploadCertificate')}}">
-          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-cloud-upload-alt text-dark text-sm opacity-10"></i>
-          </div>
-          <span class="nav-link-text ms-1">Uplaods</span>
-        </a>
-      </li>
-      @endif
-      <li class="nav-item">
-        <a class="nav-link " href="{{ route('papers')}}">
+        <a class="nav-link " href="{{ route('talktoUs')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-certificate text-dark text-sm opacity-10"></i>
           </div>

@@ -1,5 +1,9 @@
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 @extends('layouts.Dashboard')
 
 @section('title', 'Dashboard - Laravel Admin Panel')

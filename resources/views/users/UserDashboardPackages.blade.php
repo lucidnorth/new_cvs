@@ -4,6 +4,7 @@
 
 @section('content')
 
+
 <style>
     .package {
         width: 280px;
@@ -13,8 +14,7 @@
         padding: 10px 20px;
         position: relative;
         background: #fff;
-        /* margin-top: 100px; */
-        margin: 50px auto;
+        margin-top: 170px;
     }
 
     .package .package-name {
@@ -72,7 +72,7 @@
 
     .package .select {
         position: relative;
-        left: -100px;
+        left: -75px;
         top: 22px;
         background: #344767;
         color: #fff;
@@ -108,18 +108,20 @@
 
     /* 2 */
     .package2 {
-        width: 300px;
-        height: 480px;
+        width: 280px;
+        height: 445px;
         box-shadow: 5px 5px 25px #ccc;
         border-radius: 70px 0px 70px 0px;
         padding: 10px 20px;
         position: relative;
+        background: #fff;
+        margin-top: 170px;
     }
 
     .package2 .package-name {
         text-align: center;
-        text-transform: uppercase;
-        font-size: 32px;
+        text-transform: capitalize;
+        font-size: 23px;
         font-weight: bold;
         color: #007bff;
         padding-bottom: 1px;
@@ -127,9 +129,10 @@
 
     .package2 .package-price {
         position: relative;
-        left: 195px;
+        left: 175px;
+        top: 10px;
         background: #007bff;
-        color: #fff;
+        color: white !important;
         width: 99px;
         padding: 5px 10px;
         border-radius: 0px;
@@ -139,18 +142,19 @@
     .package2 .package-price span {
         position: absolute;
         bottom: -22px;
-        right: -0px;
+        right: 1px;
         width: 0;
         height: 0;
         border-top: 13px solid #12086F;
         border-bottom: 10px solid transparent;
         border-right: 13px solid transparent;
-        z-index: -5;
+        z-index: 1;
     }
 
     .package2 ul {
         list-style: none;
         padding-top: 20px;
+        text-align: left !important;
     }
 
     .package2 ul li {
@@ -169,7 +173,8 @@
 
     .package2 .select {
         position: relative;
-        left: -30px;
+        left: -75px;
+        top: 22px;
         background: #007bff;
         color: #fff;
         width: 149px;
@@ -191,31 +196,34 @@
         border-bottom: 10px solid transparent;
         border-left: 13px solid transparent;
         z-index: -1;
-        padding-top: -40px;
+        padding-top: -60px;
     }
 
     .package2 .duration {
-        margin-top: 10px;
+        margin-top: 40px;
+        margin-right: 60px;
         color: #007bff;
         font-weight: bold;
         font-style: italic;
     }
 
 
-    /* 3 */
+    /* 4 */
     .package3 {
-        width: 300px;
-        height: 480px;
+        width: 280px;
+        height: 445px;
         box-shadow: 5px 5px 25px #ccc;
         border-radius: 70px 0px 70px 0px;
         padding: 10px 20px;
         position: relative;
+        background: #fff;
+        margin-top: 170px;
     }
 
     .package3 .package-name {
         text-align: center;
-        text-transform: uppercase;
-        font-size: 32px;
+        text-transform: capitalize;
+        font-size: 23px;
         font-weight: bold;
         color: #28a745;
         padding-bottom: 1px;
@@ -223,9 +231,10 @@
 
     .package3 .package-price {
         position: relative;
-        left: 195px;
+        left: 175px;
+        top: 10px;
         background: #28a745;
-        color: #fff;
+        color: white !important;
         width: 99px;
         padding: 5px 10px;
         border-radius: 0px;
@@ -235,26 +244,25 @@
     .package3 .package-price span {
         position: absolute;
         bottom: -22px;
-        right: -0px;
+        right: 1px;
         width: 0;
         height: 0;
         border-top: 13px solid #2E8B57;
         border-bottom: 10px solid transparent;
         border-right: 13px solid transparent;
-        z-index: -5;
+        z-index: 1;
     }
 
     .package3 ul {
         list-style: none;
         padding-top: 20px;
-        align-items: left;
+        text-align: left !important;
     }
 
     .package3 ul li {
         font-size: 15px;
         font-weight: bold;
         border-bottom: 1px solid #ccc;
-        text-align: left !important;
     }
 
     .package3 ul li span .bi-check {
@@ -266,9 +274,9 @@
     }
 
     .package3 .select {
-        position: absolute;
-        left: 10px !important;
-        bottom: 0;
+        position: relative;
+        left: -75px;
+        top: 22px;
         background: #28a745;
         color: #fff;
         width: 149px;
@@ -290,16 +298,120 @@
         border-bottom: 10px solid transparent;
         border-left: 13px solid transparent;
         z-index: -1;
-        padding-top: -40px;
+        padding-top: -60px;
     }
 
     .package3 .duration {
-        margin-top: 20px;
+        margin-top: 40px;
+        margin-right: 60px;
         color: #28a745;
         font-weight: bold;
         font-style: italic;
     }
+
+    /* 3 */
+    .package4 {
+        width: 280px;
+        height: 445px;
+        box-shadow: 5px 5px 25px #ccc;
+        border-radius: 70px 0px 70px 0px;
+        padding: 10px 20px;
+        position: relative;
+        background: #fff;
+        margin-top: 170px;
+    }
+
+    .package4 .package-name {
+        text-align: center;
+        text-transform: capitalize;
+        font-size: 23px;
+        font-weight: bold;
+        color: #ff4d4d;
+        padding-bottom: 1px;
+    }
+
+    .package4 .package-price {
+        position: relative;
+        left: 175px;
+        top: 10px;
+        background: #ff4d4d;
+        color: white !important;
+        width: 99px;
+        padding: 5px 10px;
+        border-radius: 0px;
+        text-align: center;
+    }
+
+    .package4 .package-price span {
+        position: absolute;
+        bottom: -22px;
+        right: 1px;
+        width: 0;
+        height: 0;
+        border-top: 13px solid #800000;
+        border-bottom: 10px solid transparent;
+        border-right: 13px solid transparent;
+        z-index: 1;
+    }
+
+    .package4 ul {
+        list-style: none;
+        padding-top: 20px;
+        text-align: left !important;
+    }
+
+    .package4 ul li {
+        font-size: 15px;
+        font-weight: bold;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .package4 ul li span .bi-check {
+        color: #0B6623;
+    }
+
+    .package4 ul li span .bi-x {
+        color: red;
+    }
+
+    .package4 .select {
+        position: relative;
+        left: -75px;
+        top: 22px;
+        background: #ff4d4d;
+        color: #fff;
+        width: 149px;
+        text-decoration: none;
+        border-radius: 0;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-size: 15px;
+        letter-spacing: 1px;
+        font-weight: 500;
+    }
+
+    .package4 .select span {
+        position: absolute;
+        bottom: -22px;
+        left: 0;
+        height: 0;
+        border-top: 13px solid #800000;
+        border-bottom: 10px solid transparent;
+        border-left: 13px solid transparent;
+        z-index: -1;
+        padding-top: -60px;
+    }
+
+    .package4 .duration {
+        margin-top: 40px;
+        margin-right: 60px;
+        color: #ff4d4d;
+        font-weight: bold;
+        font-style: italic;
+    }
+
 </style>
+
 
 <main class="main-content position-relative border-radius-lg">
     <div class="container-fluid py-2">
@@ -350,8 +462,8 @@
                                         <div class="numbers">
                                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Active Package</p>
                                             @if($activePackage)
-                                           <h5> {{ $activePackage->amount }}</h5>
-                                           @else
+                                            <h5> {{ $activePackage->amount }}</h5>
+                                            @else
                                             <h5 class="font-weight-bolder">
                                                 No active package
                                             </h5>
@@ -389,31 +501,39 @@
                 </div>
                 @endif
                 <div class="row row-cols-1 row-cols-md-3 text-center mt-5">
-    @foreach($packages as $package)
-    <div class="col-lg-3 col-md-6 col-sm-12 mb-4 mt-5">
-        <div class="package">
-            <div class="package-name">{{ $package->name }}</div>
-            <div class="package-price ">
-                <h6 class="text-white">₵{{ $package->amount }}</h6>
-                <span></span>
-            </div>
-            <ul>
-                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> {{ $package->search_limit }} Verifications</li>
-                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Academic Paper</li>
-                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Industry Paper</li>
-                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Academic Paper</li>
-                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Industry Paper</li>
-            </ul>
-            <form method="POST" action="{{ route('packages.purchase') }}">
-                @csrf
-                <input type="hidden" name="package_name" value="{{ $package->name }}">
-                <input type="hidden" name="package_amount" value="{{ $package->amount }}">
-                <button type="submit" class="btn btn-primary">Select</button>
-            </form>
-        </div>
-    </div>
-    @endforeach
-</div>
+
+                    @php
+                    $classes = ['package', 'package2', 'package3', 'package4'];
+                    @endphp
+                    @foreach($packages as $index => $package)
+                        @php
+                            $class = $classes[$index % count($classes)];
+                        @endphp
+                    <div class="col-lg-3 col-md-6 col-sm-12 mb-4 mt-5">
+                        <div class="{{ $class }}">
+                            <div class="package-name">{{ $package->name }}</div>
+                            <div class="package-price ">
+                                <h6 class="text-white">₵{{ $package->amount }}</h6>
+                                <span></span>
+                            </div>
+                            <ul>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> {{ $package->search_limit }} Verifications</li>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Academic Paper</li>
+                                <li><span class="icon"><i class="bi fs-5 bi-check"></i></span> View Industry Paper</li>
+                                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Academic Paper</li>
+                                <li class="not-included"><span class="icon"><i class="bi fs-5 bi-x"></i></span> Download Industry Paper</li>
+                            </ul>
+                            <form method="POST" action="{{ route('packages.purchase') }}">
+                                @csrf
+                                <input type="hidden" name="package_name" value="{{ $package->name }}">
+                                <input type="hidden" name="package_amount" value="{{ $package->amount }}">
+                                <button type="submit" class="btn select">Select<span></span></button>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
             </main>
     </div>
 
