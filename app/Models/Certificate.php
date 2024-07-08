@@ -95,6 +95,12 @@ class Certificate extends Model implements HasMedia
         return $this->belongsTo(Institution::class, 'institution_id');
     }
 
+    public function searchLogs()
+{
+    return $this->hasMany(SearchLog::class, 'search_term', 'certificate_number');
+}
+
+
     public function getYearOfEntryAttribute($value)
     {
         return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;

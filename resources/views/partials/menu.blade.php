@@ -233,6 +233,17 @@
                     </a>
                 </li>
             @endcan
+            @can('user_alert_access')
+                <li class="">
+                    <a href="">
+                        <i class="fa-fw fas fa-bell">
+
+                        </i>
+                        <span>Test</span>
+
+                    </a>
+                </li>
+            @endcan
             @can('faq_management_access')
                 <li class="treeview">
                     <a href="#">
@@ -268,6 +279,8 @@
                     </ul>
                 </li>
             @endcan
+
+            
             @php($unread = \App\Models\QaTopic::unreadCount())
                 <li class="{{ request()->is("admin/messenger") || request()->is("admin/messenger/*") ? "active" : "" }}">
                     <a href="{{ route("admin.messenger.index") }}">

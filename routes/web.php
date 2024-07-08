@@ -86,6 +86,8 @@ Route::middleware(["auth"])->group(function(){
     Route::get('/skillsearch', [UserDashboardController::class, 'skillsearch'])->name('skillsearch');
     Route::get('/institutionVerifiedCerticate', [UserDashboardController::class, 'institutionVerifiedCerticate'])->name('institutionVerifiedCerticate');
     Route::get('/talktous', [UserDashboardController::class, 'talktoUs'])->name('talktoUs');
+    Route::get('/Payment', [UserDashboardController::class, 'Payment'])->name('Payment');
+   
 });
 
 

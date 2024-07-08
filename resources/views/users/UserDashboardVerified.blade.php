@@ -20,7 +20,7 @@
     }
     th {
         background-color: #343a40;
-        color: #5e72e4;
+        color: white;
         text-align: left;
         vertical-align: middle;
         font-size: 20px;
@@ -192,7 +192,7 @@
                 <div id="results-counter" class="mb-3">Results: <span class="count">0</span></div>
                 <div id="page-indicator">Showing page 1 of 1</div> <!-- Page indicator here -->
                 
-                <table id="example" class="display table table-hover table-bordered" style="width:100%;">
+                <table id="example" class="table  table-dark table-striped text-center fs-6 text-white" style="width:100%;">
                     <thead>
                         <tr>
                             <!-- <th>Verified On</th> -->

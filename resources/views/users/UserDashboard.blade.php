@@ -11,6 +11,15 @@
           color: #596CFF;
           font-weight: 650;
         }
+    
+        #qualificationChart {
+            max-width: 490px;
+            max-height: 490px;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            margin: auto;
+        }
         </style>
 
 <main class="main-content position-relative border-radius-lg ">
@@ -261,7 +270,34 @@
       <div class="row mt-4">
         @if(auth()->user()->my_institution)
         <div class="col-lg-12 mb-lg-0 mb-4">
+
+
           <div class="card z-index-2 h-100">
+          <div class="row">
+    <div class="col-lg-6 text-center"> 
+      <div class="">
+    <div class="card z-index-2 h-100">
+            <div class="card-header pb-0 pt-3 bg-transparent">
+              <h6 class="text-capitalize">Sales overview</h6>
+              <p class="text-sm mb-0">
+                <i class="fa fa-arrow-up text-success"></i>
+                <span class="font-weight-bold">4% more</span> in 2021
+              </p>
+            </div>
+            <div class="card-body p-3">
+              <div class="chart">
+                <!-- <canvas id="chart-line" class="chart-canvas" height="300"></canvas> -->
+                <div class="chart-container">
+        <canvas id="institutionCertsChart"></canvas>
+    </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+  <div class="col-lg-6 text-center"> 
+      <div class="">
+    <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
               <h6 class="text-capitalize">Sales overview</h6>
               <p class="text-sm mb-0">
@@ -273,12 +309,22 @@
               <div class="chart">
                 <!-- <canvas id="chart-line" class="chart-canvas" height="300"></canvas> -->
                 <div style="width: 75%; margin: auto;">
-                  {!! $chart->container() !!}
+                <h1>MALE : {{$maleCount}}</h1> <br><br><br>
+                <h1>  MALE : {{$femaleCount}}</h1>
+
+
+                  cfdscbds
                 </div>
               </div>
             </div>
           </div>
+    </div>
+  </div>
+  </div>
+            
+          </div>
         </div>
+        
         <div class="container">
 
           @endif
@@ -843,6 +889,68 @@
           });
         });
       </script>
+
+
+    <!-- Script for institution certificates chart -->
+   <!-- Script for institution certificates chart -->
+   <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var institutionLabels = @json(array_keys($institutionQualificationTypeCounts));
+            var institutionData = @json(array_values($institutionQualificationTypeCounts));
+
+            var institutionCtx = document.getElementById('institutionCertsChart').getContext('2d');
+            var institutionCertsChart = new Chart(institutionCtx, {
+                type: 'pie',
+                data: {
+                    labels: institutionLabels,
+                    datasets: [{
+                        data: institutionData,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(255, 159, 64, 0.6)',
+                            'rgba(243, 229, 0, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(243, 229, 0, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    plugins: {
+                        datalabels: {
+                            formatter: function(value) {
+                                let total = institutionData.reduce((sum, val) => sum + val, 0);
+                                let percentage = (value / total * 100).toFixed(1) + "%";
+                                return percentage;
+                            },
+                            color: '#fff'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: false
+                        },
+                        y: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+        });
+    </script>
+
 
 </main>
 @endsection

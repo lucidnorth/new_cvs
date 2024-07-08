@@ -4,17 +4,44 @@
 @section('title', ' Dashboard-Laravel Admin Panel')
 @section('content')
 
+<style>
+  .custom-file-input {
+    display: none;
+  }
+
+  .custom-file-label {
+    border: 1px solid #ced4da;
+    padding: .375rem .75rem;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .title-big {
+    font-size: 1.3rem;
+    color: #596CFF;
+    font-weight: 650;
+  }
+</style>
+
 <main class="main-content position-relative border-radius-lg ">
   <div class="container-fluid py-4">
     <div class="row">
-    @if(session('success'))
-    <div class="alert alert-success" role="alert" id="success-alert" >
-    {{ session('success') }}
-</div>
-@endif
+      @if(session('success'))
+      <div class="alert alert-success" role="alert" id="success-alert">
+        {{ session('success') }}
+      </div>
+      @endif
 
 
-
+      <div class="col-xl-12 col-sm-12 mb-xl-5 mb-5">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <h5>Certificate Uploads</h5>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
       <div class="col-md-8">
@@ -22,7 +49,7 @@
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
               <p class="mb-0">Upload yourschool Certificate
-                
+
               </p>
 
             </div>
@@ -31,36 +58,49 @@
             <!-- <p class="text-uppercase text-sm">User Information</p> -->
             <div class="row">
 
-            <form id="institution-form" class="form" action="{{ route('user.uploadcertificates.upload') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="col-md-12">
-        <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Paper Title</label>
-            <input class="form-control" type="text" value="{{ auth()->user()->name}}" name="title">
-        </div>
-    </div>
+              <form id="institution-form" class="form" action="{{ route('user.uploadcertificates.upload') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Paper Title</label>
+                    <input class="form-control" type="text" value="{{ auth()->user()->name}}" name="title">
+                  </div>
+                </div>
 
-  
 
-    <div class="col-md-12">
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
-        </div>
-    </div>
-    <hr class="horizontal dark">
 
-    <div class="col-md-12 mt-5">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                  </div>
+                </div>
+                <hr class="horizontal dark">
+
+                <!-- <div class="col-md-12 mt-5">
         <div class="form-group">
             <label for="file-upload" class="form-control-label">Upload File</label>
             <input type="file" class="form-control-file" id="file-upload" accept=".xlsx,.xls,.csv" name="file">
             <small id="fileHelp" class="form-text text-muted">Please upload Excel files only.</small>
         </div>
-    </div>
-    <div class="text-end"> <!-- Added class "text-end" to push button to the right -->
-        <button class="btn btn-primary btn-sm">Upload</button>
-    </div>
-</form>
+    </div> -->
+
+
+                <div class="col-md-12 mt-5">
+                  <div class="form-group">
+                    <label for="file-upload" class="form-control-label">Upload File</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="file-upload" accept=".xlsx,.xls,.csv" name="file">
+                      <label class="custom-file-label" for="file-upload" id="file-upload-label">Choose file</label>
+                    </div>
+                    <small id="fileHelp" class="form-text text-muted">Please upload PDF files only.</small>
+                  </div>
+                </div>
+
+                <div class="text-end"> <!-- Added class "text-end" to push button to the right -->
+                  <button class="btn btn-primary btn-sm">Upload</button>
+                </div>
+              </form>
 
 
               <!-- <div class="col-md-6">
@@ -70,8 +110,8 @@
                   </div>
                 </div> -->
             </div>
-          
-           
+
+
           </div>
         </div>
       </div>
@@ -89,30 +129,19 @@
           </div>
           <div class="card-body p-3 pb-0">
             <ul class="list-group">
-            
-
-    <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-        <div class="d-flex flex-column">
-            <h6 class="text-dark mb-1 font-weight-bold text-sm"></h6>
-            <span class="text-xs"></span>
-        </div>
-        <div class="d-flex align-items-center text-sm">
-      
 
 
-           
-            <a href="#" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
-                <i class="fas fa-file-pdf text-lg me-1"></i> PDF
-            </a>
-            
-            
-        </div>
-    </li>
-
-
-
-   
-
+              <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                <div class="d-flex flex-column">
+                  <h6 class="text-dark mb-1 font-weight-bold text-sm"></h6>
+                  <span class="text-xs"></span>
+                </div>
+                <div class="d-flex align-items-center text-sm">
+                  <a href="#" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
+                    <i class="fas fa-file-pdf text-lg me-1"></i> PDF
+                  </a>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -121,7 +150,7 @@
   </div>
 
   <div class="container-fluid py-4">
-  
+
 
     <!-- <footer class="footer pt-3  ">
         <div class="container-fluid">
@@ -228,12 +257,12 @@
     <!-- <h1> {{ auth()->user()->email}}</h1>
 <h1>{{ auth()->user()->address}}</h1> -->
 
-<script>
-    // Dismiss the success alert after 5 seconds (5000 milliseconds)
-    setTimeout(function() {
+    <script>
+      // Dismiss the success alert after 5 seconds (5000 milliseconds)
+      setTimeout(function() {
         document.getElementById('success-alert').style.display = 'none';
-    }, 5000);
-</script>
+      }, 5000);
+    </script>
 
 </main>
 @endsection

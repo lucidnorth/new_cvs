@@ -28,4 +28,6 @@ class SearchLog extends Model
     {
         return $this->hasOne(Certificate::class, 'certificate_number', 'search_term');
     }
+
+    
 }

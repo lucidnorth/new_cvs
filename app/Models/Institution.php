@@ -136,4 +136,8 @@ class Institution extends Model implements HasMedia, Authenticatable
     {
         return $this->hasManyThrough(SearchLog::class, Certificate::class);
     }
+    public function certificates()
+{
+    return $this->hasMany(Certificate::class);
+}
 }

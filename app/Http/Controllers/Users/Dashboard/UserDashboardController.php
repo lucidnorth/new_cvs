@@ -73,33 +73,57 @@ class UserDashboardController extends Controller
         // Count occurrences of each qualification type
         $qualificationTypeCounts = array_count_values($qualificationTypes);
     
-        // Count the number of searches related to the user's institution
-         // Count the number of searches related to the user's institution
-    // $institutionSearchCount = SearchLog::whereHas('certificate', function ($query) use ($institution) {
-    //     $query->where('institution_id', $institution->id);
-    // })->where('user_id', $userId)->count();
-
-    // Initialize institutionSearchCount
-    
-    $institutionSearchCount = 0;
-
-        if ($institution) {
-        // Get all certificate numbers associated with this institution
-        $certificateNumbers = Certificate::where('institution_id', $institution->id)
-            ->pluck('certificate_number')
-            ->toArray();
-
-        // Count the number of searches related to the institution's certificates
-        $institutionSearchCount = SearchLog::whereIn('search_term', $certificateNumbers)->count();
-
-        // Count the number of certificates under this institution
-        $institutionCertificateCount = Certificate::where('institution_id', $institution->id)->count();
-
-    } else {
+        // Initialize institutionSearchCount, maleCount, femaleCount, and institutionCertificateCount
+        $institutionSearchCount = 0;
+        $maleCount = 0;
+        $femaleCount = 0;
         $institutionCertificateCount = 0;
-    }
-  
-        // Prepare data for the chart
+        $institutionQualificationTypes = [];
+    
+        if ($institution) {
+            // Get all certificate numbers associated with this institution
+            $certificateNumbers = Certificate::where('institution_id', $institution->id)
+                ->pluck('certificate_number')
+                ->toArray();
+    
+            if (count($certificateNumbers) > 0) {
+                // Fetch search logs that match the certificate numbers
+                $searchLogs = SearchLog::whereIn('search_term', $certificateNumbers)
+                    ->whereHas('certificate', function ($query) use ($institution) {
+                        $query->where('institution_id', $institution->id);
+                    })
+                    ->with('certificate')
+                    ->get();
+    
+                // Count the number of searches related to the institution's certificates
+                $institutionSearchCount = $searchLogs->count();
+    
+                // Count males and females from the search logs
+                foreach ($searchLogs as $log) {
+                    if ($log->certificate && $log->certificate->gender) {
+                        if ($log->certificate->gender === 'Male') {
+                            $maleCount++;
+                        } elseif ($log->certificate->gender === 'Female') {
+                            $femaleCount++;
+                        }
+                    }
+                }
+    
+                // Count the number of unique certificates under this institution
+                $institutionCertificateCount = Certificate::where('institution_id', $institution->id)->count();
+    
+                // Fetch qualification types for certificates found in search logs
+                foreach ($searchLogs as $log) {
+                    if ($log->certificate) {
+                        $institutionQualificationTypes[] = $log->certificate->qualification_type;
+                    }
+                }
+            }
+        }
+    
+        $institutionQualificationTypeCounts = array_count_values($institutionQualificationTypes);
+    
+        // Prepare data for the main chart
         $chart = new Chart;
         $chart->labels(array_keys($qualificationTypeCounts));
         $chart->dataset('Qualification Types', 'pie', array_values($qualificationTypeCounts))
@@ -111,7 +135,7 @@ class UserDashboardController extends Controller
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)',
-                    'rgba(243, 229, 0, 1)'  // Added this to match your comment
+                    'rgba(243, 229, 0, 1)'
                 ],
                 'borderColor' => [
                     'rgba(255, 99, 132, 1)',
@@ -142,6 +166,50 @@ class UserDashboardController extends Controller
                 ]
             ]);
     
+        // Prepare data for the institution certificates chart
+        $institutionCertsChart = new Chart;
+        $institutionCertsChart->labels(array_keys($institutionQualificationTypeCounts));
+        $institutionCertsChart->dataset('Institution Certs', 'pie', array_values($institutionQualificationTypeCounts))
+            ->options([
+                'backgroundColor' => [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 159, 64, 0.6)',
+                    'rgba(243, 229, 0, 0.6)'
+                ],
+                'borderColor' => [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(243, 229, 0, 1)'
+                ],
+                'borderWidth' => 1,
+                'plugins' => [
+                    'datalabels' => [
+                        'formatter' => function ($value) use ($institutionQualificationTypeCounts) {
+                            $total = array_sum($institutionQualificationTypeCounts);
+                            $percentage = ($value / $total) * 100;
+                            return number_format($percentage, 1) . '%';
+                        },
+                        'color' => '#fff',
+                    ]
+                ],
+                'scales' => [
+                    'x' => [
+                        'display' => false
+                    ],
+                    'y' => [
+                        'display' => false
+                    ]
+                ]
+            ]);
+    
         return view('users.UserDashboard', [
             'institution' => $institution,
             'institutions' => $institutions, 
@@ -152,8 +220,13 @@ class UserDashboardController extends Controller
             'qualificationTypeCounts' => $qualificationTypeCounts,
             'institutionSearchCount' => $institutionSearchCount,
             'institutionCertificateCount' => $institutionCertificateCount,
+            'maleCount' => $maleCount,
+            'femaleCount' => $femaleCount,
+            'institutionCertsChart' => $institutionCertsChart,
+            'institutionQualificationTypeCounts' => $institutionQualificationTypeCounts // Pass this variable to the view
         ]);   
     }
+    
     
 
 
@@ -413,7 +486,10 @@ public function institutionVerifiedCerticate()
             ->get();
     }
 
-return view('Users.UserDashboardinstitutionVerifiedCerticate', [ 'institutionCertificates' => $institutionCertificates]);
+return view('Users.UserDashboardinstitutionVerifiedCerticate',
+ [ 'institutionCertificates' => $institutionCertificates
+
+]);
 
 
 
@@ -425,6 +501,15 @@ public function talktoUs()
 
     return view('Users.UserDashboardTalktoUs', [ 'packages'=> $packages,]);
 }
+
+
+public function Payment()
+{
+    $packages = Package::all();
+
+    return view('Users.UserDashboardTalktoUs', [ 'packages'=> $packages,]);
+}
+
 
 
 }

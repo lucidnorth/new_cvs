@@ -1,3 +1,26 @@
+<style>
+        /* Styles for active state */
+        .nav-link.active {
+            background-color: #596CFF !important; /* Blue background */
+            color: white !important; /* White text */
+        }
+
+        .nav-link.active .icon,
+        .nav-link.active .icon i {
+            color: white !important; /* White icon */
+        }
+
+        /* General styles for nav links */
+        .nav-link {
+            color: #000; /* Default text color */
+        }
+
+        .nav-link:hover {
+            color: #007bff; /* Hover text color */
+        }
+    </style>
+
+
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
   <div class="sidenav-header">
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -28,7 +51,7 @@
         </l>
         @if(auth()->user()->my_institution)
       <li class="nav-item">
-        <a class="nav-link " href="{{ route('UploadCertificate')}}">
+        <a class="nav-link {{ request()->routeIs('UploadCertificate') ? 'active' : '' }} " href="{{ route('UploadCertificate') }}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-cloud-upload-alt text-dark text-sm opacity-10"></i>
           </div>
@@ -85,7 +108,7 @@
         </a>
       </li>
       @endif
-      @if(auth()->user()->employer)
+     
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('faqs') ? 'active' : '' }}" href="{{ route('faqs')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -94,10 +117,10 @@
           <span class="nav-link-text ms-1">FAQs</span>
         </a>
       </li>
-      @endif
+      
       @if(auth()->user()->my_institution)
       <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('papers') ? 'active' : '' }}" href="{{ route('papers')}}">
+        <a class="nav-link {{ request()->routeIs('Payment') ? 'active' : '' }}" href="{{ route('Payment')}}"> 
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-credit-card text-dark text-sm opacity-10"></i>
           </div>
@@ -107,7 +130,7 @@
       @endif
       @if(auth()->user()->my_institution)
 <li class="nav-item">
-  <a class="nav-link " href="{{ route('institutionVerifiedCerticate')}}">
+  <a class="nav-link {{ request()->routeIs('institutionVerifiedCerticate') ? 'active' : '' }}" href="{{ route('institutionVerifiedCerticate')}}">
     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
       <i class="fas fa-history text-dark text-sm opacity-10"></i>
     </div>
@@ -126,7 +149,7 @@
       </li>
     
       <li class="nav-item">
-        <a class="nav-link " href="{{ route('talktoUs')}}">
+        <a class="nav-link {{ request()->routeIs('talktoUs') ? 'active' : '' }}" href="{{ route('talktoUs')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fas fa-certificate text-dark text-sm opacity-10"></i>
           </div>
@@ -186,27 +209,7 @@
     </ul>
   </div>
 
-  <style>
-        /* Styles for active state */
-        .nav-link.active {
-            background-color: #596CFF !important; /* Blue background */
-            color: white !important; /* White text */
-        }
 
-        .nav-link.active .icon,
-        .nav-link.active .icon i {
-            color: white !important; /* White icon */
-        }
-
-        /* General styles for nav links */
-        .nav-link {
-            color: #000; /* Default text color */
-        }
-
-        .nav-link:hover {
-            color: #007bff; /* Hover text color */
-        }
-    </style>
 
   <script>
     // Get all navigation links

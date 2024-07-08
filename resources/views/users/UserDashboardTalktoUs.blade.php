@@ -5,231 +5,210 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-9ndCyUa0lW4Y+8zHV/3BecMWGs30KeQll6Z8RoJSGW2l9F5XZT7NFhZe9sJoW8vy" crossorigin="anonymous">
 <style>
-  .table-responsive {
-    margin-top: 20px;
-  }
+    .min-vh-100 {
+        min-height: 800vh;
+        display: grid;
+        place-items: center;
+    }
 
-  .table {
-    background-color: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 40px;
-  }
+    .bg-light {
 
-  th {
-    background-color: #343a40;
-    color: #5e72e4;
-    text-align: left;
-    vertical-align: middle;
-    font-size: 20px;
-  }
+    }
 
-  td {
-    text-align: left;
-    vertical-align: middle;
-    font-size: 15px;
-  }
+    h1 {
+        text-align: center;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 4rem;
+        font-weight: 400;
+        color: #cccccc;
+    }
 
-  tr:hover {
-    background-color: #f1f1f1;
-  }
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0px;
+        max-width: 1200px;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
 
-  .dataTables_wrapper .dataTables_paginate {
-    padding-top: 20px;
-  }
+    .card-container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 0px;
+    }
 
-  .dataTables_wrapper .dataTables_paginate .paginate_button {
-    padding: 0.5em 1em;
-  }
+    .card-container h2 {
+        font-size: 2rem;
+        font-weight: bolder;
+        margin-bottom: 1rem;
 
-  .custom-pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    /* Adjusted margin for spacing */
-  }
+    }
 
-  .custom-pagination input[type="number"] {
-    width: 60px;
-    text-align: center;
-    height: 38px;
-    margin: 0 5px;
-    /* Adjusted margin for spacing */
-  }
+    .card-container p {
+        font-size: 1.25rem;
+        color: #6c757d;
+        margin-bottom: 1rem;
+    }
 
-  .custom-pagination button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 0.5em 1em;
-    cursor: pointer;
-    height: 38px;
-    margin: 0 5px;
-    /* Adjusted margin for spacing */
-  }
+    .line-text {
+        color: #d3dae0;
+        margin-right: 10px;
+    }
 
-  .custom-pagination button:hover {
-    background-color: #0056b3;
-  }
+    .btn-send {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1.2rem;
+    }
 
-  .dataTables_filter input {
-    width: 300px;
-    /* Adjust the width as needed */
-    padding: 8px;
-    /* Adjust padding as needed */
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-    background-color: #fff;
-    background-image: none;
-    margin-bottom: 20px;
-    margin-top: 70px;
-  }
+    .contact-info {
+        background-color: #6074DF;
+        color: white;
+        padding: 20px;
+        border-radius: 0px;
+    }
 
-  .container-fluid {
-    margin-top: -70px;
-  }
+    .contact-info h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #ffffff
+    }
 
-  /* Adjust card margin */
-  .card {
-    margin-bottom: 20px;
-    /* Adjust as needed */
-  }
+    .contact-info p {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .contact-info h3 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+
+    }
+
+    @media (min-width: 768px) {
+        .grid-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
 </style>
 
 
 <main class="main-content position-relative border-radius-lg">
-  <div class="container-fluid py-4">
-    <div class="container-fluid py-5 mt-5">
-      <header class="mt-5">
-        <div class="row">    
-          <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-          <a href="{{ route('verified') }}">
-            <div class="card">
-              <div class="card-body p-3">
-                <div class="row">
-                  <div class="col-8">
-                    <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
-                      <h5 class="font-weight-bolder">
-                   
-                      </h5>
-                      <!-- <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+3%</span>
-                      since last week
-                    </p> -->
+    <div class="container-fluid">
+        <header>
+            
+            <div class="row">
+                <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+
+                        <h1 class="faq-maintitle">Talk to Us</h1>
+
                     </div>
-                  </div>
-                  <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle pb-5">
-                      <!-- <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i> -->
-                      <i class="ni ni-check-bold ni-2x text-lg opacity-10" aria-hidden="true"></i>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-          </a>
-        </div>
-          <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
-          <a href="{{ route('reports')}}">
-            <div class="card">
-              <div class="card-body p-3">
-                <div class="row">
-                  <div class="col-8">
-                    <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
-                      <h5 class="font-weight-bolder">
-                        Click to view reports
-                      </h5>
-                      <!-- <p class="mb-0">
-                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                      since last quarter
-                    </p> -->
+
+                <div class="col-xl-12 col-sm-12 mb-xl-0 mt-4">
+                    <div class="card">
+
+                            <div class="row">
+                                <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+
+                                    <div class="container-fluid min-vh-100 ">
+                                        <div class="grid-container">
+                                            <div class="card-container ">
+                                                <h2>Send us a Message</h2>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed</p>
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <label for="name" class="form-label">Your Name</label>
+                                                        <input type="text" class="form-control" id="name" name="name">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="email" class="form-label">Your Email</label>
+                                                        <input type="email" class="form-control" id="email" name="email">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="recipient" class="form-label">Select Recipient</label>
+                                                        <select class="form-select" id="recipient" name="recipient">
+                                                            <option>customercare@certverification.com</option>
+                                                            <option>accountant@certverification.com</option>
+                                                            <option>admin@certverification.com</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="subject" class="form-label">Subject</label>
+                                                        <input type="text" class="form-control" id="subject" name="subject">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="message" class="form-label">Your Message</label>
+                                                        <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary btn-send">Send</button>
+                                                </form>
+                                            </div>
+                                            <div class="contact-info">
+                                                <h2>Contact Information</h2>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapi.</p>
+                                                <div class="mb-4">
+                                                    <h3>Digital Address</h3>
+                                                    <p>GA-111-1234 Greater Accra, Ghana.</p>
+                                                </div>
+                                                <div class="mb-4">
+                                                    <h3>Phone</h3>
+                                                    <p><span class="line-text">Line 1:</span> +233 123 456 789</p>
+                                                    <p><span class="line-text">Line 2:</span> +233 123 456 789</p>
+                                                    <p><span class="line-text">Line 2:</span> +233 123 456 789</p>
+                                                    <p><span class="line-text">Line 3:</span> +233 123 456 789</p>
+                                                    <p><span class="line-text">Line 4:</span> +233 123 456 789</p>
+                                                </div>
+                                                <div>
+                                                    <h3>Email</h3>
+                                                    <p>customercare@certverification.com</p>
+                                                    <p>accounts@certverification.com</p>
+                                                    <p>admin@certverification.com</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                     {{-- <div class="accordion" id="accordionExample">
+
+
+                                        @foreach ($faqs as $index => $faq)
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="heading{{ $index }}">
+                                                <button class="accordion-button {{ $index !== 0 ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}" aria-expanded="{{ $index === 0 ? 'true' : 'false' }}" aria-controls="collapse{{ $index }}">
+                                                    {{ $faq->question }}
+                                                </button>
+                                            </h2>
+                                            <div id="collapse{{ $index }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <p class="fs-5">{{ $faq->answer }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div> --}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                      <i class="ni ni-folder-17 text-lg opacity-10" aria-hidden="true"></i>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </a>
-        </div>
-        </div>
-      </header>
-      form here
+        
+        </header>
+        <main>
+
     </div>
-  </div>
-</main>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<!-- DataTable Initialization -->
+
+
 <script>
-  $(document).ready(function() {
-    var table = $('#example').DataTable({
-      "info": false,
-      "lengthChange": false,
-      "pageLength": 20, // Display 20 rows per page by default
-      "ordering": false,
-      "paging": false // Disable default pagination
-    });
 
-    var currentPage = 1;
-    var totalPages = Math.ceil(table.data().length / 20); // Calculate the total number of pages
-
-    $('#currentPage').val(currentPage);
-
-    function updateTable() {
-      table.page(currentPage - 1).draw(false);
-    }
-
-    $('#prevPage').on('click', function() {
-      if (currentPage > 1) {
-        currentPage--;
-        $('#currentPage').val(currentPage);
-        updateTable();
-      }
-    });
-
-    $('#nextPage').on('click', function() {
-      if (currentPage < totalPages) {
-        currentPage++;
-        $('#currentPage').val(currentPage);
-        updateTable();
-      }
-    });
-
-    $('#currentPage').on('change', function() {
-      var newPage = parseInt($(this).val());
-      if (newPage >= 1 && newPage <= totalPages) {
-        currentPage = newPage;
-        updateTable();
-      } else {
-        $(this).val(currentPage); // Reset to the current page if the input is invalid
-      }
-    });
-
-    $('#example').on('page.dt', function() {
-      var pageInfo = table.page.info();
-      $('#currentPage').val(pageInfo.page + 1);
-    });
-
-    // Set placeholder text for DataTable search input
-    $('.dataTables_filter input').attr('placeholder', 'kindly search here');
-
-    // Initial page load
-    updateTable();
-  });
 </script>
 
 @endsection
