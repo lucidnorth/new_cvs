@@ -138,6 +138,25 @@
         }
 </style>
 
+<style>
+    .custom-file-input {
+        display: none;
+    }
+
+    .custom-file-label {
+        border: 1px solid #ced4da;
+        padding: .375rem .75rem;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    .title-big{
+          font-size: 1.3rem;
+          color: #596CFF;
+          font-weight: 650;
+        }
+</style>
+
 
               <!-- <div class="col-md-6">
                   <div class="form-group">
@@ -325,18 +344,6 @@
       </footer> -->
   <!-- </div>
   </div> -->
-<<<<<<< HEAD
-  <div class="fixed-plugin">
-    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
-      <i class="fa fa-cog py-2"> </i>
-    </a>
-    <div class="card shadow-lg">
-      <div class="card-header pb-0 pt-3 ">
-        <div class="float-start">
-          <h5 class="mt-3 mb-0">Argon Configurator</h5>
-          <p>See our dashboard options.</p>
-=======
-
     <div class="fixed-plugin">
       <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
         <i class="fa fa-cog py-2"> </i>
@@ -422,20 +429,6 @@
       document.getElementById('success-alert').style.display = 'none';
     }, 5000);
   </script>
-
-  <script>
-    document.getElementById('file-upload').addEventListener('change', function() {
-      var fileName = this.files.length ? this.files[0].name : 'Choose file';
-      document.getElementById('file-upload-label').textContent = fileName;
-    });
-  </script>
-
-<script>
-  document.getElementById('file-upload').addEventListener('change', function() {
-    var fileName = this.files.length ? this.files[0].name : 'Choose file';
-    document.getElementById('file-upload-label').textContent = fileName;
-});
-</script>
 
 </main>
 @endsection
