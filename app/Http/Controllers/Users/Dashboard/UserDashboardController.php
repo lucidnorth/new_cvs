@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\UserPackage;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 use Chartisan\PHP\Chartisan;
+use App\Models\Finance;
 use Illuminate\Support\Facades\Http;
+
 
 
 class UserDashboardController extends Controller
@@ -39,7 +41,7 @@ class UserDashboardController extends Controller
     {
         $user = auth()->user();
         $institution = $user->my_institution;
-        $institutions = Institution::all(); 
+        $institutions = Institution::all();
     
         // Count the number of papers uploaded by the authenticated user
         $papersCount = Paper::where('user_id', $user->id)->count();
@@ -63,7 +65,7 @@ class UserDashboardController extends Controller
             $certificate = Certificate::where('certificate_number', $log->search_term)
                 ->with('institution')
                 ->first();
-            
+    
             if ($certificate) {
                 $certificates->push($certificate);
                 $qualificationTypes[] = $certificate->qualification_type;
@@ -210,10 +212,13 @@ class UserDashboardController extends Controller
                 ]
             ]);
     
+        // Fetch payments related to the institution
+        $payments = Finance::where('institution', $institution->institutions)->get();
+    
         return view('users.UserDashboard', [
             'institution' => $institution,
-            'institutions' => $institutions, 
-            'papersCount' => $papersCount, 
+            'institutions' => $institutions,
+            'papersCount' => $papersCount,
             'searchCount' => $searchCount,
             'certificates' => $certificates,
             'chart' => $chart,
@@ -223,12 +228,11 @@ class UserDashboardController extends Controller
             'maleCount' => $maleCount,
             'femaleCount' => $femaleCount,
             'institutionCertsChart' => $institutionCertsChart,
-            'institutionQualificationTypeCounts' => $institutionQualificationTypeCounts // Pass this variable to the view
-        ]);   
+            'institutionQualificationTypeCounts' => $institutionQualificationTypeCounts,
+            'payments' => $payments  // Pass payments data to the view
+        ]);
     }
     
-    
-
 
 public function profile()
 {
@@ -505,10 +509,15 @@ public function talktoUs()
 
 public function Payment()
 {
-    $packages = Package::all();
+    $user = auth()->user();
+    $institution = $user->my_institution;
+    // $institutions = Institution::all();
 
-    return view('Users.UserDashboardTalktoUs', [ 'packages'=> $packages,]);
+    $payments = Finance::where('institution', $institution->institutions)->get();
+
+    return view('Users.UserDashboardPayment', [ 'payments'=> $payments,]);
 }
+
 
 
 

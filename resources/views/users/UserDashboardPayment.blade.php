@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <h5>Payments</h5>
+                                <h5>Reports</h5>
                             </div>
                         </div>
                     </div>
@@ -27,12 +27,72 @@
                     <div class="card">
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
-                        
+                                <li class="list-group-item d-flex justify-content-between  align-items-center">
+                                    <div class="">
+                                    <h2 style="font-size: 25px;">Payments</h2>
+                                    <h3 style="font-weight: 600;">Information on all your institutions received payments.</h3>
+                                    </div>
+                                    {{-- <div>
+                                        <div class="dropdown text-center">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                choose date
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            </ul>
+                                        </div>
+                                    </div> --}}
+                                    <div>
+                                        <div class="gap-2  mx-auto">
+                                            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#verified-candidates">View Report</button>
+                                            <a  href="{{ route('download.verified.certificates') }}" class="btn btn-primary">Download Report</a>
+                                        </div>
+                                        <div class="modal fade" id="verified-candidates" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable  modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Verified Candidates Report</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <table class="table table-stripped table-hover text-center">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Amount</th>
+                                                                    <th>Date</th>
+                                                                    
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            @foreach($payments as $payment)
+                                                                <tr>
+                                                                <td>{{ $payment->amount }}</td>
+                                                                <td>{{ $payment->payment_date }}</td>
+                                                                 
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                        
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <a  href="{{ route('download.verified.certificates') }}" class="btn btn-primary">Export</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+                                    </div>
+                                </li>
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                    <h2 style="font-size: 25px;">Paid</h2>
-                                    <h3 style="font-weight: 600;">Information on all Paid</h3>
+                                    <h2 style="font-size: 25px;">Recommendations</h2>
+                                    <h3 style="font-weight: 600;">Information on all recommendations</h3>
 
                                     </div>
                                  
@@ -69,12 +129,71 @@
                                     </div>
                                 </li> -->
 
-                              
+                                <li class="list-group-item d-flex justify-content-between  align-items-center">
+                                    <div>
+                                    <h2 style="font-size: 25px;">Skill Search</h2>
+                                    <h3 style="font-weight: 600;">Information on all skill search</h3>
+                                    </div>
+                                    {{-- <div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                choose date
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            </ul>
+                                        </div>
+                                    </div> --}}
+                                    <div>
+                                        <div class="gap-2  mx-auto">
+                                            <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#verified-candidates" type="button">View Report</button>
+                                            <button class="btn btn-primary" type="button">Download Report</button>
+                                        </div>
+                                        <div class="modal fade" id="skill-searched" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable  modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Verified Candidates Report</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                       
+                                                        <table class="table table-stripped table-hover text-center">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Institution</th>
+                                                                 
+                                                                    
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                               
+                                                                <tr>
+                                                                    <td>ffffff</td>
+                                                               
+                                                                </tr>
+                                                              
+                                                            </tbody>
+                                                        </table>
+                                                       
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <a  href="{{ route('download.verified.certificates') }}" class="btn btn-primary">Export</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                    <h2 style="font-size: 25px;">Receivables </h2>
-                                    <h3 style="font-weight: 600;">Information on all  Receivables </h3>
+                                    <h2 style="font-size: 25px;">Industry Paper</h2>
+                                    <h3 style="font-weight: 600;">Information on all industry papers</h3>
                                     </div>
                                     {{-- <div>
                                         <div class="dropdown">
@@ -98,8 +217,8 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                    <h2 style="font-size: 25px;">Amount Due</h2>
-                                    <h3 style="font-weight: 600;">Information on all Due</h3>
+                                    <h2 style="font-size: 25px;">Academic Paper</h2>
+                                    <h3 style="font-weight: 600;">Information on all academic papers</h3>
 
                                     </div>
                                     {{-- <div>
@@ -121,6 +240,32 @@
                                         </div>
                                     </div>
                                 </li>
+
+                                <li class="list-group-item d-flex justify-content-between  align-items-center">
+                                    <div>
+                                    <h2 style="font-size: 25px;">Payments</h2>
+                                    <h3 style="font-weight: 600;">Information on all payments</h3>
+                                    </div>
+                                    {{-- <div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                choose date
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                            </ul>
+                                        </div>
+                                    </div> --}}
+                                    <div>
+                                        <div class="gap-2  mx-auto">
+                                            <button class="btn btn-primary" type="button">View Report</button>
+                                            <button class="btn btn-primary" type="button">Download Report</button>
+                                        </div>
+                                    </div>
+                                </li>
+
                             </ul>
                         </div>
                     </div>

@@ -79,7 +79,7 @@ class UserDashboardPackagesController extends Controller
             // Find the UserPackage by order_id
             $userPackage = UserPackage::findOrFail($response['data']['metadata']['order_id']);
 
-            // Update the payment status to 'paid'
+            // Update the    status to 'paid'
             $userPackage->payment_status = 'paid';
             // $userPackage->save();
 

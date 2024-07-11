@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Users\DashboardController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Users\Dashboard\UserDashboardController;
-use App\Http\Controllers\Users\UserDashboardPapersController; 
-use App\Http\Controllers\Users\UserDashboardProfileController; 
+use App\Http\Controllers\Users\UserDashboardPapersController;
+use App\Http\Controllers\Users\UserDashboardProfileController;
 use App\Http\Controllers\Users\UserDashboardUploadCertificate;
 use App\Http\Controllers\Users\UserDashboardSearchCertificate;
 use App\Http\Controllers\Admin\PapersUploadController;
@@ -21,6 +21,7 @@ use App\Http\Controllers\Users\UserDashboardSkillSearchController;
 use App\Http\Controllers\Users\UserDashboardPackagesController;
 use App\Http\Controllers\Users\UserDashboardFaqsController;
 use App\Http\Controllers\Users\UserDashboardReportsController;
+use App\Http\Controllers\Admin\FinanceController;
 
 
 // routes/web.php
@@ -37,6 +38,8 @@ Route::get('/payment/callback', [UserDashboardPackagesController::class, 'handle
 Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
 Route::post('/search', [UserDashboardController::class, 'search'])->name('search');
 
+Route::post('/admin/finance/payment-confirmation', [FinanceController::class, 'store'])->name('admin.finance.confirmation');
+
 
 
 Route::get('/skills', [SkillsController::class, 'index'])->name('skills.index');
@@ -45,13 +48,13 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/dashboard/papers', [UserDashboardPapersController::class, 'index'])->name('dashboard.papers.index');
 
 Route::get('/dashboard/profile', [UserDashboardProfileController::class, 'index'])->name('dashboard.profile');
-Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->middleware(['web','auth'])->name('dashboard.profile.update');
+Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->middleware(['web', 'auth'])->name('dashboard.profile.update');
 
 
 Route::prefix('user')->group(function () {
     Route::get('/papers', [UserDashboardPapersController::class, 'index'])->name('user.papers.index');
     Route::post('/papers/upload', [UserDashboardPapersController::class, 'upload'])->name('user.papers.upload');
-    Route::post('/uploadcertificates/upload', [UserDashboardUploadCertificate::class, 'upload'])->middleware(['web','auth'])->name('user.uploadcertificates.upload');
+    Route::post('/uploadcertificates/upload', [UserDashboardUploadCertificate::class, 'upload'])->middleware(['web', 'auth'])->name('user.uploadcertificates.upload');
     Route::get('/papers/{paper}/download', [UserDashboardPapersController::class, 'download'])->name('user.download.paper');
     Route::get('/papers/{id}', [UserDashboardPapersController::class, 'viewPaper'])->name('user.view.paper');
 });
@@ -71,12 +74,12 @@ Route::get('/', function () {
 })->name('homepage');
 
 
-Route::middleware(["auth"])->group(function(){
+Route::middleware(["auth"])->group(function () {
 
     Route::get('/dashboard', function () {
-        return view('users.UserDashboard'); 
+        return view('users.UserDashboard');
     })->name('Dashboard');
-    
+
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('profile');
     Route::get('/papers', [UserDashboardController::class, 'papers'])->name('papers');
     Route::get('/UploadCertificate', [UserDashboardController::class, 'UploadCertificate'])->name('UploadCertificate');
@@ -87,21 +90,17 @@ Route::middleware(["auth"])->group(function(){
     Route::get('/institutionVerifiedCerticate', [UserDashboardController::class, 'institutionVerifiedCerticate'])->name('institutionVerifiedCerticate');
     Route::get('/talktous', [UserDashboardController::class, 'talktoUs'])->name('talktoUs');
     Route::get('/Payment', [UserDashboardController::class, 'Payment'])->name('Payment');
-   
 });
 
-
-
-
 // Route::get('/institution/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
-Route::get('/dashboard', [UserDashboardController::class, 'index'])->middleware(['web','auth'])->name('user.dashboard'); 
+Route::get('/dashboard', [UserDashboardController::class, 'index'])->middleware(['web', 'auth'])->name('user.dashboard');
 
 
 Route::get('/registration', [RegistrationController::class, 'showRegistrationForm'])->name('registration.form');
 Route::post('/register/employer', [RegistrationController::class, 'registerEmployer'])->name('register.employer');
 Route::post('/register/institution', [RegistrationController::class, 'registerInstitution'])->name('register.institution');
 Route::get('/registration', function () {
-    return view('auth.registration'); 
+    return view('auth.registration');
 })->name('registrationpage');
 
 // Route::get('/institutionRegistration', function () {
@@ -130,7 +129,7 @@ Route::get('/about', function () {
 
 
 Route::get('/getInTouch', function () {
-    return view('getInTouch'); 
+    return view('getInTouch');
 })->name('getInTouchpage');
 
 
@@ -251,6 +250,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('certificates/parse-csv-import', 'CertificatesController@parseCsvImport')->name('certificates.parseCsvImport');
     Route::post('certificates/process-csv-import', 'CertificatesController@processCsvImport')->name('certificates.processCsvImport');
     Route::resource('certificates', 'CertificatesController');
+
+    // Finance
+    // Route::delete('finances/destroy', 'FinanceController@massDestroy')->name('finances.massDestroy');
+    // Route::post('finances/parse-csv-import', 'FinanceController@parseCsvImport')->name('finances.parseCsvImport');
+    // Route::post('finances/process-csv-import', 'FinanceController@processCsvImport')->name('finances.processCsvImport');
+    // Route::resource('finances', 'FinanceController');
+
+    
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');

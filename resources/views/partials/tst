@@ -195,7 +195,7 @@
                         <i class="fa-fw fas fa-comment">
 
                         </i>
-                        <span>Finance</span>
+                        <span>{{ trans('cruds.chat.title') }}</span>
 
                     </a>
                 </li>
@@ -292,7 +292,7 @@
                 </li>
             @endcan
 
-            
+
             @can('finance_access')
                 <li class="{{ request()->is("admin/finances") || request()->is("admin/finances/*") ? "active" : "" }}">
                     <a href="{{ route("admin.finances.index") }}">

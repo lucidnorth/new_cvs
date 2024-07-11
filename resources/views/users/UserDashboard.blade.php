@@ -6,21 +6,21 @@
 
 
 <style>
-        .title-big{
-          font-size: 1.3rem;
-          color: #596CFF;
-          font-weight: 650;
-        }
-    
-        #qualificationChart {
-            max-width: 490px;
-            max-height: 490px;
-            width: 100%;
-            height: 100%;
-            padding: 20px;
-            margin: auto;
-        }
-        </style>
+  .title-big {
+    font-size: 1.3rem;
+    color: #596CFF;
+    font-weight: 650;
+  }
+
+  #qualificationChart {
+    max-width: 490px;
+    max-height: 490px;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    margin: auto;
+  }
+</style>
 
 <main class="main-content position-relative border-radius-lg ">
 
@@ -44,7 +44,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">PAYMENTS DUE</p>
                     <h5 class="font-weight-bolder">
-                      $53,000
+                    GH₵53,000
                     </h5>
                     <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
@@ -70,7 +70,7 @@
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
                       <h5 class="font-weight-bolder">
-                      {{ $institutionSearchCount}}
+                        {{ $institutionSearchCount}}
                       </h5>
                       <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+3%</span>
@@ -97,8 +97,8 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">UPLOAD GRADUATES DATA</p>
                     <h5 class="font-weight-bolder">
-                    {{  $institutionCertificateCount}}
-                   
+                      {{ $institutionCertificateCount}}
+
                     </h5>
                     <!-- <p class="mb-0">
                       <span class="text-danger text-sm font-weight-bolder">-2%</span>
@@ -270,61 +270,40 @@
       <div class="row mt-4">
         @if(auth()->user()->my_institution)
         <div class="col-lg-12 mb-lg-0 mb-4">
-
-
           <div class="card z-index-2 h-100">
-          <div class="row">
-    <div class="col-lg-6 text-center"> 
-      <div class="">
-    <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
-              <h6 class="text-capitalize">Sales overview</h6>
-              <p class="text-sm mb-0">
+              <h6 class="text-capitalize title-big" style="font-size: 20px;">Verified Candidates</h6>
+              <!-- <p class="text-sm mb-0">
                 <i class="fa fa-arrow-up text-success"></i>
                 <span class="font-weight-bold">4% more</span> in 2021
-              </p>
+            </p> -->
             </div>
             <div class="card-body p-3">
-              <div class="chart">
-                <!-- <canvas id="chart-line" class="chart-canvas" height="300"></canvas> -->
-                <div class="chart-container">
-        <canvas id="institutionCertsChart"></canvas>
-    </div>
-              </div>
-            </div>
-          </div>
-    </div>
-  </div>
-  <div class="col-lg-6 text-center"> 
-      <div class="">
-    <div class="card z-index-2 h-100">
-            <div class="card-header pb-0 pt-3 bg-transparent">
-              <h6 class="text-capitalize">Sales overview</h6>
-              <p class="text-sm mb-0">
-                <i class="fa fa-arrow-up text-success"></i>
-                <span class="font-weight-bold">4% more</span> in 2021
-              </p>
-            </div>
-            <div class="card-body p-3">
-              <div class="chart">
-                <!-- <canvas id="chart-line" class="chart-canvas" height="300"></canvas> -->
-                <div style="width: 75%; margin: auto;">
-                <h1>MALE : {{$maleCount}}</h1> <br><br><br>
-                <h1>  MALE : {{$femaleCount}}</h1>
-
-
-                  cfdscbds
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="chart-container" style="height: 600px;">
+                    <canvas id="institutionCertsChart"></canvas>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="gender-box">
+                    <h6 class="text-capitalize">Gender</h6>
+                    <hr>
+                    <div class="gender-merge">
+                      <div class="gender-label">Male(s):<span class="gender-count"><?php echo $maleCount; ?></span></div>
+                      <!-- <div class="gender-count" id="maleCount"><?php echo $maleCount; ?></div> -->
+                      <div class="gender-label1">Female(s):<span class="gender-count"><?php echo $femaleCount; ?></div>
+                      <!-- <div class="gender-count" id="femaleCount"><?php echo $femaleCount; ?></div> -->
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-    </div>
-  </div>
-  </div>
-            
-          </div>
         </div>
-        
+
+
+
         <div class="container">
 
           @endif
@@ -549,16 +528,16 @@
 
         @if(auth()->user()->my_institution)
         <div class="row mt-4">
-          <div class="col-lg-7 mb-lg-0 mb-4">
+          <div class="col-lg-5 mb-lg-0 mb-4">
             <div class="card ">
               <div class="card-header pb-0 px-3">
                 <div class="row">
                   <div class="col-md-6">
-                    <h6 class="mb-0">Payments</h6>
+                    <h6 class="mb-0 title-big">Payments</h6>
                   </div>
                   <div class="col-md-6 d-flex justify-content-end align-items-center">
-                    <i class="far fa-calendar-alt me-2"></i>
-                    <small>23 - 30 March 2020</small>
+                    
+                    <small></small>
                   </div>
                 </div>
               </div>
@@ -592,43 +571,41 @@
                 </ul> -->
                 <!-- <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">Yesterday</h6> -->
                 <ul class="list-group">
+                  @foreach($payments as $payment)
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex align-items-center">
-                      <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
                       <div class="d-flex flex-column">
                         <h6 class="mb-1 text-dark text-sm">Total Payments Recieved</h6>
-                        <span class="text-xs">26 March 2020, at 13:45 PM</span>
+                        </br>
+                        <span class="text-xs"><b>Amount :</b> GH₵ {{ $payment->amount }}</span>
+                        </br>
+                        <span class="text-xs"><b>Date:</b> {{ $payment->payment_date }}</span>
                       </div>
                     </div>
-                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                      + $ 750
+
+                  </li>
+                  @endforeach
+                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                    <div class="d-flex align-items-center">
+                      <div class="d-flex flex-column">
+                        <h6 class="mb-1 text-dark text-sm">Receivables</h6>
+                        </br>
+                        <span class="text-xs"><b>Amount :</b> GH₵ </span>
+                      </div>
                     </div>
+                   
                   </li>
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex align-items-center">
-                      <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
                       <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Discounts</h6>
-                        <span class="text-xs">26 March 2020, at 12:30 PM</span>
+                        <h6 class="mb-1 text-dark text-sm">Amount Due</h6>
+                        </br>
+                        <span class="text-xs"><b>Amount :</b> GH₵ </span>s
                       </div>
                     </div>
-                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                      + $ 1,000
-                    </div>
+                  
                   </li>
-                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Rates (Degree)</h6>
-                        <span class="text-xs">26 March 2020, at 08:30 AM</span>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                      + $ 2,500
-                    </div>
-                  </li>
-                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                  <!-- <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex align-items-center">
                       <button class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-exclamation"></i></button>
                       <div class="d-flex flex-column">
@@ -639,15 +616,15 @@
                     <div class="d-flex align-items-center text-dark text-sm font-weight-bold">
                       25%
                     </div>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>
           </div>
-          <div class="col-lg-5">
+          <div class="col-lg-7">
             <div class="card">
               <div class="card-header pb-0 p-3">
-                <h6 class="mb-0">Categories</h6>
+                <h6 class="mb-0 title-big">User Activities</h6>
               </div>
               <div class="card-body p-3">
                 <ul class="list-group">
@@ -717,7 +694,7 @@
 
         @if(auth()->user()->employer)
         <div class="row mt-4">
-        <div class="col-lg-7 mb-lg-0 mb-4">
+          <div class="col-lg-7 mb-lg-0 mb-4">
             <div class="card ">
               <div class="card-header pb-0 px-3">
                 <div class="row">
@@ -783,6 +760,72 @@
         @endif
 
       </div>
+
+      <style>
+        .title-big {
+          font-size: 1.3rem;
+          color: #596CFF;
+          font-weight: 650;
+        }
+
+        #qualificationChart {
+          max-width: 600px;
+          max-height: 6000px;
+          width: 100%;
+          height: 100%;
+          padding: 20px;
+          margin: auto;
+        }
+
+        .chart-container {
+          padding: 0px 100px;
+        }
+
+
+        .gender-box {
+          background-color: #fff;
+          padding: 10px;
+          width: 70%;
+          margin-left: 50px;
+          margin-top: 150px;
+
+
+        }
+
+        .gender-label {
+          padding: 15px;
+          border: 4px solid;
+        }
+
+        .gender-label1 {
+          padding: 15px;
+          border: 4px solid;
+          margin-top: 20px
+        }
+
+        .gender-box h6 {
+          margin-bottom: 20px;
+          font-size: 30px;
+          font-weight: 700;
+          color: blue;
+        }
+
+        .gender-merge {
+          font-weight: bold;
+
+          font-size: 20px;
+        }
+
+        .gender-count {
+          flex: 1;
+          /* Take remaining space */
+          text-align: right;
+          margin-left: 50px;
+
+          padding: 25px 10px;
+
+        }
+      </style>
 
 
       <!-- @if(isset($institution) && $institution)
@@ -891,65 +934,76 @@
       </script>
 
 
-    <!-- Script for institution certificates chart -->
-   <!-- Script for institution certificates chart -->
-   <script>
+      <!-- Script for institution certificates chart -->
+      <!-- Script for institution certificates chart -->
+      <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var institutionLabels = @json(array_keys($institutionQualificationTypeCounts));
-            var institutionData = @json(array_values($institutionQualificationTypeCounts));
+          var institutionLabels = @json(array_keys($institutionQualificationTypeCounts));
+          var institutionData = @json(array_values($institutionQualificationTypeCounts));
 
-            var institutionCtx = document.getElementById('institutionCertsChart').getContext('2d');
-            var institutionCertsChart = new Chart(institutionCtx, {
-                type: 'pie',
-                data: {
-                    labels: institutionLabels,
-                    datasets: [{
-                        data: institutionData,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.6)',
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(153, 102, 255, 0.6)',
-                            'rgba(255, 159, 64, 0.6)',
-                            'rgba(243, 229, 0, 0.6)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)',
-                            'rgba(243, 229, 0, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
+          var institutionCtx = document.getElementById('institutionCertsChart').getContext('2d');
+          var institutionCertsChart = new Chart(institutionCtx, {
+            type: 'doughnut',
+            data: {
+              labels: institutionLabels,
+              datasets: [{
+                data: institutionData,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.6)',
+                  'rgba(54, 162, 235, 0.6)',
+                  'rgba(255, 206, 86, 0.6)',
+                  'rgba(75, 192, 192, 0.6)',
+                  'rgba(153, 102, 255, 0.6)',
+                  'rgba(255, 159, 64, 0.6)',
+                  'rgba(243, 229, 0, 0.6)'
+                ],
+                borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                  'rgba(243, 229, 0, 1)'
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              plugins: {
+                legend: {
+                  position: 'right',
+                  labels: {
+                    boxWidth: 15,
+                    boxHeight: 15,
+                    padding: 10
+
+
+
+                  }
                 },
-                options: {
-                    plugins: {
-                        datalabels: {
-                            formatter: function(value) {
-                                let total = institutionData.reduce((sum, val) => sum + val, 0);
-                                let percentage = (value / total * 100).toFixed(1) + "%";
-                                return percentage;
-                            },
-                            color: '#fff'
-                        }
-                    },
-                    scales: {
-                        x: {
-                            display: false
-                        },
-                        y: {
-                            display: false
-                        }
-                    }
+                datalabels: {
+                  formatter: function(value) {
+                    let total = institutionData.reduce((sum, val) => sum + val, 0);
+                    let percentage = (value / total * 100).toFixed(1) + "%";
+                    return percentage;
+                  },
+                  color: '#fff'
+                }
+              },
+              scales: {
+                x: {
+                  display: false
                 },
-                plugins: [ChartDataLabels]
-            });
+                y: {
+                  display: false
+                }
+              }
+            }
+          });
         });
-    </script>
+      </script>
+
 
 
 </main>

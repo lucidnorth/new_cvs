@@ -9,6 +9,8 @@ use App\Http\Requests\UpdateChatRequest;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\Institution;
+use App\Models\Finance;
 
 class ChatController extends Controller
 {
@@ -16,7 +18,11 @@ class ChatController extends Controller
     {
         abort_if(Gate::denies('chat_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.chats.index');
+        $institutions = Institution::all();
+        $finances = Finance::all(); // Fetch all finance records
+
+
+        return view('admin.chats.index',compact('institutions', 'finances'));
     }
 
     public function create()
@@ -73,4 +79,6 @@ class ChatController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    
 }
