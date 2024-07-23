@@ -16,7 +16,9 @@ use App\Models\UserPackage;
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 use Chartisan\PHP\Chartisan;
 use App\Models\Finance;
+use App\Models\UserPackageInstitution;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log; 
 
 
 
@@ -213,7 +215,27 @@ class UserDashboardController extends Controller
             ]);
     
         // Fetch payments related to the institution
-        $payments = Finance::where('institution', $institution->institutions)->get();
+
+        
+        $payments = null;
+        if ($institution) {
+            $payments = Finance::where('institution', $institution->institutions)->get();
+            $totalAmount = $payments->sum('amount');
+    
+    
+            // Sum up the amount given to the institution for each user package
+            $totalAmountGivenToInstitution = UserPackageInstitution::where('institution_id', $institution->id)->sum('amount_given_to_institution');
+    
+        
+    
+                // Calculate the amount due
+              $amountDue = $totalAmountGivenToInstitution - $totalAmount;
+    
+        }
+
+
+      
+   
     
         return view('users.UserDashboard', [
             'institution' => $institution,
@@ -229,7 +251,10 @@ class UserDashboardController extends Controller
             'femaleCount' => $femaleCount,
             'institutionCertsChart' => $institutionCertsChart,
             'institutionQualificationTypeCounts' => $institutionQualificationTypeCounts,
-            'payments' => $payments  // Pass payments data to the view
+            'payments' => $payments, 
+            'amountDue' => $amountDue,
+             // Pass payments data to the view
+           
         ]);
     }
     
@@ -401,6 +426,116 @@ public function SkillSearch()
 // }
 
 
+// public function search(Request $request)
+
+// {
+//     $this->validate($request, [
+//         'institution_id' => 'required|exists:institutions,id',
+//         'certificate_number' => 'required|string',
+//     ]);
+
+//     $userId = auth()->id();
+//     $user = User::find($userId); 
+//     $activePackage = $user->activePackage();
+
+//     if (!$activePackage) {
+//         return redirect()->route('user.dashboard')
+//             ->with('status', 'You do not have an active package.')
+//             ->with('error_type', 'package');
+//     }
+
+//     if ($activePackage->searches_left <= 0) {
+//         return redirect()->route('user.dashboard')
+//             ->with('error', 'You have exhausted your search limit.')
+//             ->with('error_type', 'package');
+//     }
+
+//     $institutionId = $request->input('institution_id');
+//     $certificateNumber = $request->input('certificate_number');
+
+//     $certificate = Certificate::where('institution_id', $institutionId)
+//         ->where('certificate_number', $certificateNumber)
+//         ->with('institution')
+//         ->first();
+
+//     if ($certificate) {
+
+//         // Decrement the search count only if a certificate is found
+//         $activePackage->decrement('searches_left');
+
+//         // Log the search
+//         SearchLog::create([
+//             'user_id' => $userId,
+//             'user_package_id' => $activePackage->id,
+//             'search_term' => $certificateNumber,
+//         ]);
+
+//         return redirect()->route('user.dashboard')->with('certificate', $certificate);
+//     }
+
+//     return redirect()->route('user.dashboard')
+//         ->with('certificate_error', 'No matching record found.')
+//         ->with('error_type', 'search');
+// }
+
+
+// public function search(Request $request)
+// {
+//     $this->validate($request, [
+//         'institution_id' => 'required|exists:institutions,id',
+//         'certificate_number' => 'required|string',
+//     ]);
+
+//     $userId = auth()->id();
+//     $user = User::find($userId); 
+//     $activePackage = $user->activePackage();
+
+//     if (!$activePackage) {
+//         return redirect()->route('user.dashboard')
+//             ->with('status', 'You do not have an active package.')
+//             ->with('error_type', 'package');
+//     }
+
+//     if ($activePackage->searches_left <= 0) {
+//         return redirect()->route('user.dashboard')
+//             ->with('error', 'You have exhausted your search limit.')
+//             ->with('error_type', 'package');
+//     }
+
+//     $institutionId = $request->input('institution_id');
+//     $certificateNumber = $request->input('certificate_number');
+
+//     $certificate = Certificate::where('institution_id', $institutionId)
+//         ->where('certificate_number', $certificateNumber)
+//         ->with('institution')
+//         ->first();
+
+//     if ($certificate) {
+//         // Decrement the search count only if a certificate is found
+//         $activePackage->decrement('searches_left');
+
+//         // Calculate the amount for each search and update the institution's balance
+//         $pricePerSearch = $activePackage->amount / $activePackage->getTotalSearchesAllowed();
+//         $amountToGiveToInstitution = $pricePerSearch * 0.5;
+
+//         $activePackage->amount_given_to_institution += $amountToGiveToInstitution;
+//         $activePackage->save();
+
+//         // Log the search
+//         SearchLog::create([
+//             'user_id' => $userId,
+//             'user_package_id' => $activePackage->id,
+//             'search_term' => $certificateNumber,
+//         ]);
+
+//         return redirect()->route('user.dashboard')->with('certificate', $certificate);
+//     }
+
+//     return redirect()->route('user.dashboard')
+//         ->with('certificate_error', 'No matching record found.')
+//         ->with('error_type', 'search');
+// }
+
 public function search(Request $request)
 {
     $this->validate($request, [
@@ -433,9 +568,19 @@ public function search(Request $request)
         ->first();
 
     if ($certificate) {
-
         // Decrement the search count only if a certificate is found
         $activePackage->decrement('searches_left');
+
+        // Calculate the amount for each search and update the institution's balance
+        $pricePerSearch = $activePackage->amount / $activePackage->getTotalSearchesAllowed();
+        $amountToGiveToInstitution = $pricePerSearch * 0.5;
+
+        // Save the amount given to the institution for this search
+        $userPackageInstitution = new UserPackageInstitution();
+        $userPackageInstitution->user_package_id = $activePackage->id;
+        $userPackageInstitution->institution_id = $institutionId;
+        $userPackageInstitution->amount_given_to_institution = $amountToGiveToInstitution;
+        $userPackageInstitution->save();
 
         // Log the search
         SearchLog::create([
@@ -451,6 +596,10 @@ public function search(Request $request)
         ->with('certificate_error', 'No matching record found.')
         ->with('error_type', 'search');
 }
+
+
+
+
 
 // public function displaySearchCount()
 //     {
@@ -507,19 +656,88 @@ public function talktoUs()
 }
 
 
+// public function Payment()
+// {
+//     $user = auth()->user();
+//     $institution = $user->my_institution;
+
+//     if ($institution) {
+//         // Log institution details
+//         Log::info('Institution Details:', ['institution_id' => $institution->id, 'institution_name' => $institution->name]);
+
+//         $payments = Finance::where('institution', $institution->institutions)->get();
+//         $totalAmount = $payments->sum('amount');
+
+//         // Fetch the amount given to the institution for each user package
+//         $userPackages = UserPackage::whereHas('user', function ($query) use ($institution) {
+//             $query->where('institution_id', $institution->id);
+//         })->get(['amount_given_to_institution', 'created_at']);
+
+//         // Log user packages
+//         Log::info('User Packages:', $userPackages->toArray());
+
+//         // Check if userPackages are empty
+//         if ($userPackages->isEmpty()) {
+//             Log::warning('No user packages found for institution:', ['institution_id' => $institution->id]);
+//         }
+
+//         return view('Users.UserDashboardPayment', [
+//             'payments' => $payments,
+//             'totalAmount' => $totalAmount,
+//             'userPackages' => $userPackages,
+//         ]);
+//     } else {
+//         // Log error if no institution is found
+//         Log::error('No institution found for user:', ['user_id' => $user->id]);
+
+//         return redirect()->route('user.dashboard')->with('error', 'No institution found.');
+//     }
+// }
+
 public function Payment()
 {
     $user = auth()->user();
     $institution = $user->my_institution;
-    // $institutions = Institution::all();
 
-    $payments = Finance::where('institution', $institution->institutions)->get();
+    if ($institution) {
+        // Log institution details
+        Log::info('Institution Details:', ['institution_id' => $institution->id, 'institution_name' => $institution->name]);
 
-    return view('Users.UserDashboardPayment', [ 'payments'=> $payments,]);
+        // Fetch payments and calculate total amount
+        $payments = Finance::where('institution', $institution->institutions)->get();
+        $totalAmount = $payments->sum('amount');
+
+        // Log payments details
+        Log::info('Total Amount:', ['total_amount' => $totalAmount]);
+
+        // Sum up the amount given to the institution for each user package
+        $totalAmountGivenToInstitution = UserPackageInstitution::where('institution_id', $institution->id)->sum('amount_given_to_institution');
+
+        // Log total amount given to the institution
+        Log::info('Total Amount Given to Institution:', ['total_amount_given_to_institution' => $totalAmountGivenToInstitution]);
+
+            // Calculate the amount due
+          $amountDue = $totalAmountGivenToInstitution - $totalAmount;
+
+
+        return view('Users.UserDashboardPayment', [
+            'payments' => $payments,
+            'totalAmount' => $totalAmount,
+            'totalAmountGivenToInstitution' => $totalAmountGivenToInstitution,
+            'amountDue' => $amountDue,
+        ]);
+    } else {
+        // Log error if no institution is found
+        Log::error('No institution found for user:', ['user_id' => $user->id]);
+
+        return redirect()->route('user.dashboard')->with('error', 'No institution found.');
+    }
 }
 
 
 
 
-}
 
+
+
+}

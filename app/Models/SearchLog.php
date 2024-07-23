@@ -29,5 +29,9 @@ class SearchLog extends Model
         return $this->hasOne(Certificate::class, 'certificate_number', 'search_term');
     }
 
+    public function userPackage()
+{
+    return $this->belongsTo(UserPackage::class);
+}
     
 }

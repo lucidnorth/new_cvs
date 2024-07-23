@@ -16,8 +16,11 @@ class Package extends Model
         ];
 
         public function userPackages()
-        {
-            return $this->hasMany(UserPackage::class);
-        }
+{
+    return $this->hasMany(UserPackage::class);
+}
+
+
+
     
 }

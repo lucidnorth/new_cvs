@@ -17,6 +17,8 @@ class UserPackage extends Model
         'transaction_reference',
         'payment_status',
         'expires_at',
+        'price_per_search',
+        'amount_given_to_institution'
     ];
 
     public function user()
@@ -33,4 +35,38 @@ class UserPackage extends Model
     {
         return $this->package->search_limit;
     }
+
+    public function searchLogs()
+{
+    return $this->hasMany(SearchLog::class);
 }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

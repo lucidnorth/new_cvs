@@ -67,7 +67,8 @@ class UserDashboardPackagesController extends Controller
             return redirect()->route('packages.index')->with('error', 'Failed to initiate payment.');
         }
     }
-
+   
+    
     public function handleGatewayCallback(Request $request)
     {
         $paymentReference = $request->query('reference');
@@ -105,4 +106,96 @@ class UserDashboardPackagesController extends Controller
             return redirect()->route('packages.index')->with('error', 'Payment verification failed.');
         }
     }
+       
+
+
+
+    // public function handleGatewayCallback(Request $request)
+    // {
+    //     $paymentReference = $request->query('reference');
+    
+    //     $response = Http::withToken(env('PAYSTACK_SECRET_KEY'))
+    //         ->get(env('PAYSTACK_PAYMENT_URL') . '/transaction/verify/' . $paymentReference);
+    
+    //     if ($response->successful() && $response['data']['status'] == 'success') {
+    //         // Find the UserPackage by order_id
+    //         $userPackage = UserPackage::findOrFail($response['data']['metadata']['order_id']);
+    
+    //         // Update the payment status to 'paid'
+    //         $userPackage->payment_status = 'paid';
+            
+            
+    //         // Get the authenticated user
+    //         $user = $userPackage->user;
+    
+    //         // Check if the user has an active package
+    //         $activePackage = $user->activePackage();
+    
+    //         if ($activePackage) {
+    //             // Increment the searches_left of the active package
+    //             $activePackage->increment('searches_left', $userPackage->package->search_limit);
+    //             $activePackage->save();
+    //         } else {
+    //             // Set the searches_left for  the newly paid package
+    //             $userPackage->searches_left = $userPackage->package->search_limit;
+    //             $userPackage->save();
+    //         }
+    
+    //         // Redirect with success status
+    //         return redirect()->route('packages.index')->with('status', 'Payment successful!');
+    //     } else {
+    //         // Redirect with error status if payment verification fails
+    //         return redirect()->route('packages.index')->with('error', 'Payment verification failed.');
+    //     }
+    // }
+    // public function handleGatewayCallback(Request $request)
+// {
+//     $paymentReference = $request->query('reference');
+
+//     // Verify the payment with Paystack
+//     $response = Http::withToken(env('PAYSTACK_SECRET_KEY'))
+//         ->get(env('PAYSTACK_PAYMENT_URL') . '/transaction/verify/' . $paymentReference);
+
+//     Log::info('Paystack response', ['response' => $response->json()]);
+
+//     if ($response->successful() && $response['data']['status'] == 'success') {
+//         // Find the UserPackage by order_id
+//         $userPackage = UserPackage::findOrFail($response['data']['metadata']['order_id']);
+
+//         // Update the payment status to 'paid'
+//         $userPackage->payment_status = 'paid';
+//         $userPackage->save();
+
+//         Log::info('Payment status updated', ['userPackage' => $userPackage]);
+
+//         // Get the authenticated user
+//         $user = $userPackage->user;
+
+//         // Check if the user has an active package
+//         $activePackage = $user->activePackage();
+
+//         if ($activePackage) {
+//             // Increment the searches_left of the active package
+//             $activePackage->increment('searches_left', $userPackage->package->search_limit);
+//             $activePackage->save();
+//             Log::info('Active package searches_left incremented', ['activePackage' => $activePackage]);
+//         } else {
+//             // Set the searches_left for the newly paid package
+//             $userPackage->searches_left = $userPackage->package->search_limit;
+//             $userPackage->save();
+//             Log::info('New package searches_left set', ['userPackage' => $userPackage]);
+//         }
+
+//         // Redirect with success status
+//         return redirect()->route('packages.index')->with('status', 'Payment successful!');
+//     } else {
+//         // Log payment verification failure
+//         Log::error('Payment verification failed', ['response' => $response->json()]);
+
+//         // Redirect with error status if payment verification fails
+//         return redirect()->route('packages.index')->with('error', 'Payment verification failed.');
+//     }
+// }
+
+
 }

@@ -44,7 +44,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">PAYMENTS DUE</p>
                     <h5 class="font-weight-bolder">
-                    GH₵53,000
+                    GH₵{{  $amountDue}}
                     </h5>
                     <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
@@ -585,6 +585,8 @@
 
                   </li>
                   @endforeach
+
+                  
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex align-items-center">
                       <div class="d-flex flex-column">
@@ -626,6 +628,28 @@
               <div class="card-header pb-0 p-3">
                 <h6 class="mb-0 title-big">User Activities</h6>
               </div>
+
+              @if(session('certificate'))
+    <div>
+        <h3>Certificate Details</h3>
+        <p>Certificate Number: {{ session('certificate')->certificate_number }}</p>
+        <p>Institution Name: {{ session('certificate')->institution->name }}</p>
+    </div>
+    <div>
+        <h3>Calculation Details</h3>
+        <p>Price Per Search: {{ session('price_per_search') }}</p>
+        <p>Amount to Give to Institution: {{ session('amount_to_give_to_institution') }}</p>
+        <p>Updated Amount Given to Institution: {{ session('updated_amount_given_to_institution') }}</p>
+    </div>
+@endif
+
+@if(session('certificate_error'))
+    <div>
+        <p>Error: {{ session('certificate_error') }}</p>
+    </div>
+@endif
+
+
               <div class="card-body p-3">
                 <ul class="list-group">
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
