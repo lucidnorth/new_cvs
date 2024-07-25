@@ -48,7 +48,7 @@
         <div class="card">
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
-              <p class="mb-0">Upload yourschool Certificate
+              <p class="mb-0 title-big">Upload Your School Certificate
 
               </p>
 
@@ -120,7 +120,7 @@
           <div class="card-header pb-0 p-3">
             <div class="row">
               <div class="col-6 d-flex align-items-center">
-                <h6 class="mb-0">My Uploads</h6>
+                <h6 class="mb-0 title-big">My Uploads</h6>
               </div>
               <div class="col-6 text-end">
                 <button class="btn btn-outline-primary btn-sm mb-0">View All</button>
@@ -252,6 +252,16 @@
         </div>
       </div>
     </div>
+
+    <style>
+
+.title-big {
+          font-size: 1.3rem;
+          color: #596CFF;
+          font-weight: 650;
+        }
+
+    </style>
 
 
     <!-- <h1> {{ auth()->user()->email}}</h1>

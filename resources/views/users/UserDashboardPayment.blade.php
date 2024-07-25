@@ -4,60 +4,225 @@
 
 @section('content')
 
+
+
+        <style>
+    .table-responsive {
+        margin-top: 150px;
+    }
+    .table {
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+       
+    }
+    th {
+        background-color: #343a40;
+        color: white;
+        text-align: left;
+        vertical-align: middle;
+        font-size: 20px;
+    }
+    td {
+        text-align: left;
+        vertical-align: middle;
+        font-size: 15px;
+    }
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+    .dataTables_wrapper .dataTables_paginate {
+        padding-top: 20px;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.5em 1em;
+    }
+    .custom-pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px; /* Adjusted margin for spacing */
+    }
+
+    .custom-pagination input[type="number"] {
+        width: 60px;
+        text-align: center;
+        font-size: 18px;
+        height: 38px;
+        margin: 0 5px; /* Adjusted margin for spacing */
+    }
+
+    .custom-pagination button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        height: 38px;
+        margin: 0 5px; /* Adjusted margin for spacing */
+    }
+
+    .custom-pagination button:hover {
+        background-color: #0056b3;
+    }
+
+    /* .dataTables_filter {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .dataTables_filter input {
+        width: 300px; 
+        padding: 8px; 
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        background-color: #fff;
+        background-image: none;
+        margin-bottom: 20px;
+        margin-top: 70px;
+    } */
+
+    /* #results-counter {
+        font-size: 22px;
+        font-weight: bold;
+        color: blue;
+        margin-left: 20px;
+        margin-top: 70px;
+        position: absolute;
+        display: none; 
+    }
+
+    #results-counter .count {
+        color: black;
+        font-weight: bold;
+    } */
+
+    .container-fluid{
+        margin-top: -70px;
+    }
+
+    /* Adjust card margin */
+    .card {
+        margin-bottom: 20px; /* Adjust as needed */
+    }
+
+    #page-indicator {
+        text-align: center;
+        margin-top: 50px;
+        margin-left: 600px;
+        font-size: 15px;
+       color: white;
+        position: absolute;
+        
+    }
+
+    .table-container {
+        position: relative;
+    }
+    .jpush{
+        margin-top: 30px;
+        
+    }
+</style>
+
 <main class="main-content position-relative border-radius-lg">
-    <div class="container-fluid">
-        <header>
-            {{-- <div class="pricing-header p-3 pb-md-4 mx-auto">
-                <h1 class="display-4 fw-normal text-body-emphasis text-white">Package Pricing</h1>
-                <p class="fs-5 text-body-secondary text-white">Select package to buy .</p>
-            </div> --}}
+    <div class="jpush container-fluid">
+        
+          
            
             <div class="row">
-                <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <h5>Reports</h5>
-                            </div>
-                        </div>
-                    </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Paid</p>
+                    <h5 class="font-weight-bolder">
+                    GH₵ {{ $totalAmount }}
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+55%</span>
+                      since yesterday
+                    </p> -->
+                  </div>
                 </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <a href="{{ route('verified') }}">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Receivables</p>
+                      <h5 class="font-weight-bolder">
+                        
+                      </h5>
+                      <!-- <p class="mb-0">
+                      <span class="text-success text-sm font-weight-bolder">+3%</span>
+                      since last week
+                    </p> -->
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle pb-5">
+                      <!-- <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i> -->
+                      <i class="ni ni-credit-card text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Amount Due</p>
+                    <h5 class="font-weight-bolder">
+                     
 
-                <div class="col-xl-12 col-sm-12 mb-xl-0 mt-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex justify-content-between  align-items-center">
-                                    <div class="">
-                                    <h2 style="font-size: 25px;">Payments</h2>
-                                    <h3 style="font-weight: 600;">Information on all your institutions received payments.</h3>
-                                    </div>
-                                    {{-- <div>
-                                        <div class="dropdown text-center">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                choose date
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div> --}}
-                                    <div>
-                                        <div class="gap-2  mx-auto">
-                                            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#verified-candidates">View Report</button>
-                                            <a  href="{{ route('download.verified.certificates') }}" class="btn btn-primary">Download Report</a>
-                                        </div>
-                                        <div class="modal fade" id="verified-candidates" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable  modal-xl">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Verified Candidates Report</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <table class="table table-stripped table-hover text-center">
+                    </h5>
+                    <!-- <p class="mb-0">
+                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
+                      since last quarter
+                    </p> -->
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <i class="ni ni-briefcase-24 text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+            
+         
+            <div id="page-indicator">Showing page 1 of 1</div> <!-- Page indicator here -->
+        
+            <div class="table-responsive table-container">
+                <!-- <div id="results-counter" class="mb-3">Results: <span class="count">0</span></div> -->
+                
+                
+                <table id="example" class="table  table-dark table-striped text-center fs-6 text-white" style="width:100%;">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Amount</th>
@@ -75,225 +240,123 @@
                                                                 @endforeach
                                                             </tbody>
                                                         </table>
-                                                        
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <a  href="{{ route('download.verified.certificates') }}" class="btn btn-primary">Export</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        
-                                    </div>
-                                </li>
-
-                                <li class="list-group-item d-flex justify-content-between  align-items-center">
-                                    <div>
-                                    <h2 style="font-size: 25px;">Recommendations</h2>
-                                    <h3 style="font-weight: 600;">Information on all recommendations</h3>
-
-                                    </div>
-                                 
-                                    <div>
-                                        <div class="gap-2  mx-auto">
-                                            <button class="btn btn-primary" type="button">View Report</button>
-                                            <button class="btn btn-primary" type="button">Download Report</button>
-                                        </div>
-                                    </div>
-                                </li>
-<!-- 
-                                <li class="list-group-item d-flex justify-content-between  align-items-center">
-                                    <div>
-                                        <h5>Payments</h5>
-                                        <small>Information on all payments</small>
-                                    </div>
-                                    {{-- <div>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                choose date
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div> --}}
-                                    <div>
-                                        <div class="gap-2  mx-auto">
-                                            <button class="btn btn-primary" type="button">View Report</button>
-                                            <button class="btn btn-primary" type="button">Download Report</button>
-                                        </div>
-                                    </div>
-                                </li> -->
-
-                                <li class="list-group-item d-flex justify-content-between  align-items-center">
-                                    <div>
-                                    <h2 style="font-size: 25px;">Skill Search</h2>
-                                    <h3 style="font-weight: 600;">Information on all skill search</h3>
-                                    </div>
-                                    {{-- <div>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                choose date
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div> --}}
-                                    <div>
-                                        <div class="gap-2  mx-auto">
-                                            <button class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#verified-candidates" type="button">View Report</button>
-                                            <button class="btn btn-primary" type="button">Download Report</button>
-                                        </div>
-                                        <div class="modal fade" id="skill-searched" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable  modal-xl">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Verified Candidates Report</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                       
-                                                        <table class="table table-stripped table-hover text-center">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Institution</th>
-                                                                 
-                                                                    
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                               
-                                                                <tr>
-                                                                    <td>ffffff</td>
-                                                               
-                                                                </tr>
-                                                              
-                                                            </tbody>
-                                                        </table>
-                                                       
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <a  href="{{ route('download.verified.certificates') }}" class="btn btn-primary">Export</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </li>
-
-                                <li class="list-group-item d-flex justify-content-between  align-items-center">
-                                    <div>
-                                    <h2 style="font-size: 25px;">Industry Paper</h2>
-                                    <h3 style="font-weight: 600;">Information on all industry papers</h3>
-                                    </div>
-                                    {{-- <div>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                choose date
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div> --}}
-                                    <div>
-                                        <div class="gap-2  mx-auto">
-                                            <button class="btn btn-primary" type="button">View Report</button>
-                                            <button class="btn btn-primary" type="button">Download Report</button>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="list-group-item d-flex justify-content-between  align-items-center">
-                                    <div>
-                                    <h2 style="font-size: 25px;">Academic Paper</h2>
-                                    <h3 style="font-weight: 600;">Information on all academic papers</h3>
-
-                                    </div>
-                                    {{-- <div>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                choose date
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div> --}}
-                                    <div>
-                                        <div class="gap-2  mx-auto">
-                                            <button class="btn btn-primary" type="button">View Report</button>
-                                            <button class="btn btn-primary" type="button">Download Report</button>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="list-group-item d-flex justify-content-between  align-items-center">
-                                    <div>
-                                    <h2 style="font-size: 25px;">Payments</h2>
-                                    <h3 style="font-weight: 600;">Information on all payments</h3>
-                                    </div>
-                                    {{-- <div>
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                choose date
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
-                                    </div> --}}
-                                    <div>
-                                        <div class="gap-2  mx-auto">
-                                            <button class="btn btn-primary" type="button">View Report</button>
-                                            <button class="btn btn-primary" type="button">Download Report</button>
-                                        </div>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
+                <div class="pagination-container">
+                    <div class="custom-pagination">
+                        <button id="prevPage" class="btn btn-primary">Previous</button>
+                        <input type="number" id="currentPage" min="1" value="1" class="form-control">
+                        <button id="nextPage" class="btn btn-primary">Next</button>
                     </div>
                 </div>
-
             </div>
-         
-        </header>
-        <main>
-
+        </div>
     </div>
+</main>
 
-    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-Ho8CB4QsqOa28FhNdll8+6o4r36xtZGE2+8a3EVv9L9fSVzNj9v8aApX0PvJ0IsR" crossorigin="anonymous"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const exampleModal = document.getElementById('exampleModal');
-            exampleModal.addEventListener('show.bs.modal', function(event) {
-                const button = event.relatedTarget;
-                const packageName = button.getAttribute('data-package-name');
-                const packageAmount = button.getAttribute('data-package-amount');
-                const modalPackageNameInput = exampleModal.querySelector('#package-name');
-                const modalPackageAmountInput = exampleModal.querySelector('#package-amount');
-                modalPackageNameInput.value = packageName;
-                modalPackageAmountInput.value = packageAmount;
-            });
+<script>
+    $(document).ready(function() {
+        var table = $('#example').DataTable({
+            "info": false,
+            "lengthChange": false,
+            "pageLength": 20, // Display 20 rows per page by default
+            "ordering": false,
+            "paging": false, // Disable default pagination
+            "searching": hide
         });
 
-    </script>
+        var currentPage = 1;
+        var totalPages = Math.ceil(table.data().length / 20); // Calculate the total number of pages
+
+        $('#currentPage').val(currentPage);
+
+        function updateTable() {
+            table.page(currentPage - 1).draw(false);
+            $('#page-indicator').text('Showing page ' + currentPage + ' of ' + totalPages); // Update page indicator
+
+            // Hide or show Previous button
+            if (currentPage <= 1) {
+                $('#prevPage').hide();
+            } else {
+                $('#prevPage').show();
+            }
+
+            // Hide or show Next button
+            if (currentPage >= totalPages) {
+                $('#nextPage').hide();
+            } else {
+                $('#nextPage').show();
+            }
+        }
+
+        $('#prevPage').on('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                $('#currentPage').val(currentPage);
+                updateTable();
+            }
+        });
+
+        $('#nextPage').on('click', function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                $('#currentPage').val(currentPage);
+                updateTable();
+            }
+        });
+
+        $('#currentPage').on('change', function() {
+            var newPage = parseInt($(this).val());
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                updateTable();
+            } else {
+                $(this).val(currentPage); // Reset to the current page if the input is invalid
+            }
+        });
+
+        $('#example').on('page.dt', function() {
+            var pageInfo = table.page.info();
+            $('#currentPage').val(pageInfo.page + 1);
+        });
+
+        // Custom search function for exact match
+        $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            var searchTerm = $('.dataTables_filter input').val().toLowerCase();
+            if (!searchTerm) {
+                $('#results-counter').hide(); // Hide counter if no search term
+                return true; // If no search term, show all rows
+            } else {
+                $('#results-counter').show(); // Show counter if search term exists
+            }
+
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].toLowerCase() === searchTerm) {
+                    return true; // If an exact match is found, show the row
+                }
+            }
+            return false; // Otherwise, hide the row
+        });
+
+        // Update the results counter
+        function updateResultsCounter() {
+            var info = table.page.info();
+            $('#results-counter .count').text(info.recordsDisplay);
+        }
+
+        // Update results counter on table draw
+        table.on('draw', function() {
+            updateResultsCounter();
+        });
+
+        // Initial update of results counter
+        updateResultsCounter();
+
+        // Initial update of table (to handle initial state of pagination buttons)
+        updateTable();
+    });
+</script>
 
     @endsection

@@ -514,8 +514,10 @@ public function Payment()
     // $institutions = Institution::all();
 
     $payments = Finance::where('institution', $institution->institutions)->get();
+     // Calculate the total amount
+     $totalAmount = $payments->sum('amount');
 
-    return view('Users.UserDashboardPayment', [ 'payments'=> $payments,]);
+    return view('Users.UserDashboardPayment', [ 'payments'=> $payments,'totalAmount' => $totalAmount ]);
 }
 
 

@@ -14,11 +14,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap&subset=latin-ext" rel="stylesheet" />
     <link href="{{ asset('css/frontend.css') }}" rel="stylesheet"/>
+
+   
+
+
    
     @yield('styles')
 </head>
+
+
  
 <body class="hold-transition login-page">
+
+  
 
 
 <header class="top-navbar">
@@ -61,9 +69,15 @@
                         <li><a class="hover-btn-new btn-donate text-danger " href="{{ route('registrationpage') }}" ><span>Register</span></a></li>
                     </ul>
               
-            </div>                                         
+                    <div id="google_translate_element"></div>
+
+            </div> 
+
         </div>
     </nav>
+
+   
+
 </header>
 
 @yield('content')
@@ -135,12 +149,31 @@
               </div>
             </div>
           </footer>
+
+          
+
    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.3/icheck.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//code.tidio.co/afyvghjudisapiko8kh4qcavv6xgn3zx.js"async></script>
+    <script src="script.js"></script>
+    <script type="text/javascript">
+       function googleTranslateElementInit() {
+           new google.translate.TranslateElement(
+               {pageLanguage: 'en'},
+               'google_translate_element'
+           );
+           
+           // Hide options bar after language selection
+           document.querySelector('.goog-te-combo').addEventListener('change', function() {
+               var select = document.querySelector('.goog-te-combo');
+               select.style.display = 'none';
+           });
+       }
+   </script>
+   <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     @yield('scripts')
 </body>
 
