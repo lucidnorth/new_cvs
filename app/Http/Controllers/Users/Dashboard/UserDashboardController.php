@@ -53,11 +53,13 @@ class UserDashboardController extends Controller
     
         // Fetch the latest 5 search logs by the authenticated user
         $userId = Auth::id();
+
         $searchLogs = SearchLog::where('user_id', $userId)
             ->orderBy('created_at', 'desc') // Order by creation date, most recent first
             ->take(5) // Limit to 5 logs
             ->get();
     
+
         // Initialize an empty collection to store certificates
         $certificates = collect();
         $qualificationTypes = [];
@@ -227,9 +229,10 @@ class UserDashboardController extends Controller
             $totalAmountGivenToInstitution = UserPackageInstitution::where('institution_id', $institution->id)->sum('amount_given_to_institution');
     
         
-    
-                // Calculate the amount due
-              $amountDue = $totalAmountGivenToInstitution - $totalAmount;
+            // if ($institution) {
+            //     // Calculate the amount due
+            //   $amountDue = $totalAmountGivenToInstitution - $totalAmount;
+            // }
     
         }
 
@@ -252,7 +255,7 @@ class UserDashboardController extends Controller
             'institutionCertsChart' => $institutionCertsChart,
             'institutionQualificationTypeCounts' => $institutionQualificationTypeCounts,
             'payments' => $payments, 
-            'amountDue' => $amountDue,
+            // 'amountDue' => $amountDue,
              // Pass payments data to the view
            
         ]);

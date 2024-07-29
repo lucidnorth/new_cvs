@@ -22,9 +22,18 @@ use App\Http\Controllers\Users\UserDashboardPackagesController;
 use App\Http\Controllers\Users\UserDashboardFaqsController;
 use App\Http\Controllers\Users\UserDashboardReportsController;
 use App\Http\Controllers\Admin\FinanceController;
+use App\Http\Controllers\Users\UserDashboardTalktoUsController;
+use App\Http\Controllers\Admin\ComplaintsController;
 
 
+
+
+
+// Route to handle the form submission
+Route::post('/admin/complaints/reply', [ComplaintsController::class, 'sendReply'])->name('admin.complaints.reply');
 // routes/web.php
+Route::post('/TalkToUs', [UserDashboardTalktoUsController::class, 'store'])->name('users.contacts.store');
+
 
 Route::get('/reports', [UserDashboardReportsController::class, 'reports'])->name('reports');
 Route::get('/download-verified-certificates', [UserDashboardReportsController::class, 'downloadVerifiedCertificates'])->name('download.verified.certificates');

@@ -9,14 +9,39 @@ use App\Http\Requests\UpdateComplaintRequest;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use App\Models\TalktoUs;
+use Illuminate\Support\Facades\Mail;
 class ComplaintsController extends Controller
 {
     public function index()
     {
         abort_if(Gate::denies('complaint_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.complaints.index');
+        $talkToUsEntries = TalkToUs::all(); // Fetch all entries from the database
+
+        return view('admin.complaints.index', compact('talkToUsEntries'));
+    }
+
+    // Handle the reply email sending
+    public function sendReply(Request $request)
+    {
+        $request->validate([
+            'recipient' => 'required|email',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        try {
+            Mail::raw($request->message, function ($message) use ($request) {
+                $message->to($request->recipient)
+                        ->subject($request->subject)
+                        ->from(config('mail.from.address'), config('mail.from.name'));
+            });
+
+            return redirect()->back()->with('success', 'Reply sent successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to send reply. Please try again.');
+        }
     }
 
     public function create()

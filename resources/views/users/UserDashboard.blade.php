@@ -44,7 +44,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">PAYMENTS DUE</p>
                     <h5 class="font-weight-bolder">
-                    GH₵{{  $amountDue}}
+                    
                     </h5>
                     <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>

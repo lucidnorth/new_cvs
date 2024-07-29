@@ -111,6 +111,13 @@
 
                 <div class="col-xl-12 col-sm-12 mb-xl-0 mt-4">
                     <div class="card">
+                    <h2>Contact Us</h2>
+
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
                             <div class="row">
                                 <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
@@ -120,33 +127,49 @@
                                             <div class="card-container ">
                                                 <h2>Send us a Message</h2>
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed</p>
-                                                <form>
-                                                    <div class="mb-3">
-                                                        <label for="name" class="form-label">Your Name</label>
-                                                        <input type="text" class="form-control" id="name" name="name">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="email" class="form-label">Your Email</label>
-                                                        <input type="email" class="form-control" id="email" name="email">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="recipient" class="form-label">Select Recipient</label>
-                                                        <select class="form-select" id="recipient" name="recipient">
-                                                            <option>customercare@certverification.com</option>
-                                                            <option>accountant@certverification.com</option>
-                                                            <option>admin@certverification.com</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="subject" class="form-label">Subject</label>
-                                                        <input type="text" class="form-control" id="subject" name="subject">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="message" class="form-label">Your Message</label>
-                                                        <textarea class="form-control" id="message" name="message" rows="4"></textarea>
-                                                    </div>
-                                                    <button type="submit" class="btn btn-primary btn-send">Send</button>
-                                                </form>
+                                                <form action="{{ route('users.contacts.store') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" name="name">
+                @error('name')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control" id="email" name="email">
+                @error('email')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="recipient" class="form-label">Select Recipient</label>
+                <select class="form-select" id="recipient" name="recipient">
+                    <option>customercare@certverification.com</option>
+                    <option>accountant@certverification.com</option>
+                    <option>admin@certverification.com</option>
+                </select>
+                @error('recipient')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" class="form-control" id="subject" name="subject">
+                @error('subject')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Your Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                @error('message')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-primary btn-send">Send</button>
+        </form>
                                             </div>
                                             <div class="contact-info">
                                                 <h2>Contact Information</h2>
