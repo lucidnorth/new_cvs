@@ -1,24 +1,29 @@
 <style>
-        /* Styles for active state */
-        .nav-link.active {
-            background-color: #596CFF !important; /* Blue background */
-            color: white !important; /* White text */
-        }
+  /* Styles for active state */
+  .nav-link.active {
+    background-color: #596CFF !important;
+    /* Blue background */
+    color: white !important;
+    /* White text */
+  }
 
-        .nav-link.active .icon,
-        .nav-link.active .icon i {
-            color: white !important; /* White icon */
-        }
+  .nav-link.active .icon,
+  .nav-link.active .icon i {
+    color: white !important;
+    /* White icon */
+  }
 
-        /* General styles for nav links */
-        .nav-link {
-            color: #000; /* Default text color */
-        }
+  /* General styles for nav links */
+  .nav-link {
+    color: #000;
+    /* Default text color */
+  }
 
-        .nav-link:hover {
-            color: #007bff; /* Hover text color */
-        }
-    </style>
+  .nav-link:hover {
+    color: #007bff;
+    /* Hover text color */
+  }
+</style>
 
 
 <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
@@ -26,7 +31,6 @@
     <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
       <img src="{{ asset('images/logo.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-
       <!-- <span class="ms-1 font-weight-bold">Certverification.com</span> -->
     </a>
   </div>
@@ -42,7 +46,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('profile') ? 'active' : '' }}"  href="{{ route('profile') }}">
+        <a class="nav-link {{ request()->routeIs('profile') ? 'active' : '' }}" href="{{ route('profile') }}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
           </div>
@@ -53,17 +57,18 @@
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('UploadCertificate') ? 'active' : '' }} " href="{{ route('UploadCertificate') }}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-cloud-upload-alt text-dark text-sm opacity-10"></i>
+            <!-- <i class="fas fa-cloud-upload-alt text-dark text-sm opacity-10"></i> -->
+            <i class="bi bi-cloud-arrow-up-fill text-dark text-sm opacity-10"></i>
           </div>
-          <span class="nav-link-text ms-1">Uplaods</span>
+          <span class="nav-link-text ms-1">Uploads</span>
         </a>
       </li>
       @endif
-        @if(auth()->user()->employer)
+      @if(auth()->user()->employer)
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('packages') ? 'active' : '' }} " href="{{ route('packages') }}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-money-bill-alt text-dark text-sm opacity-10"></i>
+            <i class="bi bi-box2-fill text-dark text-sm opacity-10"></i>
           </div>
           <span class="nav-link-text ms-1">Packages</span>
         </a>
@@ -73,16 +78,17 @@
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('verified') ? 'active' : '' }} " href="{{ route('verified') }}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-check-circle  text-dark text-sm opacity-10"></i>
+            <i class="bi bi-check-circle-fill text-dark text-sm opacity-10"></i>
           </div>
           <span class="nav-link-text ms-1">Verified</span>
         </a>
       </li>
-      @endif 
+      @endif
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('papers') ? 'active' : '' }}" href="{{ route('papers')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-file-alt text-dark text-sm opacity-10"></i>
+
+            <i class="bi bi-file-earmark-arrow-up-fill text-dark text-sm opacity-10"></i>
           </div>
           <span class="nav-link-text ms-1">Papers</span>
         </a>
@@ -102,13 +108,13 @@
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('skillsearch') ? 'active' : '' }}" href="{{ route('skillsearch')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-lightbulb text-dark text-sm opacity-10"></i>
+            <i class="bi bi-suitcase-lg-fill text-dark text-sm opacity-10"></i>
           </div>
           <span class="nav-link-text ms-1">Skill Search</span>
         </a>
       </li>
       @endif
-     
+
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('faqs') ? 'active' : '' }}" href="{{ route('faqs')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -117,82 +123,48 @@
           <span class="nav-link-text ms-1">FAQs</span>
         </a>
       </li>
-      
+
       @if(auth()->user()->my_institution)
       <li class="nav-item">
-        <a class="nav-link {{ request()->routeIs('Payment') ? 'active' : '' }}" href="{{ route('Payment')}}"> 
+        <a class="nav-link {{ request()->routeIs('Payment') ? 'active' : '' }}" href="{{ route('Payment')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-credit-card text-dark text-sm opacity-10"></i>
+            <i class="bi bi-credit-card-fill text-dark text-sm opacity-10"></i>
           </div>
           <span class="nav-link-text ms-1">Payments</span>
         </a>
       </li>
       @endif
+
       @if(auth()->user()->my_institution)
-<li class="nav-item">
-  <a class="nav-link {{ request()->routeIs('institutionVerifiedCerticate') ? 'active' : '' }}" href="{{ route('institutionVerifiedCerticate')}}">
-    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-      <i class="fas fa-history text-dark text-sm opacity-10"></i>
-    </div>
-    <span class="nav-link-text ms-1">Verified Cerificates</span>
-  </a>
-</li>
-@endif
+      <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('institutionVerifiedCerticate') ? 'active' : '' }}" href="{{ route('institutionVerifiedCerticate')}}">
+          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+
+            <i class="bi bi-check-circle-fill text-dark text-sm opacity-10"></i>
+          </div>
+          <span class="nav-link-text ms-1">Verified Cerificates</span>
+        </a>
+      </li>
+      @endif
 
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('reports') ? 'active' : '' }}" href="{{ route('reports')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fa fa-folder text-dark text-sm opacity-10"></i>
+            <i class="bi bi-file-earmark-text-fill text-dark text-sm opacity-10"></i>
           </div>
           <span class="nav-link-text ms-1">Reports</span>
         </a>
       </li>
-    
+
       <li class="nav-item">
         <a class="nav-link {{ request()->routeIs('talktoUs') ? 'active' : '' }}" href="{{ route('talktoUs')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fas fa-certificate text-dark text-sm opacity-10"></i>
+            <i class="bi bi-chat-left-dots-fill text-dark text-sm opacity-10"></i>
           </div>
           <span class="nav-link-text ms-1">Talk to Us</span>
         </a>
       </li>
-
-      <!-- <li class="nav-item">
-          <a class="nav-link " href="../pages/billing.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Billing</span>
-          </a>
-        </li> -->
-      <!-- <li class="nav-item">
-          <a class="nav-link " href="../pages/virtual-reality.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-app text-info text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Virtual Reality</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link " href="../pages/rtl.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">RTL</span>
-          </a>
-        </li> -->
-      <!-- <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
-        </li> -->
-
-      <!-- <li class="nav-item">
-          <a class="nav-link " href="../pages/sign-in.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Sign In</span>
-          </a>
-        </li> -->
+      
       <li class="nav-item">
         <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -208,8 +180,6 @@
 
     </ul>
   </div>
-
-
 
   <script>
     // Get all navigation links

@@ -522,7 +522,7 @@ a:link {
 }
 
 .jumbotron-item1-content1 {
-  font-size: 50px;
+  font-size: 40px;
   color: #ffffff;
   line-height: 150%;
   font-weight: bold;
@@ -537,7 +537,7 @@ a:link {
 
 .jumbotron-items{
 
-  padding-top: 150px;
+  padding-top: 80px;
   
   
   }
@@ -612,9 +612,11 @@ a:link {
 
 .partner-logo {
   width: 100%;
-  height: auto;
+  height: 100px;
+  object-fit: contain;
   transition: transform .3s ease-in-out;
 }
+
 
 .partner-logo:hover {
   transform: scale(1.05);
@@ -1505,36 +1507,44 @@ div a:hover {
 
 /* Get In Touch */
 
-.contact-details-ut-section {
+.contact-details {
   position: relative;
-  background-image: url('public/images/overlay-background.jpg'); 
-  background-size: cover;
+  background-image: url('/images/contactbg.jpg'); /* Ensure the path is correct */
+  background-size: cover; /* Cover the entire container */
   background-position: center;
-  padding: 100px 0; 
   color: white;
+  padding: 0px; /* Adjust padding to fit content within the fixed height */
+  border-radius: 10px; /* Optional: rounded corners for the container */
+  text-align: left; /* Align text to the left */
+  height: 620px; /* Fixed height */
+  overflow: hidden; /* Hide overflow if content exceeds the fixed height */
 }
 
-.overlay-ut {
-  background-color: rgba(0, 0, 0, 0.6); 
-  padding: 30px;
-  border-radius: 10px;
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Match the height of the container */
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+  z-index: 1; /* Place overlay behind the content */
 }
 
-.contact-title-ut {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 20px;
+.contact-details > * {
+  position: relative; /* Ensure text is above the overlay */
+  z-index: 2; /* Ensure text is above the overlay */
 }
 
-.contact-info-ut {
-  margin-top: 20px;
+.contact-details h2,
+.contact-details p {
+  margin: 0; /* Remove default margin for better spacing */
+  padding: 10px 0; /* Add padding for spacing between elements */
 }
 
-.contact-info-ut p {
-  font-size: 1.2rem;
-  line-height: 1.8;
-  margin-bottom: 10px;
+.contact-details h4 {
+  font-weight: bold; /* Make headings stand out */
 }
+
 
 @media (max-width: 991px) {
   .contact-title-ut {

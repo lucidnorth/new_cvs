@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+
 class UserDashboardProfileController extends Controller
 {
     /**
@@ -21,12 +22,7 @@ class UserDashboardProfileController extends Controller
         return view('users.UserDashboardProfile', compact('data'));
     }
 
-    /**
-     * Update the user profile (institution or employer).
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request)
     {
         // Determine if the user is updating an institution or an employer

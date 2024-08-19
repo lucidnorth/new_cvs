@@ -1,6 +1,4 @@
 @extends('layouts.Dashboard')
-
-
 @section('title', ' Dashboard-Laravel Admin Panel')
 @section('content')
 
@@ -66,9 +64,6 @@
                     <input class="form-control" type="text" value="{{ auth()->user()->name}}" name="title">
                   </div>
                 </div>
-
-
-
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
@@ -76,15 +71,6 @@
                   </div>
                 </div>
                 <hr class="horizontal dark">
-
-                <!-- <div class="col-md-12 mt-5">
-        <div class="form-group">
-            <label for="file-upload" class="form-control-label">Upload File</label>
-            <input type="file" class="form-control-file" id="file-upload" accept=".xlsx,.xls,.csv" name="file">
-            <small id="fileHelp" class="form-text text-muted">Please upload Excel files only.</small>
-        </div>
-    </div> -->
-
 
                 <div class="col-md-12 mt-5">
                   <div class="form-group">
@@ -101,17 +87,7 @@
                   <button class="btn btn-primary btn-sm">Upload</button>
                 </div>
               </form>
-
-
-              <!-- <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Last name</label>
-                    <input class="form-control" type="text" value="Lucky">
-                  </div>
-                </div> -->
             </div>
-
-
           </div>
         </div>
       </div>
@@ -129,8 +105,6 @@
           </div>
           <div class="card-body p-3 pb-0">
             <ul class="list-group">
-
-
               <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                 <div class="d-flex flex-column">
                   <h6 class="text-dark mb-1 font-weight-bold text-sm"></h6>
@@ -148,44 +122,7 @@
       </div>
     </div>
   </div>
-
   <div class="container-fluid py-4">
-
-
-    <!-- <footer class="footer pt-3  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                for a better web.
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer> -->
-    <!-- </div>
-  </div> -->
     <div class="fixed-plugin">
       <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
         <i class="fa fa-cog py-2"> </i>
@@ -252,7 +189,6 @@
         </div>
       </div>
     </div>
-
 
     <!-- <h1> {{ auth()->user()->email}}</h1>
 <h1>{{ auth()->user()->address}}</h1> -->

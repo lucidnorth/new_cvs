@@ -8,7 +8,7 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   @yield('styles')
-  
+
   <style>
     body {
       background-color: linear-gradient(175deg, rgba(106, 190, 255, 1) 0%, rgba(0, 58, 103, 1) 100%);
@@ -46,7 +46,6 @@
       margin-top: 100px;
       opacity: 30%;
     }
-
 
     .logo {
       width: 10rem;
@@ -90,8 +89,6 @@
     .signin {
       margin-left: 160px;
       padding-top: 20px;
-
-
     }
 
     .welcometext {
@@ -101,10 +98,8 @@
       margin-bottom: 40px;
     }
 
-
     .container {
       width: 950px;
-
     }
 
     /* Styles for screens smaller than 768px */
@@ -112,9 +107,7 @@
       font-weight: 700;
       font-style: normal;
     }
-
-
-
+ 
     .terms,
     .privacy {
       color: #1176C4;
@@ -130,12 +123,11 @@
       display: none;
     }
 
-    .select-div{
-        position: relative;
-        top: 100px;
-        left: 130px;
+    .select-div {
+      position: relative;
+      top: 100px;
+      left: 130px;
     }
-    
   </style>
 
 </head>
@@ -143,7 +135,7 @@
 <body>
 
 
-@yield('content') 
+  @yield('content')
   <!-- <script>
      function showForm(formId) {
       const forms = document.querySelectorAll('.form');
@@ -154,55 +146,55 @@
   </script> -->
   <script>
     function showSelectedForm() {
-  const selectField = document.getElementById('registrationType');
-  const selectedOption = selectField.value;
-  
-  const welcomeMessage = document.getElementById('welcome-message');
-  const forms = document.querySelectorAll('.form');
-  const descriptions = document.querySelectorAll('.form-description');
+      const selectField = document.getElementById('registrationType');
+      const selectedOption = selectField.value;
 
-  if (selectedOption === '') {
-    welcomeMessage.style.display = 'block';
-    forms.forEach(form => {
-      form.style.display = 'none';
+      const welcomeMessage = document.getElementById('welcome-message');
+      const forms = document.querySelectorAll('.form');
+      const descriptions = document.querySelectorAll('.form-description');
+
+      if (selectedOption === '') {
+        welcomeMessage.style.display = 'block';
+        forms.forEach(form => {
+          form.style.display = 'none';
+        });
+        descriptions.forEach(desc => {
+          desc.style.display = 'none';
+        });
+      } else {
+        welcomeMessage.style.display = 'none';
+        forms.forEach(form => {
+          form.style.display = 'none';
+        });
+        descriptions.forEach(desc => {
+          desc.style.display = 'none';
+        });
+
+        document.getElementById(selectedOption + '-form').style.display = 'block';
+        document.getElementById(selectedOption + '-description').style.display = 'block';
+      }
+    }
+
+    // Ensure welcome message is displayed when default option is manually selected
+    document.addEventListener('DOMContentLoaded', function() {
+      const selectField = document.getElementById('registrationType');
+      const welcomeMessage = document.getElementById('welcome-message');
+
+      if (selectField.value === '') {
+        welcomeMessage.style.display = 'block';
+      }
     });
-    descriptions.forEach(desc => {
-      desc.style.display = 'none';
-    });
-  } else {
-    welcomeMessage.style.display = 'none';
-    forms.forEach(form => {
-      form.style.display = 'none';
-    });
-    descriptions.forEach(desc => {
-      desc.style.display = 'none';
-    });
 
-    document.getElementById(selectedOption + '-form').style.display = 'block';
-    document.getElementById(selectedOption + '-description').style.display = 'block';
-  }
-}
-
-// Ensure welcome message is displayed when default option is manually selected
-document.addEventListener('DOMContentLoaded', function() {
-  const selectField = document.getElementById('registrationType');
-  const welcomeMessage = document.getElementById('welcome-message');
-
-  if (selectField.value === '') {
-    welcomeMessage.style.display = 'block';
-  }
-});
-
-fetch('https://restcountries.com/v3.1/all')
-        .then(response => response.json())
-        .then(data => {
-            const datalist = document.getElementById('country-list');
-            data.forEach(country => {
-                const option = document.createElement('option');
-                option.value = country.name.common;
-                datalist.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error fetching countries:', error))
+    fetch('https://restcountries.com/v3.1/all')
+      .then(response => response.json())
+      .then(data => {
+        const datalist = document.getElementById('country-list');
+        data.forEach(country => {
+          const option = document.createElement('option');
+          option.value = country.name.common;
+          datalist.appendChild(option);
+        });
+      })
+      .catch(error => console.error('Error fetching countries:', error))
   </script>
 </body>

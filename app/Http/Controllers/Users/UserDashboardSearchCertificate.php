@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Users;
+
 use App\Http\Controllers\Controller;
 use App\Models\Institution;
 use App\Models\Certificate;
@@ -18,30 +19,30 @@ class UserDashboardSearchCertificate extends Controller
         // $institution = auth()->user()->my_institution;
         $institutions = Institution::all();
 
-        
-        return view('users.UserDashboardSearchCertificate', [ 'institution'=> $institutions,]);
+
+        return view('users.UserDashboardSearchCertificate', ['institution' => $institutions,]);
     }
 
 
     public function search(Request $request)
-{
-    $this->validate($request, [
-        'institution_id' => 'required|exists:institutions,id',
-        'certificate_number' => 'required|string',
-    ]);
+    {
+        $this->validate($request, [
+            'institution_id' => 'required|exists:institutions,id',
+            'certificate_number' => 'required|string',
+        ]);
 
-    $institutionId = $request->input('institution_id');
-    $certificateNumber = $request->input('certificate_number');
+        $institutionId = $request->input('institution_id');
+        $certificateNumber = $request->input('certificate_number');
 
-    $certificate = Certificate::where('institution_id', $institutionId)
-        ->where('certificate_number', $certificateNumber)
-        ->with('institution') // Assuming 'student' is the relationship name in the Certificate model
-        ->first();
+        $certificate = Certificate::where('institution_id', $institutionId)
+            ->where('certificate_number', $certificateNumber)
+            ->with('institution') // Assuming 'student' is the relationship name in the Certificate model
+            ->first();
 
-    if ($certificate) {
-        return redirect()->route('SearchCertificate')->with('certificate', $certificate);
+        if ($certificate) {
+            return redirect()->route('SearchCertificate')->with('certificate', $certificate);
+        }
+
+        return redirect()->route('SearchCertificate')->with('error', 'No matching record found.');
     }
-
-    return redirect()->route('SearchCertificate')->with('error', 'No matching record found.');
-}
 }
