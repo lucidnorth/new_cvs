@@ -37,6 +37,13 @@ Route::post('/TalkToUs', [UserDashboardTalktoUsController::class, 'store'])->nam
 
 Route::get('/reports', [UserDashboardReportsController::class, 'reports'])->name('reports');
 Route::get('/download-verified-certificates', [UserDashboardReportsController::class, 'downloadVerifiedCertificates'])->name('download.verified.certificates');
+Route::get('/download-user-packages', [UserDashboardReportsController::class, 'downloadUserPackages'])->name('download.user_packages');
+Route::get('/download-user-papers', [UserDashboardReportsController::class, 'downloadUserPapers'])->name('download.user_papers');
+Route::get('/download-skills-gap-set-papers', [UserDashboardReportsController::class, 'downloadSkillsGapSetPapers'])->name('download.skills_gap_set_papers');
+Route::get('/download-research-papers', [UserDashboardReportsController::class, 'downloadResearchPapers'])->name('download.research_papers');
+Route::get('/download-industry-case-study-papers', [UserDashboardReportsController::class, 'downloadIndustryCaseStudyPapers'])->name('download.industry_case_study_papers');
+
+
 Route::get('/faqs', [UserDashboardFaqsController::class, 'faqs'])->name('faqs');
 Route::get('/dashboard/skills/search', [UserDashboardSkillSearchController::class, 'show'])->name('dashboard.skills.show');
 Route::post('/dashboard/skills/search', [UserDashboardSkillSearchController::class, 'search'])->name('dashboard.skills.search');
