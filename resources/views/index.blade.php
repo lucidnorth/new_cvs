@@ -19,8 +19,8 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-register">
-          <li><a class="hover-btn-new btn-donate text-danger" href="{$BaseHref}/auth/"><span>Register</span></a></li>
-        </ul>
+            <li><a class="hover-btn-new btn-donate text-danger" href="{$BaseHref}/auth/"><span>Register</span></a></li>
+          </ul>
 
         </div>
       </div>
@@ -37,19 +37,15 @@
 
 <div class="container px-4 text-center partners-container">
   <p class="partners-title">We have a special relationship with:</p>
-  <div class="row gx-5 justify-content-center">
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-      <div class="p-3"><img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo" class="partner-logo"></div>
+  <div class="row gx-5 justify-content-center mb-3">
+
+    <div class="owl-carousel vendor-carousel">
+      <img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo" class="partner-logo">
+      <img src="{{ asset('images/central.png') }}" alt="central" class="partner-logo">
+      <img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo" class="partner-logo">
+      <img src="{{ asset('images/ug.png') }}" alt="ug" class="partner-logo">
     </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-      <div class="p-3"><img src="{{ asset('images/central.png') }}" alt="central" class="partner-logo"></div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-      <div class="p-3"><img src="{{ asset('images/ug.png') }}" alt="ug" class="partner-logo"></div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-      <div class="p-3"><img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo" class="partner-logo"></div>
-    </div>
+
   </div>
 </div>
 
@@ -212,7 +208,7 @@
             <textarea class="form-control" id="message-text"></textarea>
           </div>
           <div class="mb-3">
-            
+
             <input type="file" class="form-control" id="recipient-name">
           </div>
 
@@ -240,7 +236,7 @@
 
 
 
-      <ul class="nav navbar-nav navbar-register">
+        <ul class="nav navbar-nav navbar-register">
           <li><a class="hover-btn-new btn-donate text-danger" href="{$BaseHref}/auth/"><span>Register</span></a></li>
         </ul>
 

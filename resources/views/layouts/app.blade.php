@@ -14,6 +14,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap&subset=latin-ext" rel="stylesheet" />
     <link href="{{ asset('css/frontend.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('css/owlcarousel/assets/owl.carousel.css') }}" rel="stylesheet"/>
+
    
     @yield('styles')
 </head>
@@ -141,7 +144,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.3/icheck.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//code.tidio.co/afyvghjudisapiko8kh4qcavv6xgn3zx.js"async></script>
+    <script src="{{ asset('css/owlcarousel/owl.carousel.min.js') }} "></script>
+    <script src="{{ asset('css/owlcarousel/owl.carousel.js') }}"></script>
     @yield('scripts')
+
+    <script>
+        (function ($) {
+            "use strict";
+            // Initiate the wowjs
+
+            $('.vendor-carousel').owlCarousel({
+                loop: true,
+                margin: 45,
+                dots: false,
+                loop: true,
+                autoplay: true,
+                smartSpeed: 1000,
+                responsive: {
+                    0:{
+                        items:2
+                    },
+                    576:{
+                        items:3
+                    },
+                    768:{
+                        items:4
+                    },
+                    992:{
+                        items:4
+                    }
+                }
+            });
+
+        })(jQuery);
+    </script>
 </body>
 
 </html> 
