@@ -24,15 +24,21 @@ use App\Http\Controllers\Users\UserDashboardReportsController;
 use App\Http\Controllers\Admin\FinanceController;
 use App\Http\Controllers\Users\UserDashboardTalktoUsController;
 use App\Http\Controllers\Admin\ComplaintsController;
-
-
-
+use App\Http\Controllers\FormsController;
 
 
 // Route to handle the form submission
 Route::post('/admin/complaints/reply', [ComplaintsController::class, 'sendReply'])->name('admin.complaints.reply');
 // routes/web.php
 Route::post('/TalkToUs', [UserDashboardTalktoUsController::class, 'store'])->name('users.contacts.store');
+
+// forms
+Route::post('/contactus', [FormsController::class, 'handleContactUsForm'])->name('form.contactus');
+Route::post('/customercare', [FormsController::class, 'handleCustomerCareForm'])->name('form.customercare');
+Route::post('/workwithus-submit', [FormsController::class, 'handleWorkWithUsForm'])->name('form.workwithus');
+Route::post('/advertisement', [FormsController::class, 'handleAdvertisementForm'])->name('form.advertisement');
+Route::post('/form/vacancy', [FormsController::class, 'handleVacancyForm'])->name('form.vacancy');
+
 
 
 Route::get('/reports', [UserDashboardReportsController::class, 'reports'])->name('reports');
