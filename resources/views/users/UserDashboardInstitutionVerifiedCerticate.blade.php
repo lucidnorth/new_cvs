@@ -142,7 +142,7 @@
         </div>
       </header>
 
-      <div class="table-responsive table-container">
+      <div class="table-responsive table-container mt-5">
                 <div id="results-counter" class="mb-3">Results: <span class="count">0</span></div>
                 <div id="page-indicator">Showing page 1 of 1</div> <!-- Page indicator here -->
                 

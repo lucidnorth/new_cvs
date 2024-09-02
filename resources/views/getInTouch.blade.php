@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
+@if (session('success'))
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Hello!</strong>{{ session('success') }}.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 <div class="container">
     <h1 class="mb-4">Get In Touch</h1>
 
@@ -26,7 +34,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <h1 class="mb-4">CONTACT US</h1>
-                    <form>
+                    <form action="{{ route('form.contactus') }}" method="POST">
+                        @csrf
                         <div class="mb-3">
                             <label for="contactMethod" class="form-label">Preferred Contact Medium</label>
                             <select class="form-select" id="contactMethod" name="contactMethod">
@@ -36,149 +45,157 @@
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email">
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" id="phone" name="phone">
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
                         </div>
                         <div class="mb-3">
                             <label for="message" class="form-label">Type your message here</label>
-                            <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                            <textarea class="form-control" id="message" name="userMessage" rows="4" required></textarea>
                         </div>
                         <div style="text-align: right;">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+
                 </div>
                 <div class="col-md-6">
-                        <div class="contact-details">
-                            <div class="overlay">
-                                <h2>Contact Details of CertVerification</h2>
-                                <p>
-                                <h4>Contact Number:</h4> +233 302 523 734</p>
-                               
-                                <h4>Email:</h4> support@certverification.com<br>admin@certverification.com</p>
-                                <p>
-                                <h4>Working Hours:</h4>Monday To Friday (9AM To 5PM)</p>
-                                <p>
-                                <h4>Live Support:</h4> <i>Coming Soon </i></p>
-                            </div>
+                    <div class="contact-details">
+                        <div class="overlay">
+                            <h2>Contact Details of CertVerification</h2>
+                            <p>
+                            <h4>Contact Number:</h4> +233 302 523 734</p>
+
+                            <h4>Email:</h4> support@certverification.com<br>admin@certverification.com</p>
+                            <p>
+                            <h4>Working Hours:</h4>For Online Verfications; <br>
+                            (All Days Including Holidays) <br><br>
+                            For Contact Numbers: <br>
+                            Monday To Friday (9AM To 5PM)</p>
+                            <p>
+                            <h4>Live Support:</h4> <i>Coming Soon </i></p>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
 
         <div class="tab-pane fade" id="customercare">
             <div class="col-md-12">
                 <h1 class="mb-4">Customer Care</h1>
-                <form>
+                <form action="{{ route('form.customercare') }}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="issue" class="form-label">Report Issues</label>
-                        <select class="form-select" id="issue" name="issue">
-                            <option value="text">Select An Issue</option>
-                            <option value="text">Payments</option>
-                            <option value="text">Login and Sign up</option>
-                            <option value="text">Customer Feedback</option>
-                            <option value="text">Privacy Concerns</option>
-                            <option value="text">Advertisements</option>
+                        <select class="form-select" id="issue" name="issue" required>
+                            <option selected disabled>--select an issue--</option>
+                            <option value="Payments">Payments</option>
+                            <option value="Login and Sign up">Login and Sign up</option>
+                            <option value="Customer Feedback">Customer Feedback</option>
+                            <option value="Privacy Concerns">Privacy Concerns</option>
+                            <option value="Advertisements">Advertisements</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name">
+                        <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email">
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" id="phone" name="phone">
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Type your message here</label>
-                        <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                        <textarea class="form-control" id="message" name="userMessage" rows="4" required></textarea>
                     </div>
                     <div style="text-align: right;">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
 
         <div class="tab-pane fade" id="vacancies">
-        <h1 class="mb-4">Vacancies</h1>
-        <form>
-        <label for="issue" class="form-label">Report Issues</label>
-                        <select class="form-select" id="issue" name="issue">
-                            <option value="text">Select A Vacancy</option>
-                            <option value="text">Customer Care Expert</option>
-                            <option value="text">Researcher</option>
-                            <option value="text">Finance Officer</option>
-                            <option value="text">Software Developer</option>
-                            <option value="text">Product Manager</option>
-                        </select>
-          <div class="mb-3">
-            <label for="name" class="col-form-label">Your Full Name:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="name" class="col-form-label">Phone Number:</label>
-            <input type="telephone" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Country:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-          <div class="mb-3">
+            <h1 class="mb-4">Vacancies</h1>
+            <form action="{{ route('form.vacancy') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="issue" class="form-label">Vacancy</label>
+                    <select class="form-select" id="issue" name="vacancy">
+                        <option selected>--select a vacancy--</option>
+                        <option value="Customer Care Expert">Customer Care Expert</option>
+                        <option value="Researcher">Researcher</option>
+                        <option value="Finance Officer">Finance Officer</option>
+                        <option value="Software Developer">Software Developer</option>
+                        <option value="Product Manager">Product Manager</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Your Full Name:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Message:</label>
+                    <textarea class="form-control" id="message-text" name="userMessage"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="col-form-label">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone">
+                </div>
+                <div class="mb-3">
+                    <label for="country" class="col-form-label">Country:</label>
+                    <textarea class="form-control" id="country" name="country"></textarea>
+                </div>
+                <div class="mb-3">
+                    <input type="file" class="form-control" id="cv" name="cv">
+                </div>
+                <div style="text-align: right;">
+                    <button type="submit" class="btn btn-primary">Submit CV</button>
+                </div>
+            </form>
 
-            <input type="file" class="form-control" id="recipient-name">
-          </div>
-          <div style="text-align: right;">
-          <button type="button" class="btn btn-primary">Submit CV</button>
-          </div>
-        </form>
         </div>
 
         <div class="tab-pane fade" id="advert">
-        <h1 class="mb-4">Advertisements</h1>
-        <form>
-          <div class="mb-3">
-            <label for="name" class="col-form-label">Your Full Name:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="name" class="col-form-label">Phone Number:</label>
-            <input type="telephone" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Country:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Description:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-         
-          <div style="text-align: right;">
-          <button type="button" class="btn btn-primary">Submit</button>
-          </div>
-        </form>
+            <h1 class="mb-4">Advertisement</h1>
+            <form action="{{ route('form.advertisement') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="name" class="col-form-label">Your Full Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="col-form-label">Message:</label>
+                    <textarea class="form-control" id="message" name="userMessage" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="col-form-label">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                </div>
+                <div class="mb-3">
+                    <label for="country" class="col-form-label">Country:</label>
+                    <input type="text" class="form-control" id="country" name="country" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="col-form-label">Description:</label>
+                    <textarea class="form-control" id="description" name="description" required></textarea>
+                </div>
+                <div style="text-align: right;">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>
 @endsection
-

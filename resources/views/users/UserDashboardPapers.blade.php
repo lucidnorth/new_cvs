@@ -167,10 +167,6 @@
                   <p>
                 </div>
                 <div class="d-flex align-items-center text-sm">
-
-
-
-
                   <a href="{{ route('user.download.paper', $paper->id) }}" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
                     Download
                   </a>

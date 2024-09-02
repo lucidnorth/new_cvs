@@ -51,4 +51,10 @@ class Upload extends Model implements HasMedia
     {
         return $this->getMedia('uplaods')->last();
     }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

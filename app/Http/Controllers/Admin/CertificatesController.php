@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\Upload;
+use Illuminate\Support\Facades\Storage;
 
 class CertificatesController extends Controller
 {
@@ -118,12 +120,29 @@ class CertificatesController extends Controller
 
 
         // $institutions = Institution::pluck('name', 'id'); 
-        $users        = User::get();
 
-        return view('admin.certificates.index', compact('institutions', 'users'));
+        $users = User::get();
+
+         // Fetch all records from the uploads table
+         $uploads = Upload::all();
+
+        return view('admin.certificates.index', compact('institutions', 'users','uploads'));
     }
 
-  
+    public function downloadFile($id)
+    {
+        // Fetch the file from the Upload model
+        $upload = Upload::findOrFail($id);
+
+        // Check if the file exists in storage
+        if ($upload->file && Storage::disk('public')->exists($upload->file)) {
+            // Return the file as a download response
+            return Storage::disk('public')->download($upload->file, $upload->title);
+        } else {
+            // Redirect back with an error message if the file doesn't exist
+            return redirect()->back()->with('error', 'File not found.');
+        }
+    }
 
 
     public function create()

@@ -28,12 +28,8 @@
 
   <div class="container-fluid py-4">
     <h5 class="text-white mb-3">Welcome {{ auth()->user()->name}}</h1>
-
-
       <!-- Institution dashboard -->
-
       <!-- Employer dashboard -->
-
       @if(auth()->user()->my_institution)
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -44,8 +40,8 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">PAYMENTS DUE</p>
                     <h5 class="font-weight-bolder">
-                    
-                    </h5>
+                    {{$amountDue}}
+                    </h5>     
                     <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
                       since yesterday
@@ -586,27 +582,6 @@
                   </li>
                   @endforeach
 
-                  
-                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Receivables</h6>
-                        </br>
-                        <span class="text-xs"><b>Amount :</b> GH₵ </span>
-                      </div>
-                    </div>
-                   
-                  </li>
-                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Amount Due</h6>
-                        </br>
-                        <span class="text-xs"><b>Amount :</b> GH₵ </span>s
-                      </div>
-                    </div>
-                  
-                  </li>
                   <!-- <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex align-items-center">
                       <button class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-exclamation"></i></button>
@@ -861,7 +836,6 @@
       <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
       <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> -->
-      <title>Chart Example</title>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
@@ -906,7 +880,7 @@
 
           var ctx = document.getElementById('qualificationChart').getContext('2d');
           var qualificationChart = new Chart(ctx, {
-            type: 'pie',
+            type: 'doughnut',
             data: {
               labels: labels,
               datasets: [{
@@ -973,13 +947,13 @@
               datasets: [{
                 data: institutionData,
                 backgroundColor: [
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)',
-                  'rgba(153, 102, 255, 0.6)',
-                  'rgba(255, 159, 64, 0.6)',
-                  'rgba(243, 229, 0, 0.6)'
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                  'rgba(243, 229, 0, 1)'
                 ],
                 borderColor: [
                   'rgba(255, 99, 132, 1)',
@@ -1002,8 +976,6 @@
                     boxHeight: 15,
                     padding: 10
 
-
-
                   }
                 },
                 datalabels: {
@@ -1023,7 +995,8 @@
                   display: false
                 }
               }
-            }
+            },
+            plugins: [ChartDataLabels]
           });
         });
       </script>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Upload;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 
 class UserDashboardUploadCertificateController extends Controller
@@ -13,8 +14,11 @@ class UserDashboardUploadCertificateController extends Controller
 
     public function index()
     {
+        $user = auth()->user();
 
-        return view('users.UserDashboardUploadCertificate');
+        $certs = $user->uploads()->orderBy('created_at', 'desc')->take(10)->get();       
+        $allcerts =Upload::orderBy('created_at', 'desc')->take(20)->get();
+        return view('users.UserDashboardUploadCertificate' , ['allpapers' => $allcerts,  'certs' => $certs]);
     }
     
 
@@ -22,7 +26,7 @@ class UserDashboardUploadCertificateController extends Controller
     {
         DB::beginTransaction();
         try {
-
+ 
             // Validate the form data
             $request->validate([
                 'title' => 'required|string|max:255',
@@ -54,5 +58,41 @@ class UserDashboardUploadCertificateController extends Controller
 
         // Provide feedback to the user
         return redirect()->back()->with('success', 'File uploaded successfully!');
+    }
+
+
+
+    
+    public function download($id)
+    {
+        // Find the upload by ID
+        $upload = Upload::findOrFail($id);
+    
+        // Get the file path from storage
+        $filePath = storage_path('app/public/' . $upload->file);
+    
+        // Check if the file exists
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            return redirect()->back()->with('error', 'File not found.');
+        }
+    }
+
+    
+
+
+    public function viewPaper($id)
+    {
+        $certificate = Upload::findOrFail($id);
+
+        // Assuming papers are stored in storage/app/public/papers/
+        $pathToFile = storage_path('app/uploads/' . $certificate->file);
+
+        if (!File::exists($pathToFile)) {
+            abort(404);
+        }
+
+        return response()->file($pathToFile);
     }
 }

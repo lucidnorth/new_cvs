@@ -82,6 +82,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Paper::class);
     }
+
+    public function uploads()
+    {
+        return $this->hasMany(Paper::class);
+    }
+    
     
     protected function serializeDate(DateTimeInterface $date)
     {

@@ -2,7 +2,7 @@
 @section('content')
 
 <style>
-.nav-pills .nav-link {
+/* .nav-pills .nav-link {
   border-radius: 0.5rem;
   padding: 12px 20px;
   font-size: 1.1rem;
@@ -12,9 +12,9 @@
   background-color: #007bff;
   color: #fff;
   border: none;
-}
+} */
 
-.card {
+.card { 
   border: none;
   border-radius: 0.75rem;
   overflow: hidden;
@@ -173,7 +173,7 @@
                   <p class="description">{{ $paper->description }}</p>
                   <div class="d-flex justify-content-center">
                     <a href="{{ route('papersupload.download', $paper->id) }}" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i></a>
-                    <a href="#" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
+                    <a href="{{ route('papers.view', $paper->id) }}" class="btn"><i class="fa fa-book" aria-hidden="true"></i></a>
                   </div>
                 </div>
               </div>
@@ -187,3 +187,4 @@
 </div>
 </div>
 @endsection
+

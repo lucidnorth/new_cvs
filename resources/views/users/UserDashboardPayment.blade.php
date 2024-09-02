@@ -108,7 +108,7 @@
   }
 </style>
 
-<main class="main-content position-relative border-radius-lg">
+<main class="main-content position-relative border-radius-lg mb-5">
   <div class="jpush container-fluid">
     <div class="row">
       <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
@@ -193,7 +193,8 @@
       </div>
     </div>
 
-    <div>
+    <div class="container bg-white mt-5">
+    <h6 class="text-capitalize title-big mt-5" style="font-size: 20px;color: #596CFF;">Payment Statistics</h6>
         <canvas id="lineChart"></canvas>
     </div>
     <div id="page-indicator">Showing page 1 of 1</div> <!-- Page indicator here -->
@@ -225,7 +226,6 @@
     </div>
   </div>
   </div>
-  <h2>Payment Statistics</h2>
     <div>
         <canvas id="lineChart"></canvas>
     </div>

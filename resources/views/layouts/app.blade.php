@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ trans('panel.site_title') }}</title>
+  <title>Certification Verification</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/AdminLTE.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css" rel="stylesheet" /> -->
@@ -19,7 +19,6 @@
 
   @yield('styles')
 </head>
-
 <body class="hold-transition login-page">
   <header class="top-navbar">
     <nav class="navbar navbar-expand-lg ms-auto navbar-light bg-light">
@@ -29,7 +28,7 @@
           <!-- <img src="./images/coldsis-logo.png" alt="" class="logo-image"> -->
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class=""><i class="fa fa-bars navbar-toggler-bar " aria-hidden="true"></i></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto">
@@ -50,9 +49,8 @@
       </div>
     </nav>
   </header>
-  
-  @yield('content')
 
+  @yield('content')
   <footer class="footer">
     <div class="footercontainer">
       <div class="row">

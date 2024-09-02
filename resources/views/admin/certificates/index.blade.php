@@ -1,6 +1,33 @@
 @extends('layouts.admin')
 @section('content')
 <div class="content">
+
+<h1>Uploads</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>File</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($uploads as $upload)
+                <tr>
+                    <td>{{ $upload->title }}</td>
+                    <td>{{ $upload->description }}</td>
+                    <td>
+                        @if ($upload->file)
+                        <a href="{{ route('certificates.download', $upload->id) }}">Download</a>
+                    @else
+                            No file
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
     @can('certificate_create')
         <div style="margin-bottom: 10px;" class="row">
             <div class="col-lg-12">

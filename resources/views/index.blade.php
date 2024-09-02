@@ -57,11 +57,12 @@
         <p class="jumbotron-item1-content2 p-3" style="color: yellow;">AUTHENTIC VERIFICATION. REAL TIME. SECURE.</p>
         <div class="d-flex">
           <ul class="nav navbar-nav home-signup" id="">
-            <li><a class="hover-btn-new btn-sign " href="Security/login?BackURL=dashboard"><span>Sign
+            <li><a class="hover-btn-new btn-sign " href="  {{ route('login') }}
+             "><span>Sign
                   In</span></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-register">
-            <li><a class="hover-btn-new btn-donate text-danger" href="{$BaseHref}/auth/"><span>Register</span></a></li>
+            <li><a class="hover-btn-new btn-donate text-danger" href="{{ route('registrationpage') }}"><span>Register</span></a></li>
           </ul>
         </div>
       </div>
@@ -93,7 +94,7 @@
 
 <div class="features container-fluid">
   <div class="container overflow-hidden text-center">
-    <div class="titles ">
+    <div class="titles">
       Features
     </div>
     <div class="row gy-5">
@@ -390,7 +391,7 @@
       <!--<p class="academic-item1-content2 p-3">Discover the original certificate of employees at the comfort of your home.</p>-->
       <div class="d-flex">
         <ul class="nav navbar-nav navbar-register">
-          <li><a class="hover-btn-new btn-donate text-danger" href="{$BaseHref}/auth/"><span>Click Here</span></a></li>
+          <li><a class="hover-btn-new btn-donate text-danger" href="{{ route('getInTouchpage') }}"><span>Click Here</span></a></li>
         </ul>
       </div>
     </div>
@@ -402,7 +403,7 @@
 
 <div class="container-fluid announcement mt-5  ">
   <div class="container px-4 text-center mt-5">
-    <div class="announcement-titles mb-3 ">
+    <div class=" mb-4 titles ">
       News
     </div>
     <div class="row gx-5">
@@ -498,7 +499,7 @@
 
       <div class="d-flex ">
         <ul class="nav navbar-nav navbar-register">
-          <li><a class="hover-btn-new btn-donate text-danger" href="{$BaseHref}/auth/"><span>Contact Us</span></a></li>
+          <li><a class="hover-btn-new btn-donate text-danger" href="{{ route('getInTouchpage') }}"><span>Contact Us</span></a></li>
         </ul>
       </div>
     </div>

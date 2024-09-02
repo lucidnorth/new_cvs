@@ -1,6 +1,19 @@
 @extends('layouts.registration')
 @section('content')
 
+
+@if ($errors->any())
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+@foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
+
+
 <div class="container-fluid h-100 bg-gradient">
   <div class="row h-100">
     <div class="col-md- col-lg-8 mx-auto my-auto inner-div">
@@ -9,9 +22,7 @@
         <a href="{{route('homepage')}}">
           <div class="logo mb-5"><img src="{{ asset('images/logo.png') }}" alt="CertVerification.com"></div>
         </a>
-
         <!-- <img src="institute.jpg" alt="image" class="institute-image"> -->
-
         <div class="select-div">
           <label for="registrationType">Select Registration Type:</label>
           <select id="registrationType" class="form-control" onchange="showSelectedForm()">

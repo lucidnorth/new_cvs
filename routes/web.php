@@ -26,7 +26,9 @@ use App\Http\Controllers\Users\UserDashboardTalktoUsController;
 use App\Http\Controllers\Admin\ComplaintsController;
 use App\Http\Controllers\Users\UserInstitutionVerifiedCertificateController;
 use App\Http\Controllers\Users\UserDashboardUploadCertificateController;
+use App\Http\Controllers\FormsController;
 use App\Http\Controllers\RedirectController;
+
 
 
 // Homepage Routing
@@ -34,7 +36,22 @@ Route::get('/', function () {
     return view('index'); // Adjust 'welcome' to the name of your homepage view
 })->name('homepage');
 
+
+Route::get('/certificates/download/{id}', [CertificatesController::class, 'downloadFile'])->name('certificates.download');
 // Route to handle the form submission
+// Route to handle the form submission
+Route::post('/admin/complaints/reply', [ComplaintsController::class, 'sendReply'])->name('admin.complaints.reply');
+// routes/web.php
+Route::post('/TalkToUs', [UserDashboardTalktoUsController::class, 'store'])->name('users.contacts.store');
+
+// forms
+Route::post('/contactus', [FormsController::class, 'handleContactUsForm'])->name('form.contactus');
+Route::post('/customercare', [FormsController::class, 'handleCustomerCareForm'])->name('form.customercare');
+Route::post('/workwithus-submit', [FormsController::class, 'handleWorkWithUsForm'])->name('form.workwithus');
+Route::post('/advertisement', [FormsController::class, 'handleAdvertisementForm'])->name('form.advertisement');
+Route::post('/form/vacancy', [FormsController::class, 'handleVacancyForm'])->name('form.vacancy');
+
+
 Route::post('/admin/complaints/reply', [ComplaintsController::class, 'sendReply'])->name('admin.complaints.reply');
 // routes/web.php
 Route::post('/TalkToUs', [UserDashboardTalktoUsController::class, 'store'])->name('users.contacts.store');
@@ -72,14 +89,13 @@ Route::middleware(["auth"])->group(function () {
     Route::get('/talktous', [UserDashboardController::class, 'talktoUs'])->name('talktoUs');
     Route::get('/Payment', [UserDashboardController::class, 'Payment'])->name('Payment');
     Route::post('/papersupload/upload', [PapersUploadController::class, 'upload'])->name('papersupload.upload');
-    Route::post('/upload-csv', [CertificatesController::class, 'uploadCsv'])->name('upload.csv');
-    Route::get('/registration', [RegistrationController::class, 'showRegistrationForm'])->name('registration.form');
-    Route::post('/register/employer', [RegistrationController::class, 'registerEmployer'])->name('register.employer');
-    Route::post('/register/institution', [RegistrationController::class, 'registerInstitution'])->name('register.institution');
-    Route::get('/registration', function () {
-        return view('auth.registration');
-    })->name('registrationpage');
+    Route::post('/upload-csv', [CertificatesController::class, 'uploadCsv'])->name('upload.csv');      
 });
+
+// Authentication Routes
+Route::post('/register/employer', [RegistrationController::class, 'registerEmployer'])->name('register.employer');
+Route::post('/register/institution', [RegistrationController::class, 'registerInstitution'])->name('register.institution');
+Route::get('/registration', function () {return view('auth.registration');})->name('registrationpage');
 
 Route::get('/reports', [UserDashboardReportsController::class, 'reports'])->name('reports');
 Route::get('/download-verified-certificates', [UserDashboardReportsController::class, 'downloadVerifiedCertificates'])->name('download.verified.certificates');
@@ -89,17 +105,21 @@ Route::get('/download-skills-gap-set-papers', [UserDashboardReportsController::c
 Route::get('/download-research-papers', [UserDashboardReportsController::class, 'downloadResearchPapers'])->name('download.research_papers');
 Route::get('/download-industry-case-study-papers', [UserDashboardReportsController::class, 'downloadIndustryCaseStudyPapers'])->name('download.industry_case_study_papers');
 Route::get('/papersupload/download/{id}', [PapersUploadController::class, 'download'])->name('papersupload.download');
+Route::get('/papers/view/{id}', [PapersUploadController::class, 'view'])->name('papers.view');
 
-Route::prefix('user')->group(function () { 
+Route::prefix('user')->group(function () {
     Route::get('/papers', [UserDashboardPapersController::class, 'index'])->name('user.papers.index');
     Route::post('/papers/upload', [UserDashboardPapersController::class, 'upload'])->name('user.papers.upload');
     Route::post('/uploadcertificates/upload', [UserDashboardUploadCertificate::class, 'upload'])->middleware(['web', 'auth'])->name('user.uploadcertificates.upload');
     Route::get('/papers/{paper}/download', [UserDashboardPapersController::class, 'download'])->name('user.download.paper');
     Route::get('/papers/{id}', [UserDashboardPapersController::class, 'viewPaper'])->name('user.view.paper');
+    Route::get('/papers/{cert}/download', [UserDashboardUploadCertificateController::class, 'download'])->name('user.download.cert');
+    Route::get('/papers/{id}', [UserDashboardUploadCertificateController::class, 'viewPaper'])->name('user.view.paper');
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->middleware(['web', 'auth'])->name('user.dashboard');
 });
 Route::get('/faqs', [UserDashboardFaqsController::class, 'faqs'])->name('faqs');
 Route::get('/skills', [SkillsController::class, 'index'])->name('skills.index');
-Route::get('/dashboard', [UserDashboardController::class, 'index'])->middleware(['web', 'auth'])->name('user.dashboard');
+
 
 // Routing for Pages
 Route::get('/home', function () {

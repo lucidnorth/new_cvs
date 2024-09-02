@@ -205,17 +205,17 @@ a:link {
   color: #114F82;
 
 }
-.navbar-right :hover{
+/* .navbar-right :hover{
 
  background: rgb(218, 221, 235);
  border-radius: 5px ;
 
 
-}
+} */
 
 .navbar-right :hover span{
 
-  color: #114F82;
+  color: #fff;
   
   
     }
@@ -301,12 +301,12 @@ a:link {
 }
 
 
-.navbar-register :hover{
+/* .navbar-register :hover{
   background: #3486C5;
  
   border-radius: 5px ;
   
-}
+} */
 
 .home-signup {
   margin-left: 20px;
@@ -348,17 +348,17 @@ a:link {
   color: #114F82;
 
 }
-.home-signup :hover{
+/* .home-signup :hover{
 
  background: rgb(218, 221, 235);
  border-radius: 5px ;
 
 
-}
+} */
 
 .home-signup :hover span{
 
-  color: #114F82;
+  color: #fff;
   
   
     }
@@ -492,6 +492,15 @@ a:link {
   height: 2px;
   border-radius: 1px;
   background: #333333;
+  
+}
+
+.navbar-toggler .icon-bar:hover {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+  color: pink;
 }
 
 .navbar-toggler .icon-bar + .icon-bar {
@@ -499,7 +508,12 @@ a:link {
 }
 
 .navbar-toggler:hover {
-  background: #008000;
+  background: #114F82;
+  border: none;
+}
+
+.navbar-toggler:hover .navbar-toggler-bar {
+  background-color: #ffffff; 
 }
 
 .navbar-toggler:hover .icon-bar {
@@ -749,7 +763,8 @@ a:link {
 
 .hover-btn-new:hover {
   background: #114F82;
-  color: white; /* Ensure text color remains white on hover */
+  /* color: white;  */
+  /* Ensure text color remains white on hover */
 }
 
 .jumbotron-item2-content img {

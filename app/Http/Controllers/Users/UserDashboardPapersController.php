@@ -77,7 +77,6 @@ class UserDashboardPapersController extends Controller
             return redirect()->back()->with('error', 'File not found.');
         }
     }
-
     
     public function viewPaper($id)
     {

@@ -15,6 +15,7 @@ use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 use App\Models\Finance;
 use App\Models\UserPackageInstitution;
 use Illuminate\Support\Facades\Log;
+use App\Models\Upload;
 
 
 
@@ -37,7 +38,7 @@ class UserDashboardController extends Controller
 
         $searchLogs = SearchLog::where('user_id', $userId)
             ->orderBy('created_at', 'desc') // Order by creation date, most recent first
-            ->take(5) // Limit to 5 logs
+            ->take(6) // Limit to 5 logs
             ->get();
 
 
@@ -159,13 +160,13 @@ class UserDashboardController extends Controller
         $institutionCertsChart->dataset('Institution Certs', 'pie', array_values($institutionQualificationTypeCounts))
             ->options([
                 'backgroundColor' => [
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(153, 102, 255, 0.6)',
-                    'rgba(255, 159, 64, 0.6)',
-                    'rgba(243, 229, 0, 0.6)'
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(243, 229, 0, 1)'
                 ],
                 'borderColor' => [
                     'rgba(255, 99, 132, 1)',
@@ -200,13 +201,17 @@ class UserDashboardController extends Controller
 
         // Fetch payments related to the institution     
         $payments = null;
+        $amountDue = null;
         if ($institution) {
-            $payments = Finance::where('institution', $institution->institutions)->get();
+            $payments = Finance::where('institution', $institution->institutions)->get()->take(3);
             $totalAmount = $payments->sum('amount');
 
 
             // Sum up the amount given to the institution for each user package
             $totalAmountGivenToInstitution = UserPackageInstitution::where('institution_id', $institution->id)->sum('amount_given_to_institution');
+
+            // Calculate the amount due
+            $amountDue = $totalAmountGivenToInstitution - $totalAmount;
         }
 
         return view('users.UserDashboard', [
@@ -224,6 +229,8 @@ class UserDashboardController extends Controller
             'institutionCertsChart' => $institutionCertsChart,
             'institutionQualificationTypeCounts' => $institutionQualificationTypeCounts,
             'payments' => $payments,
+            'amountDue' => $amountDue,
+
             // 'amountDue' => $amountDue,
 
         ]);
@@ -237,17 +244,9 @@ class UserDashboardController extends Controller
         return view('users.UserDashboardProfile', compact('data'));
     }
 
-
+    
     public function papers()
     {
-        // // Fetch the currently authenticated user
-        // $user = auth()->user();
-
-        // // Fetch papers posted by the currently authenticated user
-        // $papers = Paper::where('user_id', $user->id)->get() ;
-
-        // Pass the papers data to the view
-        // return view('users.UserDashboardPapers', ['papers' => $papers]);
 
         $user = auth()->user();
         $papers = $user->papers()->orderBy('created_at', 'desc')->take(10)->get();
@@ -258,8 +257,15 @@ class UserDashboardController extends Controller
 
 
     public function UploadCertificate()
+    
     {
-        return view('users.UserDashboardUploadCertificate');
+        $user = auth()->user();
+
+        $certs = $user->uploads()->orderBy('created_at', 'desc')->take(10)->get();
+
+        $allcerts =Upload::orderBy('created_at', 'desc')->take(20)->get();
+
+        return view('users.UserDashboardUploadCertificate', ['allpapers' => $allcerts,  'certs' => $certs]);
     }
 
 

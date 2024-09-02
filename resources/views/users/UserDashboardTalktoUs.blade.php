@@ -117,8 +117,7 @@
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
-@endif
-
+@endif                    
                             <div class="row">
                                 <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
 

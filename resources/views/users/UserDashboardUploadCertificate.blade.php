@@ -60,8 +60,8 @@
                 @csrf
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Paper Title</label>
-                    <input class="form-control" type="text" value="{{ auth()->user()->name}}" name="title">
+                    <!-- <label for="example-text-input" class="form-control-label">Institution Title</label> -->
+                    <input class="form-control" type="hidden" value="{{ auth()->user()->name}}" name="title">
                   </div>
                 </div>
                 <div class="col-md-12">
@@ -70,8 +70,7 @@
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
                   </div>
                 </div>
-                <hr class="horizontal dark">
-
+                <!-- <hr class="horizontal dark"> -->
                 <div class="col-md-12 mt-5">
                   <div class="form-group">
                     <label for="file-upload" class="form-control-label">Upload File</label>
@@ -82,7 +81,6 @@
                     <small id="fileHelp" class="form-text text-muted">Please upload PDF files only.</small>
                   </div>
                 </div>
-
                 <div class="text-end"> <!-- Added class "text-end" to push button to the right -->
                   <button class="btn btn-primary btn-sm">Upload</button>
                 </div>
@@ -105,16 +103,17 @@
           </div>
           <div class="card-body p-3 pb-0">
             <ul class="list-group">
+            @foreach ($certs as $paper)
               <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                 <div class="d-flex flex-column">
-                  <h6 class="text-dark mb-1 font-weight-bold text-sm"></h6>
-                  <span class="text-xs"></span>
+                  <h6 class="text-dark mb-1 font-weight-bold text-sm"> {{ $paper->title }}</h6>
+                  <span class="text-xs"> <b>Description:</b> {{ $paper->description }} <b>Date:</b> {{ $paper->created_at->format('F d, Y') }}</span>
+                  <p>
+                  <p>
                 </div>
-                <div class="d-flex align-items-center text-sm">
-                  <a href="#" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
-                    <i class="fas fa-file-pdf text-lg me-1"></i> PDF
-                  </a>
-                </div>
+           
+              </li>
+              @endforeach
               </li>
             </ul>
           </div>
