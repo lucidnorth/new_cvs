@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
+<div class="container about-us-blade">
 
 @if(session('success'))
     <div class="alert alert-success">
@@ -9,7 +9,7 @@
     </div>
 @endif
 
-  <h1 class="mb-4 mt-5">About Us</h1>
+  <h1 class="mb-4 mt-5 about-head">About Us</h1>
   <!-- Nav pills -->
   <ul class="nav nav-pills justify-content-center" id="myTabs">
     <li class="nav-item">

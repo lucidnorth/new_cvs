@@ -1,8 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <h1 class="mb-4">Get In Touch</h1>
+
+@if (session('success'))
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Hello!</strong>{{ session('success') }}.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+<div class="container contact-us-blade">
+    <h1 class="cont-head">Get In Touch</h1>
 
     <!-- Nav pills -->
     <ul class="nav nav-pills justify-content-center" id="myTabs">
@@ -49,9 +57,9 @@
                         </div>
                         <div class="mb-3">
                             <label for="message" class="form-label">Type your message here</label>
-                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                            <textarea class="form-control" id="message" name="userMessage" rows="4" required></textarea>
                         </div>
-                        <div style="text-align: right;">
+                        <div class="button">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
@@ -66,7 +74,10 @@
 
                             <h4>Email:</h4> support@certverification.com<br>admin@certverification.com</p>
                             <p>
-                            <h4>Working Hours:</h4>Monday To Friday (9AM To 5PM)</p>
+                            <h4>Working Hours:</h4>For Online Verfications; <br>
+                            (All Days Including Holidays) <br><br>
+                            For Contact Numbers: <br>
+                            Monday To Friday (9AM To 5PM)</p>
                             <p>
                             <h4>Live Support:</h4> <i>Coming Soon </i></p>
                         </div>
@@ -83,7 +94,7 @@
                     <div class="mb-3">
                         <label for="issue" class="form-label">Report Issues</label>
                         <select class="form-select" id="issue" name="issue" required>
-                            <option selected disabled>Select An Issue</option>
+                            <option selected disabled>--select an issue--</option>
                             <option value="Payments">Payments</option>
                             <option value="Login and Sign up">Login and Sign up</option>
                             <option value="Customer Feedback">Customer Feedback</option>
@@ -105,13 +116,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Type your message here</label>
-                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                        <textarea class="form-control" id="message" name="userMessage" rows="4" required></textarea>
                     </div>
                     <div style="text-align: right;">
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
-
             </div>
         </div>
 
@@ -136,7 +146,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="message-text" class="col-form-label">Message:</label>
-                    <textarea class="form-control" id="message-text" name="message"></textarea>
+                    <textarea class="form-control" id="message-text" name="userMessage"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="col-form-label">Phone Number:</label>
@@ -157,7 +167,7 @@
         </div>
 
         <div class="tab-pane fade" id="advert">
-            <h1 class="mb-4">Advertisements</h1>
+            <h1 class="mb-4">Advertisement</h1>
             <form action="{{ route('form.advertisement') }}" method="POST">
                 @csrf
                 <div class="mb-3">
@@ -166,7 +176,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="message" class="col-form-label">Message:</label>
-                    <textarea class="form-control" id="message" name="message" required></textarea>
+                    <textarea class="form-control" id="message" name="userMessage" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="col-form-label">Phone Number:</label>

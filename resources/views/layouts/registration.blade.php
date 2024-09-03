@@ -135,6 +135,10 @@
         top: 100px;
         left: 130px;
     }
+
+    @media (max-width: 767.98px) {
+      
+    }
     
   </style>
 
