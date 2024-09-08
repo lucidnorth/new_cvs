@@ -29,8 +29,8 @@
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div class="">
-                                    <h2 style="font-size: 25px;">Verified Candidates</h2>
-                                    <h3 style="font-weight: 600;">Information on all verified candidates</h3>
+                                    <h2 style="font-size: 22px;">Verified Candidates</h2>
+                                    <h3 style="font-weight: 500;">Information on all verified candidates</h3>
                                     </div>
                                     
                                     <div>
@@ -95,25 +95,65 @@
                                 </li>
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
-                                    <div>
-                                    <h2 style="font-size: 25px;">Recommendations</h2>
-                                    <h3 style="font-weight: 600;">Information on all recommendations</h3>
-
+                                    <div class="">
+                                    <h2 style="font-size: 22px;">Recommendations</h2>
+                                    <h3 style="font-weight: 500;">Information on all recommendations</h3>
                                     </div>
-                                 
+                                    
                                     <div>
                                         <div class="gap-2  mx-auto">
-                                            <button class="btn btn-primary" type="button">View Report</button>
-                                            <button class="btn btn-primary" type="button">Download Report</button>
+                                            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#skillsearch">View Report</button>
+                                            <a  href="{{ route('download.skill_search_logs') }}" class="btn btn-primary">Download Report</a>
                                         </div>
+
+                                        <div class="modal fade" id="skillsearch" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable  modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Verified Candidates Report</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @if ($skillSearchLogs->isEmpty())
+                                                        <div class="text-center">No recommendations found!</div>
+                                                        @else
+                                                        <table class="table table-stripped table-hover text-center">
+                                                            <thead>
+                                                                <tr>
+                                                                <th>User</th>
+                                                                <th>Search Term</th>
+                                                                <th>Search On</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach($skillSearchLogs as $log)
+                                                                <tr>
+                                                                    <td>{{ $log->id }}</td>
+                                                                    <td>{{ $log->search_term }}</td>
+                                                                    <td>{{ $log->created_at }}</td>
+                                                                </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                        @endif
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <a  href="{{ route('download.skill_search_logs') }}" class="btn btn-primary">Export</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
                                     </div>
                                 </li>
 
 
                                 <!-- <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                    <h2 style="font-size: 25px;">Skill Search</h2>
-                                    <h3 style="font-weight: 600;">Information on all skill search</h3>
+                                    <h2 style="font-size: 22px;">Skill Search</h2>
+                                    <h3 style="font-weight: 500;">Information on all skill search</h3>
                                     </div>
                                     
                                     <div>
@@ -165,8 +205,8 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                        <h2 style="font-size: 25px;">Industry Case Study</h2>
-                                        <h3 style="font-weight: 600;">Information on all industry case studies</h3>
+                                        <h2 style="font-size: 22px;">Industry Case Study</h2>
+                                        <h3 style="font-weight: 500;">Information on all industry case studies</h3>
                                     </div>
                                     
                                     <div>
@@ -218,8 +258,8 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                        <h2 style="font-size: 25px;">Skills Gap Set</h2>
-                                        <h3 style="font-weight: 600;">Information on all skills gap set</h3>
+                                        <h2 style="font-size: 22px;">Skills Gap Set</h2>
+                                        <h3 style="font-weight: 500;">Information on all skills gap set</h3>
                                     </div>
                                     
                                     <div>
@@ -271,8 +311,8 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                        <h2 style="font-size: 25px;">Research Paper</h2>
-                                        <h3 style="font-weight: 600;">Information on all research papers</h3>
+                                        <h2 style="font-size: 22px;">Research Paper</h2>
+                                        <h3 style="font-weight: 500;">Information on all research papers</h3>
                                     </div>
                                     
                                     <div>
@@ -324,8 +364,8 @@
 
                                 <li class="list-group-item d-flex justify-content-between  align-items-center">
                                     <div>
-                                    <h2 style="font-size: 25px;">Payments</h2>
-                                    <h3 style="font-weight: 600;">Information on all payments</h3>
+                                    <h2 style="font-size: 22px;">Payments</h2>
+                                    <h3 style="font-weight: 500;">Information on all payments</h3>
                                     </div>
                                     
                                     <div>

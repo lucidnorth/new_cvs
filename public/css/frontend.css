@@ -185,7 +185,6 @@ a:link {
 .navbar-right {
   margin-left: 20px;
   transition: background 0.3s all;
-
 }
 
 .navbar-right li a {
@@ -197,21 +196,17 @@ a:link {
   padding: 40 11;
   border-radius: 5px;
   text-decoration: none;
-
 }
 
 
-.navbar-right li a span {
+.navbar-right li a{
   color: #114F82;
 }
 
-.navbar-right :hover {
-
+/* .navbar-right :hover {
   background: rgb(218, 221, 235);
   border-radius: 5px;
-
-
-}
+} */
 
 .navbar-right:hover span {
   /* color: #114F82; */
@@ -265,7 +260,6 @@ a:link {
 }
 
 .navbar-register2 {
-
   margin-left: 20px;
   transition: background 0.3s all;
 }
@@ -304,27 +298,12 @@ a:link {
 
 }
 
-
-.navbar-register :hover {
-  background: #3486C5;
-
-  border-radius: 5px;
-
-}
-
 .home-signup {
   margin-left: 20px;
   transition: background 0.3s all;
 
 }
 
-/* @media screen and (max-width: 576px) {
-  .home-signup {
-    align-self: center;
-    transition: background 0.3s all;
-    
-  }
-} */
 
 @media screen and (max-width: 991px) {
   .d-flex {
@@ -453,9 +432,6 @@ a:link {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* .jumbotron-items{
-  padding-top: 150px;
-} */
 
 @media (max-width: 767.98px) {
   .jumbotron-items {
@@ -474,9 +450,6 @@ a:link {
     height: 250px;
   }
 
-  /* .jumbotron-items{
-    padding-top: auto !important;
-  } */
 }
 
 @media screen and (max-width: 991px) {
@@ -502,10 +475,8 @@ a:link {
   .jumbotron .col-lg-6 img {
     width: 100%;
     max-width: 300px;
-    /* Adjust the max-width as per your image dimensions */
     height: auto;
     margin-top: 20px;
-    /* Adjust margin as needed */
   }
 }
 

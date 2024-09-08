@@ -18,9 +18,17 @@ body {
 }
 
 .login-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #ffffff;
     height: 80vh;
-    padding: 50px 90px;
+    padding: 50px 0;
+}
+
+.login-card .wrapper{
+    width: 80%;
 }
 
 .login-card .images{
@@ -28,6 +36,7 @@ body {
     flex-direction: column;
     justify-content: center;
     height: 100%;
+    padding-right: 140px;
     border-right: 2px solid #cccccc;
 }
 

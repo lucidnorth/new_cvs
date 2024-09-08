@@ -48,6 +48,7 @@ Route::get('/download-user-papers', [UserDashboardReportsController::class, 'dow
 Route::get('/download-skills-gap-set-papers', [UserDashboardReportsController::class, 'downloadSkillsGapSetPapers'])->name('download.skills_gap_set_papers');
 Route::get('/download-research-papers', [UserDashboardReportsController::class, 'downloadResearchPapers'])->name('download.research_papers');
 Route::get('/download-industry-case-study-papers', [UserDashboardReportsController::class, 'downloadIndustryCaseStudyPapers'])->name('download.industry_case_study_papers');
+Route::get('/download/skill-search-logs', [UserDashboardReportsController::class, 'downloadSkillSearchLogs'])->name('download.skill_search_logs');
 
 
 Route::get('/faqs', [UserDashboardFaqsController::class, 'faqs'])->name('faqs');

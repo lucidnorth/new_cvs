@@ -5,7 +5,7 @@
 <div class="container-fluid bg-gradient">
     <div class="row">
         <div class="col-lg-8 login-card mx-auto">
-            <div class="">
+            <div class="wrapper">
                 <div class="row">
                     <div class="col-lg-6 my-auto images">
                         <div class="logo">
