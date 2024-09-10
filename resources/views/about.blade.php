@@ -1,9 +1,15 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
+<div class="container about-us-blade">
 
-  <h1 class="mb-4 mt-5">About Us</h1>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+  <h1 class="mb-4 mt-5 about-head">About Us</h1>
   <!-- Nav pills -->
   <ul class="nav nav-pills justify-content-center" id="myTabs">
     <li class="nav-item">
@@ -23,8 +29,7 @@
   <!-- Tab panes -->
   <div class=" tab-content about-tab-content">
     <div class="tab-pane container active" id="integrity">
-      <p style="text-align: justify;">At 
-      Certverifcation.com, integrity means being true and authentic to our code of beliefs. It means that others can rely on us to act consistently and honestly, in accordance with this code.<br/> <br/>To operate with integrity requires us to have a clear understanding of what we want to achieve, and what we hold as most important, and to maintain harmony between these objectives and values, and our decisions and actions.
+      <p style="text-align: justify;">At Certverifcation.com, integrity means being true and authentic to our code of beliefs. It means that others can rely on us to act consistently and honestly, in accordance with this code. To operate with integrity requires us to have a clear understanding of what we want to achieve, and what we hold as most important, and to maintain harmony between these objectives and values, and our decisions and actions.
         <br><br>We are not prone to act in the moment to maximize short term benefits, to make choices based on emotion rather than rational consideration, to ignore little concerns when the overall proposition is attractive. Operating with integrity requires us to choose the more difficult path, in the short-term, in order to get to where we really want to be in the longer term.
         We understand that integrity is the centrality of our business model and brand position.
       </p>
@@ -184,31 +189,33 @@
           </h2>
           <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <form>
+              <form action="{{ route('form.workwithus') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="mb-3">
                   <label for="name" class="col-form-label">Your Full Name:</label>
-                  <input type="text" class="form-control" id="recipient-name">
+                  <input type="text" class="form-control" id="name" name="name" required>
                 </div>
                 <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
+                  <label for="message" class="col-form-label">Message:</label>
+                  <textarea class="form-control" id="message" name="message" required></textarea>
                 </div>
                 <div class="mb-3">
-                  <label for="name" class="col-form-label">Phone Number:</label>
-                  <input type="telephone" class="form-control" id="recipient-name">
+                  <label for="phone" class="col-form-label">Phone Number:</label>
+                  <input type="tel" class="form-control" id="phone" name="phone" required>
                 </div>
                 <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Country:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
+                  <label for="country" class="col-form-label">Country:</label>
+                  <input type="text" class="form-control" id="country" name="country" required>
                 </div>
                 <div class="mb-3">
-
-                  <input type="file" class="form-control" id="recipient-name">
+                  <label for="cv" class="col-form-label">Upload Your CV:</label>
+                  <input type="file" class="form-control" id="cv" name="cv" required>
                 </div>
                 <div style="text-align: right;">
-                  <button type="button" class="btn btn-primary">Submit CV</button>
+                  <button type="submit" class="btn btn-primary">Submit CV</button>
                 </div>
               </form>
+
             </div>
           </div>
         </div>

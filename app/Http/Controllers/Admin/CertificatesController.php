@@ -129,22 +129,7 @@ class CertificatesController extends Controller
         return view('admin.certificates.index', compact('institutions', 'users','uploads'));
     }
 
-    public function downloadFile($id)
-    {
-        // Fetch the file from the Upload model
-        $upload = Upload::findOrFail($id);
-
-        // Check if the file exists in storage
-        if ($upload->file && Storage::disk('public')->exists($upload->file)) {
-            // Return the file as a download response
-            return Storage::disk('public')->download($upload->file, $upload->title);
-        } else {
-            // Redirect back with an error message if the file doesn't exist
-            return redirect()->back()->with('error', 'File not found.');
-        }
-    }
-
-
+ 
     public function create()
     {
         abort_if(Gate::denies('certificate_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');

@@ -52,7 +52,7 @@
               <div class="col-md-12 mb-3">
                 <label for="password">Password<i class="asteric"> *</i></label>
                 <input type="password" class="form-control" id="password" name="password" required>
-              </div>
+              </div>              
               <div class="col-md-12 mb-3">
                 <label for="confirmPassword">Confirm Password<i class="asteric"> *</i></label>
                 <input type="password" class="form-control" id="confirmPassword" name="password_confirmation" required>

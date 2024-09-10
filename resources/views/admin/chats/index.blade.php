@@ -1,5 +1,59 @@
 @extends('layouts.admin')
 @section('content')
+
+<style>
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.table {
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.table thead {
+    background-color: #15A57B;
+    color: #ffffff;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #ddd;
+}
+
+.table thead th {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.btn-primary {
+    background-color: #15A57B;
+    border-color: #15A57B;
+}
+
+.btn-primary:hover {
+    background-color: #128e68;
+    border-color: #128e68;
+}
+
+.text-center {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+</style>
 <div class="content">
     <main class="main-content position-relative border-radius-lg">
       <div class="container-fluid py-4">
@@ -68,8 +122,8 @@
                     <input type="date" class="form-control" id="paymentDate" name="paymentDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="paymentStatus">Payment Status</label>
-                    <input type="text" class="form-control" id="paymentStatus" name="paymentStatus" value="Paid" readonly>
+                    <!-- <label for="paymentStatus">Payment Status</label> -->
+                    <input type="hidden" class="form-control" id="paymentStatus" name="paymentStatus" value="Paid" readonly>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

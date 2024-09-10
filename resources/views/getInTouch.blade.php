@@ -9,8 +9,8 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
-<div class="container">
-    <h1 class="mb-4">Get In Touch</h1>
+<div class="container contact-us-blade">
+    <h1 class="cont-head">Get In Touch</h1>
 
     <!-- Nav pills -->
     <ul class="nav nav-pills justify-content-center" id="myTabs">
@@ -59,7 +59,7 @@
                             <label for="message" class="form-label">Type your message here</label>
                             <textarea class="form-control" id="message" name="userMessage" rows="4" required></textarea>
                         </div>
-                        <div style="text-align: right;">
+                        <div class="button">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>

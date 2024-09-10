@@ -49,25 +49,19 @@
 
 
 <div class="jumbotron">
-  <div class="container px-4 text-center jumbotron-items">
+  <div class="container jumbotron-items">
     <div class="row jumbotron-rows-item ">
-      <div class="col jumbotron-item1">
-        <div class="p-3 jumbotron-item1-content1">Conveniently Verify Academic
+      <div class="col jumbotron-item1 my-auto">
+        <div class="jumbotron-item1-content1">Conveniently Verify Academic
           And Professional Qualifications On Our Accredited Platform.</div>
-        <p class="jumbotron-item1-content2 p-3" style="color: yellow;">AUTHENTIC VERIFICATION. REAL TIME. SECURE.</p>
+        <p class="jumbotron-item1-content2">Authentic Verification . Real Time . Secure</p>
         <div class="d-flex">
-          <ul class="nav navbar-nav home-signup" id="">
-            <li><a class="hover-btn-new btn-sign " href="  {{ route('login') }}
-             "><span>Sign
-                  In</span></a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-register">
-            <li><a class="hover-btn-new btn-donate text-danger" href="{{ route('registrationpage') }}"><span>Register</span></a></li>
-          </ul>
+          <a class="btn-sign" href="{{ route('login') }}">Sign In</a>
+          <a class="btn-register" href="{{ route('registrationpage') }}">Register</a>
         </div>
       </div>
       <div class="col jumbotron-item2-content">
-        <div class="p-3">
+        <div class="">
           <!-- <img src="images/jumboimage.png" alt="logo"> -->
           <img src="{{ asset('images/jumboimage.png') }}" alt="Banner Image">
 
@@ -184,7 +178,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="verificationModal" tabindex="-1" aria-labelledby="verificationModal" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Verification</h1>
@@ -220,7 +214,7 @@
 </div>
 
 <div class="modal fade" id="institutionModal" tabindex="-1" aria-labelledby="institutionModal" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Required Information to Sign Up as an Academic Institution</h1>
@@ -248,7 +242,7 @@
 </div>
 
 <div class="modal fade" id="employerModal" tabindex="-1" aria-labelledby="employerModal" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Required Information to Sign Up as an Employer</h1>
@@ -275,7 +269,7 @@
 </div>
 
 <div class="modal fade" id="digitalModal" tabindex="-1" aria-labelledby="digitalModal" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Digital Certification</h1>
@@ -312,7 +306,7 @@
 </div>
 
 <div class="modal fade" id="profModal" tabindex="-1" aria-labelledby="profModal" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Professional Recruitment Services</h1>
@@ -347,7 +341,7 @@
 
 
 <div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Submit your Curriculumn Vitae </h1>
@@ -376,7 +370,7 @@
             <input type="file" class="form-control" id="recipient-name">
           </div>
           <div style="text-align: right;">
-          <button type="button" class="btn btn-primary">Submit CV</button>
+            <button type="button" class="btn btn-primary">Submit CV</button>
           </div>
         </form>
       </div>
@@ -384,9 +378,9 @@
   </div>
 </div>
 
-<div class="container px-4 text-center academic-items">
+<div class="container px-4 text-center academic-items mb-5">
   <div class="row academic-rows-item ">
-    <div class="col academic-item1">
+    <div class="col academic-item1 my-auto">
       <div class="p-3 academic-item1-content1">To Invite Us Or Contact Us For Engagements.</div>
       <!--<p class="academic-item1-content2 p-3">Discover the original certificate of employees at the comfort of your home.</p>-->
       <div class="d-flex">
@@ -401,15 +395,16 @@
   </div>
 </div>
 
-<div class="container-fluid announcement mt-5  ">
+<div class="container-fluid announcement">
   <div class="container px-4 text-center mt-5">
     <div class=" mb-4 titles ">
       News
     </div>
-    <div class="row gx-5">
+    <div class="row">
       <div class="col-lg-4 col-sm-12">
-        <div class="p-3"> <a class="" href="" data-bs-toggle="modal" data-bs-target="#announcementModal  ">
-            <div class="" style="width: 23rem;">
+        <div class="p-3"> 
+          <a class="" href="" data-bs-toggle="modal" data-bs-target="#announcementModal  ">
+            <div class="news-card">
               <img src="{{ asset('images/News-image.png') }}" alt="logo" class="mb-3 feature-image">
               <!-- <img src="{{ asset('images/news-image.png') }}" alt="employer" class="mb-3 feature-image">   -->
               <div class="announcement-body">
@@ -424,7 +419,7 @@
       <div class="col-lg-4 col-sm-12">
         <div class="p-3">
           <a class="" href="" data-bs-toggle="modal" data-bs-target="#announcementModal  ">
-            <div class="" style="width: 23rem;">
+            <div class="news-card">
               <!-- <img src="images/news-image.png" alt="logo" class="mb-3 feature-image"> -->
               <img src="{{ asset('images/News-image.png') }}" alt="logo" class="mb-3 feature-image">
               <div class="announcement-body">
@@ -439,7 +434,7 @@
       <div class="col-lg-4 col-sm-12">
         <div class="p-3">
           <a class="" href="" data-bs-toggle="modal" data-bs-target="#announcementModal  ">
-            <div class="" style="width: 23rem;">
+            <div class="news-card">
               <!-- <img src="images/news-image.png" alt="logo" class="mb-3 feature-image"> -->
               <img src="{{ asset('images/News-image.png') }}" alt="logo" class="mb-3 feature-image">
               <div class="announcement-body">
@@ -455,7 +450,7 @@
 </div>
 
 <div class="modal fade" id="announcementModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <!-- <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">News Title</h1>
@@ -480,13 +475,13 @@
   </div>
 </div>
 
-<div class="container px-4 text-center academic-items">
+<div class="container academic-items">
   <div class="row academic-rows-item ">
-    <div class="col-lg-6 col-sm-12 academic-item1">
-      <div class="p-3 academic-item1-content1">Other Services We Offer</div>
+    <div class="col-lg-6 col-sm-12 academic-item1 my-auto">
+      <div class="academic-item1-content1">Other Services We Offer</div>
       <!--<p class="academic-item1-content2 p-3">Sed ut perspiciatis unde omnis iste natus error sit voluptatesa</p>-->
 
-      <div class="international-items p-3">
+      <div class="international-items">
         <ol type="1" class="international-list">
           <li>SOCIAL BACKGROUND CHECK</li>
           <li>CRIMINAL BACKGROUND CHECK</li>
@@ -497,15 +492,19 @@
         </ol>
       </div>
 
-      <div class="d-flex ">
+      <a href="{{ route('getInTouchpage') }}" class="btn cont-btn">Contact Us</a>
+
+      <!-- <div class="d-flex ">
         <ul class="nav navbar-nav navbar-register">
           <li><a class="hover-btn-new btn-donate text-danger" href="{{ route('getInTouchpage') }}"><span>Contact Us</span></a></li>
         </ul>
-      </div>
+      </div> -->
     </div>
 
     <div class="col-lg-6 col-sm-12 jumbotron-item2-content">
-      <div class="p-3"><img src="images/international-image.png" alt="logo"></div>
+      <div class="p-3">
+        <img src="images/international-image.png" alt="image">
+      </div>
     </div>
   </div>
 </div>
@@ -577,3 +576,6 @@
 </div>
 
 @endsection
+
+
+

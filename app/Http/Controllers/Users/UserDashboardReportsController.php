@@ -8,6 +8,7 @@ use App\Exports\VerifiedCertificatesExport;
 use App\Exports\UserPackagesExport;
 use App\Exports\UserPaperExport;
 use App\Exports\SkillsGapSetPapersExport;
+use App\Exports\SkillSearchLogExport;
 use App\Http\Controllers\Controller;
 use App\Models\Certificate;
 use App\Models\Report;
@@ -45,7 +46,7 @@ class UserDashboardReportsController extends Controller
             }
         }
         
-        $skilSearchLogs = SkillSearchLog::where('user_id', $userId)->get();
+        $skillSearchLogs = SkillSearchLog::where('user_id', $userId)->get();
 
         $userPackages = UserPackage::where('user_id', $userId)->get();
 
@@ -69,7 +70,7 @@ class UserDashboardReportsController extends Controller
         return view('users.UserDashboardReports', [
             // 'reports' => $reports,
             'certificates' => $certificates,
-            'skilSearchLogs' => $skilSearchLogs,
+            'skillSearchLogs' => $skillSearchLogs,
             'userPackages' => $userPackages,
             'userPapers'=> $userPapers,
             'caseStudyPapers' => $caseStudyPapers,
@@ -107,5 +108,11 @@ class UserDashboardReportsController extends Controller
     // {
     //     return Excel::download(new UserPaperExport, 'user_papers_report.xlsx');
     // }
+
+    public function downloadSkillSearchLogs()
+    {
+        $userId = Auth::id();
+        return Excel::download(new SkillSearchLogExport($userId), 'skill_search_logs.xlsx');
+    }
 
 }

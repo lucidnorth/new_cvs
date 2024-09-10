@@ -54,7 +54,9 @@
   <footer class="footer">
     <div class="footercontainer">
       <div class="row">
+
         <div class="col-lg-2">
+
           <img src="images/logo.png" alt="logo" class="footer-logo">
         </div>
         <div class="col-lg-2">
@@ -62,9 +64,9 @@
             <li>
               <h4>Quick Links</h4>
             </li>
-            <li><a href="{{ route('homepage') }}">Home</a></li>
-            <li><a href="{{ route('aboutpage') }}">About</a></li>
-            <li><a href="{{ route('aboutpage') }}#faqs">FAQ's</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">FAQ`s</a></li>
           </ul>
         </div>
         <div class="col-lg-2">
@@ -72,16 +74,20 @@
             <li>
               <h4>Features</h4>
             </li>
-            <li><a  href="{{ route('homepage')}}#verification">Verification</a></li>
-            <li><a href="{{ route('homepage')}}#digitalcertification">Digital Certificate</a></li>
-            <li><a href="{{ route('homepage')}}#workwithus">Vacancies</a></li>
-            <li><a  href="{{ route('getInTouchpage') }}">Advertise with Us</a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Digital Certificate</a></li>
+            <li><a href="#">Vacancies</a></li>
+            <li><a href="#">Advertise with Us</a></li>
           </ul>
         </div>
+
         <div class="col-lg-2 text-lg-end">
+
         </div>
         <div class="col-lg-4 newsletter">
-          <img src="{{ asset('images/chatlogo.png')}}" alt="logo" class="chatlogo">
+
+          <img src="images/chatlogo.png" alt="logo" class="chatlogo">
+
           </a>
           <h4>Sign up for our newsletter</h4>
           <p>Stay updated with our latest news and Announcements.</p>
@@ -92,16 +98,21 @@
         </div>
       </div>
       <hr>
-      <div class="row ">
-        <div class="col-lg-6">
-          <p>&copy; 2024 Certverification.com.</p>
+      <div class="footer-copyright my-auto">
+        <div class="copyright">
+          <p>&copy; <span id="year">
+              <script>
+                document.getElementById('year').appendChild(document.createTextNode(new Date().getFullYear()))
+              </script>
+            </span> Certverification.com</p>
         </div>
-        <div class="lowerfooter col-lg-6 text-lg-end">
+        <div class="terms">
           <a href="#">Terms</a> | <a href="#">Privacy</a> | <a href="#">Security</a>
         </div>
       </div>
     </div>
   </footer>
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

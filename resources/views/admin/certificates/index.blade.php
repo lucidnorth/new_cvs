@@ -1,32 +1,93 @@
 @extends('layouts.admin')
 @section('content')
+
+<style>
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.table {
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.table thead {
+    background-color: #15A57B;
+    color: #ffffff;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #ddd;
+}
+
+.table thead th {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.btn-primary {
+    background-color: #15A57B;
+    border-color: #15A57B;
+}
+
+.btn-primary:hover {
+    background-color: #128e68;
+    border-color: #128e68;
+}
+
+.text-center {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+</style>
 <div class="content">
 
-<h1>Uploads</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>File</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($uploads as $upload)
+<div class="container my-5">
+    <h2 class="text-center mb-4">Uploaded Certificates</h2>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
                 <tr>
-                    <td>{{ $upload->title }}</td>
-                    <td>{{ $upload->description }}</td>
-                    <td>
-                        @if ($upload->file)
-                        <a href="{{ route('certificates.download', $upload->id) }}">Download</a>
-                    @else
-                            No file
-                        @endif
-                    </td>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>File</th>
+                    <th>Action</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($uploads as $upload)
+                    <tr>
+                        <td>{{ $upload->title }}</td>
+                        <td>{{ $upload->description }}</td>
+                        <td>{{ $upload->file }}</td>
+                        <td>
+                            @if ($upload->file)
+                                <a href="{{ route('user.download', $upload->id) }}" class="btn btn-primary btn-sm">Download</a>
+                            @else
+                                <span class="text-muted">No file</span>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
     @can('certificate_create')
         <div style="margin-bottom: 10px;" class="row">

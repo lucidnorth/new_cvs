@@ -23,7 +23,7 @@ class FormsController extends Controller
         // Validate the form data
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'message' => 'required|string|max:255',
+            'userMessage' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'country' => 'required|string|max:100',
             'cv' => 'required|file|mimes:pdf,doc,docx|max:2048',
@@ -35,14 +35,14 @@ class FormsController extends Controller
         // Save the data to the model
         $application = WorkWithUsApplication::create([
             'name' => $validated['name'],
-            'message' => $validated['message'],
+            'message' => $validated['userMessage'],
             'phone' => $validated['phone'],
             'country' => $validated['country'],
             'cv_path' => $cvPath,
         ]);
 
         // Send the email
-        Mail::to('malikbyussif@gmail.com')->send(new WorkWithUsApplicationMail($application, $request->file('cv')));
+        Mail::to('vacancies@certverification.com')->send(new WorkWithUsApplicationMail($application, $request->file('cv')));
 
         // Return a success response or redirect
         return redirect()->back()->with('success','Your application has been submitted successfully.');
@@ -69,7 +69,7 @@ class FormsController extends Controller
         ]);
 
         // Prepare the email content
-        Mail::to('malikbyussif@gmail.com')->send(new AdvertisementMail($validated));
+        Mail::to('ads@certverification.com')->send(new AdvertisementMail($validated));
 
         // Return a success response or redirect
         return redirect()->back()->with('success', 'Your advertisement has been submitted successfully.');
@@ -96,7 +96,7 @@ class FormsController extends Controller
         ]);
 
         // Send the email
-        Mail::to('malikbyussif@gmail.com')->send(new ContactUsMail($contact));
+        Mail::to('contact@certverification.com')->send(new ContactUsMail($contact));
 
         // Return a success response or redirect
         return redirect()->back()->with('success', 'Your message has been sent successfully.');
@@ -123,7 +123,7 @@ class FormsController extends Controller
         ]);
 
         // Optionally, send an email
-        Mail::to('malikbyussif@gmail.com')->send(new CustomerCareMail($customerCare));
+        Mail::to('customercare@certverification.com')->send(new CustomerCareMail($customerCare));
 
         // Return a success response or redirect
         return redirect()->back()->with('success', 'Your message has been submitted successfully.');
@@ -155,7 +155,7 @@ class FormsController extends Controller
         ]);
 
         // Send the email
-        Mail::to('malikbyussif@gmail.com')->send(new VacancyApplicationMail($application));
+        Mail::to('vacancies@certverification.com')->send(new VacancyApplicationMail($application));
 
         // Return a success response
         return redirect()->back()->with('success', 'Your application has been submitted successfully.');

@@ -30,14 +30,15 @@ use App\Http\Controllers\FormsController;
 use App\Http\Controllers\RedirectController;
 
 
+// Route::get('/user-dashboard/download/{id}', [UserDashboardUploadCertificateController::class, 'download'])->name('user.download');
+
+
 
 // Homepage Routing
 Route::get('/', function () {
     return view('index'); // Adjust 'welcome' to the name of your homepage view
 })->name('homepage');
 
-
-Route::get('/certificates/download/{id}', [CertificatesController::class, 'downloadFile'])->name('certificates.download');
 // Route to handle the form submission
 // Route to handle the form submission
 Route::post('/admin/complaints/reply', [ComplaintsController::class, 'sendReply'])->name('admin.complaints.reply');
@@ -70,6 +71,7 @@ Route::get('/dashboard/papers', [UserDashboardPapersController::class, 'index'])
 Route::get('/dashboard/profile', [UserDashboardProfileController::class, 'index'])->name('dashboard.profile');
 Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->middleware(['web', 'auth'])->name('dashboard.profile.update');
 // Route::redirect('/', '/login');
+Route::get('/download/skill-search-logs', [UserDashboardReportsController::class, 'downloadSkillSearchLogs'])->name('download.skill_search_logs');
 
 // Routing for Functions
 Route::middleware(["auth"])->group(function () {
@@ -89,7 +91,8 @@ Route::middleware(["auth"])->group(function () {
     Route::get('/talktous', [UserDashboardController::class, 'talktoUs'])->name('talktoUs');
     Route::get('/Payment', [UserDashboardController::class, 'Payment'])->name('Payment');
     Route::post('/papersupload/upload', [PapersUploadController::class, 'upload'])->name('papersupload.upload');
-    Route::post('/upload-csv', [CertificatesController::class, 'uploadCsv'])->name('upload.csv');      
+    Route::post('/upload-csv', [CertificatesController::class, 'uploadCsv'])->name('upload.csv');
+    Route::get('/certificates/{id}/download', [UserDashboardUploadCertificateController::class, 'download'])->name('user.download');   
 });
 
 // Authentication Routes
@@ -110,10 +113,9 @@ Route::get('/papers/view/{id}', [PapersUploadController::class, 'view'])->name('
 Route::prefix('user')->group(function () {
     Route::get('/papers', [UserDashboardPapersController::class, 'index'])->name('user.papers.index');
     Route::post('/papers/upload', [UserDashboardPapersController::class, 'upload'])->name('user.papers.upload');
-    Route::post('/uploadcertificates/upload', [UserDashboardUploadCertificate::class, 'upload'])->middleware(['web', 'auth'])->name('user.uploadcertificates.upload');
+    Route::post('/uploadcertificates/upload', [UserDashboardUploadCertificateController::class, 'upload'])->middleware(['web', 'auth'])->name('user.uploadcertificates.upload');
     Route::get('/papers/{paper}/download', [UserDashboardPapersController::class, 'download'])->name('user.download.paper');
     Route::get('/papers/{id}', [UserDashboardPapersController::class, 'viewPaper'])->name('user.view.paper');
-    Route::get('/papers/{cert}/download', [UserDashboardUploadCertificateController::class, 'download'])->name('user.download.cert');
     Route::get('/papers/{id}', [UserDashboardUploadCertificateController::class, 'viewPaper'])->name('user.view.paper');
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->middleware(['web', 'auth'])->name('user.dashboard');
 });

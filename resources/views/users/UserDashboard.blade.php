@@ -23,9 +23,7 @@
 </style>
 
 <main class="main-content position-relative border-radius-lg ">
-
-
-
+  
   <div class="container-fluid py-4">
     <h5 class="text-white mb-3">Welcome {{ auth()->user()->name}}</h1>
       <!-- Institution dashboard -->

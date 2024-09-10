@@ -12,106 +12,55 @@
   <style>
     body {
       background-color: linear-gradient(175deg, rgba(106, 190, 255, 1) 0%, rgba(0, 58, 103, 1) 100%);
-      height: 100vh;
       font-family: Montserrat;
       font-size: 14px;
+      min-height: 100vh;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow-x: hidden;
     }
 
-    .inner-div {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #ffffff;
-    }
-
-    .bg-gradient {
-      /* global 94%+ browsers support */
+    .bg-gradient{
       background: linear-gradient(175deg, rgba(106, 190, 255, 1) 0%, rgba(0, 58, 103, 1) 100%);
-    }
-
-    .inner-div {
-      background-color: #ffffff;
+      min-height: 100vh;
+      padding: 50px 0px;
       display: flex;
-      height: 80vh;
-      width: auto;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .vertical-divider {
-      border-left: 1px solid #000000;
-      height: 70%;
-      position: relative;
-      margin-left: 300px;
-      margin-right: 50px;
-      margin-top: 100px;
-      opacity: 30%;
+    .register-card{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      padding: 70px;
+      background: #fff;
     }
 
-    .logo {
-      width: 10rem;
-      margin-top: px;
-    }
-
-    .image {
-      width: 70em;
-      margin-bottom: 400px;
-
-    }
-
-    .image img {
-      width: 140%;
-      margin-right: 10px;
-      margin-top: 120px;
-      margin-left: 120px;
-      border-radius: 20px;
-      margin-bottom: -50px;
-    }
-
-
-    .institute-image {
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .img-disc {
-      margin-left: 100px;
-      font-family: Montserrat;
-      width: 400px;
-      padding-left: 10px;
-    }
-
-    .form-div {
-      width: 120em;
-      margin-right: 100px;
-      margin-top: 90px;
-    }
-
-
-    .signin {
-      margin-left: 160px;
-      padding-top: 20px;
-    }
-
-    .welcometext {
-      color: #1176C4;
-      font-size: 27px;
-      text-align: center;
+    .register-card .logo{
       margin-bottom: 40px;
     }
 
-    .container {
-      width: 950px;
+    .register-card .logo img{
+      height: 70px;
     }
 
-    /* Styles for screens smaller than 768px */
-    .verificationtext {
-      font-weight: 700;
-      font-style: normal;
+    .register-card .wrapper{
+      padding: 70px 0;
     }
- 
-    .terms,
-    .privacy {
-      color: #1176C4;
-      font-weight: bold;
+
+    .select-div{
+      max-width: 70%;
+    }
+
+    .left-side{
+      border-right: 3px solid #ccc;
+    }
+
+    .form-wrapper{
+      padding-left: 40px;
     }
 
     .asteric {
@@ -123,11 +72,64 @@
       display: none;
     }
 
-    .select-div {
-      position: relative;
-      top: 100px;
-      left: 130px;
+    .welcometext,
+    .form-title {
+      color: #1176C4;
+      font-size: 27px;
+      text-align: center;
+      margin-bottom: 40px;
     }
+
+    .form-wrapper .welcome-message{
+      text-align: center;
+    }
+    .form-wrapper .welcome-message img{
+      height: 200px;
+      object-fit: contain;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 20px; 
+    }
+    .form-description{
+      padding-top: 15px;
+      font-size: 17px;
+    }
+
+    /* Styles for screens smaller than 768px */
+@media (max-width: 767.98px) {
+    
+    
+  }
+  
+  @media (max-width: 768px){
+      
+  }
+  
+  @media (max-width: 991.98px) {
+    .bg-gradient{
+      padding: 50px;
+      align-items: center;
+    }
+
+    .left-side{
+      border-right: none;
+      text-align: center;
+    }
+    .form-wrapper{
+      padding-left: 0;
+    }
+    .welcometext{
+      display: none;
+    }
+    .select-div{
+      max-width: 80%;
+      margin: auto;
+      margin-bottom: 30px;
+    }
+    .welcome-message img{
+      height: 170px !important;
+    }
+  }
+
   </style>
 
 </head>
@@ -144,10 +146,6 @@
       });
     }
   </script> -->
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script>
     function showSelectedForm() {
       const selectField = document.getElementById('registrationType');
