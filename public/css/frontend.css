@@ -205,13 +205,13 @@ a:link {
   color: #114F82;
 }
 
-.navbar-right :hover {
+/* .navbar-right :hover {
 
   background: rgb(218, 221, 235);
   border-radius: 5px;
 
 
-}
+} */
 
 .navbar-right:hover span {
   /* color: #114F82; */
@@ -305,12 +305,12 @@ a:link {
 }
 
 
-.navbar-register :hover {
+/* .navbar-register :hover {
   background: #3486C5;
 
   border-radius: 5px;
 
-}
+} */
 
 .home-signup {
   margin-left: 20px;

@@ -12,6 +12,10 @@
   </button>
 </div>
 @endif
+
+
+
+
 <div class="container-fluid bg-gradient ">
   <div class="row">
     <div class="col-lg-9 bg-white mx-auto register-card ">
@@ -114,6 +118,7 @@
                     <input type="password" class="form-control" id="confirmPassword" name="password_confirmation">
                   </div>
                 </div>
+                <p class="text-warning">Please choose a stronger password. Use a mix of letters, numbers and symbols.</p>
                 <div class="form-group form-check">
                   <input type="checkbox" class="form-check-input" id="agreement" name="agreement">
                   <label class="form-check-label" for="agreement">By clicking on register you have confirmed that you have read and accepted certverification.com <span class="terms">Terms of use</span> and <span class="privacy">Privacy Policy.</span></label>

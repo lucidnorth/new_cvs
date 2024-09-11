@@ -20,9 +20,10 @@ class RegistrationController extends Controller
     {
         return view('auth.registration');
     }
-
    public function registerEmployer(Request $request)
+
 {
+        
     DB::beginTransaction();
     try {
         // Validate request data
@@ -36,7 +37,16 @@ class RegistrationController extends Controller
             'idnumber' => 'required|string|max:255|unique:employers',
             'email' => 'required|string|email|max:255|unique:users',
             'industry' => 'required|string|max:255',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'confirmed',
+                'regex:/[a-z]/',      // at least one lowercase letter
+                'regex:/[A-Z]/',      // at least one uppercase letter
+                'regex:/[0-9]/',      // at least one digit
+                'regex:/[@$!%*#?&]/' // at least one special character
+            ],
         ]);
 
         // Create new user
@@ -119,7 +129,16 @@ class RegistrationController extends Controller
             'address' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'email' => 'required|email|unique:institutions|max:255',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'confirmed',
+                'regex:/[a-z]/',      // at least one lowercase letter
+                'regex:/[A-Z]/',      // at least one uppercase letter
+                'regex:/[0-9]/',      // at least one digit
+                'regex:/[@$!%*#?&]/' // at least one special character
+            ],
             'fullname' => 'required|string|max:255',
             'country' => 'required|string|max:255',
             'location' => 'required|string|max:255',

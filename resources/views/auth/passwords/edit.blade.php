@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="content">
     <div class="row">
         <div class="col-md-6">
@@ -9,7 +8,7 @@
                     {{ trans('global.my_profile') }}
                 </div>
                 <div class="panel-body">
-                    <form method="POST" action="{{ route("profile.password.updateProfile") }}">
+                    <form method="POST" action="{{ route(profile.password.updateProfile)}}">
                         @csrf
                         <div class="form-group">
                             <label class="required" for="name">{{ trans('cruds.user.fields.name') }}</label>
