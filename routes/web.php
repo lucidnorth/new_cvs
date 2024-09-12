@@ -71,7 +71,13 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/dashboard/papers', [UserDashboardPapersController::class, 'index'])->name('dashboard.papers.index');
 
 Route::get('/dashboard/profile', [UserDashboardProfileController::class, 'index'])->name('dashboard.profile');
-Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->middleware(['web', 'auth'])->name('dashboard.profile.update');
+// Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->middleware(['web', 'auth'])->name('dashboard.profile.update');
+// Route::middleware('auth')->group(function() {
+//     Route::post('/profile/update', [UserDashboardProfileController::class, 'updateProfile'])->name('profile.update');
+//     Route::post('/profile/update-password', [UserDashboardProfileController::class, 'updatePassword'])->name('profile.update-password');
+// });
+Route::put('/profile/update', [UserDashboardProfileController::class, 'updateProfile'])->name('profile.update');
+
 
 
 Route::prefix('user')->group(function () {

@@ -92,7 +92,7 @@ class FormsController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'phone' => $validated['phone'],
-            'message' => $validated['message'],
+            'message' => $validated['userMessage'],
         ]);
 
         // Send the email
