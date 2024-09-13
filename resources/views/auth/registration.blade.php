@@ -115,11 +115,10 @@
                                     </div>
                   
                                     <div class="col-md-6 mb-3">
-                                      <label for="fullName">Select Country<i class="asteric"> *</i></label>
-                                      <input type="text" list="country-list" class="form-control" id="country-input" name="country" placeholder="Type to search countries" required>
-                                      <datalist id="country-list">
-                                        <!-- Options will be dynamically populated here -->
-                                      </datalist>
+                                      <label for="countries">Select Country:</label>
+                                      <select class="form-control" id="countries">
+                                        <option value="">Loading countries...</option>
+                                      </select>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                       <label for="phoneNumber">Phone Number<i class="asteric"> *</i></label>

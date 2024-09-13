@@ -181,6 +181,32 @@
             document.getElementById(selectedOption + '-description').style.display = 'block';
           }
         }
+
+        fetch('https://restcountries.com/v3.1/all')
+        .then(response => response.json())
+        .then(data => {
+          // Sort countries alphabetically by name
+          const sortedCountries = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+
+          // Get the select field
+          const countrySelect = document.getElementById('countries');
+
+          // Clear any existing options
+          countrySelect.innerHTML = '<option value="">Select a country</option>';
+
+          // Populate the select field with sorted countries
+          sortedCountries.forEach(country => {
+            const option = document.createElement('option');
+            option.value = country.cca2;  // country code
+            option.textContent = country.name.common;  // country name
+            countrySelect.appendChild(option);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching countries:', error);
+          document.getElementById('countries').innerHTML = '<option value="">Failed to load countries</option>';
+        });
+
       
         // Ensure welcome message is displayed when default option is manually selected
         document.addEventListener('DOMContentLoaded', function() {

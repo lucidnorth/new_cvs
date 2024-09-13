@@ -85,9 +85,8 @@
             <li>
               <h4>Quick Links</h4>
             </li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">FAQ`s</a></li>
+            <li><a href="{{ route('aboutpage') }}">About</a></li>
+            <li><a href="{{ route('aboutpage') }}#faqs">FAQ`s</a></li>
           </ul>
         </div>
         <div class="col-lg-2">
@@ -96,7 +95,7 @@
               <h4>Features</h4>
             </li>
             <li><a href="#">Analytics</a></li>
-            <li><a href="#">Digital Certificate</a></li>
+              <li><a href="{{ route('homepage') }}#features&modal=digitalModal">Digital Certificate</a></li>
             <li><a href="#">Vacancies</a></li>
             <li><a href="#">Advertise with Us</a></li>
           </ul>
@@ -172,6 +171,68 @@
       });
 
     })(jQuery);
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the hash from the URL (e.g., #faqs)
+        var hash = window.location.hash;
+
+        // Check if the hash exists and if it matches the FAQ section
+        if (hash === '#faqs') {
+            // If you are using a section, scroll to it
+            var faqSection = document.querySelector(hash);
+            if (faqSection) {
+                faqSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // If you are using a tab system (like Bootstrap), activate the tab
+            var faqTab = document.querySelector('a[href="' + hash + '"]');
+            if (faqTab) {
+                faqTab.click();
+            }
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        // Parse the URL hash to find the section and modal (if any)
+        var hash = window.location.hash;
+        console.log("Hash detected: " + hash);
+
+        var hashParts = hash.split('&'); // Split the hash to get section and modal
+        console.log("Hash parts: ", hashParts);
+
+        if (hashParts.length > 0) {
+            var sectionID = hashParts[0]; // The first part is the section (e.g., #sectionID)
+            var modalParam = hashParts[1]; // The second part is the modal (e.g., modal=digitalModal)
+            console.log("Section ID: " + sectionID);
+            console.log("Modal Param: " + modalParam);
+
+            // Scroll to the section if sectionID is valid
+            if (sectionID) {
+                var section = document.querySelector(sectionID);
+                if (section) {
+                    console.log("Scrolling to section: " + sectionID);
+                    section.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    console.log("Section not found: " + sectionID);
+                }
+            }
+
+            // Open the modal if the modal parameter is valid
+            if (modalParam && modalParam.startsWith('modal=')) {
+                var modalID = modalParam.split('=')[1]; // Extract the modal ID from the parameter
+                var modalElement = document.getElementById(modalID);
+                if (modalElement) {
+                    console.log("Opening modal: " + modalID);
+                    var modal = new bootstrap.Modal(modalElement);
+                    modal.show();
+                } else {
+                    console.log("Modal not found: " + modalID);
+                }
+            }
+        }
+    }, 500); // Delay in milliseconds
+});
   </script>
 </body>
 

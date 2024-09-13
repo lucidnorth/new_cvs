@@ -86,7 +86,7 @@
 </div>
 
 
-<div class="features container-fluid">
+<div class="features container-fluid" id="features">
   <div class="container overflow-hidden text-center">
     <div class="titles">
       Features
