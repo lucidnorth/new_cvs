@@ -27,7 +27,7 @@
   </ul>
 
   <!-- Tab panes -->
-  <div class=" tab-content about-tab-content">
+  <div class=" tab-content about-tab-content mb-5">
     <div class="tab-pane container active" id="integrity">
       <p style="text-align: justify;">At Certverifcation.com, integrity means being true and authentic to our code of beliefs. It means that others can rely on us to act consistently and honestly, in accordance with this code. To operate with integrity requires us to have a clear understanding of what we want to achieve, and what we hold as most important, and to maintain harmony between these objectives and values, and our decisions and actions.
         <br><br>We are not prone to act in the moment to maximize short term benefits, to make choices based on emotion rather than rational consideration, to ignore little concerns when the overall proposition is attractive. Operating with integrity requires us to choose the more difficult path, in the short-term, in order to get to where we really want to be in the longer term.

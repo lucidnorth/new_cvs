@@ -61,8 +61,13 @@
                                       <input type="businessLocation" class="form-control" id="businesslocation" name="address">
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                      <label for="Idtype">ID Type<i class="asteric"> *</i></label>
-                                      <input type="text" class="form-control" id="idtype" name="idtype">
+                                      <label for="Idtype" >ID Type</label>
+                                      <select class="form-select" id="idtype" name="idtype" required>
+                                          <option value="">--select--</option>
+                                          <option value="National ID">National ID</option>
+                                          <option value="Driver's License">Driver's License</option>
+                                          <option value="Passport">Passport</option>
+                                      </select>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                       <label for="website">Business Website<i class="asteric">*</i></label>

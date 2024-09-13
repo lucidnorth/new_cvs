@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\FinanceController;
 use App\Http\Controllers\Users\UserDashboardTalktoUsController;
 use App\Http\Controllers\Admin\ComplaintsController;
 use App\Http\Controllers\FormsController;
+use App\Http\Controllers\NewsletterController;
 
 
 // Route to handle the form submission
@@ -161,6 +162,7 @@ Route::get('/getInTouch', function () {
     return view('getInTouch');
 })->name('getInTouchpage');
 
+Route::post('/newsletter-signup', [NewsletterController::class, 'store'])->name('newsletter.signup');
 
 // Route::get('/skills', function () { return view('skills');})->name('skillspage');
 

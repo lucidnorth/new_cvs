@@ -77,8 +77,9 @@
       <div class="row">
 
         <div class="col-lg-2">
-
-          <img src="images/logo.png" alt="logo" class="footer-logo">
+          <a href="{{ route('homepage') }}">
+            <img src="images/logo.png" alt="logo" class="footer-logo">
+          </a>
         </div>
         <div class="col-lg-2">
           <ul class="footer-links">
@@ -94,10 +95,10 @@
             <li>
               <h4>Features</h4>
             </li>
-            <li><a href="#">Analytics</a></li>
+            <li><a href="#!">Analytics</a></li>
               <li><a href="{{ route('homepage') }}#features&modal=digitalModal">Digital Certificate</a></li>
-            <li><a href="#">Vacancies</a></li>
-            <li><a href="#">Advertise with Us</a></li>
+            <li><a href="{{ route('getInTouchpage') }}#vacancies">Vacancies</a></li>
+            <li><a href="{{ route('getInTouchpage') }}#advert">Advertise with Us</a></li>
           </ul>
         </div>
 
@@ -105,16 +106,29 @@
 
         </div>
         <div class="col-lg-4 newsletter">
-
-          <img src="images/chatlogo.png" alt="logo" class="chatlogo">
-
-          </a>
           <h4>Sign up for our newsletter</h4>
           <p>Stay updated with our latest news and Announcements.</p>
-          <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Enter your email">
-            <button class="btn btn-primary" type="button">Send</button>
-          </div>
+          @if(session('success'))
+              <div class="alert alert-success">
+                  {{ session('success') }}
+              </div>
+          @endif
+          
+          @if($errors->any())
+              <div class="alert alert-danger">
+                  @foreach ($errors->all() as $error)
+                      <p>{{ $error }}</p>
+                  @endforeach
+              </div>
+          @endif
+
+          <form action="{{ route('newsletter.signup') }}" method="POST">
+              @csrf
+              <div class="input-group mb-3">
+                  <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+                  <button class="btn btn-primary" type="submit">Send</button>
+              </div>
+          </form>
         </div>
       </div>
       <hr>
@@ -172,25 +186,67 @@
 
     })(jQuery);
 
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     // Get the hash from the URL (e.g., #faqs)
+    //     var hash = window.location.hash;
+
+    //     // Check if the hash exists and if it matches the FAQ section
+    //     if (hash === '#faqs') {
+    //         // If you are using a section, scroll to it
+    //         var faqSection = document.querySelector(hash);
+    //         if (faqSection) {
+    //             faqSection.scrollIntoView({ behavior: 'smooth' });
+    //         }
+
+    //         // If you are using a tab system (like Bootstrap), activate the tab
+    //         var faqTab = document.querySelector('a[href="' + hash + '"]');
+    //         if (faqTab) {
+    //             faqTab.click();
+    //         }
+    //     }
+    // });
+
     document.addEventListener('DOMContentLoaded', function() {
-        // Get the hash from the URL (e.g., #faqs)
-        var hash = window.location.hash;
+    // Get the hash from the URL (e.g., #faqs or #vacancies)
+    var hash = window.location.hash;
 
-        // Check if the hash exists and if it matches the FAQ section
-        if (hash === '#faqs') {
-            // If you are using a section, scroll to it
-            var faqSection = document.querySelector(hash);
-            if (faqSection) {
-                faqSection.scrollIntoView({ behavior: 'smooth' });
-            }
-
-            // If you are using a tab system (like Bootstrap), activate the tab
-            var faqTab = document.querySelector('a[href="' + hash + '"]');
-            if (faqTab) {
-                faqTab.click();
-            }
+    // If a hash is present, handle the scroll and tab activation
+    if (hash) {
+        // Scroll to the section if it exists
+        var section = document.querySelector(hash);
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
         }
-    });
+
+        // Activate the corresponding tab if it's a Bootstrap tab
+        var tab = document.querySelector('a[href="' + hash + '"]');
+        if (tab) {
+            var bootstrapTab = new bootstrap.Tab(tab); // Bootstrap tab activation
+            bootstrapTab.show(); // Show the corresponding tab
+        }
+    }
+});
+
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     // Get the hash from the URL (e.g., #faqs)
+    //     var hash = window.location.hash;
+
+    //     // Check if the hash exists and if it matches the FAQ section
+    //     if (hash === '#faqs') {
+    //         // If you are using a section, scroll to it
+    //         var faqSection = document.querySelector(hash);
+    //         if (faqSection) {
+    //             faqSection.scrollIntoView({ behavior: 'smooth' });
+    //         }
+
+    //         // If you are using a tab system (like Bootstrap), activate the tab
+    //         var faqTab = document.querySelector('a[href="' + hash + '"]');
+    //         if (faqTab) {
+    //             faqTab.click();
+    //         }
+    //     }
+    // });
+
 
     document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
