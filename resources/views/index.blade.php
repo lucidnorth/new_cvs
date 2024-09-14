@@ -521,7 +521,7 @@
         <div class="full-width-text">
           <h1 class="getperformance">Get Performance<br>Analytics</h1>
           <br>
-          <a href="#" class="analysis btn btn-primary">Get Analytics</a>
+          <a href="#!" class="analysis btn btn-primary">Get Analytics</a>
         </div>
       </div>
     </div>
@@ -545,7 +545,7 @@
       </a>
     </div>
     <div class="col-md-4">
-      <a href="{{route('skills.index')}}">
+      <a href="{{route('skills.index')}}#skills-gap">
         <div class="flip-card second">
           <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -559,7 +559,7 @@
       </a>
     </div>
     <div class="col-md-4">
-      <a href="{{route('skills.index')}}">
+      <a href="{{route('skills.index')}}#future-needed-skills">
         <div class="flip-card third">
           <div class="flip-card-inner">
             <div class="flip-card-front">

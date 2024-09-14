@@ -192,7 +192,7 @@
           const countrySelect = document.getElementById('countries');
 
           // Clear any existing options
-          countrySelect.innerHTML = '<option value="">Select a country</option>';
+          countrySelect.innerHTML = '<option value="">--select--</option>';
 
           // Populate the select field with sorted countries
           sortedCountries.forEach(country => {

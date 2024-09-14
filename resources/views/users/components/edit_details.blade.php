@@ -220,9 +220,8 @@
 
         <div class="tab-content account-tab-content mt-3">
           <div class="tab-pane container active" id="InstitutionProfile">
-            <form id="institution-form" class="form" action="{{ route('profile.update')}}" method="POST">
+            <form id="institution-form" class="form" action="{{ route('institution.profile.update') }}" method="POST">
               @csrf
-              @method('PUT')
               <h5 class="welcometext text-center mb-3">Account Details</h5>
               <div class="row">
                 <div class="col-md-6 mb-3">
@@ -337,7 +336,7 @@
 
         <div class="tab-content account-tab-content mt-3">
           <div class="tab-pane container active" id="profile">
-            <form id="employer-form" class="form" action="{{ route('profile.update') }}" method="POST">
+            <form id="employer-form" class="form" action="#!" method="POST">
               <h5 class="text-center pb-3">Account Details</h5>
               @csrf
               @method('PUT')
