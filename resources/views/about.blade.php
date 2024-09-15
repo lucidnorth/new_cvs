@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('content')
 
+<style>
+
+/* .about-tab-content{
+  margin: auto 0;
+} */
+
+</style>
 <div class="container about-us-blade">
 
 @if(session('success'))
@@ -27,20 +34,20 @@
   </ul>
 
   <!-- Tab panes -->
-  <div class=" tab-content about-tab-content">
+  <div class=" tab-content about-tab-content ">
     <div class="tab-pane container active" id="integrity">
       <p style="text-align: justify;">At Certverifcation.com, integrity means being true and authentic to our code of beliefs. It means that others can rely on us to act consistently and honestly, in accordance with this code. To operate with integrity requires us to have a clear understanding of what we want to achieve, and what we hold as most important, and to maintain harmony between these objectives and values, and our decisions and actions.
-        <br><br>We are not prone to act in the moment to maximize short term benefits, to make choices based on emotion rather than rational consideration, to ignore little concerns when the overall proposition is attractive. Operating with integrity requires us to choose the more difficult path, in the short-term, in order to get to where we really want to be in the longer term.
+        <br><br>We are not prone to act in the moment to maximize short term benefits, to make choices based on emotion rather than rational consideration, to ignore little concerns when the overall proposition is attractive. <br><br>Operating with integrity requires us to choose the more difficult path, in the short-term, in order to get to where we really want to be in the longer term.
         We understand that integrity is the centrality of our business model and brand position.
       </p>
     </div>
 
     <div class="tab-pane container fade" id="vision">
-      <p style="text-align: center;">To constantly achieve customer intimacy by providing innovative solutions for recruiters, academic and professional discourse communities.</p>
+      <p style="text-align: center; margin : 70px 0;">To constantly achieve customer intimacy by providing innovative solutions for recruiters, academic and professional discourse communities.</p>
     </div>
 
     <div class="tab-pane container fade" id="accreditation">
-      <p style="text-align: center;">To help people make productive decisions by providing real time verification and authentication of qualifications and documents. </p>
+      <p style="text-align: center; margin : 70px 0;">To help people make productive decisions by providing real time verification and authentication of qualifications and documents. </p>
     </div>
 
     <div class="tab-pane container fade" id="faqs">

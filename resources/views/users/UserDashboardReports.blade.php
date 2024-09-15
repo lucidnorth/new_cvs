@@ -4,6 +4,11 @@
 
 @section('content')
 
+<style>
+    .report-carda{
+        margin-top: 50px;
+    }
+</style>
 <main class="main-content position-relative border-radius-lg">
     <div class="container-fluid">
         <header>
@@ -14,16 +19,16 @@
            
             <div class="row">
                 <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body">
+                    <div class="">
+                        <div class="">
                             <div class="row">
-                                <h5>Reports</h5>
+                                <h5 class="text-white">User Reports</h5>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-12 col-sm-12 mb-xl-0 mt-4">
+                <div class="col-xl-12 col-sm-12 mb-xl-0 report-carda">
                     <div class="card">
                         <div class="card-body">
                             <ul class="list-group list-group-flush">

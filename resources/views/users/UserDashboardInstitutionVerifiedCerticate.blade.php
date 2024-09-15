@@ -128,10 +128,10 @@
     <div class="container-fluid py-5 mt-5">
 
     <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body">
+                    <div class=" ">
+                        <div class="">
                             <div class="row">
-                                <h5>Verified Certificates</h5>
+                                <h5 class="text-white">Verified Certificates</h5>
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
         </div>
       </header>
 
-      <div class="table-responsive table-container mt-5">
+      <div class="table-responsive table-container mt-5 bg-white p-5 ">
                 <div id="results-counter" class="mb-3">Results: <span class="count">0</span></div>
                 <div id="page-indicator">Showing page 1 of 1</div> <!-- Page indicator here -->
                 
@@ -302,5 +302,6 @@
         updateTable();
     });
 </script>
+
 
 @endsection

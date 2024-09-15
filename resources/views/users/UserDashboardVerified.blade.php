@@ -3,7 +3,6 @@
 
 @extends('layouts.Dashboard')
 
-@section('title', 'Dashboard - Laravel Admin Panel')
 @section('content')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-9ndCyUa0lW4Y+8zHV/3BecMWGs30KeQll6Z8RoJSGW2l9F5XZT7NFhZe9sJoW8vy" crossorigin="anonymous">
@@ -114,7 +113,7 @@
         text-align: center;
         margin-top: 70px;
         margin-left: 600px;
-        font-size: 15px;
+        /* font-size: 50px; */
        
         position: absolute;
         
@@ -127,7 +126,7 @@
 
 <main class="main-content position-relative border-radius-lg">
   <div class="container-fluid py-4">
-    <div class="container-fluid py-5 mt-5">
+    <div class="container-fluid py-5 mt-3">
     <h5 class="text-white mb-3">Verified Certificates</h1>
       <header class="mt-5">
         <div class="row">    
@@ -135,7 +134,7 @@
           <a href="{{ route('verified') }}">
             <div class="card">
               <div class="card-body p-3">
-                <div class="row">
+                <div class="row" style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
@@ -163,12 +162,12 @@
           <a href="{{ route('reports')}}">
             <div class="card">
               <div class="card-body p-3">
-                <div class="row">
+                <div class="row" style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
                       <h5 class="font-weight-bolder">
-                        Click to view reports
+                        View reports
                       </h5>
                       <!-- <p class="mb-0">
                       <span class="text-danger text-sm font-weight-bolder">-2%</span>
@@ -190,7 +189,7 @@
       </header>
             <div class="table-responsive table-container">
                 <div id="results-counter" class="mb-3">Results: <span class="count">0</span></div>
-                <div id="page-indicator">Showing page 1 of 1</div> <!-- Page indicator here -->
+                <div id="page-indicator" class="fs-5 mb-5">Showing page 1 of 1</div> <!-- Page indicator here -->
                 
                 <table id="example" class="table  table-dark table-striped text-center fs-6 text-white" style="width:100%;">
                     <thead>
@@ -242,9 +241,25 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+<!-- test -->
+
+
+
+
+            
         </div>
     </div>
 </main>
+
+
+
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -351,4 +366,7 @@
         updateTable();
     });
 </script>
-@endsection
+
+
+
+            @endsection

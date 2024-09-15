@@ -32,10 +32,10 @@
 
 
       <div class="col-xl-12 col-sm-12 mb-xl-5 mb-5">
-        <div class="card">
-          <div class="card-body">
+        <div class="">
+          <div class="">
             <div class="row">
-              <h5>Certificate Uploads</h5>
+              <h5 class="text-white">Certificate Uploads</h5>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
         <div class="card">
           <div class="card-header pb-0">
             <div class="d-flex align-items-center">
-              <p class="mb-0">Upload yourschool Certificate
+              <p class="mb-0 title-big">Upload yourschool Certificate
 
               </p>
 
@@ -76,9 +76,10 @@
                     <label for="file-upload" class="form-control-label">Upload File</label>
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="file-upload" accept=".xlsx,.xls,.csv" name="file">
-                      <label class="custom-file-label" for="file-upload" id="file-upload-label">Choose file</label>
+                      <label class="custom-file-label" for="file-upload" id="file-upload-label"  style="font-size: 0.875rem;
+    font-weight: 400;">Choose file</label>
                     </div>
-                    <small id="fileHelp" class="form-text text-muted">Please upload PDF files only.</small>
+                    <small id="fileHelp" class="form-text fs-6">Please upload CSV  files only.</small>
                   </div>
                 </div>
                 <div class="text-end"> <!-- Added class "text-end" to push button to the right -->
@@ -94,7 +95,7 @@
           <div class="card-header pb-0 p-3">
             <div class="row">
               <div class="col-6 d-flex align-items-center">
-                <h6 class="mb-0">My Uploads</h6>
+                <h6 class="mb-0 title-big">My Uploads</h6>
               </div>
               <div class="col-6 text-end">
                 <button class="btn btn-outline-primary btn-sm mb-0">View All</button>

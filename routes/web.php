@@ -28,6 +28,7 @@ use App\Http\Controllers\Users\UserInstitutionVerifiedCertificateController;
 use App\Http\Controllers\Users\UserDashboardUploadCertificateController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\NewsletterController;
 
 
 // Route::get('/user-dashboard/download/{id}', [UserDashboardUploadCertificateController::class, 'download'])->name('user.download');
@@ -40,6 +41,7 @@ Route::get('/', function () {
 })->name('homepage');
 
 // Route to handle the form submission
+Route::post('/newsletter-signup', [NewsletterController::class, 'store'])->name('newsletter.signup');
 // Route to handle the form submission
 Route::post('/admin/complaints/reply', [ComplaintsController::class, 'sendReply'])->name('admin.complaints.reply');
 // routes/web.php
@@ -70,6 +72,9 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/dashboard/papers', [UserDashboardPapersController::class, 'index'])->name('dashboard.papers.index');
 Route::get('/dashboard/profile', [UserDashboardProfileController::class, 'index'])->name('dashboard.profile');
 Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->middleware(['web', 'auth'])->name('dashboard.profile.update');
+Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'updateInstitutionProfile'])->middleware(['web', 'auth'])->name('institution.profile.update');
+Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'updateInstitutionProfile'])->middleware(['web', 'auth'])->name('institution.profile.update');
+
 // Route::redirect('/', '/login');
 Route::get('/download/skill-search-logs', [UserDashboardReportsController::class, 'downloadSkillSearchLogs'])->name('download.skill_search_logs');
 
@@ -81,15 +86,15 @@ Route::middleware(["auth"])->group(function () {
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('profile');
     Route::get('/papers', [UserDashboardController::class, 'papers'])->name('papers');
     // Route::get('/UploadCertificate', [UserDashboardController::class, 'UploadCertificate'])->name('UploadCertificate');
-    Route::get('/UploadCertificate', [UserDashboardUploadCertificateController::class, 'index'])->name('UploadCertificate');
+    Route::get('/uploadcertificate', [UserDashboardUploadCertificateController::class, 'index'])->name('UploadCertificate');
     Route::get('/searchcertificate', [UserDashboardController::class, 'SearchCertificate'])->name('SearchCertificate');
-    Route::get('/Packages', [UserDashboardController::class, 'packages'])->name('packages');
+    Route::get('/packages', [UserDashboardController::class, 'packages'])->name('packages');
     Route::get('/verified', [UserDashboardController::class, 'verified'])->name('verified');
     Route::get('/skillsearch', [UserDashboardController::class, 'skillsearch'])->name('skillsearch');
     // Route::get('/institutionVerifiedCerticate', [UserDashboardController::class, 'institutionVerifiedCerticate'])->name('institutionVerifiedCerticate');
-    Route::get('/InstitutionVerifiedCertificates', [UserInstitutionVerifiedCertificateController::class, 'index'])->name('institutionVerifiedCerticate');
+    Route::get('/institutionVerifiedCertificates', [UserInstitutionVerifiedCertificateController::class, 'index'])->name('institutionVerifiedCerticate');
     Route::get('/talktous', [UserDashboardController::class, 'talktoUs'])->name('talktoUs');
-    Route::get('/Payment', [UserDashboardController::class, 'Payment'])->name('Payment');
+    Route::get('/payment', [UserDashboardController::class, 'Payment'])->name('payment');
     Route::post('/papersupload/upload', [PapersUploadController::class, 'upload'])->name('papersupload.upload');
     Route::post('/upload-csv', [CertificatesController::class, 'uploadCsv'])->name('upload.csv');
     Route::get('/certificates/{id}/download', [UserDashboardUploadCertificateController::class, 'download'])->name('user.download');   

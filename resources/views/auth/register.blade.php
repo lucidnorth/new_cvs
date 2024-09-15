@@ -55,4 +55,31 @@
         </form>
     </div>
 </div>
+
+<script>
+    function showModal() {
+        document.getElementById('errorModal').style.display = 'block';
+        document.getElementById('modalBackdrop').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('errorModal').style.display = 'none';
+        document.getElementById('modalBackdrop').style.display = 'none';
+    }
+
+    if (errors.length > 0) {
+        let errorMessage = "<ul class='bullet'>";
+        
+        errors.forEach(function(error) {
+            errorMessage += "<li>" + error + "</li>";
+        });
+        errorMessage += "<ul class='bullet'>";
+
+        // Insert the error messages into the modal
+        document.getElementById('modalErrors').innerHTML = errorMessage;
+
+        // Show the modal
+        showModal();
+    }
+</script>
 @endsection

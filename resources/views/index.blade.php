@@ -54,7 +54,7 @@
       <div class="col jumbotron-item1 my-auto">
         <div class="jumbotron-item1-content1">Conveniently Verify Academic
           And Professional Qualifications On Our Accredited Platform.</div>
-        <p class="jumbotron-item1-content2">Authentic Verification . Real Time . Secure</p>
+          <p class="jumbotron-item1-content2">Authentic Verification<i class="bi bi-dot"></i>Real Time<i class="bi bi-dot"></i>Secure</p>
         <div class="d-flex">
           <a class="btn-sign" href="{{ route('login') }}">Sign In</a>
           <a class="btn-register" href="{{ route('registrationpage') }}">Register</a>
@@ -76,17 +76,16 @@
   <div class="row gx-5 justify-content-center mb-3">
 
     <div class="owl-carousel vendor-carousel">
-      <img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo" class="partner-logo">
-      <img src="{{ asset('images/central.png') }}" alt="central" class="partner-logo">
-      <img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo" class="partner-logo">
-      <img src="{{ asset('images/ug.png') }}" alt="ug" class="partner-logo">
+      <img src="{{ asset('images/upsa-logo.png') }}" alt="knustlogo" class="partner-logo">
+      <img src="{{ asset('images/ghana-logo.png') }}" alt="central" class="partner-logo">
+      <img src="{{ asset('images/knust-logo.png') }}" alt="knustlogo" class="partner-logo">
+      <img src="{{ asset('images/ucc-logo.png') }}" alt="ug" class="partner-logo">
     </div>
 
   </div>
 </div>
 
-
-<div class="features container-fluid">
+<div class="features container-fluid" id="features">
   <div class="container overflow-hidden text-center">
     <div class="titles">
       Features
@@ -545,7 +544,7 @@
       </a>
     </div>
     <div class="col-md-4">
-      <a href="{{route('skills.index')}}">
+      <a href="{{route('skills.index')}}#skills-gap">
         <div class="flip-card second">
           <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -559,7 +558,7 @@
       </a>
     </div>
     <div class="col-md-4">
-      <a href="{{route('skills.index')}}">
+      <a href="{{route('skills.index')}}#future-needed-skills">
         <div class="flip-card third">
           <div class="flip-card-inner">
             <div class="flip-card-front">

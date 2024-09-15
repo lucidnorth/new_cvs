@@ -111,6 +111,15 @@
 <main class="main-content position-relative border-radius-lg mb-5">
   <div class="jpush container-fluid">
     <div class="row">
+    <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                    <div class="mb-4">
+                        <div class="">
+                            <div class="row">
+                                <h5 class="text-white">Payment</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
       <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
           <div class="card-body p-3">
