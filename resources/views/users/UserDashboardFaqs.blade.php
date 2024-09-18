@@ -69,6 +69,7 @@
     }
     .accordion-header button{
         font-size: 18px;
+        font-weight: bold;
     }
 
     .faq-card{
@@ -89,21 +90,21 @@
                         </div>
                     </div>
                 </div>
-
+                @if(auth()->user()->employer)
             <div class="col-xl-12 col-sm-12 mb-xl-0 faq-card">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
-                                    @foreach ($categories as $category)
+                                    @foreach ($employerCategories as $category)
                                     <div class="faq-category">
                                         <div class="faq-items">
                                            
                                             <div class="faq-item">
-                                                <div class="faq-question">
+                                                <!-- <div class="faq-question">
                                                     <span class="fw-bold">{{ $category->category }}</span>
                                                     <button class="view-btn">View</button>
-                                                </div>
+                                                </div> -->
                                                 <div class="faq-answer">
                                                     @foreach ($category->questions as $index => $question)
                                                     <div class="accordion-item mb-3">
@@ -131,9 +132,57 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </div>
+            @endif
 
+            @if(auth()->user()->my_institution)
+            <div class="col-xl-12 col-sm-12 mb-xl-0 faq-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                                    @foreach ($institutionCategories as $category)
+                                    <div class="faq-category">
+                                        <div class="faq-items">
+                                           
+                                            <div class="faq-item">
+                                                <!-- <div class="faq-question">
+                                                    <span class="fw-bold">{{ $category->category }}'s Frequently Asked Questio </span>
+                                                    <button class="view-btn">View</button>
+                                                </div> -->
+                                                <div class="faq-answer">
+                                                    @foreach ($category->questions as $index => $question)
+                                                    <div class="accordion-item mb-3">
+                                                        <h2 class="accordion-header fw-bolder" id="heading{{ $category->id }}{{ $index }}">
+                                                            <button class="accordion-button {{ $index !== 0 ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $category->id }}{{ $index }}" aria-expanded="{{ $index === 0 ? 'true' : 'false' }}" aria-controls="collapse{{ $category->id }}{{ $index }}">
+                                                                {{ $question->question }}
+                                                                <i class="fa fa-sort-desc mb-2" aria-hidden="true"></i>
+                                                            </button>
+                                                            
+                                                        </h2>
+                                                        <div id="collapse{{ $category->id }}{{ $index }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" data-bs-parent="#accordionExample{{ $category->id }}">
+                                                            <div class="accordion-body">
+                                                                {{ $question->answer }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    @endforeach
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+         
+    </div>
+    </div>
     </header>
 <main>
 

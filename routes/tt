@@ -349,3 +349,107 @@ Controller extends Controller
         }
     }
 }
+
+
+
+
+
+$(document).ready(function() {
+    var table = $('#example').DataTable({
+        "info": false,
+        "lengthChange": false,
+        "pageLength": 20, // Display 20 rows per page by default
+        "ordering": false,
+        "paging": false // Disable default pagination
+    });
+
+    var currentPage = 1;
+    var totalPages = Math.ceil(table.data().length / 20); // Calculate the total number of pages
+
+    $('#currentPage').val(currentPage);
+
+    function updateTable() {
+        table.page(currentPage - 1).draw(false);
+        $('#page-indicator').text('Showing page ' + currentPage + ' of ' + totalPages); // Update page indicator
+
+        // Hide or show Previous button
+        if (currentPage <= 1) {
+            $('#prevPage').hide();
+        } else {
+            $('#prevPage').show();
+        }
+
+        // Hide or show Next button
+        if (currentPage >= totalPages) {
+            $('#nextPage').hide();
+        } else {
+            $('#nextPage').show();
+        }
+    }
+
+    $('#prevPage').on('click', function() {
+        if (currentPage > 1) {
+            currentPage--;
+            $('#currentPage').val(currentPage);
+            updateTable();
+        }
+    });
+
+    $('#nextPage').on('click', function() {
+        if (currentPage < totalPages) {
+            currentPage++;
+            $('#currentPage').val(currentPage);
+            updateTable();
+        }
+    });
+
+    $('#currentPage').on('change', function() {
+        var newPage = parseInt($(this).val());
+        if (newPage >= 1 && newPage <= totalPages) {
+            currentPage = newPage;
+            updateTable();
+        } else {
+            $(this).val(currentPage); // Reset to the current page if the input is invalid
+        }
+    });
+
+    $('#example').on('page.dt', function() {
+        var pageInfo = table.page.info();
+        $('#currentPage').val(pageInfo.page + 1);
+    });
+
+    // Custom search function for exact match
+    $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+        var searchTerm = $('.dataTables_filter input').val().toLowerCase();
+        if (!searchTerm) {
+            $('#results-counter').hide(); // Hide counter if no search term
+            return true; // If no search term, show all rows
+        } else {
+            $('#results-counter').show(); // Show counter if search term exists
+        }
+
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].toLowerCase() === searchTerm) {
+                return true; // If an exact match is found, show the row
+            }
+        }
+        return false; // Otherwise, hide the row
+    });
+
+    // Update the results counter
+    function updateResultsCounter() {
+        var info = table.page.info();
+        $('#results-counter .count').text(info.recordsDisplay);
+    }
+
+    // Update results counter on table draw
+    table.on('draw', function() {
+        updateResultsCounter();
+    });
+
+    // Initial update of results counter
+    updateResultsCounter();
+
+    // Initial update of table (to handle initial state of pagination buttons)
+    updateTable();
+});

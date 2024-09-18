@@ -22,7 +22,7 @@
               <div class="container">
                 <div class="row justify-content-center">
                   <div class="col-12 text-center mb-4">
-                    <h6 class="text-sm">User Information</h6>
+                    <!-- <h6 class="text-sm">User Information</h6> -->
                   </div>
                 </div>
                 <div class="row justify-content-center">
@@ -81,7 +81,7 @@
 
       <div class="card mt-3">
         <div class="card-header pb-0 px-3">
-          <h6 class="mb-0">Admin Details</h6>
+          <h6 class="mb-0">Account Manager Details</h6>
         </div>
         <div class="card-body pt-4 p-3">
           <ul class="list-group">
@@ -108,60 +108,6 @@
         </div>
       </div>
 
-      <div class="card mt-3">
-        <div class="card-header pb-0 px-3">
-          <h6 class="mb-0">User Information</h6>
-        </div>
-        <div class="card-body pt-4 p-3">
-          <ul class="list-group">
-            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-              <div class="">
-                <h6 class="mb-4 text-sm">Eric Adams</h6>
-                <!-- <span class="mb-4 text-xs">Gender: <span class="text-dark font-weight-bold ms-sm-2">Viking Burrito</span></span> -->
-                <span class="mb-4 text-xs">Email : <span class="text-dark ms-sm-2 font-weight-bold">eric@gmail.com</span></span>
-                <span class="text-xs mb-4">Pone: <span class="text-dark ms-sm-2 font-weight-bold">0245348765</span></span>
-                <span class="text-xs mb-4">Role: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-
-
-              </div>
-              <div class="ms-auto text-end">
-                <!-- <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a> -->
-                <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Manage User</a>
-              </div>
-            </li>
-            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-              <div class="">
-                <h6 class="mb-4 text-sm">Eric Adams</h6>
-                <!-- <span class="mb-4 text-xs">Gender: <span class="text-dark font-weight-bold ms-sm-2">Viking Burrito</span></span> -->
-                <span class="mb-4 text-xs">Email : <span class="text-dark ms-sm-2 font-weight-bold">eric@gmail.com</span></span>
-                <span class="text-xs mb-4">Pone: <span class="text-dark ms-sm-2 font-weight-bold">0245348765</span></span>
-                <span class="text-xs mb-4">Role: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-
-
-              </div>
-              <div class="ms-auto text-end">
-                <!-- <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a> -->
-                <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Manage User</a>
-              </div>
-            </li>
-            <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-              <div class="">
-                <h6 class="mb-4 text-sm">Eric Adams</h6>
-                <!-- <span class="mb-4 text-xs">Gender: <span class="text-dark font-weight-bold ms-sm-2">Viking Burrito</span></span> -->
-                <span class="mb-4 text-xs">Email : <span class="text-dark ms-sm-2 font-weight-bold">eric@gmail.com</span></span>
-                <span class="text-xs mb-4">Pone: <span class="text-dark ms-sm-2 font-weight-bold">0245348765</span></span>
-                <span class="text-xs mb-4">Role: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-
-
-              </div>
-              <div class="ms-auto text-end">
-                <!-- <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="far fa-trash-alt me-2"></i>Delete</a> -->
-                <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Manage User</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
 
     </div>
 
@@ -183,10 +129,10 @@
         <div class="card-header text-center border-0 pt-0 pt-lg-2 pb-4 pb-lg-3">
           <div class="p-3">
             @if(auth()->user()->institution_id)
-            <a href="" data-bs-toggle="modal" data-bs-target="#InstitutionformModal " class="btn btn-sm btn-info mb-0 d-none d-lg-block mb-3">Edit Profile</a>
+            <a href="" data-bs-toggle="modal" data-bs-target="#InstitutionformModal " class="btn btn-sm btn-info mb-0 d-none d-lg-block mb-3">Edit Account Manager Profile</a>
             @endif
             @if(auth()->user()->employer)
-            <a href="" data-bs-toggle="modal" data-bs-target="#EmployeeformModal" class="btn btn-sm btn-info mb-0 d-none d-lg-block mb-3">Edit Profile</a>
+            <a href="" data-bs-toggle="modal" data-bs-target="#EmployeeformModal" class="btn btn-sm btn-info mb-0 d-none d-lg-block mb-3">dit Account Manager Profile</a>
             @endif
             <!-- <a href="javascript:;" class="btn btn-sm btn-info mb-0 d-block d-lg-none"><i class="ni ni-collection"></i></a> -->
             <a href="javascript:;" class="btn btn-sm btn-dark float-right mb-0 d-none d-lg-block">Add User</a>
@@ -220,9 +166,8 @@
 
         <div class="tab-content account-tab-content mt-3">
           <div class="tab-pane container active" id="InstitutionProfile">
-            <form id="institution-form" class="form" action="" method="POST">
-            @csrf
-            @method('PUT')
+            <form id="institution-form" class="form" action="{{ route('institution.profile.update') }}" method="POST">
+              @csrf
               <h5 class="welcometext text-center mb-3">Account Details</h5>
               <div class="row">
                 <div class="col-md-6 mb-3">
@@ -263,7 +208,7 @@
                   <label for="website">Website<i class="asteric"> *</i></label>
                   <input type="text" class="form-control" id="website" name="website" value="{{ $data->website }}" required>
                 </div>
-                
+
                 <div class="col-md-12 mb-3">
                   <label for="confirmPassword">Current Password<i class="asteric"> *</i></label>
                   <input type="password" class="form-control" id="confirmPassword" name="password" required>
@@ -277,33 +222,29 @@
             </form>
           </div>
 
+
           <div class="tab-pane container" id="InstitutionPass">
-            <form id="employer-form" class="form" action="#!" method="POST">
-              <h5 class="text-center pb-3">Change Password</h5>
+            <form id="password-form" class="form" action="" method="POST">
               @csrf
-              @method('PUT')
-              <input type="hidden" name="profile_type" value="employer">
+              <h5 class="text-center pb-3">Change Password</h5>
               <div class="row">
                 <div class="col-md-12 mb-3">
-                  <label for="password">Current Password<i class="asteric"> *</i></label>
-                  <input type="password" class="form-control" id="password" name="password" required>
+                  <label for="currentPassword">Current Password<i class="asteric"> *</i></label>
+                  <input type="password" class="form-control" id="currentPassword" name="current_password" required>
                 </div>
                 <div class="col-md-12 mb-3">
-                  <label for="password">Password<i class="asteric"> *</i></label>
-                  <input type="password" class="form-control" id="password" name="password" required>
+                  <label for="newPassword">New Password<i class="asteric"> *</i></label>
+                  <input type="password" class="form-control" id="newPassword" name="new_password" required>
                 </div>
                 <div class="col-md-12 mb-3">
-                  <label for="confirmPassword">Confirm Password<i class="asteric"> *</i></label>
-                  <input type="password" class="form-control" id="confirmPassword" name="password_confirmation" required>
+                  <label for="confirmNewPassword">Confirm New Password<i class="asteric"> *</i></label>
+                  <input type="password" class="form-control" id="confirmNewPassword" name="new_password_confirmation" required>
                 </div>
               </div>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="agreement" name="agreement" required>
-                <label class="form-check-label" for="agreement">By clicking on register you have confirmed that you have read and accepted CVS <span class="terms">Terms of use</span> and <span class="privacy">Privacy Policy.</span></label>
-              </div>
-              <button type="submit" class="btn btn-primary w-100">Update</button>
+              <button type="submit" class="btn btn-primary w-100">Update Password</button>
             </form>
           </div>
+
         </div>
 
       </div>

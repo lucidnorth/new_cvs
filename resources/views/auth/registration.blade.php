@@ -43,23 +43,7 @@
     left: 0;
     top: -3px;
   }
-  .password-container {
-    position: relative;
-    width: 100%; /* Adjust based on your design */
-}
 
-.password-container input {
-    padding-right: 30px; /* Space for the eye icon */
-    width: 100%; /* Ensure it fits the container */
-}
-
-.password-container i {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-}
 </style>
 <script>
     var errors = @json($errors->all());
@@ -156,6 +140,24 @@
   .card-text {
     font-size: 0.9rem;
   }
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    padding-right: 30px;
+    width: 100%;
+}
+
+.password-container i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
 }
 
 
@@ -257,13 +259,19 @@
                                       <input type="text" class="form-control" id="industry" name="industry" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                      <label for="password">Password<i class="asteric"> *</i></label>
-                                      <input type="password" class="form-control" id="password" name="password" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                      <label for="confirmPassword">Confirm Password<i class="asteric"> *</i></label>
-                                      <input type="password" class="form-control" id="confirmPassword" name="password_confirmation" required>
-                                    </div>
+  <label for="password">Password<i class="asteric"> *</i></label>
+  <div class="password-container">
+    <input type="password" class="form-control" id="password" name="password" required>
+    <i class="fas fa-eye" id="togglePassword"></i>
+  </div>
+</div>
+<div class="col-md-6 mb-3">
+  <label for="confirmPassword">Confirm Password<i class="asteric"> *</i></label>
+  <div class="password-container">
+    <input type="password" class="form-control" id="confirmPassword" name="password_confirmation" required>
+    <i class="fas fa-eye" id="toggleConfirmPassword"></i>
+  </div>
+</div>
                                   </div>
                                   <p class="text-warning">Please choose a stronger password. Use a mix of letters, numbers and symbols.</p>
                                   <div class="form-check">
@@ -291,7 +299,7 @@
                   
                                     <div class="col-md-6 mb-3">
                                       <label for="countries">Select Country:</label>
-                                      <select class="form-select" id="countries">
+                                      <select class="form-select" id="countries"  name="country">
                                         <option value="">Loading countries...</option>
                                       </select>
                                     </div>
@@ -314,17 +322,12 @@
                                     </div>
                   
                                     <div class="col-md-6 mb-3">
-                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label for="password-input">Password</label>
-                                    <!-- <input type="password" class="form-control" id="password-input" placeholder="Enter Password" required> -->
-
-                                    <div class="password-container">
-                                    <input id="password" type="password" name="password" class="form-control" required placeholder="{{ trans('global.login_password') }}">
-                                    <i class="fa fa-eye" id="togglePassword" aria-hidden="true"></i>
-                                    </div>
-                                  
-                                </div>
-                                    </div>
+  <label for="password">Password<i class="asteric"> *</i></label>
+  <div class="password-container">
+    <input type="password" class="form-control" id="institutionPassword" name="password" required>
+    <i class="fas fa-eye" id="toggleInstitutionPassword"></i>
+  </div>
+</div>
                                     
                   
                                     <div class="col-md-6 mb-3">
@@ -333,9 +336,12 @@
                                     </div>
                   
                                     <div class="col-md-6 mb-3">
-                                      <label for="confirmPassword">Confirm Password<i class="asteric"> *</i></label>
-                                      <input type="password" class="form-control" id="confirmPassword" name="password_confirmation" required>
-                                    </div>
+  <label for="confirmInstitutionPassword">Confirm Password<i class="asteric"> *</i></label>
+  <div class="password-container">
+    <input type="password" class="form-control" id="confirmInstitutionPassword" name="password_confirmation" required>
+    <i class="fas fa-eye" id="toggleConfirmInstitutionPassword"></i>
+  </div>
+</div>
                                   </div>
                                   <p class="text-warning">Please choose a stronger password. Use a mix of letters, numbers and symbols.</p>
                                   <div class="form-check">
@@ -378,7 +384,51 @@
         // Show the modal
         showModal();
     }
+
 </script>
+<script>
+  // Employer Form - Password Toggle
+  const togglePassword = document.querySelector('#togglePassword');
+  const password = document.querySelector('#password');
+  
+  togglePassword.addEventListener('click', function () {
+    // Toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    
+    // Toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+  });
+
+  const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+  const confirmPassword = document.querySelector('#confirmPassword');
+  
+  toggleConfirmPassword.addEventListener('click', function () {
+    const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    confirmPassword.setAttribute('type', type);
+    this.classList.toggle('fa-eye-slash');
+  });
+
+  // Institution Form - Password Toggle
+  const toggleInstitutionPassword = document.querySelector('#toggleInstitutionPassword');
+  const institutionPassword = document.querySelector('#institutionPassword');
+  
+  toggleInstitutionPassword.addEventListener('click', function () {
+    const type = institutionPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    institutionPassword.setAttribute('type', type);
+    this.classList.toggle('fa-eye-slash');
+  });
+
+  const toggleConfirmInstitutionPassword = document.querySelector('#toggleConfirmInstitutionPassword');
+  const confirmInstitutionPassword = document.querySelector('#confirmInstitutionPassword');
+  
+  toggleConfirmInstitutionPassword.addEventListener('click', function () {
+    const type = confirmInstitutionPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    confirmInstitutionPassword.setAttribute('type', type);
+    this.classList.toggle('fa-eye-slash');
+  });
+</script>
+
 
 
 @endsection

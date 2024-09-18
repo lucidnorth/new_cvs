@@ -72,6 +72,7 @@ class RegistrationController extends Controller
         $employer->registrationnumber = $request->registrationnumber;
         $employer->address = $request->address;
         $employer->phone = $request->phone;
+        $employer ->email= $request->email;
         $employer->idtype = $request->idtype;
         $employer->idnumber = $request->idnumber;
         $employer->industry = $request->industry;
@@ -218,9 +219,9 @@ class RegistrationController extends Controller
                     'regex:/[@$!%*#?&]/' // at least one special character
                 ],
                 'fullname' => 'required|string|max:255',
-                'country' => 'required|string|max:255',
+                'country' => 'string|max:255',
                 'location' => 'required|string|max:255',
-                'website' => 'required|string|unique:institutions|max:255',
+                'website' => 'string|unique:institutions|max:255',
             ]);
 
             // Create a new instance of the User model

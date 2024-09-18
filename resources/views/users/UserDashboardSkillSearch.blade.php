@@ -25,7 +25,7 @@
         <div class="">
           <div class="">
             <div class="row">
-              <h5 class="text-white">Skill Search</h5>
+              <h5 class="text-white">Skill Search </h5>
             </div>
           </div>
         </div>

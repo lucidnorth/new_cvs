@@ -31,10 +31,15 @@ use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\NewsletterController;
 
 
+Route::post('/employer/profile/update', [UserDashboardProfileController::class, 'updateEmployerProfile'])->name('employer.profile.update');
+Route::post('/institution/password-update', [UserDashboardProfileController::class, 'updatePassword'])->name('institution.password.update');
+Route::post('/institution/profile/update', [UserDashboardProfileController::class, 'updateInstitutionProfile'])->name('institution.profile.update');
+
 // Route::get('/user-dashboard/download/{id}', [UserDashboardUploadCertificateController::class, 'download'])->name('user.download');
 
+// Route::post('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->name('dashboard.profile.update');
 
-
+// Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->name('dashboard.profile.update');
 // Homepage Routing
 Route::get('/', function () {
     return view('index'); // Adjust 'welcome' to the name of your homepage view
@@ -71,9 +76,9 @@ Route::post('/admin/finance/payment-confirmation', [FinanceController::class, 's
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/dashboard/papers', [UserDashboardPapersController::class, 'index'])->name('dashboard.papers.index');
 Route::get('/dashboard/profile', [UserDashboardProfileController::class, 'index'])->name('dashboard.profile');
-Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->middleware(['web', 'auth'])->name('dashboard.profile.update');
-Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'updateInstitutionProfile'])->middleware(['web', 'auth'])->name('institution.profile.update');
-Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'updateInstitutionProfile'])->middleware(['web', 'auth'])->name('institution.profile.update');
+// Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->middleware(['web', 'auth'])->name('dashboard.profile.update');
+// Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'updateInstitutionProfile'])->middleware(['web', 'auth'])->name('institution.profile.update');
+// Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'updateInstitutionProfile'])->middleware(['web', 'auth'])->name('institution.profile.update');
 
 // Route::redirect('/', '/login');
 Route::get('/download/skill-search-logs', [UserDashboardReportsController::class, 'downloadSkillSearchLogs'])->name('download.skill_search_logs');
