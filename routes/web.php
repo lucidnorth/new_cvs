@@ -120,6 +120,9 @@ Route::get('/download-research-papers', [UserDashboardReportsController::class, 
 Route::get('/download-industry-case-study-papers', [UserDashboardReportsController::class, 'downloadIndustryCaseStudyPapers'])->name('download.industry_case_study_papers');
 Route::get('/papersupload/download/{id}', [PapersUploadController::class, 'download'])->name('papersupload.download');
 Route::get('/papers/view/{id}', [PapersUploadController::class, 'view'])->name('papers.view');
+Route::get('/download-institution-verified-certificates', [UserDashboardReportsController::class, 'downloadInstitutionCertificates'])->name('download.institution.verified.certificates');
+Route::get('/download-institution-payments', [UserDashboardReportsController::class, 'downloadInstitutionPayments'])->name('download.institution.payments');
+
 
 Route::prefix('user')->group(function () {
     Route::get('/papers', [UserDashboardPapersController::class, 'index'])->name('user.papers.index');
