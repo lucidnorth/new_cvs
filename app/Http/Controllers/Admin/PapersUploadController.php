@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PapersUpload;
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class PapersUploadController extends Controller
 {
@@ -61,6 +62,30 @@ class PapersUploadController extends Controller
         if (Storage::exists($filePath)) {
             return Storage::download($filePath);
         } else {
+            return redirect()->back()->with('error', 'File not found.');
+        }
+    }
+
+    public function view($id)
+    {
+        // Find the paper by ID
+        $paper = PapersUpload::findOrFail($id);
+        
+        // Build the file path
+        $filePath = 'public/uploads/' . $paper->file;
+
+        // Check if the file exists
+        if (Storage::exists($filePath)) {
+            // Return the file as a streamed response
+            return new StreamedResponse(function () use ($filePath) {
+                $file = Storage::get($filePath);
+                echo $file;
+            }, 200, [
+                'Content-Type' => Storage::mimeType($filePath),
+                'Content-Disposition' => 'inline; filename="' . $paper->file . '"',
+            ]);
+        } else {
+            // Redirect back with an error if the file is not found
             return redirect()->back()->with('error', 'File not found.');
         }
     }

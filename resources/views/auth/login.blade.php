@@ -1,7 +1,25 @@
 @extends('layouts.auth')
 
 @section('content')
+<style>
+.password-container {
+    position: relative;
+    width: 100%; /* Adjust based on your design */
+}
 
+.password-container input {
+    padding-right: 30px; /* Space for the eye icon */
+    width: 100%; /* Ensure it fits the container */
+}
+
+.password-container i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+</style>
 <div class="container login-bg">
     <div class="row">
         <div class="col-lg-9 mx-auto py-5">
@@ -43,10 +61,14 @@
                                     </p>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} mb-2">
+                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <label for="password-input">Password</label>
                                     <!-- <input type="password" class="form-control" id="password-input" placeholder="Enter Password" required> -->
+
+                                    <div class="password-container">
                                     <input id="password" type="password" name="password" class="form-control" required placeholder="{{ trans('global.login_password') }}">
+                                    <i class="fa fa-eye" id="togglePassword" aria-hidden="true"></i>
+                                    </div>
                                     @if($errors->has('password'))
                                     <p class="help-block">
                                         {{ $errors->first('password') }}
@@ -71,7 +93,24 @@
         </div>
     </div>
 </div>
+<script>
+document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordField = document.getElementById('password');
+    const passwordType = passwordField.getAttribute('type');
+    
+    if (passwordType === 'password') {
+        passwordField.setAttribute('type', 'text');
+        this.classList.remove('fa-eye');
+        this.classList.add('fa-eye-slash');
+    } else {
+        passwordField.setAttribute('type', 'password');
+        this.classList.remove('fa-eye-slash');
+        this.classList.add('fa-eye');
+    }
+});
 
+
+</script>
 @endsection
 
 @section('scripts')

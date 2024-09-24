@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\Upload;
+use Illuminate\Support\Facades\Storage;
 
 class CertificatesController extends Controller
 {
@@ -118,14 +120,16 @@ class CertificatesController extends Controller
 
 
         // $institutions = Institution::pluck('name', 'id'); 
-        $users        = User::get();
 
-        return view('admin.certificates.index', compact('institutions', 'users'));
+        $users = User::get();
+
+         // Fetch all records from the uploads table
+         $uploads = Upload::all();
+
+        return view('admin.certificates.index', compact('institutions', 'users','uploads'));
     }
 
-  
-
-
+ 
     public function create()
     {
         abort_if(Gate::denies('certificate_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');

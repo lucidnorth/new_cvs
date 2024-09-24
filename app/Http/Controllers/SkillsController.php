@@ -17,4 +17,7 @@ class SkillsController extends Controller
         // Pass the fetched data to the view
         return view('skills', compact('caseStudyPapers', 'researchPaperPapers', 'skillsGapSetPapers'));
     }
+
+
+    
 }

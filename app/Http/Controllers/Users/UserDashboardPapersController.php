@@ -63,6 +63,7 @@ class UserDashboardPapersController extends Controller
         return redirect()->back()->with('success', 'Paper uploaded successfully!');
     }
 
+
     public function download(Paper $paper)
     {
         $filePath = storage_path('app/uploads/' . $paper->file);
@@ -76,9 +77,7 @@ class UserDashboardPapersController extends Controller
             return redirect()->back()->with('error', 'File not found.');
         }
     }
-
-
-
+    
     public function viewPaper($id)
     {
         $paper = Paper::findOrFail($id);

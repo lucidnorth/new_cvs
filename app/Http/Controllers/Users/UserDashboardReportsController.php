@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Users;
 
 use App\Exports\IndustryCaseStudyPapersExport;
+use App\Exports\InstitutionPaymentsExport;
 use App\Exports\ResearchPapersExport;
 use App\Exports\VerifiedCertificatesExport;
+use App\Exports\InstitutionVerifiedCertificatesExport;
 use App\Exports\UserPackagesExport;
 use App\Exports\UserPaperExport;
 use App\Exports\SkillsGapSetPapersExport;
 use App\Exports\SkillSearchLogExport;
 use App\Http\Controllers\Controller;
 use App\Models\Certificate;
+use App\Models\Finance;
 use App\Models\Report;
 use App\Models\SearchLog;
 use Illuminate\Http\Request;
@@ -20,7 +23,8 @@ use App\Models\SkillSearchLog;
 use App\Models\UserPackage;
 use App\Models\Paper;
 use App\Models\PapersUpload;
-
+use App\Models\UserPackageInstitution;
+use Illuminate\Support\Facades\Log;
 
 class UserDashboardReportsController extends Controller
 {
@@ -66,6 +70,44 @@ class UserDashboardReportsController extends Controller
             ['user_id', '=', $userId],
             ['category', '=', 'Skills Gap Set'],
         ])->get();
+
+        $user = auth()->user();
+        $institution = $user->my_institution;
+        $institutionCertificates = collect();
+
+        if ($institution) {
+            // Get all certificate numbers associated with this institution
+            $certificateNumbers = Certificate::where('institution_id', $institution->id)
+                ->pluck('certificate_number')
+                ->toArray();
+
+            // Fetch search logs that match the certificate numbers
+            $institutionCertificates = SearchLog::whereIn('search_term', $certificateNumbers)
+                ->whereHas('certificate', function ($query) use ($institution) {
+                    $query->where('institution_id', $institution->id);
+                })
+                ->with('certificate')
+                ->get();
+        }
+
+        if ($institution) {
+            // Fetch payments and calculate total amount
+            $payments = Finance::where('institution', $institution->institutions)->get();
+            $totalAmount = $payments->sum('amount');
+
+        
+
+            // Log data for debugging
+            Log::info('Payment Data:', [
+                'totalAmount' => $totalAmount,
+                
+            ]);
+
+            $paymentData = [
+                'totalAmount' => $totalAmount,
+            ];
+
+        }
        
         return view('users.UserDashboardReports', [
             // 'reports' => $reports,
@@ -75,7 +117,10 @@ class UserDashboardReportsController extends Controller
             'userPapers'=> $userPapers,
             'caseStudyPapers' => $caseStudyPapers,
             'researchPaperPapers'=> $researchPaperPapers,
-            'skillsGapSetPapers'=> $skillsGapSetPapers
+            'skillsGapSetPapers'=> $skillsGapSetPapers,
+            'institutionCertificates' => $institutionCertificates,
+            'paymentData' => $paymentData,
+            'payments' => $payments,
         ]);
     }
 
@@ -114,5 +159,48 @@ class UserDashboardReportsController extends Controller
         $userId = Auth::id();
         return Excel::download(new SkillSearchLogExport($userId), 'skill_search_logs.xlsx');
     }
+
+    public function downloadInstitutionCertificates()
+    {
+        $user = auth()->user();
+        $institution = $user->my_institution;
+        $institutionCertificates = collect();
+
+        if ($institution) {
+            // Get all certificate numbers associated with this institution
+            $certificateNumbers = Certificate::where('institution_id', $institution->id)
+                ->pluck('certificate_number')
+                ->toArray();
+
+            // Fetch search logs that match the certificate numbers
+            $institutionCertificates = SearchLog::whereIn('search_term', $certificateNumbers)
+                ->whereHas('certificate', function ($query) use ($institution) {
+                    $query->where('institution_id', $institution->id);
+                })
+                ->with('certificate')
+                ->get();
+        }
+
+        return Excel::download(new InstitutionVerifiedCertificatesExport($institutionCertificates), 'institution_certificates_report.xlsx');
+    }
+
+    public function downloadInstitutionPayments()
+    {
+        $user = auth()->user();
+        $institution = $user->my_institution;
+        
+        if ($institution) {
+            // Fetch all payments for the institution
+            $payments = Finance::where('institution', $institution->institutions)
+                ->orderBy('created_at', 'asc')
+                ->get();
+        } else {
+            // Handle the case where the institution is not found
+            return redirect()->back()->with('error', 'No institution found.');
+        }
+
+        return Excel::download(new InstitutionPaymentsExport($institution), 'institution_payments_report.xlsx');
+    }
+
 
 }

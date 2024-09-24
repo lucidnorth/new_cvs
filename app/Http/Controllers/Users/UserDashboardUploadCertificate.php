@@ -7,14 +7,11 @@ use App\Models\Upload;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
+
 class UserDashboardUploadCertificate extends Controller
 {
     public function upload(Request $request)
 {
-
-    DB::beginTransaction();
-    try {
-
     // Validate the form data
     $request->validate([
         'title' => 'required|string|max:255',
@@ -38,11 +35,6 @@ class UserDashboardUploadCertificate extends Controller
     $upload->user_id = $user->id;  // Assign the user ID to the upload
     $upload->save();
 
-    DB::commit();
-       } catch (\Throwable $th) {
-        DB::rollBack();
-        dd ($th);
-       }
     // Provide feedback to the user
     return redirect()->back()->with('success', 'File uploaded successfully!');
 } 

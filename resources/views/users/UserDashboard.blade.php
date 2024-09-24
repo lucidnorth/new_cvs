@@ -24,8 +24,6 @@
 
 <main class="main-content position-relative border-radius-lg ">
 
-
-
   <div class="container-fluid py-4">
     <h5 class="text-white mb-3">Welcome {{ auth()->user()->name}}</h1>
       <!-- Institution dashboard -->
@@ -35,13 +33,13 @@
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
-              <div class="row">
+              <div class="row" style="padding:30px 0;">
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">PAYMENTS DUE</p>
                     <h5 class="font-weight-bolder">
-                    {{$amountDue}}
-                    </h5>     
+                      {{$amountDue}}
+                    </h5>
                     <!-- <p class="mb-0">
                       <span class="text-success text-sm font-weight-bolder">+55%</span>
                       since yesterday
@@ -61,7 +59,7 @@
           <a href="{{ route('verified') }}">
             <div class="card">
               <div class="card-body p-3">
-                <div class="row">
+                <div class="row" style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
@@ -88,7 +86,7 @@
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">
-              <div class="row">
+              <div class="row" style="padding:30px 0;">
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">UPLOAD GRADUATES DATA</p>
@@ -115,12 +113,12 @@
           <a href="{{ route('reports')}}">
             <div class="card">
               <div class="card-body p-3">
-                <div class="row">
+                <div class="row" style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
                       <h5 class="font-weight-bolder">
-                        Click to view reports
+                        View reports
                       </h5>
                       <!-- <p class="mb-0">
                       <span class="text-danger text-sm font-weight-bolder">-2%</span>
@@ -129,7 +127,7 @@
                     </div>
                   </div>
                   <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <div class="icon icon-shape bg-gradient-dark shadow-success text-center rounded-circle">
                       <i class="ni ni-folder-17 text-lg opacity-10" aria-hidden="true"></i>
                     </div>
                   </div>
@@ -146,7 +144,7 @@
           <a href="{{ route('packages') }}">
             <div class="card">
               <div class="card-body p-3">
-                <div class="row">
+                <div class="row" style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Verification Left</p>
@@ -157,7 +155,7 @@
                       </h5>
                       @else
                       <h5 class="font-weight-bolder">
-                        No package
+                        Buy a Package
                       </h5>
                       @endif
 
@@ -183,7 +181,7 @@
           <a href="{{ route('verified') }}">
             <div class="card">
               <div class="card-body p-3">
-                <div class="row">
+                <div class="row" style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
@@ -211,7 +209,7 @@
           <a href="{{ route('papers')}}">
             <div class="card">
               <div class="card-body p-3">
-                <div class="row">
+                <div class="row" style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Papers Submitted</p>
@@ -238,12 +236,12 @@
           <a href="{{ route('reports')}}">
             <div class="card">
               <div class="card-body p-3">
-                <div class="row">
+                <div class="row" style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
                       <h5 class="font-weight-bolder">
-                        Click to view reports
+                        View reports
                       </h5>
                       <!-- <p class="mb-0">
                       <span class="text-danger text-sm font-weight-bolder">-2%</span>
@@ -252,7 +250,7 @@
                     </div>
                   </div>
                   <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <div class="icon icon-shape bg-gradient-dark shadow-success text-center rounded-circle">
                       <i class="ni ni-folder-17 text-lg opacity-10" aria-hidden="true"></i>
                     </div>
                   </div>
@@ -278,7 +276,14 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="chart-container" style="height: 600px;">
+
+                    @if ($hasData)
+                    <!-- Display Chart -->
                     <canvas id="institutionCertsChart"></canvas>
+                    @else
+                    <!-- Display No Data Message -->
+                    <h4 class="text-center" style="padding: 270px 0;">No employer has verified your candidate yet.</h4>
+                    @endif
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -532,7 +537,7 @@
                     <h6 class="mb-0 title-big">Payments</h6>
                   </div>
                   <div class="col-md-6 d-flex justify-content-end align-items-center">
-                    
+
                     <small></small>
                   </div>
                 </div>
@@ -605,24 +610,24 @@
               </div>
 
               @if(session('certificate'))
-    <div>
-        <h3>Certificate Details</h3>
-        <p>Certificate Number: {{ session('certificate')->certificate_number }}</p>
-        <p>Institution Name: {{ session('certificate')->institution->name }}</p>
-    </div>
-    <div>
-        <h3>Calculation Details</h3>
-        <p>Price Per Search: {{ session('price_per_search') }}</p>
-        <p>Amount to Give to Institution: {{ session('amount_to_give_to_institution') }}</p>
-        <p>Updated Amount Given to Institution: {{ session('updated_amount_given_to_institution') }}</p>
-    </div>
-@endif
+              <div>
+                <h3>Certificate Details</h3>
+                <p>Certificate Number: {{ session('certificate')->certificate_number }}</p>
+                <p>Institution Name: {{ session('certificate')->institution->name }}</p>
+              </div>
+              <div>
+                <h3>Calculation Details</h3>
+                <p>Price Per Search: {{ session('price_per_search') }}</p>
+                <p>Amount to Give to Institution: {{ session('amount_to_give_to_institution') }}</p>
+                <p>Updated Amount Given to Institution: {{ session('updated_amount_given_to_institution') }}</p>
+              </div>
+              @endif
 
-@if(session('certificate_error'))
-    <div>
-        <p>Error: {{ session('certificate_error') }}</p>
-    </div>
-@endif
+              @if(session('certificate_error'))
+              <div>
+                <p>Error: {{ session('certificate_error') }}</p>
+              </div>
+              @endif
 
 
               <div class="card-body p-3">
@@ -736,7 +741,7 @@
                 </ul>
 
                 <div class="click d-flex justify-content-end">
-                  <a href="{{ route('verified') }}" class="fw-bold fs-6">Click to view more </a>
+                  <a href="{{ route('verified') }}" class="fw-bold fs-6 " style="color:blue;">Click to view more </a>
                 </div>
               </div>
             </div>
@@ -744,13 +749,20 @@
           <div class="col-lg-5">
             <div class="card">
               <div class="card-header pb-0 p-3">
-                <h6 class="mb-0">Verified</h6>
+                <h6 class="mb-0 fs-4 title-big">Verified</h6>
               </div>
 
 
               <!-- <canvas id="myChart"></canvas> -->
-
-              <canvas id="qualificationChart"></canvas>
+              <div class="card-body pb-0 p-3">
+                @if ($hasData1)
+                <!-- Display Chart -->
+                <canvas id="qualificationChart"></canvas>
+                @else
+                <!-- Display No Data Message -->
+                <h6 class="mb-1 text-dark text-sm"> No verified certificates found.</h6>
+                @endif
+              </div>
               <!-- {!! $chart->container() !!} -->
 
             </div>
@@ -875,131 +887,138 @@
 
       <script>
         document.addEventListener("DOMContentLoaded", function() {
+          // Get data from Laravel
+          var hasData1 = @json($hasData1);
           var labels = @json(array_keys($qualificationTypeCounts));
           var data = @json(array_values($qualificationTypeCounts));
 
           var ctx = document.getElementById('qualificationChart').getContext('2d');
-          var qualificationChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-              labels: labels,
-              datasets: [{
-                data: data,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(243, 229, 0, 1)'
-                ],
-                borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-              }]
-            },
-            options: {
-              plugins: {
-                datalabels: {
-                  formatter: function(value) {
-                    let total = data.reduce((sum, val) => sum + val, 0);
-                    let percentage = (value / total * 100).toFixed(1) + "%";
-                    return percentage;
+
+          if (hasData1) {
+            new Chart(ctx, {
+              type: 'doughnut',
+              data: {
+                labels: labels,
+                datasets: [{
+                  data: data,
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(243, 229, 0, 1)'
+                  ],
+                  borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                plugins: {
+                  datalabels: {
+                    formatter: function(value) {
+                      let total = data.reduce((sum, val) => sum + val, 0);
+                      let percentage = (value / total * 100).toFixed(1) + "%";
+                      return percentage;
+                    },
+                    color: 'green' // Corrected color value from 'greem'
+                  }
+                },
+                scales: {
+                  x: {
+                    display: false
                   },
-                  color: 'greem'
+                  y: {
+                    display: false
+                  }
                 }
               },
-              scales: {
-                x: {
-                  display: false
-                },
-                y: {
-                  display: false
-                }
-              }
-            },
-
-            plugins: [ChartDataLabels]
-          });
+              plugins: [ChartDataLabels]
+            });
+          } else {
+            // Optionally handle case when no data is available (e.g., hide chart container)
+            document.getElementById('qualificationChart').style.display = 'none';
+          }
         });
       </script>
+
 
 
       <!-- Script for institution certificates chart -->
       <!-- Script for institution certificates chart -->
       <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          var institutionLabels = @json(array_keys($institutionQualificationTypeCounts));
-          var institutionData = @json(array_values($institutionQualificationTypeCounts));
+        document.addEventListener('DOMContentLoaded', function() {
+          var hasData = @json($hasData);
+          var ctx = document.getElementById('institutionCertsChart').getContext('2d');
 
-          var institutionCtx = document.getElementById('institutionCertsChart').getContext('2d');
-          var institutionCertsChart = new Chart(institutionCtx, {
-            type: 'doughnut',
-            data: {
-              labels: institutionLabels,
-              datasets: [{
-                data: institutionData,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(243, 229, 0, 1)'
-                ],
-                borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)',
-                  'rgba(243, 229, 0, 1)'
-                ],
-                borderWidth: 1
-              }]
-            },
-            options: {
-              plugins: {
-                legend: {
-                  position: 'right',
-                  labels: {
-                    boxWidth: 15,
-                    boxHeight: 15,
-                    padding: 10
+          if (hasData) {
+            var chartData = @json($institutionQualificationTypeCounts);
 
+            new Chart(ctx, {
+              type: 'pie',
+              data: {
+                labels: Object.keys(chartData),
+                datasets: [{
+                  label: 'Institution Certs',
+                  data: Object.values(chartData),
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(243, 229, 0, 1)'
+                  ],
+                  borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(243, 229, 0, 1)'
+                  ],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                plugins: {
+                  datalabels: {
+                    formatter: function(value, context) {
+                      var total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+                      var percentage = (value / total) * 100;
+                      return percentage.toFixed(1) + '%';
+                    },
+                    color: '#fff',
                   }
                 },
-                datalabels: {
-                  formatter: function(value) {
-                    let total = institutionData.reduce((sum, val) => sum + val, 0);
-                    let percentage = (value / total * 100).toFixed(1) + "%";
-                    return percentage;
+                scales: {
+                  x: {
+                    display: false
                   },
-                  color: '#fff'
-                }
-              },
-              scales: {
-                x: {
-                  display: false
+                  y: {
+                    display: false
+                  }
                 },
-                y: {
-                  display: false
-                }
-              }
-            },
-            plugins: [ChartDataLabels]
-          });
+              },
+              plugins: [ChartDataLabels]
+            });
+          } else {
+            // Optionally handle case when no data is available (e.g., hide chart container)
+            document.getElementById('institutionCertsChart').style.display = 'none';
+          }
         });
       </script>
+
 
 
 

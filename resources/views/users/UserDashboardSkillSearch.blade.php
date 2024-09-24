@@ -3,13 +3,36 @@
 
 @section('title', ' Dashboard-Laravel Admin Panel')
 @section('content')
+<style>
 
+.title-big {
+    font-size: 1.3rem;
+    color: #596CFF;
+    font-weight: 650;
+  }
+
+  .skill-btn{
+    margin-top: 40px;
+  }
+
+</style>
 <main class="main-content position-relative border-radius-lg ">
     <div class="container-fluid py-4">
    
             <!-- Employer dashboard -->
             <div class="row mt-4">
+            <div class="col-xl-12 col-sm-12 mb-xl-5 mb-5">
+        <div class="">
+          <div class="">
+            <div class="row">
+              <h5 class="text-white">Skill Search</h5>
+            </div>
+          </div>
+        </div>
+      </div>
                 @if(auth()->user()->my_institution)
+
+                
                 <div class="col-lg-12 mb-lg-0 mb-4">
                     <div class="card z-index-2 h-100">
                         <div class="card-header pb-0 pt-3 bg-transparent">
@@ -63,6 +86,8 @@
                                     </p>
                                 </div>
                             </div>
+
+                            
                             <div class="card-body">
                                 <!-- <p class="text-uppercase text-sm">User Information</p> -->
                                 <div class="row">
@@ -74,12 +99,12 @@
                                                     @csrf
                                                     <div class="col-md-10">
                                                         <div class="form-group">
-                                                        <label for="example-text-input" class="form-control-label">Search for Skills</label>   
+                                                        <label for="example-text-input" class="form-control-label title-big ">Search for Skills</label>   
                                                             <input class="form-control mr-sm-2" type="text" placeholder="Search for programme" name="programme_type" id="programme_type" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
-                                                        <button type="submit" class="btn btn-primary mt-4 col-12">Search for skils</button>
+                                                        <button type="submit" class="btn btn-primary skill-btn col-12">Search for skils</button>
                                                     </div>
                                                 </div>
                                             </form>

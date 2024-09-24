@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Certificate;
 use App\Models\SkillSearchLog;
 use Illuminate\Support\Facades\Auth;
+
  
 class UserDashboardSkillSearchController extends Controller
 {

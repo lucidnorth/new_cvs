@@ -68,6 +68,7 @@
         color: white;
         padding: 20px;
         border-radius: 0px;
+        height: 625px;
     }
 
     .contact-info h2 {
@@ -94,6 +95,10 @@
             grid-template-columns: repeat(2, 1fr);
         }
     }
+
+    .ttu-card{
+     margin-top: 50px;
+    }
 </style>
 
 
@@ -101,24 +106,25 @@
     <div class="container-fluid">
         <header>
             
-            <div class="row">
-                <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
-
-                        <h1 class="faq-maintitle">Talk to Us</h1>
-
+        <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                    <div class="">
+                        <div class="">
+                            <div class="row">
+                                <h5 class="text-white">Talk to Us</h5>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-xl-12 col-sm-12 mb-xl-0 mt-4">
+                <div class="col-xl-12 col-sm-12 mb-xl-0 ttu-card">
                     <div class="card">
-                    <h2>Contact Us</h2>
+                   
 
 @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
-@endif
-
+@endif                    
                             <div class="row">
                                 <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
 
@@ -126,7 +132,6 @@
                                         <div class="grid-container">
                                             <div class="card-container ">
                                                 <h2>Send us a Message</h2>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed</p>
                                                 <form action="{{ route('users.contacts.store') }}" method="POST">
             @csrf
             <div class="mb-3">
@@ -146,6 +151,7 @@
             <div class="mb-3">
                 <label for="recipient" class="form-label">Select Recipient</label>
                 <select class="form-select" id="recipient" name="recipient">
+                <option selected disabled>--select recipient --</option>
                     <option>customercare@certverification.com</option>
                     <option>accountant@certverification.com</option>
                     <option>admin@certverification.com</option>
@@ -173,18 +179,14 @@
                                             </div>
                                             <div class="contact-info">
                                                 <h2>Contact Information</h2>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapi.</p>
                                                 <div class="mb-4">
                                                     <h3>Digital Address</h3>
                                                     <p>GA-111-1234 Greater Accra, Ghana.</p>
                                                 </div>
                                                 <div class="mb-4">
                                                     <h3>Phone</h3>
-                                                    <p><span class="line-text">Line 1:</span> +233 123 456 789</p>
-                                                    <p><span class="line-text">Line 2:</span> +233 123 456 789</p>
-                                                    <p><span class="line-text">Line 2:</span> +233 123 456 789</p>
-                                                    <p><span class="line-text">Line 3:</span> +233 123 456 789</p>
-                                                    <p><span class="line-text">Line 4:</span> +233 123 456 789</p>
+                                                    <p><span class="line-text">+233 302 523 734
+                                                    
                                                 </div>
                                                 <div>
                                                     <h3>Email</h3>

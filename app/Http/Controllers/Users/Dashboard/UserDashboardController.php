@@ -60,6 +60,7 @@ class UserDashboardController extends Controller
 
         // Count occurrences of each qualification type
         $qualificationTypeCounts = array_count_values($qualificationTypes);
+        
 
         // Initialize institutionSearchCount, maleCount, femaleCount, and institutionCertificateCount
         $institutionSearchCount = 0;
@@ -110,6 +111,12 @@ class UserDashboardController extends Controller
         }
 
         $institutionQualificationTypeCounts = array_count_values($institutionQualificationTypes);
+
+        $hasData = !empty( $institutionQualificationTypeCounts);
+        $hasData1 = !empty(  $qualificationTypeCounts);
+
+    
+
 
         // Prepare data for the main chart
         $chart = new Chart;
@@ -230,6 +237,8 @@ class UserDashboardController extends Controller
             'institutionQualificationTypeCounts' => $institutionQualificationTypeCounts,
             'payments' => $payments,
             'amountDue' => $amountDue,
+            'hasData' => $hasData,
+            'hasData1' => $hasData1,
 
             // 'amountDue' => $amountDue,
 

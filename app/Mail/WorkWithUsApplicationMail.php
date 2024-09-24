@@ -21,10 +21,11 @@ class WorkWithUsApplicationMail extends Mailable
 
     public function build()
     {
-        return $this->view('emails.workwithus_application')
+        return $this->from('malikbyussif@gmail.com') 
+            ->view('emails.workwithus_application')
             ->with([
                 'name' => $this->application->name,
-                'message' => $this->application->message,
+                'userMessages' => $this->application->message,
                 'phone' => $this->application->phone,
                 'country' => $this->application->country,
             ])

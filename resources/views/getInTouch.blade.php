@@ -38,8 +38,7 @@
                         @csrf
                         <div class="mb-3">
                             <label for="contactMethod" class="form-label">Preferred Contact Medium</label>
-                            <select class="form-select" id="contactMethod" name="contactMethod" required>
-                                <option value="">--select--</option>
+                            <select class="form-select" id="contactMethod" name="contactMethod">
                                 <option value="email">Email</option>
                                 <option value="phone">Phone</option>
                             </select>
@@ -95,7 +94,7 @@
                     <div class="mb-3">
                         <label for="issue" class="form-label">Report Issues</label>
                         <select class="form-select" id="issue" name="issue" required>
-                            <option value="">--select an issue--</option>
+                            <option selected disabled>--select an issue--</option>
                             <option value="Payments">Payments</option>
                             <option value="Login and Sign up">Login and Sign up</option>
                             <option value="Customer Feedback">Customer Feedback</option>
@@ -132,8 +131,8 @@
                 @csrf
                 <div class="mb-3">
                     <label for="issue" class="form-label">Vacancy</label>
-                    <select class="form-select" id="issue" name="vacancy" required>
-                        <option value="">--select a vacancy--</option>
+                    <select class="form-select" id="issue" name="vacancy">
+                        <option selected>--select a vacancy--</option>
                         <option value="Customer Care Expert">Customer Care Expert</option>
                         <option value="Researcher">Researcher</option>
                         <option value="Finance Officer">Finance Officer</option>

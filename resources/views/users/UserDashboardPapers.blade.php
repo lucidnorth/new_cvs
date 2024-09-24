@@ -32,10 +32,10 @@
       </div>
       @endif
       <div class="col-xl-12 col-sm-12 mb-xl-5 mb-5">
-        <div class="card">
-          <div class="card-body">
+        <div class="">
+          <div class="">
             <div class="row">
-              <h5>Papers Uploads</h5>
+              <h5 class="text-white">Papers Uploads</h5>
             </div>
           </div>
         </div>
@@ -80,16 +80,17 @@
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
                   </div>
                 </div>
-                <hr class="horizontal dark">
+                
 
-                <div class="col-md-12 mt-5">
+                <div class="col-md-12">
                   <div class="form-group">
                     <label for="file-upload" class="form-control-label">Upload File</label>
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="file-upload" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx" name="file">
-                      <label class="custom-file-label" for="file-upload" id="file-upload-label">Choose file</label>
+                      <label class="custom-file-label " for="file-upload" id="file-upload-label" style="font-size: 0.875rem;
+    font-weight: 400;">Choose file</label>
                     </div>
-                    <small id="fileHelp" class="form-text text-muted">Please upload PDF files only.</small>
+                    <small id="fileHelp" class="form-text fs-6">Please upload PDF files only.</small>
                   </div>
                 </div>
 
@@ -148,7 +149,7 @@
           <div class="card-header pb-0 p-3">
             <div class="row">
               <div class="col-6 d-flex align-items-center">
-                <h6 class="mb-0">My Uploads</h6>
+                <h6 class="mb-0 title-big">My Uploads</h6>
               </div>
               <div class="col-6 text-end">
                 <!-- <button class="btn btn-outline-primary btn-sm mb-0">View All</button> -->
@@ -167,10 +168,6 @@
                   <p>
                 </div>
                 <div class="d-flex align-items-center text-sm">
-
-
-
-
                   <a href="{{ route('user.download.paper', $paper->id) }}" class="btn btn-link text-dark text-sm mb-0 px-0 ms-4">
                     Download
                   </a>

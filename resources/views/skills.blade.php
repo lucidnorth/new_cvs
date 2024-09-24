@@ -1,5 +1,98 @@
 @extends('layouts.app')
 @section('content')
+<style>
+/* .nav-pills .nav-link {
+  border-radius: 0.5rem;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+} */
+
+.card { 
+  border: none;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #6c757d; 
+}
+
+.btn {
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.container {
+  padding: 30px;
+}
+
+.book-single {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 0.75rem;
+}
+
+/* Responsiveness*/
+@media (max-width: 768px) {
+  .card-img-top {
+    height: 150px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+  }
+}
+
+</style>
 
 <div class="container">
 

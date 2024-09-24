@@ -20,13 +20,14 @@ class ContactUsMail extends Mailable
 
     public function build()
     {
-        return $this->view('emails.contactus')
+        return $this->from('malikbyussif@gmail.com') 
+                    ->view('emails.contactus')
                     ->with([
                         'contactMethod' => $this->contact->contact_method,
                         'name' => $this->contact->name,
                         'email' => $this->contact->email,
                         'phone' => $this->contact->phone,
-                        'message' => $this->contact->message,
+                        'userMessage' => $this->contact->message,
                     ]);
     }
 }

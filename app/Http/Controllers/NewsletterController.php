@@ -26,7 +26,7 @@ class NewsletterController extends Controller
         ]);
 
         // Send an email notification
-        Mail::to('abubakra2000@gmail.com')->send(new NewsletterSubscribed($request->email));
+        Mail::to('malikbyussif@gmail.com')->send(new NewsletterSubscribed($request->email));
 
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Thank you for subscribing to our newsletter!');

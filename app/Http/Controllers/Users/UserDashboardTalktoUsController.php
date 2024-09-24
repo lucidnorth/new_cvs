@@ -6,6 +6,7 @@ use App\Models\TalkToUs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
+
 class UserDashboardTalktoUsController extends Controller
 {
     public function store(Request $request)

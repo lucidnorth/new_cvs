@@ -54,7 +54,7 @@
       <div class="col jumbotron-item1 my-auto">
         <div class="jumbotron-item1-content1">Conveniently Verify Academic
           And Professional Qualifications On Our Accredited Platform.</div>
-        <p class="jumbotron-item1-content2">Authentic Verification<i class="bi bi-dot"></i>Real Time<i class="bi bi-dot"></i>Secure</p>
+          <p class="jumbotron-item1-content2">Authentic Verification<i class="bi bi-dot"></i>Real Time<i class="bi bi-dot"></i>Secure</p>
         <div class="d-flex">
           <a class="btn-sign" href="{{ route('login') }}">Sign In</a>
           <a class="btn-register" href="{{ route('registrationpage') }}">Register</a>
@@ -76,15 +76,14 @@
   <div class="row gx-5 justify-content-center mb-3">
 
     <div class="owl-carousel vendor-carousel">
-      <img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo" class="partner-logo">
-      <img src="{{ asset('images/central.png') }}" alt="central" class="partner-logo">
-      <img src="{{ asset('images/knustlogo.jpg') }}" alt="knustlogo" class="partner-logo">
-      <img src="{{ asset('images/ug.png') }}" alt="ug" class="partner-logo">
+      <img src="{{ asset('images/upsa-logo.png') }}" alt="knustlogo" class="partner-logo">
+      <img src="{{ asset('images/ghana-logo.png') }}" alt="central" class="partner-logo">
+      <img src="{{ asset('images/knust-logo.png') }}" alt="knustlogo" class="partner-logo">
+      <img src="{{ asset('images/ucc-logo.png') }}" alt="ug" class="partner-logo">
     </div>
 
   </div>
 </div>
-
 
 <div class="features container-fluid" id="features">
   <div class="container overflow-hidden text-center">
@@ -348,31 +347,37 @@
         <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
       </div>
       <div class="modal-body">
-        <form>
+      @if(session('success'))
+          <div class="alert alert-success">
+              {{ session('success') }}
+          </div>
+      @endif
+      <form action="{{ route('submit.cv') }}" method="POST" enctype="multipart/form-data">
+          @csrf
           <div class="mb-3">
-            <label for="name" class="col-form-label">Your Full Name:</label>
-            <input type="text" class="form-control" id="recipient-name">
+              <label for="name" class="col-form-label">Your Full Name:</label>
+              <input type="text" class="form-control" id="name" name="name" required>
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+              <label for="message-text" class="col-form-label">Message:</label>
+              <textarea class="form-control" id="message-text" name="message" required></textarea>
           </div>
           <div class="mb-3">
-            <label for="name" class="col-form-label">Phone Number:</label>
-            <input type="telephone" class="form-control" id="recipient-name">
+              <label for="phone" class="col-form-label">Phone Number:</label>
+              <input type="tel" class="form-control" id="phone" name="phone" required>
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Country:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+              <label for="country" class="col-form-label">Country:</label>
+              <input type="text" class="form-control" id="country" name="country" required>
           </div>
           <div class="mb-3">
-
-            <input type="file" class="form-control" id="recipient-name">
+              <label for="cv" class="col-form-label">Upload CV:</label>
+              <input type="file" class="form-control" id="cv" name="cv" required>
           </div>
           <div style="text-align: right;">
-            <button type="button" class="btn btn-primary">Submit CV</button>
+              <button type="submit" class="btn btn-primary">Submit CV</button>
           </div>
-        </form>
+      </form>
       </div>
     </div>
   </div>
@@ -521,7 +526,7 @@
         <div class="full-width-text">
           <h1 class="getperformance">Get Performance<br>Analytics</h1>
           <br>
-          <a href="#!" class="analysis btn btn-primary">Get Analytics</a>
+          <a href="#" class="analysis btn btn-primary">Get Analytics</a>
         </div>
       </div>
     </div>
@@ -545,7 +550,7 @@
       </a>
     </div>
     <div class="col-md-4">
-      <a href="{{route('skills.index')}}#skills-gap">
+      <a href="{{route('skills.index')}}?tab=skills-gap">
         <div class="flip-card second">
           <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -559,7 +564,7 @@
       </a>
     </div>
     <div class="col-md-4">
-      <a href="{{route('skills.index')}}#future-needed-skills">
+      <a href="{{route('skills.index')}}?tab=future-needed-skills">
         <div class="flip-card third">
           <div class="flip-card-inner">
             <div class="flip-card-front">
@@ -576,3 +581,6 @@
 </div>
 
 @endsection
+
+
+

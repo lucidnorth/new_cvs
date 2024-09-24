@@ -247,7 +247,7 @@
         right: 1px;
         width: 0;
         height: 0;
-        border-top: 13px solid #2E8B57;
+        border-top: 13px solid #051E1F;
         border-bottom: 10px solid transparent;
         border-right: 13px solid transparent;
         z-index: 1;
@@ -294,7 +294,7 @@
         bottom: -22px;
         left: 0;
         height: 0;
-        border-top: 13px solid #2E8B57;
+        border-top: 13px solid #051E1F;
         border-bottom: 10px solid transparent;
         border-left: 13px solid transparent;
         z-index: -1;
@@ -410,19 +410,31 @@
         font-style: italic;
     }
 
+    .packaage-card{
+        margin-top: -150px;
+    }
+
 </style>
 
 
 <main class="main-content position-relative border-radius-lg">
     <div class="container-fluid py-2">
-        <h5 class="text-white mb-3">Packages</h1>
+        <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                    <div class="">
+                        <div class="">
+                            <div class="row">
+                                <h5 class="text-white">Packages</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <header>
                 @if(auth()->user()->employer)
                 <div class="row mt-3">
-                    <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+                    <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4" >
                         <div class="card">
                             <div class="card-body p-3">
-                                <div class="row">
+                                <div class="row"  style="padding:30px 0;">
                                     <div class="col-8">
                                         <div class="numbers">
                                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications Left</p>
@@ -432,7 +444,7 @@
                                             </h5>
                                             @else
                                             <h5 class="font-weight-bolder">
-                                                No package
+                                                
                                             </h5>
                                             @endif
 
@@ -457,7 +469,7 @@
                     <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-body p-3">
-                                <div class="row">
+                                <div class="row"  style="padding:30px 0;">
                                     <div class="col-8">
                                         <div class="numbers">
                                             <p class="text-sm mb-0 text-uppercase font-weight-bold">Active Package</p>
@@ -465,7 +477,7 @@
                                             <h5> {{ $activePackage->amount }}</h5>
                                             @else
                                             <h5 class="font-weight-bolder">
-                                                No active package
+                                                No Active Package
                                             </h5>
                                             @endif
 
@@ -500,7 +512,7 @@
                     </h6>
                 </div>
                 @endif
-                <div class="row row-cols-1 row-cols-md-3 text-center mt-5">
+                <div class="row row-cols-1 row-cols-md-3 text-center packaage-card">
 
                     @php
                     $classes = ['package', 'package2', 'package3', 'package4'];

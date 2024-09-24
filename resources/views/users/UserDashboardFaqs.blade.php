@@ -70,26 +70,31 @@
     .accordion-header button{
         font-size: 18px;
     }
+
+    .faq-card{
+        margin-top: 60px;
+    }
 </style>
 
 <main class="main-content position-relative border-radius-lg">
     <div class="container-fluid">
         <header>
 
-            <div class="row">
-                <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
-
-                    <h1 class="faq-maintitle">Frequently Asked Questions</h1>
-
+        <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                    <div class="">
+                        <div class="">
+                            <div class="row">
+                                <h5 class="text-white">Frequently Asked Questions</h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-xl-12 col-sm-12 mb-xl-0 mt-4">
+            <div class="col-xl-12 col-sm-12 mb-xl-0 faq-card">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
-
                                     @foreach ($categories as $category)
                                     <div class="faq-category">
                                         <div class="faq-items">

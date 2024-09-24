@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Package;
 use App\Models\UserPackage;
 use Illuminate\Support\Facades\Http;
-use Stripe\Checkout\Session;
 
 
 class UserDashboardPackagesController extends Controller
@@ -15,13 +14,15 @@ class UserDashboardPackagesController extends Controller
     public function index()
     {
         $packages = Package::all();
-        return view('users.UserDashboardPackages', [ 'packages'=> $packages,]);
+        return view('users.UserDashboardPackages', ['packages' => $packages,]);
     }
+
     public function purchase(Request $request)
+
     {
         $package = Package::where('name', $request->package_name)->firstOrFail();
         $user = auth()->user();
-        $activeUserPackage = $user->userPackages()->where('payment_status', 'paid')->latest()->first();
+        $activeUserPackage = $user->userPackages()->where('payment_status','paid')->latest()->first();
 
         if ($activeUserPackage) {
             // If there is an active package, increment the searches_left
@@ -61,7 +62,9 @@ class UserDashboardPackagesController extends Controller
         }
     }
 
+    
     public function handleGatewayCallback(Request $request)
+
     {
         $paymentReference = $request->query('reference');
 
@@ -83,3 +86,6 @@ class UserDashboardPackagesController extends Controller
         }
     }
 }
+
+
+

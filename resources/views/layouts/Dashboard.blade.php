@@ -21,55 +21,37 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-  <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet"/>
-  
-  
+  <link href="{{ asset('css/nucleo-icons.css') }}" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-
-  
   <!-- CSS Files -->
- 
-  <link href="{{ asset('css/argon-dashboard.css') }}" rel="stylesheet"/>
-
-  <style>
-
-    
-  </style>
-
+  <link href="{{ asset('css/argon-dashboard.css') }}" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
- 
-
 
   @include('layouts.sideBar')
   <main class="main-content position-relative border-radius-lg ">
     <!-- Navbar -->
     @include('layouts.navBar')
     <!-- End Navbar -->
-    @yield('content') 
+    @yield('content')
   </main>
- 
-  <!--   Core JS Files   -->
- 
 
+  <!--   Core JS Files   -->
   <script src="{{ asset('js/core/popper.min.js') }}"></script>
   <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>
   <script src="{{ asset('js/plugins/perfect-scrollbar.min.js') }}"></script>
   <script src="{{ asset('js/plugins/smooth-scrollbar.min.js') }}"></script>
   <!-- <script src="{{ asset('js/plugins/chartjs.min.js') }}"></script> -->
 
- 
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

@@ -19,7 +19,8 @@ class AdvertisementMail extends Mailable
 
     public function build()
     {
-        return $this->view('emails.advertisement')
+        return $this->from('malikbyussif@gmail.com') 
+                    ->view('emails.advertisement')
                     ->with($this->data);
     }
 }

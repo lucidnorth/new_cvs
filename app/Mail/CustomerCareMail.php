@@ -20,13 +20,14 @@ class CustomerCareMail extends Mailable
 
     public function build()
     {
-        return $this->view('emails.customercare')
+        return $this->from('malikbyussif@gmail.com') 
+                    ->view('emails.customercare')
                     ->with([
                         'issue' => $this->customerCare->issue,
                         'name' => $this->customerCare->name,
                         'email' => $this->customerCare->email,
                         'phone' => $this->customerCare->phone,
-                        'message' => $this->customerCare->message,
+                        // 'message' => $this->customerCare->message,
                     ]);
     }
 }

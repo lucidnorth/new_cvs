@@ -30,7 +30,8 @@ class VacancyApplicationMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.vacancy_application')
+        return $this->from('malikbyussif@gmail.com') 
+                    ->markdown('emails.vacancy_application')
                     ->subject('New Vacancy Application')
                     ->attach(storage_path('app/' . $this->application->cv_path), [
                         'as' => basename($this->application->cv_path),
