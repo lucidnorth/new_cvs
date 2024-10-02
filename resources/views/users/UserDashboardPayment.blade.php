@@ -7,105 +7,121 @@
 
 
 <style>
-  .table-responsive {
-    margin-top: 150px;
-  }
+    .table-responsive {
+        margin-top: 20px;
+    }
+    .table {
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+    }
+    th {
+        background-color: #343a40;
+        color: white;
+        text-align: left;
+        vertical-align: middle;
+        font-size: 20px;
+    }
+    td {
+        text-align: left;
+        vertical-align: middle;
+        font-size: 15px;
+    }
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+    .dataTables_wrapper .dataTables_paginate {
+        padding-top: 20px;
+    }
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+        padding: 0.5em 1em;
+    }
+    .custom-pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px; /* Adjusted margin for spacing */
+    }
 
-  .table {
-    background-color: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    .custom-pagination input[type="number"] {
+        width: 60px;
+        text-align: center;
+        font-size: 18px;
+        height: 38px;
+        margin: 0 5px; /* Adjusted margin for spacing */
+    }
 
-  }
+    .custom-pagination button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        height: 38px;
+        margin: 0 5px; /* Adjusted margin for spacing */
+    }
 
-  th {
-    background-color: #343a40;
-    color: white;
-    text-align: left;
-    vertical-align: middle;
-    font-size: 20px;
-  }
+    .custom-pagination button:hover {
+        background-color: #0056b3;
+    }
 
-  td {
-    text-align: left;
-    vertical-align: middle;
-    font-size: 15px;
-  }
+    .dataTables_filter {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
 
-  tr:hover {
-    background-color: #f1f1f1;
-  }
+    .dataTables_filter input {
+        width: 300px; /* Adjust the width as needed */
+        padding: 8px; /* Adjust padding as needed */
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        background-color: #fff;
+        background-image: none;
+        margin-bottom: 20px;
+        margin-top: 70px;
+    }
 
-  .dataTables_wrapper .dataTables_paginate {
-    padding-top: 20px;
-  }
+    #results-counter {
+        font-size: 22px;
+        font-weight: bold;
+        color: blue;
+        margin-left: 20px;
+        margin-top: 70px;
+        position: absolute;
+        display: none; /* Initially hide the counter */
+    }
 
-  .dataTables_wrapper .dataTables_paginate .paginate_button {
-    padding: 0.5em 1em;
-  }
+    #results-counter .count {
+        color: black;
+        font-weight: bold;
+    }
 
-  .custom-pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    /* Adjusted margin for spacing */
-  }
+    .container-fluid{
+        margin-top: -70px;
+    }
 
-  .custom-pagination input[type="number"] {
-    width: 60px;
-    text-align: center;
-    font-size: 18px;
-    height: 38px;
-    margin: 0 5px;
-    /* Adjusted margin for spacing */
-  }
+    /* Adjust card margin */
+    .card {
+        margin-bottom: 20px; /* Adjust as needed */
+    }
 
-  .custom-pagination button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 0.5em 1em;
-    cursor: pointer;
-    height: 38px;
-    margin: 0 5px;
-    /* Adjusted margin for spacing */
-  }
+    #page-indicator {
+        text-align: center;
+        margin-top: 70px;
+        margin-left: 600px;
+        font-size: 15px;
+       
+        position: absolute;
+        
+    }
 
-  .custom-pagination button:hover {
-    background-color: #0056b3;
-  }
-
-  .container-fluid {
-    margin-top: -70px;
-  }
-
-  /* Adjust card margin */
-  .card {
-    margin-bottom: 20px;
-    /* Adjust as needed */
-  }
-
-  #page-indicator {
-    text-align: center;
-    margin-top: 50px;
-    margin-left: 600px;
-    font-size: 15px;
-    color: white;
-    position: absolute;
-
-  }
-
-  .table-container {
-    position: relative;
-  }
-
-  .jpush {
-    margin-top: 30px;
-
-  }
+    .table-container {
+        position: relative;
+    }
 </style>
 
 <main class="main-content position-relative border-radius-lg mb-5">
@@ -202,15 +218,17 @@
       </div>
     </div>
 
-    <div class="container bg-white mt-5">
+    <div class="bg-white mt-5">
     <h6 class="text-capitalize title-big mt-5" style="font-size: 20px;color: #596CFF;">Payment Statistics</h6>
         <canvas id="lineChart"></canvas>
     </div>
-    <div id="page-indicator">Showing page 1 of 1</div> <!-- Page indicator here -->
-    <div class="table-responsive table-container">
-      <!-- <div id="results-counter" class="mb-3">Results: <span class="count">0</span></div> -->
-      <table id="example" class="table  table-dark table-striped text-center fs-6 text-white" style="width:100%;">
-        <thead>
+     <!-- Page indicator here -->
+     <div class="table-responsive table-container mt-5 bg-white p-5 ">
+                <div id="results-counter" class="mb-3">Results: <span class="count">0</span></div>
+                <div id="page-indicator">Showing page 1 of 1</div> <!-- Page indicator here -->
+                
+                <table id="example" class="table  table-dark table-striped text-center fs-6 text-white" style="width:100%;">
+                <thead>
           <tr>
             <th>Amount</th>
             <th>Date</th>
@@ -224,15 +242,15 @@
           </tr>
           @endforeach
         </tbody>
-      </table>
-      <div class="pagination-container">
-        <div class="custom-pagination">
-          <button id="prevPage" class="btn btn-primary">Previous</button>
-          <input type="number" id="currentPage" min="1" value="1" class="form-control">
-          <button id="nextPage" class="btn btn-primary">Next</button>
-        </div>
-      </div>
-    </div>
+                </table>
+                <div class="pagination-container">
+                    <div class="custom-pagination">
+                        <button id="prevPage" class="btn btn-primary">Previous</button>
+                        <input type="number" id="currentPage" min="1" value="1" class="form-control">
+                        <button id="nextPage" class="btn btn-primary">Next</button>
+                    </div>
+                </div>
+            </div>
   </div>
   </div>
     <div>
@@ -290,108 +308,123 @@
             });
         });
     </script>
-    <script>
-  $(document).ready(function() {
-    var table = $('#example').DataTable({
-      "info": false,
-      "lengthChange": false,
-      "pageLength": 20, // Display 20 rows per page by default
-      "ordering": false,
-      "paging": false, // Disable default pagination
-      "searching": hide
-    });
 
-    var currentPage = 1;
-    var totalPages = Math.ceil(table.data().length / 20); // Calculate the total number of pages
+<script>
+    $(document).ready(function() {
+        var table = $('#example').DataTable({
+            "info": false,
+            "lengthChange": false,
+            "pageLength": 20, // Display 20 rows per page by default
+            "ordering": false,
+            "paging": false // Disable default pagination
+        });
 
-    $('#currentPage').val(currentPage);
+        var currentPage = 1;
+        var totalPages = Math.ceil(table.data().length / 20); // Calculate the total number of pages
 
-    function updateTable() {
-      table.page(currentPage - 1).draw(false);
-      $('#page-indicator').text('Showing page ' + currentPage + ' of ' + totalPages); // Update page indicator
-
-      // Hide or show Previous button
-      if (currentPage <= 1) {
-        $('#prevPage').hide();
-      } else {
-        $('#prevPage').show();
-      }
-
-      // Hide or show Next button
-      if (currentPage >= totalPages) {
-        $('#nextPage').hide();
-      } else {
-        $('#nextPage').show();
-      }
-    }
-
-    $('#prevPage').on('click', function() {
-      if (currentPage > 1) {
-        currentPage--;
         $('#currentPage').val(currentPage);
-        updateTable();
-      }
-    });
 
-    $('#nextPage').on('click', function() {
-      if (currentPage < totalPages) {
-        currentPage++;
-        $('#currentPage').val(currentPage);
-        updateTable();
-      }
-    });
+        function updateTable() {
+            table.page(currentPage - 1).draw(false);
+            $('#page-indicator').text('Showing page ' + currentPage + ' of ' + totalPages); // Update page indicator
 
-    $('#currentPage').on('change', function() {
-      var newPage = parseInt($(this).val());
-      if (newPage >= 1 && newPage <= totalPages) {
-        currentPage = newPage;
-        updateTable();
-      } else {
-        $(this).val(currentPage); // Reset to the current page if the input is invalid
-      }
-    });
+            // Hide or show Previous button
+            if (currentPage <= 1) {
+                $('#prevPage').hide();
+            } else {
+                $('#prevPage').show();
+            }
 
-    $('#example').on('page.dt', function() {
-      var pageInfo = table.page.info();
-      $('#currentPage').val(pageInfo.page + 1);
-    });
-
-    // Custom search function for exact match
-    $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-      var searchTerm = $('.dataTables_filter input').val().toLowerCase();
-      if (!searchTerm) {
-        $('#results-counter').hide(); // Hide counter if no search term
-        return true; // If no search term, show all rows
-      } else {
-        $('#results-counter').show(); // Show counter if search term exists
-      }
-
-      for (var i = 0; i < data.length; i++) {
-        if (data[i].toLowerCase() === searchTerm) {
-          return true; // If an exact match is found, show the row
+            // Hide or show Next button
+            if (currentPage >= totalPages) {
+                $('#nextPage').hide();
+            } else {
+                $('#nextPage').show();
+            }
         }
-      }
-      return false; // Otherwise, hide the row
+
+        $('#prevPage').on('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                $('#currentPage').val(currentPage);
+                updateTable();
+            }
+        });
+
+        $('#nextPage').on('click', function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                $('#currentPage').val(currentPage);
+                updateTable();
+            }
+        });
+
+        $('#currentPage').on('change', function() {
+            var newPage = parseInt($(this).val());
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                updateTable();
+            } else {
+                $(this).val(currentPage); // Reset to the current page if the input is invalid
+            }
+        });
+
+        $('#example').on('page.dt', function() {
+            var pageInfo = table.page.info();
+            $('#currentPage').val(pageInfo.page + 1);
+        });
+
+        // Custom search function for exact match
+        $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            var searchTerm = $('.dataTables_filter input').val().toLowerCase();
+            if (!searchTerm) {
+                $('#results-counter').hide(); // Hide counter if no search term
+                return true; // If no search term, show all rows
+            } else {
+                $('#results-counter').show(); // Show counter if search term exists
+            }
+
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].toLowerCase() === searchTerm) {
+                    return true; // If an exact match is found, show the row
+                }
+            }
+            return false; // Otherwise, hide the row
+        });
+
+        // Update the results counter
+        function updateResultsCounter() {
+            var info = table.page.info();
+            $('#results-counter .count').text(info.recordsDisplay);
+        }
+
+        // Update results counter on table draw
+        table.on('draw', function() {
+            updateResultsCounter();
+        });
+
+        // Initial update of results counter
+        updateResultsCounter();
+
+        // Initial update of table (to handle initial state of pagination buttons)
+        updateTable();
     });
-
-    // Update the results counter
-    function updateResultsCounter() {
-      var info = table.page.info();
-      $('#results-counter .count').text(info.recordsDisplay);
-    }
-
-    // Update results counter on table draw
-    table.on('draw', function() {
-      updateResultsCounter();
-    });
-
-    // Initial update of results counter
-    updateResultsCounter();
-
-    // Initial update of table (to handle initial state of pagination buttons)
-    updateTable();
-  });
 </script>
 
-
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -43,11 +43,11 @@
     </div>
 
     <div class="tab-pane container fade" id="vision">
-      <p style="text-align: center; margin : 70px 0;">To constantly achieve customer intimacy by providing innovative solutions for recruiters, academic and professional discourse communities.</p>
+      <p style="text-align: center; margin : 100px 0;">To constantly achieve customer intimacy by providing innovative solutions for recruiters, academic and professional discourse communities.</p>
     </div>
 
     <div class="tab-pane container fade" id="accreditation">
-      <p style="text-align: center; margin : 70px 0;">To help people make productive decisions by providing real time verification and authentication of qualifications and documents. </p>
+      <p style="text-align: center; margin : 100px 0;">To help people make productive decisions by providing real time verification and authentication of qualifications and documents. </p>
     </div>
 
     <div class="tab-pane container fade" id="faqs">

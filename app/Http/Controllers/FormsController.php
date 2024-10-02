@@ -35,7 +35,7 @@ class FormsController extends Controller
         // Save the data to the model
         $application = WorkWithUsApplication::create([
             'name' => $validated['name'],
-            'message' => $validated['userMessage'],
+            'userMessage' => $validated['userMessage'],
             'phone' => $validated['phone'],
             'country' => $validated['country'],
             'cv_path' => $cvPath,

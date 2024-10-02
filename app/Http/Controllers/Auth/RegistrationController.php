@@ -294,7 +294,7 @@ class RegistrationController extends Controller
         return redirect()->route('registration.form')->with('error', 'Registration failed! Please check your input.');
     }
 }
-
+// ilhamagyemanginvestment@gmail.com
     
 
 }

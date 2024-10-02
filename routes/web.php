@@ -31,6 +31,10 @@ use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\NewsletterController;
 
 
+
+Route::get('/download-institution-verified-certificates', [UserDashboardReportsController::class, 'downloadInstitutionCertificates'])->name('download.institution.verified.certificates');
+Route::get('/download-institution-payments', [UserDashboardReportsController::class, 'downloadInstitutionPayments'])->name('download.institution.payments');
+
 Route::post('/employer/profile/update', [UserDashboardProfileController::class, 'updateEmployerProfile'])->name('employer.profile.update');
 Route::post('/institution/password-update', [UserDashboardProfileController::class, 'updatePassword'])->name('institution.password.update');
 Route::post('/institution/profile/update', [UserDashboardProfileController::class, 'updateInstitutionProfile'])->name('institution.profile.update');
@@ -296,7 +300,7 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
     }
 });
 Route::group(['namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function () {
-    // Two Factor Authentication
+    // Two Fact or Authentication
     if (file_exists(app_path('Http/Controllers/Auth/TwoFactorController.php'))) {
         Route::get('two-factor', 'TwoFactorController@show')->name('twoFactor.show');
         Route::post('two-factor', 'TwoFactorController@check')->name('twoFactor.check');

@@ -389,6 +389,7 @@ class UserDashboardController extends Controller
             // Decrement the search count only if a certificate is found
             $activePackage->decrement('searches_left');
 
+            
             // Calculate the amount for each search and update the institution's balance
             $pricePerSearch = $activePackage->amount / $activePackage->getTotalSearchesAllowed();
             $amountToGiveToInstitution = $pricePerSearch * 0.5;

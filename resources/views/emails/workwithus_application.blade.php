@@ -5,7 +5,7 @@
 </head>
 <body>
     <p><strong>Name:</strong> {{ $name }}</p>
-    <p><strong>Message:</strong> {{ $message }}</p>
+    <p><strong>Message:</strong> {{ $userMessage }}</p>
     <p><strong>Phone:</strong> {{ $phone }}</p>
     <p><strong>Country:</strong> {{ $country }}</p>
 </body>

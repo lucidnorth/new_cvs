@@ -347,31 +347,31 @@
         <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
       </div>
       <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="name" class="col-form-label">Your Full Name:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="name" class="col-form-label">Phone Number:</label>
-            <input type="telephone" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Country:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-          <div class="mb-3">
-
-            <input type="file" class="form-control" id="recipient-name">
-          </div>
-          <div style="text-align: right;">
-            <button type="button" class="btn btn-primary">Submit CV</button>
-          </div>
-        </form>
+      <form action="{{ route('form.workwithus') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Your Full Name:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Message:</label>
+                    <textarea class="form-control" id="message-text" name="userMessage"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="col-form-label">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone">
+                </div>
+                <div class="mb-3">
+                    <label for="country" class="col-form-label">Country:</label>
+                    <<input type="text" class="form-control" id="country" name="country">
+                </div>
+                <div class="mb-3">
+                    <input type="file" class="form-control" id="cv" name="cv">
+                </div>
+                <div style="text-align: right;">
+                    <button type="submit" class="btn btn-primary">Submit CV</button>
+                </div>
+            </form>
       </div>
     </div>
   </div>
