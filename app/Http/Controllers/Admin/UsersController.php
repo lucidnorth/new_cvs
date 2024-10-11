@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Traits\CsvImportTrait;
+use App\Http\Controllers\Traits\ExcelImportTrait; // Updated to ExcelImportTrait
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -16,7 +16,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class UsersController extends Controller
 {
-    use CsvImportTrait;
+    use ExcelImportTrait; // Updated to ExcelImportTrait
 
     public function index(Request $request)
     {
@@ -140,5 +140,12 @@ class UsersController extends Controller
         }
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    // Excel import function (if you want to customize further)
+    public function importExcel(Request $request)
+    {
+        $this->importExcelData($request, User::class); // Using a helper function for Excel imports
+        return redirect()->route('admin.users.index');
     }
 }

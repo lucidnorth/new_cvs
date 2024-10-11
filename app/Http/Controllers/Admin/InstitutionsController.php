@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyInstitutionRequest;
 use App\Http\Requests\StoreInstitutionRequest;
@@ -14,11 +13,15 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
+use Maatwebsite\Excel\Facades\Excel; // Import Excel facade
+use App\Imports\CertificatesImport; // Your custom Excel import class
+use App\Imports\InstitutionImport;
 
 class InstitutionsController extends Controller
 {
-    use MediaUploadingTrait, CsvImportTrait;
+    use MediaUploadingTrait;
 
+    // Method for displaying the institutions index page
     public function index(Request $request)
     {
         abort_if(Gate::denies('institution_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -64,6 +67,7 @@ class InstitutionsController extends Controller
 
                 return '';
             });
+
             $table->editColumn('address', function ($row) {
                 return $row->address ? $row->address : '';
             });
@@ -80,6 +84,30 @@ class InstitutionsController extends Controller
         }
 
         return view('admin.institutions.index');
+    }
+
+    // Method for parsing Excel import
+    public function parseExcelImport(Request $request)
+    {
+        abort_if(Gate::denies('institution_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        // Validate the Excel file
+        $request->validate([
+            'excel_file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        // Use the Excel import class to parse the data
+        Excel::import(new InstitutionImport, $request->file('excel_file'));
+
+        return redirect()->route('admin.institutions.index')->with('success', 'Institutions imported successfully!');
+    }
+
+    // Method for processing Excel import
+    public function processExcelImport(Request $request)
+    {
+        // This can be for additional processing after import if needed
+        // Add custom handling logic here if needed
+        return redirect()->route('admin.institutions.index');
     }
 
     public function create()

@@ -29,6 +29,8 @@ use App\Http\Controllers\Users\UserDashboardUploadCertificateController;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\InstitutionsController;
 
 
 Route::post('/employer/profile/update', [UserDashboardProfileController::class, 'updateEmployerProfile'])->name('employer.profile.update');
@@ -183,6 +185,34 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('users/process-csv-import', 'UsersController@processCsvImport')->name('users.processCsvImport');
     Route::resource('users', 'UsersController');
 
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
+        // Custom Routes for Users
+        Route::delete('users/destroy', [UsersController::class, 'massDestroy'])->name('users.massDestroy');
+        Route::post('users/parse-excel-import', [UsersController::class, 'parseExcelImport'])->name('users.parseExcelImport');
+        Route::post('users/process-excel-import', [UsersController::class, 'processExcelImport'])->name('users.processExcelImport');
+    
+        // Resource Routes for Users
+        Route::resource('users', UsersController::class);
+    });
+
+    // Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
+    //     // Other routes...
+    
+    //     // Excel Import Routes for Institutions
+    //     Route::post('institutions/parse-excel-import', [InstitutionsController::class, 'parseExcelImport'])
+    //         ->name('institutions.parseExcelImport');
+    
+    //     Route::post('institutions/process-excel-import', [InstitutionsController::class, 'processExcelImport'])
+    //         ->name('institutions.processExcelImport');
+    
+    //     // Resource route for Institutions
+    //     Route::resource('institutions', InstitutionsController::class);
+    // });
+
+    // Route::post('admin/institutions/import', [InstitutionsController::class, 'parseExcelImport'])->name('admin.institutions.parseExcelImport');
+
+    
+
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
@@ -214,12 +244,28 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('user-alerts', 'UserAlertsController', ['except' => ['edit', 'update']]);
 
     // Institutions
-    Route::delete('institutions/destroy', 'InstitutionsController@massDestroy')->name('institutions.massDestroy');
-    Route::post('institutions/media', 'InstitutionsController@storeMedia')->name('institutions.storeMedia');
-    Route::post('institutions/ckmedia', 'InstitutionsController@storeCKEditorImages')->name('institutions.storeCKEditorImages');
-    Route::post('institutions/parse-csv-import', 'InstitutionsController@parseCsvImport')->name('institutions.parseCsvImport');
-    Route::post('institutions/process-csv-import', 'InstitutionsController@processCsvImport')->name('institutions.processCsvImport');
-    Route::resource('institutions', 'InstitutionsController');
+    // Route::delete('institutions/destroy', 'InstitutionsController@massDestroy')->name('institutions.massDestroy');
+    // Route::post('institutions/media', 'InstitutionsController@storeMedia')->name('institutions.storeMedia');
+    // Route::post('institutions/ckmedia', 'InstitutionsController@storeCKEditorImages')->name('institutions.storeCKEditorImages');
+    // Route::post('institutions/parse-csv-import', 'InstitutionsController@parseCsvImport')->name('institutions.parseCsvImport');
+    // Route::post('institutions/process-csv-import', 'InstitutionsController@processCsvImport')->name('institutions.processCsvImport');
+    // Route::resource('institutions', 'InstitutionsController');
+    // Route to handle mass deletion of institutions
+Route::delete('institutions/destroy', 'InstitutionsController@massDestroy')->name('institutions.massDestroy');
+
+// Route to handle file uploads for media
+Route::post('institutions/media', 'InstitutionsController@storeMedia')->name('institutions.storeMedia');
+
+// Route to handle CKEditor image uploads
+Route::post('institutions/ckmedia', 'InstitutionsController@storeCKEditorImages')->name('institutions.storeCKEditorImages');
+
+// Route to handle Excel imports (update this to reflect Excel instead of CSV)
+Route::post('institutions/parse-excel-import', 'InstitutionsController@parseExcelImport')->name('institutions.parseExcelImport');
+Route::post('institutions/process-excel-import', 'InstitutionsController@processExcelImport')->name('institutions.processExcelImport');
+
+// Resource route for Institutions CRUD operations
+Route::resource('institutions', 'InstitutionsController');
+
 
     // Papers
     Route::delete('papers/destroy', 'PapersController@massDestroy')->name('papers.massDestroy');
