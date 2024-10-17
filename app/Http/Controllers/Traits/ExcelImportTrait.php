@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\GenericImport;
 
-trait ExcelImportTrait // Renamed from CsvImportTrait to ExcelImportTrait
+trait ExcelImportTrait
 {
     public function processExcelImport(Request $request)
     {
@@ -29,7 +29,8 @@ trait ExcelImportTrait // Renamed from CsvImportTrait to ExcelImportTrait
             $importedData = Excel::toCollection(new GenericImport, $path)->first(); // Updated to use Excel
             $insert = [];
 
-            $institutionId = session()->get('institution_id') ?? NULL;
+            // $institutionId = session()->get('institution_id') ?? NULL;
+            $institutionId = $request->input('institution_id');
 
             foreach ($importedData as $key => $row) {
                 if ($hasHeader && $key == 0) {
@@ -43,7 +44,8 @@ trait ExcelImportTrait // Renamed from CsvImportTrait to ExcelImportTrait
                     }
                 }
 
-                $tmp['institution_id'] = $institutionId;
+                // $tmp['institution_id'] = $institutionId;
+                $tmp['institution_id'] = session()->get('institution_id') ?? NULL;
 
                 if (count($tmp) > 0) {
                     $insert[] = $tmp;
@@ -78,6 +80,7 @@ trait ExcelImportTrait // Renamed from CsvImportTrait to ExcelImportTrait
 
         $path      = $file->path();
         $hasHeader = $request->input('header', false) ? true : false;
+
 
         // Read the first sheet and get headers
         $importedData = Excel::toCollection(new GenericImport, $path)->first(); // Read Excel file

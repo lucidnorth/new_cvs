@@ -6,7 +6,7 @@
                     {{ trans('global.add') }} {{ trans('cruds.certificate.title_singular') }}
                 </a>
                 <button class="btn btn-warning" data-toggle="modal" data-target="#excelImportModal">
-                    {{ trans('global.app_excelImport') }}
+                    Import Certificates
                 </button>
                 @include('excelImport.modal', ['model' => 'Certificate', 'route' => 'admin.certificates.parseExcelImport'])
             </div>
@@ -58,7 +58,7 @@
                                         <td>{{ $certificate->first_name ?? '' }}</td>
                                         <td>{{ $certificate->middle_name ?? '' }}</td>
                                         <td>{{ $certificate->last_name ?? '' }}</td>
-                                        <td>{{ App\Models\Certificate::GENDER_SELECT[$certificate->gender] ?? '' }}</td>
+                                        <td>{{ $certificate->gender ?? '' }}</td>
                                         <td>{{ $certificate->date_of_birth ?? '' }}</td>
                                         <td>{{ $certificate->institution->institutions ?? '' }}</td>
                                         <td>{{ $certificate->certificate_number ?? '' }}</td>

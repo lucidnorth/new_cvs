@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyInstitutionRequest;
+use App\Http\Requests\StoreCertificateRequest;
 use App\Http\Requests\StoreInstitutionRequest;
 use App\Http\Requests\UpdateInstitutionRequest;
 use App\Models\Institution;
@@ -16,6 +17,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Maatwebsite\Excel\Facades\Excel; // Import Excel facade
 use App\Imports\CertificatesImport; // Your custom Excel import class
 use App\Imports\InstitutionImport;
+use App\Models\Certificate;
 
 class InstitutionsController extends Controller
 {
@@ -87,20 +89,38 @@ class InstitutionsController extends Controller
     }
 
     // Method for parsing Excel import
+    // public function parseExcelImport(Request $request)
+    // {
+    //     abort_if(Gate::denies('institution_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    //     // Validate the Excel file
+    //     $request->validate([
+    //         'excel_file' => 'required|mimes:xlsx,xls'
+    //     ]);
+
+    //     // Use the Excel import class to parse the data
+    //     Excel::import(new CertificatesImport, $request->file('excel_file'));
+
+    //     return redirect()->route('admin.institutions.index')->with('success', 'Institutions imported successfully!');
+    // }
     public function parseExcelImport(Request $request)
     {
         abort_if(Gate::denies('institution_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         // Validate the Excel file
         $request->validate([
-            'excel_file' => 'required|mimes:xlsx,xls'
+            'excel_file' => 'required|mimes:xlsx,xls',
         ]);
 
-        // Use the Excel import class to parse the data
-        Excel::import(new InstitutionImport, $request->file('excel_file'));
+        $institutionId = session()->get('institution_id') ?? $request->input('institution_id');
 
-        return redirect()->route('admin.institutions.index')->with('success', 'Institutions imported successfully!');
+        // Ensure that the institution ID is passed to the import class
+        Excel::import(new CertificatesImport($institutionId), $request->file('excel_file'));
+
+        return redirect()->route('admin.institutions.index')
+            ->with('success', 'Certificates imported successfully!');
     }
+
 
     // Method for processing Excel import
     public function processExcelImport(Request $request)
@@ -110,27 +130,62 @@ class InstitutionsController extends Controller
         return redirect()->route('admin.institutions.index');
     }
 
+    // public function create()
+    // {
+    //     abort_if(Gate::denies('institution_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    //     return view('admin.institutions.create');
+    // }
     public function create()
     {
-        abort_if(Gate::denies('institution_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('certificate_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.institutions.create');
+        $institutions = Institution::pluck('institutions', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $users = User::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.certificates.create', compact('institutions'));
     }
 
-    public function store(StoreInstitutionRequest $request)
-    {
-        $institution = Institution::create($request->all());
+    
+    // public function store(StoreCertificateRequest $request)
+    // {
+    //     $request->validate([
+    //         'institution_id' => 'required|exists:institutions,id',
+    //     ]);
 
-        if ($request->input('logo', false)) {
-            $institution->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
+    //     $certificate = Certificate::create($request->all());
+
+    //     if ($request->input('photo', false)) {
+    //         $certificate->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+    //     }
+
+    //     if ($media = $request->input('ck-media', false)) {
+    //         Media::whereIn('id', $media)->update(['model_id' => $certificate->id]);
+    //     }
+
+    //     return redirect()->route('admin.certificates.index');
+    // }
+    public function store(StoreCertificateRequest $request)
+    {
+        $request->validate([
+            'institution_id' => 'required|exists:institutions,id',
+        ]);
+
+        // Create the certificate and link it to the institution
+        $certificate = Certificate::create($request->all());
+
+        if ($request->input('photo', false)) {
+            $certificate->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))
+                ->toMediaCollection('photo');
         }
 
         if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $institution->id]);
+            Media::whereIn('id', $media)->update(['model_id' => $certificate->id]);
         }
 
-        return redirect()->route('admin.institutions.index');
+        return redirect()->route('admin.certificates.index');
     }
+
 
     public function edit(Institution $institution)
     {
@@ -159,12 +214,24 @@ class InstitutionsController extends Controller
         return redirect()->route('admin.institutions.index');
     }
 
+    // public function show(Institution $institution)
+    // {
+    //     abort_if(Gate::denies('institution_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    //     $institution->load('created_by', 'institutionCertificates');
+    //     session()->put('institution_id', $institution->id); 
+    //     return view('admin.institutions.show', compact('institution'));
+    // }
+
     public function show(Institution $institution)
     {
         abort_if(Gate::denies('institution_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        // Store the institution_id in session for later use
+        session()->put('institution_id', $institution->id);
+
         $institution->load('created_by', 'institutionCertificates');
-        session()->put('institution_id', $institution->id); 
+
         return view('admin.institutions.show', compact('institution'));
     }
 

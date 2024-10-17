@@ -450,7 +450,7 @@
                       <p class="search-result"><span class="titlebg">First Name:</span> {{ session('certificate')->first_name }}</p>
                       <p class="search-result"><span class="titlebg">Middle Name: </span> {{ session('certificate')->middle_name }}</p>
                       <p class="search-result"><span class="titlebg">Last Name: </span> {{ session('certificate')->last_name }}</p>
-                      <p class="search-result"><span class="titlebg"> Date of Birth:</span> {{ session('certificate')->date_of_birth }}t</p>
+                      <p class="search-result"><span class="titlebg"> Date of Birth:</span> {{ session('certificate')->date_of_birth }}</p>
                     </div>
                   </div>
                   <div class="col cardthree">

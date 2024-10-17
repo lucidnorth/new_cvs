@@ -250,21 +250,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Route::post('institutions/parse-csv-import', 'InstitutionsController@parseCsvImport')->name('institutions.parseCsvImport');
     // Route::post('institutions/process-csv-import', 'InstitutionsController@processCsvImport')->name('institutions.processCsvImport');
     // Route::resource('institutions', 'InstitutionsController');
+
     // Route to handle mass deletion of institutions
-Route::delete('institutions/destroy', 'InstitutionsController@massDestroy')->name('institutions.massDestroy');
+    Route::delete('institutions/destroy', 'InstitutionsController@massDestroy')->name('institutions.massDestroy');
 
-// Route to handle file uploads for media
-Route::post('institutions/media', 'InstitutionsController@storeMedia')->name('institutions.storeMedia');
+    // Route to handle file uploads for media
+    Route::post('institutions/media', 'InstitutionsController@storeMedia')->name('institutions.storeMedia');
 
-// Route to handle CKEditor image uploads
-Route::post('institutions/ckmedia', 'InstitutionsController@storeCKEditorImages')->name('institutions.storeCKEditorImages');
+    // Route to handle CKEditor image uploads
+    Route::post('institutions/ckmedia', 'InstitutionsController@storeCKEditorImages')->name('institutions.storeCKEditorImages');
 
-// Route to handle Excel imports (update this to reflect Excel instead of CSV)
-Route::post('institutions/parse-excel-import', 'InstitutionsController@parseExcelImport')->name('institutions.parseExcelImport');
-Route::post('institutions/process-excel-import', 'InstitutionsController@processExcelImport')->name('institutions.processExcelImport');
+    // Route to handle Excel imports (update this to reflect Excel instead of CSV)
+    Route::post('institutions/parse-excel-import', 'InstitutionsController@parseExcelImport')->name('institutions.parseExcelImport');
+    Route::post('institutions/process-excel-import', 'InstitutionsController@processExcelImport')->name('institutions.processExcelImport');
 
-// Resource route for Institutions CRUD operations
-Route::resource('institutions', 'InstitutionsController');
+    // Resource route for Institutions CRUD operations
+    Route::resource('institutions', 'InstitutionsController');
 
 
     // Papers

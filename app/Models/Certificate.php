@@ -85,9 +85,23 @@ class Certificate extends Model implements HasMedia
         return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
     }
 
+    // public function setDateOfBirthAttribute($value)
+    // {
+    //     $this->attributes['date_of_birth'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('m/d/Y') : null;
+    // }
+
     public function setDateOfBirthAttribute($value)
     {
-        $this->attributes['date_of_birth'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
+        if ($value) {
+            try {
+                $this->attributes['date_of_birth'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
+            } catch (\Exception $e) {
+                // Handle error or fallback to another format
+                $this->attributes['date_of_birth'] = Carbon::parse($value)->format('Y-m-d');
+            }
+        } else {
+            $this->attributes['date_of_birth'] = null;
+        }
     }
 
     public function institution()
@@ -101,25 +115,26 @@ class Certificate extends Model implements HasMedia
 }
 
 
-    public function getYearOfEntryAttribute($value)
-    {
-        return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
-    }
+public function getYearOfEntryAttribute($value)
+{
+    return $value ? Carbon::parse($value)->format('Y') : null; // Only the year
+}
 
-    public function setYearOfEntryAttribute($value)
-    {
-        $this->attributes['year_of_entry'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
-    }
+public function setYearOfEntryAttribute($value)
+{
+    $this->attributes['year_of_entry'] = $value ? Carbon::createFromFormat('Y', $value)->format('Y-m-d') : null;
+}
 
-    public function getYearOfCompletionAttribute($value)
-    {
-        return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
-    }
+public function getYearOfCompletionAttribute($value)
+{
+    return $value ? Carbon::parse($value)->format('Y') : null; // Only the year
+}
 
-    public function setYearOfCompletionAttribute($value)
-    {
-        $this->attributes['year_of_completion'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
-    }
+public function setYearOfCompletionAttribute($value)
+{
+    $this->attributes['year_of_completion'] = $value ? Carbon::createFromFormat('Y', $value)->format('Y-m-d') : null;
+}
+
 
     public function created_by()
     {

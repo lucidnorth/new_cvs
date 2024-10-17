@@ -234,11 +234,12 @@ class CertificatesController extends Controller
     public function import(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:xlsx,xls',
+            'file' => 'required|mimes:xlsx',
+            'institution_id' => 'required|integer',
         ]);
 
-        Excel::import(new CertificatesImport, $request->file('file'));
+        Excel::import(new CertificatesImport($request->institution_id), $request->file('file'));
 
-        return redirect()->route('admin.certificates.index')->with('success', 'Certificates imported successfully');
+        return redirect()->back()->with('success', 'Certificates imported successfully!');
     }
 }
