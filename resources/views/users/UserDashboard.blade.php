@@ -785,8 +785,15 @@
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <th>Institution:</th>
-                        <td>Institution:</strong> {{ $certificate['Institution'] }}</td>
+                    @if (session('certificate'))
+    @php
+        $certificate = session('certificate');
+        $institutionName = session('institution_name');  // Get the institution name from the session
+    @endphp
+
+    <!-- Display institution name -->
+    <td>Institution:</strong> {{ $institutionName }}</td>
+@endif
                     </tr>
                     <tr>
                         <th>Student Identification:</th>
