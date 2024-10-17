@@ -284,7 +284,7 @@
                                 </form>
                   
                                 <!-- Institution Form -->
-                                <form id="institution-form" class="form" action="{{ route('register.institution') }}" method="POST">
+                                <form id="institution-form" class="form" action="{{ route('register.institution') }}" method="POST" enctype="multipart/form-data">
                                   @csrf
                                   <h3 class="form-title">Register an Institution</h3>
                                   <div class="row">
@@ -316,6 +316,10 @@
                                       <label for="email">Email<i class="asteric"> *</i></label>
                                       <input type="email" class="form-control" id="email" name="email" required>
                                     </div>
+                                    <div class="col-md-12 mb-3">
+        <label for="logo">Upload Logo</label>
+        <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
+      </div>
                                     <div class="col-md-6 mb-3">
                                       <label for="location">Location<i class="asteric"> *</i></label>
                                       <input type="text" class="form-control" id="location" name="location" required>

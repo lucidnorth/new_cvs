@@ -20,6 +20,178 @@
     padding: 20px;
     margin: auto;
   }
+
+  .result-container {
+           
+            padding: 30px;
+            border-radius: 15px;
+            background-color: #DCE8E8 !important;
+        }
+
+
+  table {
+            font-size: 0.80rem;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        th, td {
+            padding: 15px 10px;
+            border: 2px solid #1E8FFD !important;
+        }
+
+        th {
+            width: 25%;
+            font-weight: bold;
+            color: #DCE8E8 !important;
+            background-color: #1E8FFD !important;
+        }
+
+        td {
+            width: 40%;
+            font-weight: bold;
+            color: #363636;
+           
+           
+        }
+
+        tr {
+            margin: 10px 0 !important;
+        }
+
+        .passport-photo {
+            border: 0px solid #7c7979 !important;
+            
+        }
+
+        .university-logo {
+            border: 0px solid #757575 !important;
+        }
+
+        .vrf{
+            margin-left: -10px;
+        }
+        
+        .passport-size{
+            border: 1px solid black !important;
+            width: 10rem;
+            height: 12rem;
+            object-fit: contain;
+            margin-left: 110px;
+         
+        }
+
+        .universitylogo-size{
+            /* border: 1px solid black !important; */
+            width: 10rem;
+            height: 2rem;
+            object-fit: contain;
+            margin-left: 110px;
+        }
+
+        .link-text a {
+            margin-right: 340px;
+            text-decoration: none;
+            font-weight: Normal;
+            color: #005526;
+        }
+
+        .text-center {
+            margin-left: 0;
+        }
+
+        .center-result {
+            margin-right: 80px;
+        }
+
+        .print-btn{
+            margin-left: 320px;
+        }
+
+        .verified-on{
+            color: #02c258;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+                font-size: 11px;
+            }
+
+            .resultbox, .resultbox * {
+                visibility: visible;
+            }
+
+            .container {
+                box-shadow: none;
+                border: none;
+            }
+
+
+            .vrf{
+               font-size: 12px;
+               margin-bottom: -98px;
+            }
+
+            .passport-size{
+                border: 1px solid black !important;
+                width: 7rem;
+                height: 8rem;
+                object-fit: contain;
+                margin-left: -15px;
+                margin-top: 30px;
+             
+            }
+
+            .universitylogo-size{
+                border: 1px solid black !important;
+                width: 8.5rem;
+                height: 1.5rem;
+                object-fit: contain;
+                margin-left: -24px;
+
+            }
+
+            .passport-photo, .university-logo {
+                width: 6rem;
+                margin-bottom: 10px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            table {
+                font-size: 1.4rem;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            th, td {
+                padding: 5px;
+              
+            }
+
+          
+    
+            th {
+                background-color: #1E8FFD !important;
+                color: #ffffff !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+    
+
+            .print-btn {
+                visibility: hidden;
+            }
+
+           .bi-printer-fill {
+                visibility: hidden;
+                display: none;
+            }
+        }
 </style>
 
 <main class="main-content position-relative border-radius-lg ">
@@ -36,7 +208,7 @@
               <div class="row"  style="padding:30px 0;">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">PAYMENTS DUE</p>
+                    <p class="text-sm mb-0  font-weight-bold">Payment(s) Due</p>
                     <h5 class="font-weight-bolder">
                     {{$amountDue}}
                     </h5>     
@@ -62,7 +234,7 @@
                 <div class="row"  style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
+                      <p class="text-sm mb-0 font-weight-bold">Verification(s)</p>
                       <h5 class="font-weight-bolder">
                         {{ $institutionSearchCount}}
                       </h5>
@@ -89,7 +261,7 @@
               <div class="row"  style="padding:30px 0;">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">UPLOAD GRADUATES DATA</p>
+                    <p class="text-sm mb-0 font-weight-bold">Uploaded Graduates Data</p>
                     <h5 class="font-weight-bolder">
                       {{ $institutionCertificateCount}}
 
@@ -116,7 +288,7 @@
                 <div class="row"  style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
+                      <p class="text-sm mb-0 font-weight-bold">Report(s)</p>
                       <h5 class="font-weight-bolder">
                         View reports
                       </h5>
@@ -147,7 +319,7 @@
                 <div class="row"  style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Verification Left</p>
+                      <p class="text-sm mb-0  font-weight-bold">Verification(s) Left</p>
                       @if(auth()->user()->activePackage())
                       <h5 class="font-weight-bolder">
 
@@ -184,7 +356,7 @@
                 <div class="row"  style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
+                      <p class="text-sm mb-0  font-weight-bold">Verification(s)</p>
                       <h5 class="font-weight-bolder">
                         {{ $searchCount }}
                       </h5>
@@ -212,7 +384,7 @@
                 <div class="row"  style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Papers Submitted</p>
+                      <p class="text-sm mb-0  font-weight-bold">Paper(s) Submitted</p>
                       <h5 class="font-weight-bolder">
                         {{ $papersCount }}
                       </h5>
@@ -239,7 +411,7 @@
                 <div class="row"  style="padding:30px 0;">
                   <div class="col-8">
                     <div class="numbers">
-                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
+                      <p class="text-sm mb-0  font-weight-bold">Report(s)</p>
                       <h5 class="font-weight-bolder">
                         View reports
                       </h5>
@@ -266,7 +438,7 @@
         <div class="col-lg-12 mb-lg-0 mb-4">
           <div class="card z-index-2 h-100">
             <div class="card-header pb-0 pt-3 bg-transparent">
-              <h6 class="text-capitalize title-big" style="font-size: 20px;">Verified Candidates</h6>
+              <h6 class="text-capitalize title-big" style="font-size: 20px;">Verified Candidate(s)</h6>
               <!-- <p class="text-sm mb-0">
                 <i class="fa fa-arrow-up text-success"></i>
                 <span class="font-weight-bold">4% more</span> in 2021
@@ -425,59 +597,240 @@
           </div>
           @endif
 
-          @if(session('certificate'))
+          @if (session('certificate'))
+    @php
+        $certificate = session('certificate');
+        $source = session('certificate_source'); // Get the source (local or api)
+    @endphp
 
-          <div class="row justify-content-center search-result-section">
-            <div class="col-md-12">
-              <div class="searchcard printable p-4" style="background-color: #DCE8E8;">
-                <h3 class="verifiedresult-text mb-4" style="color: rgb(7, 160, 40);">Verified Result</h3>
-                <div class="row row-cols-3 justify-content-center">
-                  <div class="col cardone">
-                    <div class="passport-photo">
-                      <img src="placeholder.jpg" alt="Passport Photo" class="img-fluid mb-2" style="width: 100%; height: 100%;">
-                    </div>
-                    <div>
-                      <img src="placeholder.jpg" alt="University Logo" class="img-fluid mb-2">
-                    </div>
-                    <div class="certificate-number-section">
-                      <!-- <h6>Verified<i class="bi bi-patch-check-fill text-success"></i></h6> -->
-                      <p class="resultqrcode" id="qrCode"></p>
-                    </div>
-                  </div>
-                  <div class="col cardtwo">
-                    <div>
-                      <h4>Bio Data</h4>
-                      <p class="search-result"><span class="titlebg">First Name:</span> {{ session('certificate')->first_name }}</p>
-                      <p class="search-result"><span class="titlebg">Middle Name: </span> {{ session('certificate')->middle_name }}</p>
-                      <p class="search-result"><span class="titlebg">Last Name: </span> {{ session('certificate')->last_name }}</p>
-                      <p class="search-result"><span class="titlebg"> Date of Birth:</span> {{ session('certificate')->date_of_birth }}t</p>
-                    </div>
-                  </div>
-                  <div class="col cardthree">
-                    <div>
-                      <h4>Academic Data</h4>
-                      <p class="search-result"><span class="titlebg">Institution:</span> {{ session('certificate')->institution->institutions}} </p>
-                      <p class="search-result"><span class="titlebg">Student Identification:</span> {{ session('certificate')->student_identification }}</p>
-                      <p class="search-result"><span class="titlebg">Qualification Type: </span> {{ session('certificate')->qualification_type }}</p>
-                      <p class="search-result"><span class="titlebg">Certificate Number:</span> {{ session('certificate')->certificate_number }}</p>
-                      <p class="search-result"><span class="titlebg">Year of Entry: </span> {{ session('certificate')->year_of_entry}}</p>
-                      <p class="search-result"><span class="titlebg"> Year of Completion:</span> {{ session('certificate')->year_of_completion }}</p>
+    @if ($source === 'local')
 
-                      <p class="save-print">
-                        <i class="bi bi-floppy" onclick="saveResult()"></i>
-                        <i class="bi bi-printer" onclick="printResult()">Print Result</i>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <p class="websiteinfo">Verified on www.certverification.com</p>
-                <p class="verifiedtext">Verified t sdolores rem animi? Culpa est illum nostrum expedita laboriosam.</p>
-              </div>
-            </div>
-          </div>
-          @elseif(session('error'))
-          <p>{{ session('error') }}</p>
-          @endif
+          <div class="container my-5 result-container">
+    <!-- <div class="text-center">
+        <h4 class="text-success">Verified Result</h4>
+        <img src="passport_photo.jpg" alt="Passport Photo" class="passport-photo img-fluid">
+        <img src="university_logo.jpg" alt="University Logo" class="university-logo img-fluid">
+    </div> -->
+
+    <div class="row ">
+
+        <div class="col-md-4 ">
+            <table class="table table-bordered text-center">
+                <tbody class="result-images">
+                    <tr>
+                        <td class="passport-photo"> 
+                            <h4 class="text-success vrf">Verified Result</h4>
+                                <div class="passport-size">
+                                    <img src="" alt="Passport Photo" class=" img-fluid">
+                                </div>  
+                           
+                            </td>
+                    </tr>
+                    <tr>
+                        <td class="university-logo">   
+                            <div class="universitylogo-size">
+                        
+
+                                <img src="{{ session('certificate')->institution->logo }}" alt="University Logo" class=" img-fluid">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <h5>Bio Data</h5>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>First Name:</th>
+                        <td> {{ session('certificate')->first_name }}</td>
+                    </tr>
+                <tbody>
+
+                    <tr>
+                        <th>Middle Name:</th>
+                        <td>{{ session('certificate')->middle_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name:</th>
+                        <td>{{ session('certificate')->last_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Date of Birth:</th>
+                        <td>{{ session('certificate')->date_of_birth }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <h5>Academic Data</h5>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Institution:</th>
+                        <td>Accra Technical University</td>
+                    </tr>
+                    <tr>
+                        <th>Student Identification:</th>
+                        <td>{{ session('certificate')->student_identification }}</td>
+                    </tr>
+                    <tr>
+                        <th>Qualification Type:</th>
+                        <td>{{ session('certificate')->qualification_type }}</td>
+                    </tr>
+                    <tr>
+                        <th>Certificate Number:</th>
+                        <td> {{session('certificate')->certificate_number }}</td>
+                    </tr>
+                    <tr>
+                        <th>Class:</th>
+                        <td> {{session('certificate')->class }}</td>
+                    </tr>
+                    <tr>
+                        <th>Year of Entry:</th>
+                        <td> {{ session('certificate')->year_of_entry}}</td>
+                    </tr>
+                    <tr>
+                        <th>Year of Completion:</th>
+                        <td> {{ session('certificate')->year_of_completion}}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-primary print-btn" onclick="window.print()"><i class="bi bi-printer-fill"></i> Print</button>
+            
+        </div>
+    </div>
+
+    <div class="text-center">
+        <p><small class="verified-on">Verified on certverification.com</a></small></p>
+  </div>
+</div>
+
+@elseif ($source === 'api')
+<div class="container my-5 result-container">
+    <!-- <div class="text-center">
+        <h4 class="text-success">Verified Result</h4>
+        <img src="passport_photo.jpg" alt="Passport Photo" class="passport-photo img-fluid">
+        <img src="university_logo.jpg" alt="University Logo" class="university-logo img-fluid">
+    </div> -->
+
+    <div class="row ">
+
+        <div class="col-md-4 ">
+            <table class="table table-bordered text-center">
+                <tbody class="result-images">
+                    <tr>
+                        <td class="passport-photo"> 
+                            <h4 class="text-success vrf">Verified Result</h4>
+                                <div class="passport-size">
+                                    
+                                      <!-- Display image from API -->
+        @if (isset($certificate['image']) && $certificate['image'])
+            <img src="{{ $certificate['image'] }}" alt="Certificate Image" class="img-fluid">
+        @else
+            <p>No image available.</p>
+        @endif
+                                </div>  
+                           
+                            </td>
+                    </tr>
+                    <tr>
+                        <td class="university-logo">   
+                            <div class="universitylogo-size">
+                        
+
+                            @if (isset($certificate['institution_logo']))
+            <img src="{{ $certificate['institution_logo'] }}" alt="University Logo" class="img-fluid">
+        @else
+            <p>No logo available.</p>
+        @endif
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <h5>Bio Data</h5>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>First Name:</th>
+                        <td> First Name:</strong> {{ $certificate['First_Name'] }}</td>
+                    </tr>
+                <tbody>
+
+                    <tr>
+                        <th>Middle Name:</th>
+                        <td>Middle Name:</strong> {{ $certificate['Middle_Name'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name:</th>
+                        <td>Last Name:</strong> {{ $certificate['Last_Name'] }}</td>
+                    </tr>
+
+                 
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4">
+            <h5>Academic Data</h5>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Institution:</th>
+                        <td>Institution:</strong> {{ $certificate['Institution'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Student Identification:</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Qualification Type:</th>
+                        <td>Qualification Type:</strong> {{ $certificate['Qualification_Type'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Certificate Number:</th>
+                        <td> Certificate Number:</strong> {{ $certificate['Certificate_Number'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Class:</th>
+                        <td>>Class:</strong> {{ $certificate['Class'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Year of Entry:</th>
+                        <td>Year of Entry:</strong> {{ $certificate['Year_Of_Entry'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Year of Completion:</th>
+                        <td>Year of Completion:</strong> {{ $certificate['Year_Of_Completion'] }}</td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-primary print-btn" onclick="window.print()"><i class="bi bi-printer-fill"></i> Print</button>
+            
+        </div>
+    </div>
+
+    <div class="text-center">
+        <p><small class="verified-on">Verified on certverification.com</a></small></p>
+  </div>
+</div>
+
+    @else
+        <p>No certificate found.</p>
+    @endif
+    @else
+    <p>No certificate found.</p>
+@endif
 
           <!-- <div class="col-lg-5">
           <div class="card card-carousel overflow-hidden h-100 p-0">
@@ -749,7 +1102,7 @@
           <div class="col-lg-5">
             <div class="card">
               <div class="card-header pb-0 p-3">
-                <h6 class="mb-0 fs-4 title-big">Verified</h6>
+                <h6 class="mb-0 fs-4 title-big">Qualification Type</h6>
               </div>
 
 
@@ -881,7 +1234,7 @@
         // Dismiss the success alert after 5 seconds (5000 milliseconds)
         setTimeout(function() {
           document.getElementById('error-alert').style.display = 'none';
-        }, 5000);
+        }, 10000);
       </script>
 
 

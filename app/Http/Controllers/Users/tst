@@ -589,3 +589,66 @@ public function Payment()
 
 }
 
+
+
+public function search(Request $request)
+{
+    $this->validate($request, [
+        'institution_id' => 'required|exists:institutions,id',
+        'certificate_number' => 'required|string',
+    ]);
+
+    $userId = auth()->id();
+    $user = User::find($userId);
+    $activePackage = $user->activePackage();
+
+    if (!$activePackage) {
+        return redirect()->route('user.dashboard')
+            ->with('status', 'You do not have an active package.')
+            ->with('error_type', 'package');
+    }
+
+    if ($activePackage->searches_left <= 0) {
+        return redirect()->route('user.dashboard')
+            ->with('error', 'You have exhausted your search limit.')
+            ->with('error_type', 'package');
+    }
+
+    $institutionId = $request->input('institution_id');
+    $certificateNumber = $request->input('certificate_number');
+
+    $certificate = Certificate::where('institution_id', $institutionId)
+        ->where('certificate_number', $certificateNumber)
+        ->with('institution')
+        ->first();
+
+    if ($certificate) {
+        // Decrement the search count only if a certificate is found
+        $activePackage->decrement('searches_left');
+
+        
+        // Calculate the amount for each search and update the institution's balance
+        $pricePerSearch = $activePackage->amount / $activePackage->getTotalSearchesAllowed();
+        $amountToGiveToInstitution = $pricePerSearch * 0.5;
+
+        // Save the amount given to the institution for this search
+        $userPackageInstitution = new UserPackageInstitution();
+        $userPackageInstitution->user_package_id = $activePackage->id;
+        $userPackageInstitution->institution_id = $institutionId;
+        $userPackageInstitution->amount_given_to_institution = $amountToGiveToInstitution;
+        $userPackageInstitution->save();
+
+        // Log the search
+        SearchLog::create([
+            'user_id' => $userId,
+            'user_package_id' => $activePackage->id,
+            'search_term' => $certificateNumber,
+        ]);
+
+        return redirect()->route('user.dashboard')->with('certificate', $certificate);
+    }
+
+    return redirect()->route('user.dashboard')
+        ->with('certificate_error', 'No matching record found.')
+        ->with('error_type', 'search');
+}

@@ -186,10 +186,10 @@
                                                                     <th>Institution</th>
                                                                     <th>Full Name</th>
                                                                     <th>Date of Birth</th>
+                                                                    <th>Student Identification</th>
                                                                     <th>Qualification Type</th>
                                                                     <th>Gender</th>
                                                                     <th>Certificate Number</th>
-                                                                    <th>Student Identification</th>
                                                                     <th>Year of Entry</th>
                                                                     <th>Year of Completion</th>
                                                                 </tr>
@@ -200,10 +200,10 @@
                                                                     <td>{{ $certificate->institution ? $certificate->institution->institutions : 'No Institution Name' }}</td>
                                                                     <td>{{ $certificate->first_name }} {{ $certificate->middle_name }} {{ $certificate->last_name }}</td>
                                                                     <td>{{ $certificate->date_of_birth }}</td>
+                                                                    <td>{{ $certificate->student_identification }}</td>
                                                                     <td>{{ $certificate->qualification_type }}</td>
                                                                     <td>{{ $certificate->gender }}</td>
                                                                     <td>{{ $certificate->certificate_number }}</td>
-                                                                    <td>{{ $certificate->student_identification }}</td>
                                                                     <td>{{ $certificate->year_of_entry }}</td>
                                                                     <td>{{ $certificate->year_of_completion }}</td>
                                                                 </tr>

@@ -51,12 +51,35 @@ class Institution extends Model implements HasMedia, Authenticatable
         'updated_at',
         'deleted_at',
         'created_by_id',
+        'logo',
     ];
 
-    // public function user()
+
+    // public function getLogoAttribute()
     // {
-    //     return $this->belongsTo(User::class);
+    //     return $this->attributes['logo'] 
+    //         ? asset('storage/' . str_replace('public/', '', $this->attributes['logo'])) 
+    //         : null;
     // }
+
+    // public function getLogoAttribute($value)
+    // {
+    //     return $value ? asset('storage/' . $value) : null;
+    // }
+    
+    public function getLogoAttribute()
+{
+    return $this->attributes['logo'] 
+        ? asset('storage/' . str_replace('public/', '', $this->attributes['logo'])) 
+        : null;
+}
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function users()
     {
         return $this->hasMany(User::class);
@@ -78,17 +101,17 @@ class Institution extends Model implements HasMedia, Authenticatable
         return $this->hasMany(Certificate::class, 'institution_id', 'id');
     }
 
-    public function getLogoAttribute()
-    {
-        $file = $this->getMedia('logo')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-        }
+    // public function getLogoAttribute()
+    // {
+    //     $file = $this->getMedia('logo')->last();
+    //     if ($file) {
+    //         $file->url       = $file->getUrl();
+    //         $file->thumbnail = $file->getUrl('thumb');
+    //         $file->preview   = $file->getUrl('preview');
+    //     }
 
-        return $file;
-    }
+    //     return $file;
+    // }
 
     public function created_by()
     {

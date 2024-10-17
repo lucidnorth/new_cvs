@@ -163,7 +163,7 @@
                                         <div class="row" style="padding:30px 0;">
                                             <div class="col-8">
                                                 <div class="numbers">
-                                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Verifications</p>
+                                                    <p class="text-sm mb-0  font-weight-bold">Verification(s)</p>
                                                     <h5 class="font-weight-bolder">
                                                         {{ $searchCount }}
                                                     </h5>
@@ -191,9 +191,9 @@
                                         <div class="row" style="padding:30px 0;">
                                             <div class="col-8">
                                                 <div class="numbers">
-                                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
+                                                    <p class="text-sm mb-0 font-weight-bold">Report(s)</p>
                                                     <h5 class="font-weight-bolder">
-                                                        View reports
+                                                        View report(s)
                                                     </h5>
                                                     <!-- <p class="mb-0">
                       <span class="text-danger text-sm font-weight-bolder">-2%</span>

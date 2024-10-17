@@ -16,6 +16,7 @@ use App\Models\Finance;
 use App\Models\UserPackageInstitution;
 use Illuminate\Support\Facades\Log;
 use App\Models\Upload;
+use GuzzleHttp\Client;
 
 
 
@@ -360,61 +361,121 @@ class UserDashboardController extends Controller
             'institution_id' => 'required|exists:institutions,id',
             'certificate_number' => 'required|string',
         ]);
-
+    
         $userId = auth()->id();
         $user = User::find($userId);
         $activePackage = $user->activePackage();
-
+    
         if (!$activePackage) {
             return redirect()->route('user.dashboard')
                 ->with('status', 'You do not have an active package.')
                 ->with('error_type', 'package');
         }
-
+    
         if ($activePackage->searches_left <= 0) {
             return redirect()->route('user.dashboard')
                 ->with('error', 'You have exhausted your search limit.')
                 ->with('error_type', 'package');
         }
-
+    
         $institutionId = $request->input('institution_id');
         $certificateNumber = $request->input('certificate_number');
-
-        $certificate = Certificate::where('institution_id', $institutionId)
+    
+        // Check the local database first
+        $localCertificate = Certificate::where('institution_id', $institutionId)
             ->where('certificate_number', $certificateNumber)
             ->with('institution')
             ->first();
-
-        if ($certificate) {
-            // Decrement the search count only if a certificate is found
-            $activePackage->decrement('searches_left');
-
-            
-            // Calculate the amount for each search and update the institution's balance
-            $pricePerSearch = $activePackage->amount / $activePackage->getTotalSearchesAllowed();
-            $amountToGiveToInstitution = $pricePerSearch * 0.5;
-
-            // Save the amount given to the institution for this search
-            $userPackageInstitution = new UserPackageInstitution();
-            $userPackageInstitution->user_package_id = $activePackage->id;
-            $userPackageInstitution->institution_id = $institutionId;
-            $userPackageInstitution->amount_given_to_institution = $amountToGiveToInstitution;
-            $userPackageInstitution->save();
-
-            // Log the search
-            SearchLog::create([
-                'user_id' => $userId,
-                'user_package_id' => $activePackage->id,
-                'search_term' => $certificateNumber,
-            ]);
-
-            return redirect()->route('user.dashboard')->with('certificate', $certificate);
+    
+        if ($localCertificate) {
+            // Handle local search success
+            $this->handleSuccessfulSearch($activePackage, $institutionId, $certificateNumber, $localCertificate);
+            session(['certificate' => $localCertificate, 'certificate_source' => 'local']); // Store source in session
+            return redirect()->route('user.dashboard')->with('certificate', $localCertificate);
         }
+    
+        // If not found locally, try the API
+        $institution = Institution::find($institutionId);
+        $apiUrl = $institution->api_url;
+    
+        if ($apiUrl) {
+            try {
+                // Make API request
+                $client = new \GuzzleHttp\Client();
+                $response = $client->request('GET', $apiUrl, [
+                    'query' => [
+                        'Certificate_Number' => $certificateNumber,
+                    ],
+                    'verify' => false, // Disable SSL verification (for testing purposes)
+                    'timeout' => 10, // Optional timeout
+                ]);
+    
+                // Parse the API response
+                $responseData = json_decode($response->getBody(), true);
+                \Log::info('API Response: ' . $response->getBody());
+    
+                // Check if the response is an array and has results
+                if (is_array($responseData) && count($responseData) > 0) {
+                    // Extract the first certificate
+                    $certificate = $responseData[0];
+     // Include institution logo from local database if API response does not provide it
+     $certificate['institution_logo'] = $institution->logo; // Add institution logo to the response
+     $certificate['image'] = $certificate['Photo'] ?? ''; // Add image URL to the response
 
+                    // Optional: Log the extracted certificate for debugging
+                    \Log::info('Extracted Certificate: ' . json_encode($certificate));
+                    \Log::info('API URL: ' . $apiUrl . '?certificate_number=' . $certificateNumber);
+                    \Log::info('Certificate Image: ' . ($certificate['image'] ?? 'No image'));
+
+    
+                    // Handle successful API search
+                    $this->handleSuccessfulSearch($activePackage, $institutionId, $certificateNumber, $certificate);
+                    session(['certificate' => $certificate, 'certificate_source' => 'api']); // Store source in session
+                    return redirect()->route('user.dashboard')->with('certificate', $certificate);
+                } else {
+                    return redirect()->route('user.dashboard')
+                        ->with('certificate_error', 'No matching record found via API.');
+                }
+            } catch (\Exception $e) {
+                // Log the error message for debugging
+                \Log::error('API error: ' . $e->getMessage());
+    
+                return redirect()->route('user.dashboard')
+                    ->with('certificate_error', 'Error connecting to external API: ' . $e->getMessage());
+            }
+        }
+    
+        // If no certificate found locally or via API
         return redirect()->route('user.dashboard')
             ->with('certificate_error', 'No matching record found.')
             ->with('error_type', 'search');
     }
+    
+    
+    private function handleSuccessfulSearch($activePackage, $institutionId, $certificateNumber, $certificate)
+    {
+        // Decrement the search count
+        $activePackage->decrement('searches_left');
+    
+        // Calculate the amount for each search and update the institution's balance
+        $pricePerSearch = $activePackage->amount / $activePackage->getTotalSearchesAllowed();
+        $amountToGiveToInstitution = $pricePerSearch * 0.5;
+    
+        // Save the amount given to the institution for this search
+        $userPackageInstitution = new UserPackageInstitution();
+        $userPackageInstitution->user_package_id = $activePackage->id;
+        $userPackageInstitution->institution_id = $institutionId;
+        $userPackageInstitution->amount_given_to_institution = $amountToGiveToInstitution;
+        $userPackageInstitution->save();
+    
+        // Log the search
+        SearchLog::create([
+            'user_id' => auth()->id(),
+            'user_package_id' => $activePackage->id,
+            'search_term' => $certificateNumber,
+        ]);
+    }
+    
 
     public function talktoUs()
     {

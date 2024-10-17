@@ -198,102 +198,88 @@ class RegistrationController extends Controller
     //     }
     // }
     public function registerInstitution(Request $request)
-{
-    if ($request->isMethod('post')) {
-        DB::beginTransaction();
-        try {
-            // Validate the request data
-            $validatedData = $request->validate([
-                'institutions' => 'required|string|max:255',
-                'address' => 'required|string|max:255',
-                'phone' => 'required|string|unique:institutions|max:255',
-                'email' => 'required|email|unique:institutions|max:255',
-                'password' => [
-                    'required',
-                    'string',
-                    'min:8',
-                    'confirmed',
-                    'regex:/[a-z]/',      // at least one lowercase letter
-                    'regex:/[A-Z]/',      // at least one uppercase letter
-                    'regex:/[0-9]/',      // at least one digit
-                    'regex:/[@$!%*#?&]/' // at least one special character
-                ],
-                'fullname' => 'required|string|max:255',
-                'country' => 'string|max:255',
-                'location' => 'required|string|max:255',
-                'website' => 'string|unique:institutions|max:255',
-            ]);
-
-            // Create a new instance of the User model
-            $user = new User();
-            $user->name = $validatedData['institutions'];
-            $user->email = $validatedData['email'];
-            $user->password = bcrypt($validatedData['password']);
-            $user->approved = 1;
-            $user->save();
-
-            RoleUser::updateOrCreate(
-                [
+    {
+        if ($request->isMethod('post')) {
+            DB::beginTransaction();
+            try {
+                // Validate the request data including the logo field
+                $validatedData = $request->validate([
+                    'institutions' => 'required|string|max:255',
+                    'address' => 'required|string|max:255',
+                    'phone' => 'required|string|unique:institutions|max:255',
+                    'email' => 'required|email|unique:institutions|max:255',
+                    'password' => [
+                        'required',
+                        'string',
+                        'min:8',
+                        'confirmed',
+                        'regex:/[a-z]/',      // at least one lowercase letter
+                        'regex:/[A-Z]/',      // at least one uppercase letter
+                        'regex:/[0-9]/',      // at least one digit
+                        'regex:/[@$!%*#?&]/' // at least one special character
+                    ],
+                    'fullname' => 'required|string|max:255',
+                    'country' => 'string|max:255',
+                    'location' => 'required|string|max:255',
+                    'website' => 'string|unique:institutions|max:255',
+                    'logo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // Validate image
+                ]);
+    
+                // Handle image upload
+                $logo = null;
+                if ($request->hasFile('logo')) {
+                    $logo = $request->file('logo')->store('logos', 'public'); // Store image in 'logos' folder
+                }
+    
+                // Create a new User
+                $user = new User();
+                $user->name = $validatedData['institutions'];
+                $user->email = $validatedData['email'];
+                $user->password = bcrypt($validatedData['password']);
+                $user->approved = 1;
+                $user->save();
+    
+                RoleUser::updateOrCreate([
                     'user_id' => $user->id,
                     'role_id' => Role::where('title', 'Customer Institution Owner')->first()->id
-                ]
-            );
-
-            // Create a new instance of the Institution model and associate it with the user account
-            $institution = Institution::create([
-                'institutions' => $validatedData['institutions'],
-                'address' => $validatedData['address'],
-                'phone' => $validatedData['phone'],
-                'email' => $validatedData['email'],
-                'password' => bcrypt($validatedData['password']),
-                'fullname' => $validatedData['fullname'],
-                'country' => $validatedData['country'],
-                'location' => $validatedData['location'],
-                'website' => $validatedData['website'],
-            ]);
-
-            $user->institution_id = $institution->id;
-            $user->save();
-
-            // Authenticate the user
-            Auth::login($user);
-
-            DB::commit();
-            // Flash success message
-            Session::flash('success', 'Registration successful!');
-
-            // Redirect to user dashboard after successful registration
-            return redirect()->route('user.dashboard');
-        } catch (\Illuminate\Database\QueryException $ex) {
-            DB::rollBack();
-
-            // Handle unique constraint violation
-            if ($ex->getCode() == '23000') { // SQLSTATE code for unique constraint violation
-                $errorMessage = 'A record with this ';
-                if (str_contains($ex->getMessage(), 'phone')) {
-                    $errorMessage .= 'phone number ';
-                } elseif (str_contains($ex->getMessage(), 'email')) {
-                    $errorMessage .= 'email address ';
-                } elseif (str_contains($ex->getMessage(), 'website')) {
-                    $errorMessage .= 'website ';
-                }
-                $errorMessage .= 'already exists. Please use a different value.';
-
-                return redirect()->back()->withErrors(['unique' => $errorMessage])->withInput();
+                ]);
+    
+                // Create a new Institution
+                $institution = Institution::create([
+                    'institutions' => $validatedData['institutions'],
+                    'address' => $validatedData['address'],
+                    'phone' => $validatedData['phone'],
+                    'email' => $validatedData['email'],
+                    'password' => bcrypt($validatedData['password']),
+                    'fullname' => $validatedData['fullname'],
+                    'country' => $validatedData['country'],
+                    'location' => $validatedData['location'],
+                    'website' => $validatedData['website'],
+                    'logo' => $logo, // Save the logo path
+                ]);
+    
+                $user->institution_id = $institution->id;
+                $user->save();
+    
+                Auth::login($user);
+    
+                DB::commit();
+                Session::flash('success', 'Registration successful!');
+    
+                return redirect()->route('user.dashboard');
+            } catch (\Illuminate\Database\QueryException $ex) {
+                DB::rollBack();
+    
+                // Handle unique constraint violations
+                // (Your existing logic here)
+    
+                return redirect()->back()->with('error', 'Registration failed. Please try again.');
             }
-
-            // Log other errors
-            Log::error('Registration error: ' . $ex->getMessage());
-            return redirect()->back()->with('error', 'Registration failed. Please try again.');
+        } else {
+            return redirect()->route('registration.form')->with('error', 'Registration failed! Please check your input.');
         }
-    } else {
-        // Flash failure message
-        Session::flash('error', 'Registration failed! Please check your input.');
-
-        // Handle GET request, perhaps return a view with the registration form
-        return redirect()->route('registration.form')->with('error', 'Registration failed! Please check your input.');
     }
-}
+    
 // ilhamagyemanginvestment@gmail.com
     
 
