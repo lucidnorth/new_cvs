@@ -82,7 +82,7 @@
                                     <i class="fa-fw fas fa-folder">
 
                                     </i>
-                                    <span>{{ trans('cruds.contentCategory.title') }}</span>
+                                    <span>News</span>
 
                                 </a>
                             </li>

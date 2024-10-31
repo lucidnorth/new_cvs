@@ -359,7 +359,7 @@ class UserDashboardController extends Controller
     {
         $this->validate($request, [
             'institution_id' => 'required|exists:institutions,id',
-            'certificate_number' => 'required|string',
+            'identifier' => 'required|string', // Using one identifier field
         ]);
     
         $userId = auth()->id();
@@ -379,18 +379,20 @@ class UserDashboardController extends Controller
         }
     
         $institutionId = $request->input('institution_id');
-        $certificateNumber = $request->input('certificate_number');
+        $identifier = $request->input('identifier');
     
-        // Check the local database first
+        // Check the local database for certificate or student ID
         $localCertificate = Certificate::where('institution_id', $institutionId)
-            ->where('certificate_number', $certificateNumber)
+            ->where(function ($query) use ($identifier) {
+                $query->where('certificate_number', $identifier)
+                      ->orWhere('student_identification', $identifier);
+            })
             ->with('institution')
             ->first();
     
         if ($localCertificate) {
-            // Handle local search success
-            $this->handleSuccessfulSearch($activePackage, $institutionId, $certificateNumber, $localCertificate);
-            session(['certificate' => $localCertificate, 'certificate_source' => 'local']); // Store source in session
+            $this->handleSuccessfulSearch($activePackage, $institutionId, $identifier, $localCertificate);
+            session(['certificate' => $localCertificate, 'certificate_source' => 'local']);
             return redirect()->route('user.dashboard')->with('certificate', $localCertificate);
         }
     
@@ -400,59 +402,50 @@ class UserDashboardController extends Controller
     
         if ($apiUrl) {
             try {
-                // Make API request
                 $client = new \GuzzleHttp\Client();
+        
+                // Determine parameter name based on identifier type
+                $queryParams = is_numeric($identifier) 
+                    ? ['Student_Identification' => $identifier] 
+                    : ['Certificate_Number' => $identifier];
+        
                 $response = $client->request('GET', $apiUrl, [
-                    'query' => [
-                        'Certificate_Number' => $certificateNumber,
-                    ],
-                    'verify' => false, // Disable SSL verification (for testing purposes)
-                    'timeout' => 10, // Optional timeout
+                    'query' => $queryParams,
+                    'verify' => false,
+                    'timeout' => 10,
                 ]);
-    
-                // Parse the API response
+        
                 $responseData = json_decode($response->getBody(), true);
-                \Log::info('API Response: ' . $response->getBody());
-    
-                // Check if the response is an array and has results
+                Log::info('API Response: ' . $response->getBody());
+        
                 if (is_array($responseData) && count($responseData) > 0) {
-                    // Extract the first certificate
                     $certificate = $responseData[0];
-     // Include institution logo from local database if API response does not provide it
-     $certificate['institution_logo'] = $institution->logo; // Add institution logo to the response
-     $certificate['image'] = $certificate['Photo'] ?? ''; // Add image URL to the response
-
-                    // Optional: Log the extracted certificate for debugging
-                    \Log::info('Extracted Certificate: ' . json_encode($certificate));
-                    \Log::info('API URL: ' . $apiUrl . '?certificate_number=' . $certificateNumber);
-                    \Log::info('Certificate Image: ' . ($certificate['image'] ?? 'No image'));
-
-    
-                    // Handle successful API search
-                    $this->handleSuccessfulSearch($activePackage, $institutionId, $certificateNumber, $certificate);
-                    session(['certificate' => $certificate, 'certificate_source' => 'api']); // Store source in session
+                    $certificate['institution_logo'] = $institution->logo;
+                    $certificate['institution_name'] = $institution->institutions;
+                    $certificate['image'] = $certificate['Photo'] ?? '';
+        
+                    $this->handleSuccessfulSearch($activePackage, $institutionId, $identifier, $certificate);
+                    session(['certificate' => $certificate, 'certificate_source' => 'api']);
                     return redirect()->route('user.dashboard')->with('certificate', $certificate);
                 } else {
                     return redirect()->route('user.dashboard')
                         ->with('certificate_error', 'No matching record found via API.');
                 }
             } catch (\Exception $e) {
-                // Log the error message for debugging
                 \Log::error('API error: ' . $e->getMessage());
-    
                 return redirect()->route('user.dashboard')
                     ->with('certificate_error', 'Error connecting to external API: ' . $e->getMessage());
             }
         }
-    
-        // If no certificate found locally or via API
+        
         return redirect()->route('user.dashboard')
             ->with('certificate_error', 'No matching record found.')
             ->with('error_type', 'search');
     }
     
-    
-    private function handleSuccessfulSearch($activePackage, $institutionId, $certificateNumber, $certificate)
+
+
+ private function handleSuccessfulSearch($activePackage, $institutionId, $certificateNumber, $certificate)
     {
         // Decrement the search count
         $activePackage->decrement('searches_left');
@@ -475,6 +468,7 @@ class UserDashboardController extends Controller
             'search_term' => $certificateNumber,
         ]);
     }
+
     
 
     public function talktoUs()

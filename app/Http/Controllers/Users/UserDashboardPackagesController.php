@@ -66,7 +66,7 @@ class UserDashboardPackagesController extends Controller
             $paymentUrl = $response['data']['authorization_url'];
             return redirect($paymentUrl);
         } else {
-            return redirect()->route('packages.index')->with('error', 'Failed to initiate payment.');
+            return redirect()->route('packages')->with('error', 'Failed to initiate payment.');
         }
     }
 
@@ -102,10 +102,10 @@ class UserDashboardPackagesController extends Controller
             }
 
             // Redirect with success status
-            return redirect()->route('packages.index')->with('status', 'Payment successful!');
+            return redirect()->route('packages')->with('status', 'Payment successful!');
         } else {
             // Redirect with error status if payment verification fails
-            return redirect()->route('packages.index')->with('error', 'Payment verification failed.');
+            return redirect()->route('packages')->with('error', 'Payment verification failed.');
         }
     }
     

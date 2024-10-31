@@ -88,10 +88,38 @@
 
         </div>
     </div>
+    <div class="container">
+    <h2>Create News Article</h2>
+    <form action="" method="POST">
+        @csrf
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" class="form-control" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea name="content" id="content" class="form-control" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save News</button>
+    </form>
 </div>
+
+
+</div>
+
+
 @endsection
 @section('scripts')
 @parent
+<!-- Include TinyMCE or CKEditor -->
+<script src="https://cdn.tiny.cloud/1/3itt7i0d0kee0lwuf9jtemcyf898s2l3ke5fev1y8x2bgpts/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: 'textarea#content'
+    });
+</script>
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
