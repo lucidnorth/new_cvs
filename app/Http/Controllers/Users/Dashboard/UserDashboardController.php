@@ -279,12 +279,12 @@ class UserDashboardController extends Controller
     }
 
 
-    public function SearchCertificate()
-    {
-        $institutions = Institution::all();
+    // public function SearchCertificate()
+    // {
+    //     $institutions = Institution::all();
 
-        return view('users.UserDashboardSearchCertificate', ['institution' => $institutions]);
-    }
+    //     return view('users.UserDashboardSearchCertificate', ['institution' => $institutions]);
+    // }
 
 
     public function packages()
@@ -354,94 +354,194 @@ class UserDashboardController extends Controller
         return view('users.UserDashboardSkillSearch', ['packages' => $packages,]);
     }
 
-
+    // public function search(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'institution_id' => 'required|exists:institutions,id',
+    //         'identifier' => 'required|string',
+    //     ]);
+    
+    //     $userId = auth()->id();
+    //     $user = User::find($userId);
+    //     $activePackage = $user->activePackage();
+    
+    //     if (!$activePackage) {
+    //         return redirect()->route('user.dashboard')
+    //             ->with('status', 'You do not have an active package.')
+    //             ->with('error_type', 'package');
+    //     }
+    
+    //     if ($activePackage->searches_left <= 0) {
+    //         return redirect()->route('user.dashboard')
+    //             ->with('error', 'You have exhausted your search limit.')
+    //             ->with('error_type', 'package');
+    //     }
+    
+    //     $institutionId = $request->input('institution_id');
+    //     $identifier = $request->input('identifier');
+    
+    //     // Check the local database for certificate or student ID
+    //     $localCertificate = Certificate::where('institution_id', $institutionId)
+    //         ->where(function ($query) use ($identifier) {
+    //             $query->where('certificate_number', $identifier)
+    //                   ->orWhere('student_identification', $identifier);
+    //         })
+    //         ->with('institution')
+    //         ->first();
+    
+    //     if ($localCertificate) {
+    //         $this->handleSuccessfulSearch($activePackage, $institutionId, $identifier, $localCertificate);
+    //         session(['certificate' => $localCertificate, 'certificate_source' => 'local']);
+    //         return redirect()->route('user.dashboard')->with('certificate', $localCertificate);
+    //     }
+    
+    //     // If not found locally, try the API
+    //     $institution = Institution::find($institutionId);
+    //     $apiUrl = $institution->api_url;
+    
+    //     if ($apiUrl) {
+    //         try {
+    //             $client = new \GuzzleHttp\Client();
+    
+    //             // Attempt to fetch by Certificate_Number first
+    //             $response = $client->request('GET', $apiUrl, [
+    //                 'query' => ['Certificate_Number' => $identifier],
+    //                 'verify' => false,
+    //                 'timeout' => 10,
+    //             ]);
+    
+    //             $responseData = json_decode($response->getBody(), true);
+    //             if (is_array($responseData) && count($responseData) > 0) {
+    //                 $certificate = $responseData[0];
+    //             } else {
+    //                 // If no result, attempt to fetch by Student_Identification
+    //                 $response = $client->request('GET', $apiUrl, [
+    //                     'query' => ['Student_Identification' => $identifier],
+    //                     'verify' => false,
+    //                     'timeout' => 10,
+    //                 ]);
+    //                 $responseData = json_decode($response->getBody(), true);
+    //                 $certificate = $responseData[0] ?? null;
+    //             }
+    
+    //             if ($certificate) {
+    //                 $certificate['institution_logo'] = $institution->logo;
+    //                 $certificate['institution_name'] = $institution->institutions;
+    //                 $certificate['image'] = $certificate['Photo'] ?? '';
+    
+    //                 $this->handleSuccessfulSearch($activePackage, $institutionId, $identifier, $certificate);
+    //                 session(['certificate' => $certificate, 'certificate_source' => 'api']);
+    //                 return redirect()->route('user.dashboard')->with('certificate', $certificate);
+    //             } else {
+    //                 return redirect()->route('user.dashboard')
+    //                     ->with('certificate_error', 'No matching record found via API.');
+    //             }
+    //         } catch (\Exception $e) {
+    //             \Log::error('API error: ' . $e->getMessage());
+    //             return redirect()->route('user.dashboard')
+    //                 ->with('certificate_error', 'Error connecting to external API: ' . $e->getMessage());
+    //         }
+    //     }
+    
+    //     return redirect()->route('user.dashboard')
+    //         ->with('certificate_error', 'No matching record found.')
+    //         ->with('error_type', 'search');
+    // }
+    
     public function search(Request $request)
-    {
-        $this->validate($request, [
-            'institution_id' => 'required|exists:institutions,id',
-            'identifier' => 'required|string', // Using one identifier field
-        ]);
-    
-        $userId = auth()->id();
-        $user = User::find($userId);
-        $activePackage = $user->activePackage();
-    
-        if (!$activePackage) {
-            return redirect()->route('user.dashboard')
-                ->with('status', 'You do not have an active package.')
-                ->with('error_type', 'package');
-        }
-    
-        if ($activePackage->searches_left <= 0) {
-            return redirect()->route('user.dashboard')
-                ->with('error', 'You have exhausted your search limit.')
-                ->with('error_type', 'package');
-        }
-    
-        $institutionId = $request->input('institution_id');
-        $identifier = $request->input('identifier');
-    
-        // Check the local database for certificate or student ID
-        $localCertificate = Certificate::where('institution_id', $institutionId)
-            ->where(function ($query) use ($identifier) {
-                $query->where('certificate_number', $identifier)
-                      ->orWhere('student_identification', $identifier);
-            })
-            ->with('institution')
-            ->first();
-    
-        if ($localCertificate) {
-            $this->handleSuccessfulSearch($activePackage, $institutionId, $identifier, $localCertificate);
-            session(['certificate' => $localCertificate, 'certificate_source' => 'local']);
-            return redirect()->route('user.dashboard')->with('certificate', $localCertificate);
-        }
-    
-        // If not found locally, try the API
-        $institution = Institution::find($institutionId);
-        $apiUrl = $institution->api_url;
-    
-        if ($apiUrl) {
-            try {
-                $client = new \GuzzleHttp\Client();
-        
-                // Determine parameter name based on identifier type
-                $queryParams = is_numeric($identifier) 
-                    ? ['Student_Identification' => $identifier] 
-                    : ['Certificate_Number' => $identifier];
-        
+{
+    $this->validate($request, [
+        'institution_id' => 'required|exists:institutions,id',
+        'identifier' => 'required|string',
+    ]);
+
+    $userId = auth()->id();
+    $user = User::find($userId);
+    $activePackage = $user->activePackage();
+
+    if (!$activePackage) {
+        return redirect()->route('user.dashboard')
+            ->with('status', 'You do not have an active package.')
+            ->with('error_type', 'package');
+    }
+
+    if ($activePackage->searches_left <= 0) {
+        return redirect()->route('user.dashboard')
+            ->with('error', 'You have exhausted your search limit.')
+            ->with('error_type', 'package');
+    }
+
+    $institutionId = $request->input('institution_id');
+    $identifier = $request->input('identifier');
+
+    // Check the local database for certificate or student ID
+    $localCertificate = Certificate::where('institution_id', $institutionId)
+        ->where(function ($query) use ($identifier) {
+            $query->where('certificate_number', $identifier)
+                  ->orWhere('student_identification', $identifier);
+        })
+        ->with('institution')
+        ->first();
+
+    if ($localCertificate) {
+        $this->handleSuccessfulSearch($activePackage, $institutionId, $identifier, $localCertificate);
+        session(['certificate' => $localCertificate, 'certificate_source' => 'local']);
+        return redirect()->route('user.dashboard')->with('certificate', $localCertificate);
+    }
+
+    // If not found locally, try the API
+    $institution = Institution::find($institutionId);
+    $apiUrl = $institution->api_url;
+
+    if ($apiUrl) {
+        try {
+            $client = new \GuzzleHttp\Client();
+
+            // Attempt to fetch by Certificate_Number first
+            $response = $client->request('GET', $apiUrl, [
+                'query' => ['Certificate_Number' => $identifier],
+                'verify' => false,
+                'timeout' => 10,
+            ]);
+
+            $responseData = json_decode($response->getBody(), true);
+            if (is_array($responseData) && count($responseData) > 0) {
+                $certificate = $responseData[0];
+            } else {
+                // If no result, attempt to fetch by Student_Identification
                 $response = $client->request('GET', $apiUrl, [
-                    'query' => $queryParams,
+                    'query' => ['Student_Identification' => $identifier],
                     'verify' => false,
                     'timeout' => 10,
                 ]);
-        
                 $responseData = json_decode($response->getBody(), true);
-                Log::info('API Response: ' . $response->getBody());
-        
-                if (is_array($responseData) && count($responseData) > 0) {
-                    $certificate = $responseData[0];
-                    $certificate['institution_logo'] = $institution->logo;
-                    $certificate['institution_name'] = $institution->institutions;
-                    $certificate['image'] = $certificate['Photo'] ?? '';
-        
-                    $this->handleSuccessfulSearch($activePackage, $institutionId, $identifier, $certificate);
-                    session(['certificate' => $certificate, 'certificate_source' => 'api']);
-                    return redirect()->route('user.dashboard')->with('certificate', $certificate);
-                } else {
-                    return redirect()->route('user.dashboard')
-                        ->with('certificate_error', 'No matching record found via API.');
-                }
-            } catch (\Exception $e) {
-                \Log::error('API error: ' . $e->getMessage());
-                return redirect()->route('user.dashboard')
-                    ->with('certificate_error', 'Error connecting to external API: ' . $e->getMessage());
+                $certificate = $responseData[0] ?? null;
             }
+
+            if ($certificate) {
+                $certificate['institution_logo'] = $institution->logo;
+                $certificate['institution_name'] = $institution->institutions;
+                $certificate['image'] = $certificate['Photo'] ?? '';
+
+                $this->handleSuccessfulSearch($activePackage, $institutionId, $identifier, $certificate);
+                session(['certificate' => $certificate, 'certificate_source' => 'api']);
+                return redirect()->route('user.dashboard')->with('certificate', $certificate);
+            } else {
+                return redirect()->route('user.dashboard')
+                    ->with('certificate_error', 'No matching record found via API.');
+            }
+        } catch (\Exception $e) {
+            \Log::error('API error: ' . $e->getMessage());
+            return redirect()->route('user.dashboard')
+                ->with('certificate_error', 'Error connecting to external API: ' . $e->getMessage());
         }
-        
-        return redirect()->route('user.dashboard')
-            ->with('certificate_error', 'No matching record found.')
-            ->with('error_type', 'search');
     }
+
+    return redirect()->route('user.dashboard')
+        ->with('certificate_error', 'No matching record found.')
+        ->with('error_type', 'search');
+}
+
     
 
 

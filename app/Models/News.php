@@ -7,17 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
 {
-    use HasFactory;
-    public function up()
-{
-    Schema::create('news', function (Blueprint $table) {
-        $table->id();
-        $table->string('title');
-        $table->text('author');
-        $table->text('content');
-        $table->timestamp('published_at')->nullable();
-        $table->timestamps();
-    });
-}
+    use SoftDeletes, HasFactory;
 
+    public $table = 'content_categories';
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    protected $fillable = [
+        'author',
+        'title',
+        'content',
+        'published_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 }

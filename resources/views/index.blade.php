@@ -420,7 +420,7 @@
           <a class="" href="" data-bs-toggle="modal" data-bs-target="#announcementModal2  ">
             <div class="news-card">
               <!-- <img src="images/news-image.png" alt="logo" class="mb-3 feature-image"> -->
-              <img src="{{ asset('images/second-news.jpg') }}" alt="logo" class="mb-3 feature-image">
+              <img src="{{ asset('images/second-news1.jpg') }}" alt="logo" class="mb-3 feature-image">
               <div class="announcement-body">
                 <h5 class="announcement-title">Fake Doctor Busted for FraudS</h5>
                 <p class="announcement-text"> 31-year-old Daniel Okyere, who posed as a medical doctor to defraud his victim of an amount of Eighteen Thousand, Nine Hundred and Sixty-One Ghana Cedis (GH₵ 18,961.00), has been arrested by the Dansoman Police.</p>
@@ -543,7 +543,7 @@ Whether it takes a few days or few weeks, it is worth knowing that your new empl
               </div> -->
       <div class="modal-body" style="width: 1oo%;">
       <div class="" >
-  <img src="{{ asset('images/second-news.jpg') }}" class="card-img-top" alt="...">
+  <img src="{{ asset('images/second-news1.jpg') }}" class="card-img-top" alt="...">
   <div class="card-body">
   <ul class=" ">
     <li class="list-group-item mt-3">Date :  </li>
