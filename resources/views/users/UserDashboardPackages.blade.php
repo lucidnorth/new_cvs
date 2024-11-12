@@ -6,6 +6,9 @@
 
 
 <style>
+    .packaage-card{
+        margin-top: 50px !important;
+    }
     .package {
         width: 280px;
         height: 445px;
@@ -14,7 +17,6 @@
         padding: 10px 20px;
         position: relative;
         background: #fff;
-        margin-top: 170px;
     }
 
     .package .package-name {
@@ -115,7 +117,6 @@
         padding: 10px 20px;
         position: relative;
         background: #fff;
-        margin-top: 170px;
     }
 
     .package2 .package-name {
@@ -217,7 +218,6 @@
         padding: 10px 20px;
         position: relative;
         background: #fff;
-        margin-top: 170px;
     }
 
     .package3 .package-name {
@@ -318,7 +318,6 @@
         padding: 10px 20px;
         position: relative;
         background: #fff;
-        margin-top: 170px;
     }
 
     .package4 .package-name {
@@ -412,6 +411,42 @@
 
     .packaage-card{
         margin-top: -150px;
+    }
+
+    /* .pack{
+        margin: 0 auto !important;
+    } */
+    @media (max-width: 767.98px) {
+        .packaage-card{
+            margin-top: 0px !important;
+        }
+        .package, .package2, .package3, .package4{
+            margin: 0px auto !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .packaage-card{
+            margin-top: 0px !important;
+        }
+        .package, .package2, .package3, .package4{
+            margin: 0px auto !important;
+        }
+    }
+
+    @media (max-width: 991.98px) {
+        .packaage-card{
+            margin-top: 0px !important;
+        }
+        .package, .package2, .package3, .package4{
+            margin: 0px auto !important;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .package, .package2, .package3, .package4{
+            margin: auto;
+        }
     }
 
 </style>
@@ -521,7 +556,7 @@
                         @php
                             $class = $classes[$index % count($classes)];
                         @endphp
-                    <div class="col-lg-3 col-md-6 col-sm-12 mb-4 mt-5">
+                    <div class="col-xl-3 col-md-6 col-sm-6 mb-xl-0 mb-5 mx-auto pack">
                         <div class="{{ $class }}">
                             <div class="package-name">{{ $package->name }}</div>
                             <div class="package-price ">

@@ -15,15 +15,27 @@ class CreateCertificatesTable extends Migration
             $table->string('last_name');
             $table->string('gender');
             $table->date('date_of_birth');
-            $table->string('certificate_number');
-            $table->string('student_identification');
+            $table->string('certificate_number')->unique();
+            $table->string('student_identification')->unique();
             $table->string('qualification_type');
             $table->string('programme');
             $table->string('class');
             $table->date('year_of_entry');
             $table->date('year_of_completion');
+            $table->string('photo')->nullable();  // Store the photo path
+            $table->unsignedBigInteger('institution_id');
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            // Foreign keys
+            $table->foreign('institution_id')->references('id')->on('institutions')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('certificates');
     }
 }

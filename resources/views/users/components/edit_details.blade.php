@@ -4,7 +4,7 @@
 
 <div class="container-fluid py-4">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-lg-8 col-md-12 col-sm-12">
       <div class="card">
         <div class="card-header pb-0 px-3">
           <h6 class="mb-0"></h6>
@@ -79,7 +79,7 @@
         </div>
       </div>
 
-      <div class="card mt-3">
+      <div class="card my-3">
         <div class="card-header pb-0 px-3">
           <h6 class="mb-0">Account Manager Details</h6>
         </div>
@@ -111,7 +111,7 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-12 col-sm-12">
       <div class="card card-profile">
         <div class="row justify-content-center">
 
@@ -129,13 +129,13 @@
         <div class="card-header text-center border-0 pt-0 pt-lg-2 pb-4 pb-lg-3">
           <div class="p-3">
             @if(auth()->user()->institution_id)
-            <a href="" data-bs-toggle="modal" data-bs-target="#InstitutionformModal " class="btn btn-sm btn-info mb-0 d-none d-lg-block mb-3">Edit Account Manager Profile</a>
+            <a href="" data-bs-toggle="modal" data-bs-target="#InstitutionformModal " class="btn btn-sm btn-info mb-0 d-lg-block mb-3">Edit Account Manager Profile</a>
             @endif
             @if(auth()->user()->employer)
-            <a href="" data-bs-toggle="modal" data-bs-target="#EmployeeformModal" class="btn btn-sm btn-info mb-0 d-none d-lg-block mb-3">dit Account Manager Profile</a>
+            <a href="" data-bs-toggle="modal" data-bs-target="#EmployeeformModal" class="btn btn-sm btn-info mb-0 d-lg-block mb-3">Edit Account Manager Profile</a>
             @endif
             <!-- <a href="javascript:;" class="btn btn-sm btn-info mb-0 d-block d-lg-none"><i class="ni ni-collection"></i></a> -->
-            <a href="javascript:;" class="btn btn-sm btn-dark float-right mb-0 d-none d-lg-block">Add User</a>
+            <a href="javascript:;" class="btn btn-sm btn-dark float-right mb-0 d-lg-block">Add User</a>
             <!-- <a href="javascript:;" class="btn btn-sm btn-dark float-right mb-0 d-block d-lg-none"><i class="ni ni-email-83"></i></a> -->
           </div>
         </div>

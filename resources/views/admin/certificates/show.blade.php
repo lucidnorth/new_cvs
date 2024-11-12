@@ -30,11 +30,13 @@
                                         {{ trans('cruds.certificate.fields.photo') }}
                                     </th>
                                     <td>
-                                        @if($certificate->photo)
-                                            <a href="{{ $certificate->photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                                <img src="{{ $certificate->photo->getUrl('thumb') }}">
-                                            </a>
-                                        @endif
+                                    @if($certificate->photo)
+                                        <a href="{{ $certificate->photo->getUrl() }}" target="_blank" style="display: inline-block">
+                                            <img src="{{ $certificate->photo->getUrl('thumb') }}" alt="Student Photo" width="50">
+                                        </a>
+                                    @else
+                                        No Photo
+                                    @endif
                                     </td>
                                 </tr>
                                 <tr>

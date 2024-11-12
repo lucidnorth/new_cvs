@@ -230,16 +230,17 @@ class CertificatesController extends Controller
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
 
-    // New Method to Handle Excel Import
     public function import(Request $request)
     {
         $request->validate([
             'file' => 'required|mimes:xlsx',
-            'institution_id' => 'required|integer',
+            'institution_id' => 'required|integer|exists:institutions,id',
         ]);
 
         Excel::import(new CertificatesImport($request->institution_id), $request->file('file'));
 
         return redirect()->back()->with('success', 'Certificates imported successfully!');
     }
+
+
 }

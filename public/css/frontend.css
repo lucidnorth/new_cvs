@@ -502,8 +502,13 @@ a:link {
     max-width: 300px;
     /* Adjust the max-width as per your image dimensions */
     height: auto;
-    margin-top: 20px;
+    padding-top: 20px !important;
     /* Adjust margin as needed */
+  }
+
+  .jumbotron-items .jumbotron-item2-content img {
+    padding-top: 40px !important;
+
   }
 }
 
@@ -714,13 +719,47 @@ a:link {
 @media screen and (max-width: 991px) {
   .academic-item1-content1 {
     font-size: 40px;
+    text-align: center;
     /* Smaller font size for tablets */
+  }
+  .academic-rows-item {
+    flex-direction: column-reverse;
+    /* Stack columns vertically on mobile */
   }
 
   .academic-item1-content2 {
     font-size: 18px;
     /* Smaller font size for tablets */
   }
+  .international-list{
+    text-align: center;
+    list-style: none;
+    max-width: 80%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+  .international-list li{
+    padding-bottom: 10px;
+  }
+  .cont-btn { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: 40%;
+    margin-bottom: 10px;
+  }
+
+  .flip-card-inner{
+    height: 150px;
+  }
+  .frontflip-img{
+    height: 150px;
+    width: 100% !important;
+    background-position: center;
+    background-size: contain;
+  }
+
 }
 
 @media screen and (max-width: 576px) {
@@ -761,6 +800,15 @@ a:link {
   }
   .international-list li{
     padding-bottom: 5px;
+  }
+
+  .cont-btn { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    width: 60%;
+    margin-bottom: 10px;
   }
 }
 

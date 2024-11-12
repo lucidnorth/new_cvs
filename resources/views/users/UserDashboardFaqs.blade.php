@@ -74,6 +74,22 @@
     .faq-card{
         margin-top: 60px;
     }
+
+    @media (max-width: 767.98px) {
+        .faq-question {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+    }
+
+    @media (max-width: 768px) {
+        
+    }
+
+    @media (max-width: 991.98px) {
+        
+    }
 </style>
 
 <main class="main-content position-relative border-radius-lg">

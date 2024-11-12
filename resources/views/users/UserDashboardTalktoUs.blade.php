@@ -11,9 +11,7 @@
         place-items: center;
     }
 
-    .bg-light {
-
-    }
+    .bg-light {}
 
     h1 {
         text-align: center;
@@ -30,7 +28,7 @@
         gap: 0px;
         max-width: 1200px;
         padding: 20px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
 
     .card-container {
@@ -90,14 +88,62 @@
 
     }
 
+    @media (max-width: 767.98px) {
+        .card-container h2{
+            font-size: 20px !important;
+            font-weight: bolder;
+            letter-spacing: 1px;
+        }
+        .contact-info h2 {
+            font-size: 19px;
+            letter-spacing: 1px;
+        }
+        .min-vh-100 {
+            min-height: auto !important;
+            display: grid;
+            place-items: left;
+            margin-left: -10px !important;
+            max-width: 92% !important;
+            /* overflow: hidden; */
+        }
+        .grid-container{
+            margin-left: -30px;
+            
+        }
+        .grid-container .card-container form {
+            max-width: 80%;
+        }
+
+        .contact-info{
+            margin: auto;
+        }
+
+    }
+
+    @media (max-width: 768px) {
+        .card-container h2{
+            font-size: 20px !important;
+            font-weight: bolder;
+        }
+        .contact-info h2 {
+            font-size: 19px;
+            letter-spacing: 1px;
+        }
+    }
+
+    @media (max-width: 991.98px) {
+        
+    }
+
+
     @media (min-width: 768px) {
         .grid-container {
             grid-template-columns: repeat(2, 1fr);
         }
     }
 
-    .ttu-card{
-     margin-top: 50px;
+    .ttu-card {
+        margin-top: 50px;
     }
 </style>
 
@@ -105,135 +151,115 @@
 <main class="main-content position-relative border-radius-lg">
     <div class="container-fluid">
         <header>
-            
-        <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+
+            <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+                <div class="">
                     <div class="">
-                        <div class="">
-                            <div class="row">
-                                <h5 class="text-white">Talk to Us</h5>
-                            </div>
+                        <div class="row">
+                            <h5 class="text-white">Talk to Us</h5>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-xl-12 col-sm-12 mb-xl-0 ttu-card">
-                    <div class="card">
-                   
+            <div class="col-xl-12 col-sm-12 mb-xl-0 ttu-card">
+                <div class="card">
 
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif                    
-                            <div class="row">
-                                <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
 
-                                    <div class="container-fluid min-vh-100 ">
-                                        <div class="grid-container">
-                                            <div class="card-container ">
-                                                <h2>Send us a Message</h2>
-                                                <form action="{{ route('users.contacts.store') }}" method="POST">
-            @csrf
-            <div class="mb-3">
-                <label for="name" class="form-label">Your Name</label>
-                <input type="text" class="form-control" id="name" name="name">
-                @error('name')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">Your Email</label>
-                <input type="email" class="form-control" id="email" name="email">
-                @error('email')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="recipient" class="form-label">Select Recipient</label>
-                <select class="form-select" id="recipient" name="recipient">
-                <option selected disabled>--select recipient --</option>
-                    <option>customercare@certverification.com</option>
-                    <option>accountant@certverification.com</option>
-                    <option>admin@certverification.com</option>
-                </select>
-                @error('recipient')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="subject" class="form-label">Subject</label>
-                <input type="text" class="form-control" id="subject" name="subject">
-                @error('subject')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="message" class="form-label">Your Message</label>
-                <textarea class="form-control" id="message" name="message" rows="4"></textarea>
-                @error('message')
-                    <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary btn-send">Send</button>
-        </form>
+                    @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+                    <div class="row">
+                        <div class="col-xl-12 col-sm-12 mb-xl-0 mb-4">
+
+                            <div class="container-fluid min-vh-100">
+                                <div class="grid-container">
+                                    <div class="card-container">
+                                        <h2>Send us a Message</h2>
+                                        <form action="{{ route('users.contacts.store') }}" method="POST">
+                                            @csrf
+                                            <div class="mb-3">
+                                                <label for="name" class="form-label">Your Name</label>
+                                                <input type="text" class="form-control" id="name" name="name">
+                                                @error('name')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
-                                            <div class="contact-info">
-                                                <h2>Contact Information</h2>
-                                                <div class="mb-4">
-                                                    <h3>Digital Address</h3>
-                                                    <p>GA-111-1234 Greater Accra, Ghana.</p>
-                                                </div>
-                                                <div class="mb-4">
-                                                    <h3>Phone</h3>
-                                                    <p><span class="line-text">+233 302 523 734
-                                                    
-                                                </div>
-                                                <div>
-                                                    <h3>Email</h3>
-                                                    <p>customercare@certverification.com</p>
-                                                    <p>accounts@certverification.com</p>
-                                                    <p>admin@certverification.com</p>
-                                                </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Your Email</label>
+                                                <input type="email" class="form-control" id="email" name="email">
+                                                @error('email')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
+                                            <div class="mb-3">
+                                                <label for="recipient" class="form-label">Select Recipient</label>
+                                                <select class="form-select" id="recipient" name="recipient">
+                                                    <option selected disabled>--select recipient --</option>
+                                                    <option>customercare@certverification.com</option>
+                                                    <option>accountant@certverification.com</option>
+                                                    <option>admin@certverification.com</option>
+                                                </select>
+                                                @error('recipient')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="subject" class="form-label">Subject</label>
+                                                <input type="text" class="form-control" id="subject" name="subject">
+                                                @error('subject')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="message" class="form-label">Your Message</label>
+                                                <textarea class="form-control" id="message" name="message" rows="4"></textarea>
+                                                @error('message')
+                                                <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btn-send">Send</button>
+                                        </form>
+                                    </div>
+                                    <div class="contact-info">
+                                        <h2>Contact Information</h2>
+                                        <div class="mb-4">
+                                            <h3>Digital Address</h3>
+                                            <p>GA-111-1234 Greater Accra, Ghana.</p>
+                                        </div>
+                                        <div class="mb-4">
+                                            <h3>Phone</h3>
+                                            <p><span class="line-text">+233 302 523 734
+
+                                        </div>
+                                        <div>
+                                            <h3>Email</h3>
+                                            <p>customercare@certverification.com</p>
+                                            <p>accounts@certverification.com</p>
+                                            <p>admin@certverification.com</p>
                                         </div>
                                     </div>
-
-
-
-                                     {{-- <div class="accordion" id="accordionExample">
-
-
-                                        @foreach ($faqs as $index => $faq)
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="heading{{ $index }}">
-                                                <button class="accordion-button {{ $index !== 0 ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}" aria-expanded="{{ $index === 0 ? 'true' : 'false' }}" aria-controls="collapse{{ $index }}">
-                                                    {{ $faq->question }}
-                                                </button>
-                                            </h2>
-                                            <div id="collapse{{ $index }}" class="accordion-collapse collapse {{ $index === 0 ? 'show' : '' }}" data-bs-parent="#accordionExample">
-                                                <div class="accordion-body">
-                                                    <p class="fs-5">{{ $faq->answer }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
-                                    </div> --}}
                                 </div>
                             </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
-        
-        </header>
-        <main>
-
+    </div>
+    </div>
+    </div>
     </div>
 
+    </header>
+    <main>
+
+        </div>
 
 
-<script>
 
-</script>
+        <script>
 
-@endsection
+        </script>
+
+        @endsection

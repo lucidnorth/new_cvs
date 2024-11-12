@@ -32,6 +32,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- CSS Files -->
   <link href="{{ asset('css/argon-dashboard.css') }}" rel="stylesheet" />
+  <!-- datatable -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -66,6 +69,8 @@
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('js/argon-dashboard.min.js') }}"></script>
   <!-- <link href="{{ asset('js/argon-dashboard.min.js?v=2.0.4') }}" rel="stylesheet"/> -->
+  <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+
 </body>
 
 </html>

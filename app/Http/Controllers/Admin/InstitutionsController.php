@@ -88,21 +88,7 @@ class InstitutionsController extends Controller
         return view('admin.institutions.index');
     }
 
-    // Method for parsing Excel import
-    // public function parseExcelImport(Request $request)
-    // {
-    //     abort_if(Gate::denies('institution_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-    //     // Validate the Excel file
-    //     $request->validate([
-    //         'excel_file' => 'required|mimes:xlsx,xls'
-    //     ]);
-
-    //     // Use the Excel import class to parse the data
-    //     Excel::import(new CertificatesImport, $request->file('excel_file'));
-
-    //     return redirect()->route('admin.institutions.index')->with('success', 'Institutions imported successfully!');
-    // }
+    
     public function parseExcelImport(Request $request)
     {
         abort_if(Gate::denies('institution_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -116,6 +102,7 @@ class InstitutionsController extends Controller
 
         // Ensure that the institution ID is passed to the import class
         Excel::import(new CertificatesImport($institutionId), $request->file('excel_file'));
+        
 
         return redirect()->route('admin.institutions.index')
             ->with('success', 'Certificates imported successfully!');
@@ -130,12 +117,6 @@ class InstitutionsController extends Controller
         return redirect()->route('admin.institutions.index');
     }
 
-    // public function create()
-    // {
-    //     abort_if(Gate::denies('institution_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-    //     return view('admin.institutions.create');
-    // }
     public function create()
     {
         abort_if(Gate::denies('certificate_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -147,44 +128,30 @@ class InstitutionsController extends Controller
     }
 
     
-    // public function store(StoreCertificateRequest $request)
-    // {
-    //     $request->validate([
-    //         'institution_id' => 'required|exists:institutions,id',
-    //     ]);
 
-    //     $certificate = Certificate::create($request->all());
-
-    //     if ($request->input('photo', false)) {
-    //         $certificate->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
-    //     }
-
-    //     if ($media = $request->input('ck-media', false)) {
-    //         Media::whereIn('id', $media)->update(['model_id' => $certificate->id]);
-    //     }
-
-    //     return redirect()->route('admin.certificates.index');
-    // }
     public function store(StoreCertificateRequest $request)
     {
         $request->validate([
             'institution_id' => 'required|exists:institutions,id',
         ]);
 
-        // Create the certificate and link it to the institution
+        // Create the certificate with the provided data
         $certificate = Certificate::create($request->all());
 
-        if ($request->input('photo', false)) {
-            $certificate->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))
-                ->toMediaCollection('photo');
+        // Handle the photo upload (if any)
+        if ($request->hasFile('photo')) {
+            $certificate->addMedia($request->file('photo'))
+                ->toMediaCollection('photo'); // Store in 'photo' collection
         }
 
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $certificate->id]);
         }
 
-        return redirect()->route('admin.certificates.index');
+        return redirect()->route('admin.certificates.index')
+            ->with('success', 'Certificate created successfully!');
     }
+
 
 
     public function edit(Institution $institution)
@@ -196,23 +163,41 @@ class InstitutionsController extends Controller
         return view('admin.institutions.edit', compact('institution'));
     }
 
-    public function update(UpdateInstitutionRequest $request, Institution $institution)
+    public function update(StoreCertificateRequest $request, Certificate $certificate)
     {
-        $institution->update($request->all());
+        $certificate->update($request->all());
 
-        if ($request->input('logo', false)) {
-            if (! $institution->logo || $request->input('logo') !== $institution->logo->file_name) {
-                if ($institution->logo) {
-                    $institution->logo->delete();
-                }
-                $institution->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
+        // Handle the photo upload (if any)
+        if ($request->hasFile('photo')) {
+            if ($certificate->getMedia('photo')->isNotEmpty()) {
+                $certificate->clearMediaCollection('photo'); // Remove old photo
             }
-        } elseif ($institution->logo) {
-            $institution->logo->delete();
+            $certificate->addMedia($request->file('photo'))
+                ->toMediaCollection('photo');
         }
 
-        return redirect()->route('admin.institutions.index');
+        return redirect()->route('admin.certificates.index')
+            ->with('success', 'Certificate updated successfully!');
     }
+
+
+    // public function update(UpdateInstitutionRequest $request, Institution $institution)
+    // {
+    //     $institution->update($request->all());
+
+    //     if ($request->input('logo', false)) {
+    //         if (! $institution->logo || $request->input('logo') !== $institution->logo->file_name) {
+    //             if ($institution->logo) {
+    //                 $institution->logo->delete();
+    //             }
+    //             $institution->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
+    //         }
+    //     } elseif ($institution->logo) {
+    //         $institution->logo->delete();
+    //     }
+
+    //     return redirect()->route('admin.institutions.index');
+    // }
 
     // public function show(Institution $institution)
     // {

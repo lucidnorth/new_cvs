@@ -19,10 +19,6 @@ class Certificate extends Model implements HasMedia
 
     public $table = 'certificates';
 
-    protected $appends = [
-        'photo',
-    ];
-
     public const GENDER_SELECT = [
         'male'   => 'Male',
         'female' => 'Female',
@@ -38,6 +34,7 @@ class Certificate extends Model implements HasMedia
     ];
 
     protected $fillable = [
+        'photo',
         'first_name',
         'middle_name',
         'last_name',
@@ -57,27 +54,14 @@ class Certificate extends Model implements HasMedia
         'created_by_id',
     ];
 
+    public function getImageUrlAttribute()
+    {
+        return asset('storage/' . $this->photo);
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
-    }
-
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-        $this->addMediaConversion('preview')->fit('crop', 120, 120);
-    }
-
-    public function getPhotoAttribute()
-    {
-        $file = $this->getMedia('photo')->last();
-        if ($file) {
-            $file->url       = $file->getUrl();
-            $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
-        }
-
-        return $file;
     }
 
     public function getDateOfBirthAttribute($value)
@@ -85,10 +69,6 @@ class Certificate extends Model implements HasMedia
         return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
     }
 
-    // public function setDateOfBirthAttribute($value)
-    // {
-    //     $this->attributes['date_of_birth'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('m/d/Y') : null;
-    // }
 
     public function setDateOfBirthAttribute($value)
     {
@@ -110,31 +90,37 @@ class Certificate extends Model implements HasMedia
     }
 
     public function searchLogs()
-{
-    return $this->hasMany(SearchLog::class, 'search_term', 'certificate_number');
-}
+    {
+        return $this->hasMany(SearchLog::class, 'search_term', 'certificate_number');
+    }
 
 
-public function getYearOfEntryAttribute($value)
-{
-    return $value ? Carbon::parse($value)->format('Y') : null; // Only the year
-}
+    public function getYearOfEntryAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format('Y') : null; // Only the year
+    }
 
-public function setYearOfEntryAttribute($value)
-{
-    $this->attributes['year_of_entry'] = $value ? Carbon::createFromFormat('Y', $value)->format('Y-m-d') : null;
-}
+    public function setYearOfEntryAttribute($value)
+    {
+        $this->attributes['year_of_entry'] = $value ? Carbon::createFromFormat('Y', $value)->format('Y-m-d') : null;
+    }
 
-public function getYearOfCompletionAttribute($value)
-{
-    return $value ? Carbon::parse($value)->format('Y') : null; // Only the year
-}
+    public function getYearOfCompletionAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format('Y') : null; // Only the year
+    }
 
-public function setYearOfCompletionAttribute($value)
-{
-    $this->attributes['year_of_completion'] = $value ? Carbon::createFromFormat('Y', $value)->format('Y-m-d') : null;
-}
+    public function setYearOfCompletionAttribute($value)
+    {
+        $this->attributes['year_of_completion'] = $value ? Carbon::createFromFormat('Y', $value)->format('Y-m-d') : null;
+    }
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('photo')->singleFile();
+    }
+
+    
 
     public function created_by()
     {

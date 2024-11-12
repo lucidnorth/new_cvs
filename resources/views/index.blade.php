@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="col jumbotron-item2-content">
-        <div class="">
+        <div class="text-center">
           <!-- <img src="images/jumboimage.png" alt="logo"> -->
           <img src="{{ asset('images/jumboimage.png') }}" alt="Banner Image">
 
@@ -482,9 +482,9 @@
 
 <div class="container academic-items">
   <div class="row academic-rows-item ">
+
     <div class="col-lg-6 col-sm-12 academic-item1 my-auto">
       <div class="academic-item1-content1">Other Services We Offer</div>
-      <!--<p class="academic-item1-content2 p-3">Sed ut perspiciatis unde omnis iste natus error sit voluptatesa</p>-->
 
       <div class="international-items">
         <ol type="1" class="international-list">
@@ -499,18 +499,14 @@
 
       <a href="{{ route('getInTouchpage') }}" class="btn cont-btn">Contact Us</a>
 
-      <!-- <div class="d-flex ">
-        <ul class="nav navbar-nav navbar-register">
-          <li><a class="hover-btn-new btn-donate text-danger" href="{{ route('getInTouchpage') }}"><span>Contact Us</span></a></li>
-        </ul>
-      </div> -->
     </div>
 
     <div class="col-lg-6 col-sm-12 jumbotron-item2-content">
-      <div class="p-3">
+      <div class="p-3 text-center">
         <img src="images/international-image.png" alt="image">
       </div>
     </div>
+
   </div>
 </div>
 

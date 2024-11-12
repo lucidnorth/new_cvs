@@ -20,6 +20,12 @@
     padding: 20px;
     margin: auto;
   }
+
+  @media (max-width: 767.98px) {}
+
+  @media (max-width: 768px) {}
+
+  @media (max-width: 991.98px) {}
 </style>
 
 <main class="main-content position-relative border-radius-lg ">
@@ -240,7 +246,7 @@
                   <div class="col-8">
                     <div class="numbers">
                       <p class="text-sm mb-0 text-uppercase font-weight-bold">Reports</p>
-                      <h5 class="font-weight-bolder">
+                      <h5 class="">
                         View reports
                       </h5>
                       <!-- <p class="mb-0">
@@ -350,14 +356,14 @@
               <div class="card-body">
                 <!-- <p class="text-uppercase text-sm">User Information</p> -->
                 <div class="row">
-                  <div class="col-md-12">
-                    <div class="searchcard p-4">
+                  <div class="col-lg-12">
+                    <div class="searchcard">
 
                       <form id="" class="verificationform" action="{{ route('employer.search')}}" method="POST">
-                        <div class="row mb-3">
+                        <div class="row">
 
                           @csrf
-                          <div class="col-md-4">
+                          <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                               <label for="example-text-input" class="form-control-label">Certifcate Number</label>
                               <input class="form-control mr-sm-2" type="text" placeholder="Search" name="certificate_number" id="certificate_number">
@@ -365,7 +371,7 @@
                           </div>
 
 
-                          <div class="col-md-4">
+                          <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group">
                               <label for="example-text-input" class="form-control-label">Select Institution</label>
                               <select class="form-control" name="institution_id" id="institution_id">
@@ -378,7 +384,7 @@
                             </div>
                           </div>
 
-                          <div class="col-md-4">
+                          <div class="col-lg-4 col-md-4 col-sm-12">
                             <button type="submit" class="btn btn-primary mt-4 col-12">Verify</button>
                           </div>
 
@@ -389,37 +395,6 @@
                   </div>
                 </div>
 
-                <div class="row">
-
-                  <!-- <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">City</label>
-                    <input class="form-control" type="text" value="New York">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Country</label>
-                    <input class="form-control" type="text" value="United States">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Postal code</label>
-                    <input class="form-control" type="text" value="437300">
-                  </div>
-                </div>
-              </div>
-              <hr class="horizontal dark">
-              <p class="text-uppercase text-sm">About me</p>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">About me</label>
-                    <input class="form-control" type="text" value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source.">
-                  </div>
-                </div> -->
-                </div>
               </div>
             </div>
           </div>
@@ -434,7 +409,7 @@
                 <div class="row row-cols-3 justify-content-center">
                   <div class="col cardone">
                     <div class="passport-photo">
-                      <img src="placeholder.jpg" alt="Passport Photo" class="img-fluid mb-2" style="width: 100%; height: 100%;">
+                      <img src="{{ session('certificate')->getFirstMediaUrl('photo') }}" alt="Passport Photo" class="img-fluid mb-2" style="width: 100%; height: 100%;">
                     </div>
                     <div>
                       <img src="placeholder.jpg" alt="University Logo" class="img-fluid mb-2">
@@ -479,52 +454,7 @@
           <p>{{ session('error') }}</p>
           @endif
 
-          <!-- <div class="col-lg-5">
-          <div class="card card-carousel overflow-hidden h-100 p-0">
-            <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
-              <div class="carousel-inner border-radius-lg h-100">
-                <div class="carousel-item h-100 active" style="background-image: url('../assets/img/carousel-1.jpg');
-      background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                      <i class="ni ni-camera-compact text-dark opacity-10"></i>
-                    </div>
-                    <h5 class="text-white mb-1">Get started with Argon</h5>
-                    <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
-                  </div>
-                </div>
-                <div class="carousel-item h-100" style="background-image: url('../assets/img/carousel-2.jpg');
-      background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                      <i class="ni ni-bulb-61 text-dark opacity-10"></i>
-                    </div>
-                    <h5 class="text-white mb-1">Faster way to create web pages</h5>
-                    <p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
-                  </div>
-                </div>
-                <div class="carousel-item h-100" style="background-image: url('../assets/img/carousel-3.jpg');
-      background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                      <i class="ni ni-trophy text-dark opacity-10"></i>
-                    </div>
-                    <h5 class="text-white mb-1">Share with us your design tips!</h5>
-                    <p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
-                  </div>
-                </div>
-              </div>
-              <button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
-        </div> -->
+          
         </div>
 
         @if(auth()->user()->my_institution)
@@ -543,34 +473,7 @@
                 </div>
               </div>
               <div class="card-body pt-4 p-3">
-                <!-- <h6 class="text-uppercase text-body text-xs font-weight-bolder mb-3">Newest</h6>
-                <ul class="list-group">
-                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <button class="btn btn-icon-only btn-rounded btn-outline-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-down"></i></button>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Total Payments Recieved</h6>
-                        <span class="text-xs">27 March 2020, at 12:30 PM</span>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold">
-                      - $ 2,500
-                    </div>
-                  </li>
-                  <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <button class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-arrow-up"></i></button>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Payments Overdue</h6>
-                        <span class="text-xs">27 March 2020, at 04:30 AM</span>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                      + $ 2,000
-                    </div>
-                  </li>
-                </ul> -->
-                <!-- <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">Yesterday</h6> -->
+                
                 <ul class="list-group">
                   @foreach($payments as $payment)
                   <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
@@ -587,18 +490,6 @@
                   </li>
                   @endforeach
 
-                  <!-- <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                    <div class="d-flex align-items-center">
-                      <button class="btn btn-icon-only btn-rounded btn-outline-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-exclamation"></i></button>
-                      <div class="d-flex flex-column">
-                        <h6 class="mb-1 text-dark text-sm">Discounts</h6>
-                        <span class="text-xs">26 March 2020, at 05:00 AM</span>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center text-dark text-sm font-weight-bold">
-                      25%
-                    </div>
-                  </li> -->
                 </ul>
               </div>
             </div>

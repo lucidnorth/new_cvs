@@ -5,8 +5,28 @@
 @section('content')
 
 <style>
+    .modal-body{
+        font-size: 18px;
+    }
     .report-carda {
         margin-top: 50px;
+    }
+    table{
+        text-align: left !important;
+    }
+    @media (max-width: 767.98px) {
+        .list-group-flush .list-group-item{
+            display: flex;
+            flex-direction: column !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        
+    }
+
+    @media (max-width: 991.98px) {
+        
     }
 </style>
 <main class="main-content position-relative border-radius-lg">
@@ -52,7 +72,7 @@
                                                         @if ($institutionCertificates->isEmpty())
                                                         <div class="text-center">No employer has verified your candidates yet.</div>
                                                         @else
-                                                        <table class="table table-stripped table-hover text-center">
+                                                        <table  id="myTable" class="table table-stripped table-hover">
                                                             <thead>
                                                                 <tr>
                                                                     <!-- <th>Institution</th> -->
@@ -89,6 +109,8 @@
                                                                 @endforeach
                                                             </tbody>
                                                         </table>
+
+                                                        
                                                         @endif
                                                     </div>
                                                     <div class="modal-footer">
@@ -126,7 +148,7 @@
                                                     @if ($payments->isEmpty())
                                                     <div class="text-center">No payments found.</div>
                                                     @else
-                                                    <table class="table table-stripped table-hover text-center">
+                                                    <table id="myTable" class="table table-stripped table-hover ">
                                                         <thead>
                                                             <tr>
                                                                 <th>Month</th>
@@ -180,7 +202,7 @@
                                                         @if ($certificates->isEmpty())
                                                         <div class="text-center">No verified candidates found.</div>
                                                         @else
-                                                        <table class="table table-stripped table-hover text-center">
+                                                        <table  id="myTable" class="table table-stripped table-hover">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Institution</th>
@@ -246,7 +268,7 @@
                                                         @if ($skillSearchLogs->isEmpty())
                                                         <div class="text-center">No recommendations found!</div>
                                                         @else
-                                                        <table class="table table-stripped table-hover text-center">
+                                                        <table id="myTable" class="table table-stripped table-hover">
                                                             <thead>
                                                                 <tr>
                                                                     <th>User</th>
@@ -302,7 +324,7 @@
                                                     @if ($caseStudyPapers->isEmpty())
                                                     <div class="text-center">No papers found.</div>
                                                     @else
-                                                    <table class="table table-stripped table-hover text-center">
+                                                    <table id="myTable" class="table table-stripped table-hover">
                                                         <thead>
                                                             <tr>
                                                                 <th>Name</th>
@@ -355,7 +377,7 @@
                                                     @if ($skillsGapSetPapers->isEmpty())
                                                     <div class="text-center">No papers found.</div>
                                                     @else
-                                                    <table class="table table-stripped table-hover text-center">
+                                                    <table id="myTable" class="table table-stripped table-hover">
                                                         <thead>
                                                             <tr>
                                                                 <th>Name</th>
@@ -408,7 +430,7 @@
                                                     @if ($researchPaperPapers->isEmpty())
                                                     <div class="text-center">No papers found.</div>
                                                     @else
-                                                    <table class="table table-stripped table-hover text-center">
+                                                    <table id="myTable" class="table table-stripped table-hover">
                                                         <thead>
                                                             <tr>
                                                                 <th>Name</th>
@@ -460,7 +482,7 @@
                                                     @if ($userPackages->isEmpty())
                                                     <div class="text-center">No payments found.</div>
                                                     @else
-                                                    <table class="table table-stripped table-hover text-center">
+                                                    <table id="myTable" class="table table-stripped table-hover">
                                                         <thead>
                                                             <tr>
                                                                 <th>Amount</th>
@@ -503,8 +525,14 @@
     </div>
 
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+
         document.addEventListener('DOMContentLoaded', function() {
             const exampleModal = document.getElementById('exampleModal');
             exampleModal.addEventListener('show.bs.modal', function(event) {
@@ -517,6 +545,106 @@
                 modalPackageAmountInput.value = packageAmount;
             });
         });
+
+        $(document).ready(function() {
+        var table = $('#example').DataTable({
+            "info": false,
+            "lengthChange": false,
+            "pageLength": 20, // Display 20 rows per page by default
+            "ordering": false,
+            "paging": false // Disable default pagination
+        });
+
+        var currentPage = 1;
+        var totalPages = Math.ceil(table.data().length / 20); // Calculate the total number of pages
+
+        $('#currentPage').val(currentPage);
+
+        function updateTable() {
+            table.page(currentPage - 1).draw(false);
+            $('#page-indicator').text('Showing page ' + currentPage + ' of ' + totalPages); // Update page indicator
+
+            // Hide or show Previous button
+            if (currentPage <= 1) {
+                $('#prevPage').hide();
+            } else {
+                $('#prevPage').show();
+            }
+
+            // Hide or show Next button
+            if (currentPage >= totalPages) {
+                $('#nextPage').hide();
+            } else {
+                $('#nextPage').show();
+            }
+        }
+
+        $('#prevPage').on('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                $('#currentPage').val(currentPage);
+                updateTable();
+            }
+        });
+
+        $('#nextPage').on('click', function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                $('#currentPage').val(currentPage);
+                updateTable();
+            }
+        });
+
+        $('#currentPage').on('change', function() {
+            var newPage = parseInt($(this).val());
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                updateTable();
+            } else {
+                $(this).val(currentPage); // Reset to the current page if the input is invalid
+            }
+        });
+
+        $('#example').on('page.dt', function() {
+            var pageInfo = table.page.info();
+            $('#currentPage').val(pageInfo.page + 1);
+        });
+
+        // Custom search function for exact match
+        $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+            var searchTerm = $('.dataTables_filter input').val().toLowerCase();
+            if (!searchTerm) {
+                $('#results-counter').hide(); // Hide counter if no search term
+                return true; // If no search term, show all rows
+            } else {
+                $('#results-counter').show(); // Show counter if search term exists
+            }
+
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].toLowerCase() === searchTerm) {
+                    return true; // If an exact match is found, show the row
+                }
+            }
+            return false; // Otherwise, hide the row
+        });
+
+        // Update the results counter
+        function updateResultsCounter() {
+            var info = table.page.info();
+            $('#results-counter .count').text(info.recordsDisplay);
+        }
+
+        // Update results counter on table draw
+        table.on('draw', function() {
+            updateResultsCounter();
+        });
+
+        // Initial update of results counter
+        updateResultsCounter();
+
+        // Initial update of table (to handle initial state of pagination buttons)
+        updateTable();
+    });
     </script>
 
     @endsection

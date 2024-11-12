@@ -49,11 +49,13 @@
                                         <td></td>
                                         <td>{{ $certificate->id ?? '' }}</td>
                                         <td>
-                                            @if($certificate->photo)
-                                                <a href="{{ $certificate->photo->getUrl() }}" target="_blank" style="display: inline-block">
-                                                    <img src="{{ $certificate->photo->getUrl('thumb') }}">
-                                                </a>
-                                            @endif
+                                        @if($certificate->getFirstMediaUrl('photo'))
+                                            <a href="{{ $certificate->photo }}" target="_blank" style="display: inline-block">
+                                                <img src="{{ $certificate->getFirstMediaUrl('photo') }}" alt="Student Photo" width="50">
+                                            </a>
+                                        @else
+                                            No Photo
+                                        @endif
                                         </td>
                                         <td>{{ $certificate->first_name ?? '' }}</td>
                                         <td>{{ $certificate->middle_name ?? '' }}</td>

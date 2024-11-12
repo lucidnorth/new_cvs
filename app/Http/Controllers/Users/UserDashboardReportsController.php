@@ -119,8 +119,8 @@ class UserDashboardReportsController extends Controller
             'researchPaperPapers'=> $researchPaperPapers,
             'skillsGapSetPapers'=> $skillsGapSetPapers,
             'institutionCertificates' => $institutionCertificates,
-            'paymentData' => $paymentData,
-            'payments' => $payments,
+            // 'paymentData' => $paymentData,
+            // 'payments' => $payments,
         ]);
     }
 
