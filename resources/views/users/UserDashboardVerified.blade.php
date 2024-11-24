@@ -13,13 +13,14 @@
         overflow: hidden;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         margin-top: 40px;
+        font-size: 18px;
     }
     th {
         background-color: #343a40;
         color: white;
         text-align: left;
         vertical-align: middle;
-        font-size: 20px;
+        font-size: 18px;
     }
     td {
         text-align: left;
@@ -119,6 +120,11 @@
     .table-container {
         position: relative;
     }
+    .dt-info,
+    .dt-length,
+    .dt-search,.dt-paging{
+        font-size: 16px;
+    }
 </style>
 
 <main class="main-content position-relative border-radius-lg">
@@ -185,10 +191,10 @@
         </div>
       </header>
             <div class="table-responsive table-container">
-                <div id="results-counter" class="mb-3">Results: <span class="count">0</span></div>
-                <div id="page-indicator" class="fs-5 mb-5">Showing page 1 of 1</div> <!-- Page indicator here -->
+                <!-- <div id="results-counter" class="mb-3">Results: <span class="count">0</span></div>
+                <div id="page-indicator" class="fs-5 mb-5">Showing page 1 of 1</div> Page indicator here -->
                 
-                <table id="example" class="table  table-dark table-striped text-center fs-6 text-white" style="width:100%;">
+                <table id="myTable" class="table  table-dark table-striped text-center fs-6 text-white">
                     <thead>
                         <tr>
                             <!-- <th>Verified On</th> -->
@@ -230,13 +236,13 @@
                         @endif
                     </tbody>
                 </table>
-                <div class="pagination-container">
+                <!-- <div class="pagination-container">
                     <div class="custom-pagination">
                         <button id="prevPage" class="btn btn-primary">Previous</button>
                         <input type="number" id="currentPage" min="1" value="1" class="form-control">
                         <button id="nextPage" class="btn btn-primary">Next</button>
                     </div>
-                </div>
+                </div> -->
             </div>
 
 
@@ -259,10 +265,20 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<!-- <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script> -->
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-Ho8CB4QsqOa28FhNdll8+6o4r36xtZGE2+8a3EVv9L9fSVzNj9v8aApX0PvJ0IsR" crossorigin="anonymous"></script>
 
 <script>
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+
+    let table = new DataTable('#myTable', {
+            // options
+        });
+
     $(document).ready(function() {
         var table = $('#example').DataTable({
             "info": false,

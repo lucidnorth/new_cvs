@@ -37,9 +37,9 @@ class UserPackage extends Model
     }
 
     public function searchLogs()
-{
-    return $this->hasMany(SearchLog::class);
-}
+    {
+        return $this->hasMany(SearchLog::class);
+    }
 
 }
 

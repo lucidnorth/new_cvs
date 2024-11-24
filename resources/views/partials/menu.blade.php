@@ -76,6 +76,17 @@
                         <span class="pull-right-container"><i class="fa fa-fw fa-angle-left pull-right"></i></span>
                     </a>
                     <ul class="treeview-menu">
+                        @can('news_access')
+                            <li class="{{ request()->is("admin/news") || request()->is("admin/news/*") ? "active" : "" }}">
+                                <a href="{{ route("admin.news.index") }}">
+                                    <i class="fa-fw fas fa-folder">
+
+                                    </i>
+                                    <span>News</span>
+
+                                </a>
+                            </li>
+                        @endcan
                         @can('content_category_access')
                             <li class="{{ request()->is("admin/content-categories") || request()->is("admin/content-categories/*") ? "active" : "" }}">
                                 <a href="{{ route("admin.content-categories.index") }}">

@@ -51,10 +51,19 @@
 <div class="jumbotron">
   <div class="container jumbotron-items">
     <div class="row jumbotron-rows-item ">
+    @foreach ($bannerContent as $content)
       <div class="col jumbotron-item1 my-auto">
-        <div class="jumbotron-item1-content1">Conveniently Verify Academic
-          And Professional Qualifications On Our Accredited Platform.</div>
-          <p class="jumbotron-item1-content2">Authentic Verification<i class="bi bi-dot"></i>Real Time<i class="bi bi-dot"></i>Secure</p>
+        <!-- <div class="jumbotron-item1-content1">Conveniently Verify Academic
+          And Professional Qualifications On Our Accredited Platform.</div> -->
+          <div class="jumbotron-item1-content1">{{ $content->page_text }}</div>
+          <!-- <p class="jumbotron-item1-content2">Authentic Verification<i class="bi bi-dot"></i>Real Time<i class="bi bi-dot"></i>Secure</p> -->
+          <p class="jumbotron-item1-content2">
+          @if(!empty($content->tags)) 
+            @foreach($content->tags as $tag)
+              {{ $tag->name }}<i class="bi bi-dot"></i>
+            @endforeach
+          @endif
+        </p>
         <div class="d-flex">
           <a class="btn-sign" href="{{ route('login') }}">Sign In</a>
           <a class="btn-register" href="{{ route('registrationpage') }}">Register</a>
@@ -64,9 +73,9 @@
         <div class="text-center">
           <!-- <img src="images/jumboimage.png" alt="logo"> -->
           <img src="{{ asset('images/jumboimage.png') }}" alt="Banner Image">
-
         </div>
       </div>
+      @endforeach
     </div>
   </div>
 </div>

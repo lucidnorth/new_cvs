@@ -31,7 +31,7 @@ use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\InstitutionsController;
-
+use App\Http\Controllers\HomepageController;
 
 Route::post('/employer/profile/update', [UserDashboardProfileController::class, 'updateEmployerProfile'])->name('employer.profile.update');
 Route::post('/institution/password-update', [UserDashboardProfileController::class, 'updatePassword'])->name('institution.password.update');
@@ -43,9 +43,10 @@ Route::post('/institution/profile/update', [UserDashboardProfileController::clas
 
 // Route::put('/dashboard/profile/update', [UserDashboardProfileController::class, 'update'])->name('dashboard.profile.update');
 // Homepage Routing
-Route::get('/', function () {
-    return view('index'); // Adjust 'welcome' to the name of your homepage view
-})->name('homepage');
+// Route::get('/', function () {
+//     return view('index'); // Adjust 'welcome' to the name of your homepage view
+// })->name('homepage');
+Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 
 // Route to handle the form submission
 Route::post('/newsletter-signup', [NewsletterController::class, 'store'])->name('newsletter.signup');
@@ -215,6 +216,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
+    // News
+    Route::delete('news/destroy', 'NewsController@massDestroy')->name('news.massDestroy');
+    Route::resource('news', 'NewsController');
 
     // Content Category
     Route::delete('content-categories/destroy', 'ContentCategoryController@massDestroy')->name('content-categories.massDestroy');

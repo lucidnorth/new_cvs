@@ -56,6 +56,10 @@
   <!-- <script src="{{ asset('js/plugins/chartjs.min.js') }}"></script> -->
 
   <script>
+
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
       var options = {
@@ -70,6 +74,11 @@
   <script src="{{ asset('js/argon-dashboard.min.js') }}"></script>
   <!-- <link href="{{ asset('js/argon-dashboard.min.js?v=2.0.4') }}" rel="stylesheet"/> -->
   <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </body>
 
