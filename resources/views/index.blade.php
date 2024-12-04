@@ -468,7 +468,6 @@
 
 
 
-
 <div class="container academic-items">
   <div class="row academic-rows-item ">
     <div class="col-lg-6 col-sm-12 academic-item1 my-auto">
@@ -476,14 +475,13 @@
       <!--<p class="academic-item1-content2 p-3">Sed ut perspiciatis unde omnis iste natus error sit voluptatesa</p>-->
 
       <div class="international-items">
-        <ol type="1" class="international-list">
-          <li>SOCIAL BACKGROUND CHECK</li>
-          <li>CRIMINAL BACKGROUND CHECK</li>
-          <li>VERIFICATION OF DOCUMENTS AND CREDENTIALS CHECK</li>
-          <li>SOCIAL MEDIA ACTIVITIES CHECK</li>
-          <li>EMPLOYER AND COLLEAGUE RELATIONS</li>
-          <li>TUTOR AND COLLEAGUE RELATIONS</li>
-        </ol>
+        <!-- <ol type="1" class="international-list"> -->
+        @if ($services)
+          <div>{!! $services->page_text !!}</div>
+          @else
+            <div class="mb-3">No services content available yet.</div>
+        @endif
+        <!-- </ol> -->
       </div>
 
       <a href="{{ route('getInTouchpage') }}" class="btn cont-btn">Contact Us</a>

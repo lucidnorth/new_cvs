@@ -17,7 +17,10 @@ class HomepageController extends Controller
             $query->where('name', 'News'); // Assuming your category is stored in a related table
         })->get();
 
+        $services = ContentPage::where('title', 'Services')->first();
+
+
         // Ensure you're passing the correct variable to the view
-        return view('index', compact('bannerContent', 'newsContent'));
+        return view('index', compact('bannerContent', 'newsContent', 'services'));
     }
 }
