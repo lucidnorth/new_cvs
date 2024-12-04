@@ -23,7 +23,7 @@ class ContentPageController extends Controller
     {
         abort_if(Gate::denies('content_page_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $contentPages = ContentPage::with(['categories', 'tags', 'media'])->get();
+        $contentPages = ContentPage::with(['categories:id,name', 'tags:id,name', 'media'])->get(['id', 'title', 'created_at']);
 
         return view('admin.contentPages.index', compact('contentPages'));
     }
@@ -33,34 +33,49 @@ class ContentPageController extends Controller
         abort_if(Gate::denies('content_page_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $categories = ContentCategory::pluck('name', 'id');
-
         $tags = ContentTag::pluck('name', 'id');
 
         return view('admin.contentPages.create', compact('categories', 'tags'));
     }
 
+    // public function store(StoreContentPageRequest $request)
+    // {
+    //     $contentPage = ContentPage::create($request->all());
+    //     $contentPage->categories()->sync($request->input('categories', []));
+    //     $contentPage->tags()->sync($request->input('tags', []));
+
+    //     if ($request->input('featured_image', false)) {
+    //         $contentPage->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
+    //     }
+
+    //     if ($media = $request->input('ck-media', false)) {
+    //         Media::whereIn('id', $media)->update(['model_id' => $contentPage->id]);
+    //     }
+
+    //     return redirect()->route('admin.content-pages.index')->with('success', 'Content page created successfully!');
+    // }
+
     public function store(StoreContentPageRequest $request)
-    {
-        $contentPage = ContentPage::create($request->all());
-        $contentPage->categories()->sync($request->input('categories', []));
-        $contentPage->tags()->sync($request->input('tags', []));
-        if ($request->input('featured_image', false)) {
-            $contentPage->addMedia(storage_path('tmp/uploads/' . basename($request->input('featured_image'))))->toMediaCollection('featured_image');
-        }
+{
+    $contentPage = ContentPage::create($request->all());
+    $contentPage->categories()->sync($request->input('categories', []));
+    $contentPage->tags()->sync($request->input('tags', []));
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $contentPage->id]);
-        }
-
-        return redirect()->route('admin.content-pages.index');
+    if ($request->input('featured_image', false)) {
+        $contentPage->addMedia(storage_path('app/public/tmp/uploads/' . $request->input('featured_image')))
+                    ->toMediaCollection('featured_image');
     }
+
+    return redirect()->route('admin.content-pages.index')->with('success', 'Content page created successfully!');
+}
+
+
 
     public function edit(ContentPage $contentPage)
     {
         abort_if(Gate::denies('content_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $categories = ContentCategory::pluck('name', 'id');
-
         $tags = ContentTag::pluck('name', 'id');
 
         $contentPage->load('categories', 'tags');
@@ -73,8 +88,9 @@ class ContentPageController extends Controller
         $contentPage->update($request->all());
         $contentPage->categories()->sync($request->input('categories', []));
         $contentPage->tags()->sync($request->input('tags', []));
+
         if ($request->input('featured_image', false)) {
-            if (! $contentPage->featured_image || $request->input('featured_image') !== $contentPage->featured_image->file_name) {
+            if (!$contentPage->featured_image || $request->input('featured_image') !== $contentPage->featured_image->file_name) {
                 if ($contentPage->featured_image) {
                     $contentPage->featured_image->delete();
                 }
@@ -84,8 +100,31 @@ class ContentPageController extends Controller
             $contentPage->featured_image->delete();
         }
 
-        return redirect()->route('admin.content-pages.index');
+        return redirect()->route('admin.content-pages.index')->with('success', 'Content page updated successfully!');
     }
+
+    // public function update(UpdateContentPageRequest $request, ContentPage $contentPage)
+    // {
+    //     $contentPage->update($request->all());
+    //     $contentPage->categories()->sync($request->input('categories', []));
+    //     $contentPage->tags()->sync($request->input('tags', []));
+
+    //     if ($request->input('featured_image', false)) {
+    //         if (!$contentPage->getFirstMedia('featured_image') || $request->input('featured_image') !== $contentPage->getFirstMedia('featured_image')->file_name) {
+    //             if ($contentPage->getFirstMedia('featured_image')) {
+    //                 $contentPage->getFirstMedia('featured_image')->delete();
+    //             }
+    //             $contentPage->addMedia(storage_path('app/public/tmp/uploads/' . $request->input('featured_image')))
+    //                         ->toMediaCollection('featured_image');
+    //         }
+    //     } elseif ($contentPage->getFirstMedia('featured_image')) {
+    //         $contentPage->getFirstMedia('featured_image')->delete();
+    //     }
+
+    //     return redirect()->route('admin.content-pages.index')->with('success', 'Content page updated successfully!');
+    // }
+
+
 
     public function show(ContentPage $contentPage)
     {
@@ -102,29 +141,64 @@ class ContentPageController extends Controller
 
         $contentPage->delete();
 
-        return back();
+        return back()->with('success', 'Content page deleted successfully!');
     }
 
     public function massDestroy(MassDestroyContentPageRequest $request)
     {
-        $contentPages = ContentPage::find(request('ids'));
-
-        foreach ($contentPages as $contentPage) {
-            $contentPage->delete();
-        }
+        ContentPage::destroy($request->input('ids', []));
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
 
+    public function restore($id)
+    {
+        $contentPage = ContentPage::onlyTrashed()->findOrFail($id);
+        $contentPage->restore();
+
+        return redirect()->route('admin.content-pages.index')->with('success', 'Content page restored successfully!');
+    }
+
+    // public function storeCKEditorImages(Request $request)
+    // {
+    //     abort_if(Gate::denies('content_page_create') && Gate::denies('content_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    //     $model = new ContentPage();
+    //     $model->id = $request->input('crud_id', 0);
+    //     $model->exists = true;
+    //     $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+
+    //     return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    // }
+
     public function storeCKEditorImages(Request $request)
     {
-        abort_if(Gate::denies('content_page_create') && Gate::denies('content_page_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(
+            Gate::denies('content_page_create') && Gate::denies('content_page_edit'), 
+            Response::HTTP_FORBIDDEN, 
+            '403 Forbidden'
+        );
 
-        $model         = new ContentPage();
-        $model->id     = $request->input('crud_id', 0);
-        $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        // Validate the uploaded file
+        $request->validate([
+            'upload' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Max 2MB
+        ]);
 
-        return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+        // Create a temporary ContentPage instance
+        $model = new ContentPage();
+        $model->id = $request->input('crud_id', 0); // Use provided `crud_id`, if any
+        $model->exists = true; // Mark the model as existing to allow media attachment
+
+        // Store the uploaded file in the `ck-media` collection
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+
+        // Return JSON response with the uploaded file's URL
+        return response()->json([
+            'id' => $media->id,
+            'url' => $media->getUrl(),
+        ], Response::HTTP_CREATED);
     }
+
+
+
 }

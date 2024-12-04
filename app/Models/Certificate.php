@@ -69,7 +69,6 @@ class Certificate extends Model implements HasMedia
         return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
     }
 
-
     public function setDateOfBirthAttribute($value)
     {
         if ($value) {

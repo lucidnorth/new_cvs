@@ -4,6 +4,7 @@
 // namespace App\Http\Controllers;
 // use App\Http\Controllers\SearchController;
 
+use App\Http\Controllers\AboutpageController;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\CertificatesController;
 use Illuminate\Support\Facades\Route;
@@ -147,9 +148,13 @@ Route::get('/home', function () {
     }
     return redirect()->route('admin.home');
 });
-Route::get('/about', function () {
-    return view('about');
-})->name('aboutpage');
+
+// Route::get('/about', function () {
+//     return view('about');
+// })->name('aboutpage');
+
+Route::get('/about', [AboutpageController::class, 'index'])->name('aboutpage');
+
 Route::get('/getInTouch', function () {
     return view('getInTouch');
 })->name('getInTouchpage');

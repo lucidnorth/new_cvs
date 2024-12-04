@@ -46,6 +46,7 @@ class ContentPage extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
+
     public function categories()
     {
         return $this->belongsToMany(ContentCategory::class);
@@ -67,4 +68,6 @@ class ContentPage extends Model implements HasMedia
 
         return $file;
     }
+    
+
 }

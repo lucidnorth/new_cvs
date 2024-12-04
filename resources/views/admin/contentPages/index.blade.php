@@ -36,9 +36,9 @@
                                     <th>
                                         {{ trans('cruds.contentPage.fields.tag') }}
                                     </th>
-                                    <th>
+                                    <!-- <th>
                                         {{ trans('cruds.contentPage.fields.excerpt') }}
-                                    </th>
+                                    </th> -->
                                     <th>
                                         {{ trans('cruds.contentPage.fields.featured_image') }}
                                     </th>
@@ -69,13 +69,13 @@
                                                 <span class="label label-info label-many">{{ $item->name }}</span>
                                             @endforeach
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             {{ $contentPage->excerpt ?? '' }}
-                                        </td>
+                                        </td> -->
                                         <td>
                                             @if($contentPage->featured_image)
                                                 <a href="{{ $contentPage->featured_image->getUrl() }}" target="_blank" style="display: inline-block">
-                                                    <img src="{{ $contentPage->featured_image->getUrl('thumb') }}">
+                                                    <img src="{{ $contentPage->featured_image->getUrl('preview') }}">
                                                 </a>
                                             @endif
                                         </td>

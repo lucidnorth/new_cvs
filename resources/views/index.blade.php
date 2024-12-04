@@ -45,24 +45,31 @@
     left: 0;
     top: -3px;
   }
+
+  .news-card .announcement-text{
+    color: #0000 !important;
+  }
+
+  .news-card .announcement-title{
+    text-transform: capitalize;
+  }
 </style>
 
 
 <div class="jumbotron">
   <div class="container jumbotron-items">
     <div class="row jumbotron-rows-item ">
-    @foreach ($bannerContent as $content)
       <div class="col jumbotron-item1 my-auto">
-        <!-- <div class="jumbotron-item1-content1">Conveniently Verify Academic
-          And Professional Qualifications On Our Accredited Platform.</div> -->
-          <div class="jumbotron-item1-content1">{{ $content->page_text }}</div>
-          <!-- <p class="jumbotron-item1-content2">Authentic Verification<i class="bi bi-dot"></i>Real Time<i class="bi bi-dot"></i>Secure</p> -->
-          <p class="jumbotron-item1-content2">
-          @if(!empty($content->tags)) 
-            @foreach($content->tags as $tag)
-              {{ $tag->name }}<i class="bi bi-dot"></i>
-            @endforeach
-          @endif
+        <div class="jumbotron-item1-content1">{!! $bannerContent->page_text !!}</div>
+        <p class="jumbotron-item1-content2">
+            @if ($bannerContent->tags->isNotEmpty())
+                @foreach ($bannerContent->tags as $index => $tag)
+                    {{ $tag->name }}
+                    @if (!$loop->last)
+                        <i class="bi bi-dot"></i>
+                    @endif
+                @endforeach
+            @endif
         </p>
         <div class="d-flex">
           <a class="btn-sign" href="{{ route('login') }}">Sign In</a>
@@ -70,12 +77,12 @@
         </div>
       </div>
       <div class="col jumbotron-item2-content">
-        <div class="text-center">
+        <div class="">
           <!-- <img src="images/jumboimage.png" alt="logo"> -->
-          <img src="{{ asset('images/jumboimage.png') }}" alt="Banner Image">
+          <img src="{{ $bannerContent->featured_image->url }}" alt="Banner Image">
+
         </div>
       </div>
-      @endforeach
     </div>
   </div>
 </div>
@@ -356,37 +363,31 @@
         <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
       </div>
       <div class="modal-body">
-      @if(session('success'))
-          <div class="alert alert-success">
-              {{ session('success') }}
-          </div>
-      @endif
-      <form action="{{ route('submit.cv') }}" method="POST" enctype="multipart/form-data">
-          @csrf
-          <div class="mb-3">
-              <label for="name" class="col-form-label">Your Full Name:</label>
-              <input type="text" class="form-control" id="name" name="name" required>
-          </div>
-          <div class="mb-3">
-              <label for="message-text" class="col-form-label">Message:</label>
-              <textarea class="form-control" id="message-text" name="message" required></textarea>
-          </div>
-          <div class="mb-3">
-              <label for="phone" class="col-form-label">Phone Number:</label>
-              <input type="tel" class="form-control" id="phone" name="phone" required>
-          </div>
-          <div class="mb-3">
-              <label for="country" class="col-form-label">Country:</label>
-              <input type="text" class="form-control" id="country" name="country" required>
-          </div>
-          <div class="mb-3">
-              <label for="cv" class="col-form-label">Upload CV:</label>
-              <input type="file" class="form-control" id="cv" name="cv" required>
-          </div>
-          <div style="text-align: right;">
-              <button type="submit" class="btn btn-primary">Submit CV</button>
-          </div>
-      </form>
+      <form action="{{ route('form.workwithus') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Your Full Name:</label>
+                    <input type="text" class="form-control" id="recipient-name" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Message:</label>
+                    <textarea class="form-control" id="message-text" name="userMessage"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="col-form-label">Phone Number:</label>
+                    <input type="tel" class="form-control" id="phone" name="phone">
+                </div>
+                <div class="mb-3">
+                    <label for="country" class="col-form-label">Country:</label>
+                    <<input type="text" class="form-control" id="country" name="country">
+                </div>
+                <div class="mb-3">
+                    <input type="file" class="form-control" id="cv" name="cv">
+                </div>
+                <div style="text-align: right;">
+                    <button type="submit" class="btn btn-primary">Submit CV</button>
+                </div>
+            </form>
       </div>
     </div>
   </div>
@@ -411,89 +412,68 @@
 
 <div class="container-fluid announcement">
   <div class="container px-4 text-center mt-5">
-    <div class=" mb-4 titles ">
-      News
-    </div>
+    <div class=" mb-4 titles ">News</div>
     <div class="row">
+    @if ($newsContent->isNotEmpty())
+      @foreach ($newsContent as $news)
       <div class="col-lg-4 col-sm-12">
         <div class="p-3"> 
-          <a class="" href="" data-bs-toggle="modal" data-bs-target="#announcementModal  ">
+          <a class="" href="" data-bs-toggle="modal" data-bs-target="#announcementModal-{{ $news->id }}">
             <div class="news-card">
-              <img src="{{ asset('images/News-image.png') }}" alt="logo" class="mb-3 feature-image">
+              <img src="{{ $news->featured_image->thumb }}" alt="logo" class="mb-3 feature-image">
               <!-- <img src="{{ asset('images/news-image.png') }}" alt="employer" class="mb-3 feature-image">   -->
               <div class="announcement-body">
-                <h5 class="announcement-title">Card title</h5>
-                <p class="announcement-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="announcement-title fs-small">{{ $news->title }}</h5>
+                <p class="announcement-text">{!! \Illuminate\Support\Str::words($news->page_text, 14, '...') !!}</p>
               </div>
             </div>
           </a>
         </div>
       </div>
 
-      <div class="col-lg-4 col-sm-12">
-        <div class="p-3">
-          <a class="" href="" data-bs-toggle="modal" data-bs-target="#announcementModal  ">
-            <div class="news-card">
-              <!-- <img src="images/news-image.png" alt="logo" class="mb-3 feature-image"> -->
-              <img src="{{ asset('images/News-image.png') }}" alt="logo" class="mb-3 feature-image">
-              <div class="announcement-body">
-                <h5 class="announcement-title">Card title</h5>
-                <p class="announcement-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <!-- News Model -->
+
+      <div class="modal fade" id="announcementModal-{{ $news->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg  modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-body" style="width: 100%;">
+            <div class="" >
+              <img src="{{ $news->featured_image->preview }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <ul class=" ">
+                  <li class="list-group-item mt-3">{{ $news->created_at->format('F d, Y') }}</li>
+                  <li class="list-group-item mt-3"></li>
+                  <li class="list-group-item mt-3 fw-bold fs-5">{{ $news->title }}</li>
+                  <li class="list-group-item mt-3">
+                  {!! $news->page_text !!}
+                  </li>
+                </ul>
               </div>
             </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-sm-12">
-        <div class="p-3">
-          <a class="" href="" data-bs-toggle="modal" data-bs-target="#announcementModal  ">
-            <div class="news-card">
-              <!-- <img src="images/news-image.png" alt="logo" class="mb-3 feature-image"> -->
-              <img src="{{ asset('images/News-image.png') }}" alt="logo" class="mb-3 feature-image">
-              <div class="announcement-body">
-                <h5 class="announcement-title">Card title</h5>
-                <p class="announcement-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
             </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="announcementModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <!-- <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">News Title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div> -->
-      <div class="modal-body">
-        <div class="card" style="width: 100%;">
-          <img src="images/news-image.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p href="#" class="card-link">Date</a>
-              <a href="#" class="card-link">Author</a>
-            <h5 class="card-title mt-3">News Title</h5>
-            <p class="card-text mt-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Read More</a>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+      @endforeach
+      @else
+        <p>No news available.</p>
+    @endif
+
     </div>
   </div>
 </div>
 
+
+
+
 <div class="container academic-items">
   <div class="row academic-rows-item ">
-
     <div class="col-lg-6 col-sm-12 academic-item1 my-auto">
       <div class="academic-item1-content1">Other Services We Offer</div>
+      <!--<p class="academic-item1-content2 p-3">Sed ut perspiciatis unde omnis iste natus error sit voluptatesa</p>-->
 
       <div class="international-items">
         <ol type="1" class="international-list">
@@ -508,14 +488,18 @@
 
       <a href="{{ route('getInTouchpage') }}" class="btn cont-btn">Contact Us</a>
 
+      <!-- <div class="d-flex ">
+        <ul class="nav navbar-nav navbar-register">
+          <li><a class="hover-btn-new btn-donate text-danger" href="{{ route('getInTouchpage') }}"><span>Contact Us</span></a></li>
+        </ul>
+      </div> -->
     </div>
 
     <div class="col-lg-6 col-sm-12 jumbotron-item2-content">
-      <div class="p-3 text-center">
+      <div class="p-3">
         <img src="images/international-image.png" alt="image">
       </div>
     </div>
-
   </div>
 </div>
 
@@ -586,6 +570,5 @@
 </div>
 
 @endsection
-
 
 

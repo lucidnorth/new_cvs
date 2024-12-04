@@ -159,57 +159,77 @@
 
 <script>
     Dropzone.options.featuredImageDropzone = {
-    url: '{{ route('admin.content-pages.storeMedia') }}',
-    maxFilesize: 2, // MB
-    acceptedFiles: '.jpeg,.jpg,.png,.gif',
-    maxFiles: 1,
-    addRemoveLinks: true,
-    headers: {
-      'X-CSRF-TOKEN': "{{ csrf_token() }}"
-    },
-    params: {
-      size: 2,
-      width: 4096,
-      height: 4096
-    },
-    success: function (file, response) {
-      $('form').find('input[name="featured_image"]').remove()
-      $('form').append('<input type="hidden" name="featured_image" value="' + response.name + '">')
-    },
-    removedfile: function (file) {
-      file.previewElement.remove()
-      if (file.status !== 'error') {
-        $('form').find('input[name="featured_image"]').remove()
-        this.options.maxFiles = this.options.maxFiles + 1
-      }
-    },
-    init: function () {
-@if(isset($contentPage) && $contentPage->featured_image)
-      var file = {!! json_encode($contentPage->featured_image) !!}
-          this.options.addedfile.call(this, file)
-      this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
-      file.previewElement.classList.add('dz-complete')
-      $('form').append('<input type="hidden" name="featured_image" value="' + file.file_name + '">')
-      this.options.maxFiles = this.options.maxFiles - 1
-@endif
-    },
-    error: function (file, response) {
-        if ($.type(response) === 'string') {
-            var message = response //dropzone sends it's own error messages in string
-        } else {
-            var message = response.errors.file
-        }
-        file.previewElement.classList.add('dz-error')
-        _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
-        _results = []
-        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            node = _ref[_i]
-            _results.push(node.textContent = message)
-        }
+        url: '{{ route('admin.content-pages.storeMedia') }}',
+        maxFilesize: 2, // Maximum file size in MB
+        acceptedFiles: '.jpeg,.jpg,.png,.gif', // Accepted file types
+        maxFiles: 1, // Only allow one file
+        addRemoveLinks: true, // Enable remove link
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}" // CSRF protection
+        },
+        params: {
+            size: 2, // Max file size parameter for validation
+            width: 4096, // Max width for image validation
+            height: 4096 // Max height for image validation
+        },
+        success: function (file, response) {
+            // Remove any existing hidden input for featured_image
+            $('form').find('input[name="featured_image"]').remove();
 
-        return _results
-    }
-}
+            // Add hidden input with the uploaded file name
+            $('form').append('<input type="hidden" name="featured_image" value="' + response.name + '">');
+        },
+        removedfile: function (file) {
+            // Remove file preview from Dropzone
+            file.previewElement.remove();
 
+            // Remove associated hidden input if file is successfully removed
+            if (file.status !== 'error') {
+                $('form').find('input[name="featured_image"]').remove();
+
+                // Reset max files limit
+                this.options.maxFiles = this.options.maxFiles + 1;
+            }
+        },
+        init: function () {
+            // Check if an existing featured image is being edited
+            @if(isset($contentPage) && $contentPage->featured_image)
+                var file = {!! json_encode($contentPage->featured_image) !!};
+
+                // Simulate the added file in Dropzone
+                this.options.addedfile.call(this, file);
+
+                // Set thumbnail for the existing image
+                this.options.thumbnail.call(this, file, file.preview ?? file.preview_url);
+
+                // Mark the file as complete
+                file.previewElement.classList.add('dz-complete');
+
+                // Append hidden input with the existing file name
+                $('form').append('<input type="hidden" name="featured_image" value="' + file.file_name + '">');
+
+                // Reduce max files count since an image is already present
+                this.options.maxFiles = this.options.maxFiles - 1;
+            @endif
+        },
+        error: function (file, response) {
+            var message;
+            if ($.type(response) === 'string') {
+                // Use Dropzone's default error messages if response is a string
+                message = response;
+            } else {
+                // Use the custom error message if response contains errors
+                message = response.errors.file;
+            }
+
+            // Add error message to the file preview
+            file.previewElement.classList.add('dz-error');
+            var errorNodes = file.previewElement.querySelectorAll('[data-dz-errormessage]');
+            for (var node of errorNodes) {
+                node.textContent = message;
+            }
+        }
+    };
 </script>
+
 @endsection
