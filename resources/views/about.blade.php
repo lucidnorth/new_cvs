@@ -50,15 +50,27 @@
   <!-- Tab panes -->
   <div class=" tab-content about-tab-content ">
     <div class="tab-pane container active" id="integrity">
+      @if ($integrity)
       <p style="text-align: justify;">{!! $integrity->page_text !!}</p>
+      @else
+            <div class="mb-3">No content available yet.</div>
+        @endif
     </div>
 
     <div class="tab-pane container fade" id="mission">
+    @if ($mission)
       <p style="text-align:center; margin : 70px 0;">{!! $mission->page_text !!}</p>
+      @else
+            <div class="mb-3">No content available yet.</div>
+        @endif
     </div>
 
     <div class="tab-pane container fade" id="vision">
+    @if ($vision)
       <p style="text-align:center; margin : 0px 0;">{!! $vision->page_text !!}</p>
+      @else
+            <div class="mb-3">No content available yet.</div>
+        @endif
     </div>
 
     <div class="tab-pane container fade" id="faqs">

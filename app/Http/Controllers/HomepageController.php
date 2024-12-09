@@ -19,7 +19,6 @@ class HomepageController extends Controller
 
         $services = ContentPage::where('title', 'Services')->first();
 
-
         // Ensure you're passing the correct variable to the view
         return view('index', compact('bannerContent', 'newsContent', 'services'));
     }

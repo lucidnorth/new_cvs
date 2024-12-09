@@ -60,7 +60,11 @@
   <div class="container jumbotron-items">
     <div class="row jumbotron-rows-item ">
       <div class="col jumbotron-item1 my-auto">
+      @if ($bannerContent)
         <div class="jumbotron-item1-content1">{!! $bannerContent->page_text !!}</div>
+        @else
+            <div class="mb-3">No content available yet.</div>
+        @endif
         <p class="jumbotron-item1-content2">
             @if ($bannerContent->tags->isNotEmpty())
                 @foreach ($bannerContent->tags as $index => $tag)
